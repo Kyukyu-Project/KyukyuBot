@@ -1,0 +1,31 @@
+{
+  "description": "Discord client settings. Copy this file as 'app.json' and fill in the fields.",
+  "pm2-process-name": {
+    "description": "Name of the client process used by PM2",
+    "value": "KyukyuBot"
+  },
+  "default-prefix": {
+    "description": "The default prefix used for bot commands",
+    "value": "?"
+  },
+  "default-lang": {
+    "description": "The default fallback language for bot commands",
+    "value": "en"
+  },
+  "login-token": {
+    "description": "The login token to your bot (keep as secret at all time!). Find this at https://discord.com/developers/applications",
+    "value": ""
+  },
+  "owner-role-id": {
+    "description": "Id of the guild role that has permission to use owner-only commands",
+    "value": ""
+  },
+  "owner-guild-id": {
+    "description": "Id of the guild where owner-only commands can be used",
+    "value": ""
+  },
+  "client-data-path": {
+    "description": "Path for locally saved client data",
+    "value": "./client-data/"
+  }
+}

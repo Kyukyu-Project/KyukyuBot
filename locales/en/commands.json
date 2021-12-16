@@ -1,0 +1,32 @@
+{
+  "commands": {
+    "admin.set-bot-channel": {
+      "desc": "Set a channel as the bot-channel.",
+      "usage": "[channel]",
+      "success": "{CHANNEL} is now set as the bot channel.",
+      "show-value": "{CHANNEL} is the bot channel.",
+      "no-bot-channel": "No channel is set as the bot channel.",
+      "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
+      "not-a-text-channel": "{CHANNEL} is not a valid text channel."
+    },
+    "admin.unset-bot-channel": {
+      "desc": "Unset bot-channel.",
+      "success": "{CHANNEL} is unset as the bot channel.",
+      "no-bot-channel": "No channel is set as the bot channel."
+    },
+    "owner.git-pull": {
+      "desc": "Load the latest source code from git.",
+      "usage": "",
+      "success": "`git-pull` command executed:\n```{LOG}```",
+      "error": "Error executing git command:\n```{LOG}```"
+    }    
+  },
+  "aliases": {
+    "commands": [
+      ["admin.set-bot-channel", "set-bot-channel", "set-bot-channels"],
+      ["admin.unset-bot-channel", "unset-bot-channel", "unset-bot-channels"],
+      ["owner.git-pull", "git-pull", "git-update"],
+      ["general.ping", "ping"]
+    ]
+  }
+}

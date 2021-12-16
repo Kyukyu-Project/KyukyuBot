@@ -1,0 +1,12 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# Configuration
+/*.json
+!/*.example.json
+!/package*.json
+client-data/*.json
