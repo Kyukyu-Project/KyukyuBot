@@ -9,47 +9,45 @@ export const commandType = COMMAND_TYPE.ADMIN;
 
 import {getChannelId} from '../../utils/utils.js';
 
-const keyPrefix = `commands.${name}`;
+const SHOW_BOT_CHANNEL    = `commands.${name}.show-bot-channel`;
+const NO_BOT_CHANNEL      = `commands.${name}.no-bot-channel`;
+const ALREADY_BOT_CHANNEL = `commands.${name}.already-the-bot-channel`;
+const COMMAND_SUCCESS     = `commands.${name}.success`;
+const NOT_TEXT_CHANNEL    = `commands.${name}.not-a-text-channel`;
 
 /**
  * @param {CommandContext} context
- * @return {Promise<Discord.Message>}
+ * @return {boolean} - true if command is executed
  */
 export async function execute(context) {
   const {client, lang, guild, guildSettings} = context;
   const l10n = client.l10n;
 
-  if (!guild) return; // Not guild text channel
-
   let response;
-  const prevBotChannel = guildSettings['bot-channel'] || '';
-  const newBotChannel = getChannelId(context.args[0]);
+  let result = false;
+  const prevId = guildSettings['bot-channel'] || '';
+  const newId = getChannelId(context.args[0]);
 
-  if (!newBotChannel) { // show bot channel
-    if (prevBotChannel) {
-      response = l10n.t(
-          lang, `${keyPrefix}.show-value`,
-          '{CHANNEL}', `<#${prevBotChannel}>`);
+  if (!newId) { // show bot channel
+    if (prevId) {
+      response = l10n.t(lang, SHOW_BOT_CHANNEL, '{CHANNEL}', `<#${prevId}>`);
+      result = true;
     } else {
-      response = l10n.s(lang, `${keyPrefix}.no-bot-channel`);
+      response = l10n.s(lang, NO_BOT_CHANNEL);
     }
-  } else if (prevBotChannel == newBotChannel) { // already the bot channel
-    response = l10n.t(
-        lang, `${keyPrefix}.already-the-bot-channel`,
-        '{CHANNEL}', `<#${newBotChannel}>`);
-  } else if (guild.channels.cache.get(newBotChannel)?.isText()) { // set
-    guildSettings['bot-channel'] = newBotChannel;
-    response = l10n.t(
-        lang, `${keyPrefix}.success`,
-        '{CHANNEL}', `<#${newBotChannel}>`);
-    client.updateGuildSettings(context.guild, guildSettings);
+  } else if (prevId == newId) { // already the bot channel
+    response = l10n.t(lang, ALREADY_BOT_CHANNEL, '{CHANNEL}', `<#${newId}>`);
+  } else if (guild.channels.cache.get(newId)?.isText()) { // set
+    response = l10n.t(lang, COMMAND_SUCCESS, '{CHANNEL}', `<#${newId}>`);
+    guildSettings['bot-channel'] = newId;
+    client.updateGuildSettings(guild, guildSettings);
+    result = true;
   } else { // invalid
-    response = l10n.t(
-        lang, `${keyPrefix}.not-a-text-channel`,
-        '{CHANNEL}', `<#${newBotChannel}>`);
+    response = l10n.t(lang, NOT_TEXT_CHANNEL, '{CHANNEL}', `<#${newId}>`);
   }
-  return context.channel.send({
+  context.channel.send({
     content: response,
     reply: {messageReference: context.message.id},
   });
+  return result;
 }

@@ -7,28 +7,32 @@
 */
 import {COMMAND_TYPE} from '../../typedef.js';
 
+// import {promisify} from 'util';
 import {exec} from 'child_process';
+
+// const execProcess = promisify(exec);
 
 export const name = 'owner.git-pull';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.OWNER;
 
-const keyPrefix = `commands.${name}`;
+const COMMAND_SUCCESS     = `commands.${name}.success`;
+const COMMAND_ERROR       = `commands.${name}.error`;
 
 /**
  * @param {CommandContext} context
- * @return {Promise<Discord.Message>}
+ * @return {Promise<boolean>}
  */
 export async function execute(context) {
   const {client, lang, channel} = context;
-  const l10n = client.l10n;
-  exec('git pull', (error, stdout, stderr) => {
-    if (error) {
-      return channel.send(
-          l10n.t(lang, `${keyPrefix}.error`, '{LOG}', stderr));
-    } else {
-      return channel.send(
-          l10n.t(lang, `${keyPrefix}.success`), '{LOG}', stdout);
-    }
+  return new Promise((resolve, reject) => {
+    exec('git pull', (error, stdout, stderr) => {
+      if (error) {
+        channel.send(client.l10n.t(lang, COMMAND_ERROR, '{LOG}', stderr));
+      } else {
+        channel.send(client.l10n.t(lang, COMMAND_SUCCESS, '{LOG}', stdout));
+      }
+      resolve(error? false : true);
+    });
   });
 }

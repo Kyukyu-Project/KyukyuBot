@@ -2,7 +2,11 @@
  * Main client class
  **/
 
-import {existsSync, statSync, mkdirSync} from 'fs';
+import {
+  existsSync,
+  statSync,
+  mkdirSync,
+  createWriteStream} from 'fs';
 import {join} from 'path';
 import {
   Client as djsClient,
@@ -117,6 +121,10 @@ class Client extends djsClient {
        * @type {Discord.Collection}
        */
       this.userConfig = createCollectionFromFile(this.userConfigPath);
+
+      this.logger = createWriteStream(
+          join(this.clientDataPath, 'commands.log'), {flags: 'a' /* append */},
+      );
     } else {
       this.guildConfigPath = '';
       this.guildConfig = new Collection();
@@ -196,6 +204,14 @@ class Client extends djsClient {
     if (this.userConfigPath) {
       saveCollectionToFile(this.userConfig, this.userConfigPath);
     }
+  }
+
+  /**
+   * Log
+   * @param {string} log - Log text
+   */
+  log(log) {
+    if (this.logger) this.logger.write(log);
   }
 
   /**
@@ -309,13 +325,22 @@ class Client extends djsClient {
       cmdContext.guildSettings = guildSettings;
     }
 
-    cmd.execute(cmdContext).catch((error) => {
-      console.error(
-          '--------------------------------------------------\n',
-          `Error executing '${msg.content}'\n`,
-          '> ' + error.message,
-      );
-    });
+    cmd.execute(cmdContext)
+        .then((v) => {
+          if (typeof v == 'boolean') {
+            this.log(
+                `${v?'✓':'✗'} ${(new Date()).toISOString()} ${cmdName}\n`,
+            );
+          }
+        })
+        .catch((error) => {
+          this.log(`✗ ${(new Date()).toISOString()} ${cmdName}\n`);
+          console.error(
+              '--------------------------------------------------\n',
+              `Error executing '${msg.content}'\n`,
+              '> ' + error.message,
+          );
+        });
   }
 
   /**

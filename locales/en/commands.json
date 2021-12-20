@@ -4,7 +4,7 @@
       "desc": "Set a channel as the bot-channel.",
       "usage": "[channel]",
       "success": "{CHANNEL} is now set as the bot channel.",
-      "show-value": "{CHANNEL} is the bot channel.",
+      "show-bot-channel": "{CHANNEL} is the bot channel.",
       "no-bot-channel": "No channel is set as the bot channel.",
       "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
       "not-a-text-channel": "{CHANNEL} is not a valid text channel."

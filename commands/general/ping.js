@@ -13,8 +13,6 @@ export const commandType = COMMAND_TYPE.GENERAL;
  * @return {Promise<Discord.Message>}
  */
 export async function execute(context) {
-  return context.channel.send({
-    content: 'Pong!',
-    reply: {messageReference: context.message.id},
-  });
+  context.channel.send('Pong!');
+  return true;
 }

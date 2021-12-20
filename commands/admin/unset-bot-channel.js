@@ -8,33 +8,33 @@ export const name = 'admin.unset-bot-channel';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.ADMIN;
 
-const keyPrefix = `commands.${name}`;
+const COMMAND_SUCCESS     = `commands.${name}.success`;
+const NO_BOT_CHANNEL      = `commands.${name}.no-bot-channel`;
 
 /**
  * @param {CommandContext} context
- * @return {Promise<Discord.Message>}
+ * @return {boolean} - true if command is executed
  */
 export async function execute(context) {
   const {client, lang, guild, guildSettings} = context;
   const l10n = client.l10n;
 
-  if (!guild) return; // Not guild text channel
-
-  const prevBotChannel = guildSettings['bot-channel'] || '';
   let response;
-  if (prevBotChannel) {
-    response = l10n.t(
-        lang, `${keyPrefix}.success`,
-        '{CHANNEL}', `<#${prevBotChannel}>`);
-    l10n.s(lang, `${keyPrefix}.no-bot-channel`);
+  let result = false;
+  const prevId = guildSettings['bot-channel'] || '';
+
+  if (prevId) {
+    response = l10n.t(lang, COMMAND_SUCCESS, '{CHANNEL}', `<#${prevId}>`);
     guildSettings['bot-channel'] = '';
-    client.updateGuildSettings(context.guild, guildSettings);
+    client.updateGuildSettings(guild, guildSettings);
+    result = true;
   } else {
-    response = l10n.s(lang, `${keyPrefix}.no-bot-channel`);
+    response = l10n.s(lang, NO_BOT_CHANNEL);
   }
 
-  return context.channel.send({
+  context.channel.send({
     content: response,
     reply: {messageReference: context.message.id},
   });
+  return result;
 }
