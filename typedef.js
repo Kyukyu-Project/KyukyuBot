@@ -43,7 +43,6 @@
  * @property {string} lang - Language
  * @property {string} commandAliasUsed - Command name/alias that was used
  * @property {string[]} args - Parsed command arguments
- * @property {boolean} setCooldown - If cool-down needs to be set
  */
 
 /**

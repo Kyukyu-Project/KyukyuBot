@@ -16,7 +16,6 @@ import {
 
 import L10N from './l10n.js';
 import CommandManager from './commands.js';
-import CooldownManager from './cooldowns.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
@@ -77,9 +76,9 @@ class Client extends djsClient {
 
     /**
      * Cooldown Manager
-     * @type { CooldownManager}
+     * @type {Discord.Collection}
      */
-    this.cooldowns = new CooldownManager();
+    this.cooldowns = new Collection();
 
     this.l10n.defaultLang = clientConfig['default-lang'];
 
@@ -278,9 +277,14 @@ class Client extends djsClient {
      */
     let setCooldown = false;
 
+    /**
+     * Key for cooldown
+     * @type {string}
+     */
+    let cooldownKey = '';
+
     // Check for permission
     if (channel.type === 'DM') {
-      setCooldown = false;
       hasPermission =
           (cmd.commandType !== COMMAND_TYPE.OWNER) &&
           (cmd.commandType !== COMMAND_TYPE.ADMIN);
@@ -310,12 +314,19 @@ class Client extends djsClient {
           ) {
             // setCooldown = false;
           } else {
-            setCooldown = true;
+            setCooldown = cmd.cooldown && (cmd.cooldown > 0);
           }
       } // switch (cmd.commandType)
     }
 
     if (!hasPermission) return;
+
+    console.log(setCooldown);
+
+    if (setCooldown) {
+      cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
+      if (this.cooldowns.get(cooldownKey)) return;
+    }
 
     /** @type CommandContext */
     const cmdContext = {
@@ -326,29 +337,29 @@ class Client extends djsClient {
       lang: lang,
       commandAliasUsed: cmdAlias,
       args: parsedArgs,
-      setCooldown: setCooldown,
     };
     if (msg.channel.type === 'GUILD_TEXT') {
       cmdContext.guild = guild;
       cmdContext.guildSettings = guildSettings;
     }
 
-    if (this.cooldowns.getCooldown(guild.id, user.id, cmdName)) {
-      return false;
-    } else if (cmd.cooldown) {
-      this.cooldowns.setCooldown(guild.id, user.id, cmdName, cmd.cooldown);
-    }
-
+    const now = new Date();
     cmd.execute(cmdContext)
-        .then((v) => {
-          if (typeof v == 'boolean') {
+        .then((result) => {
+          if (typeof result == 'boolean') {
+            if (result && setCooldown) {
+              const cooldownMS = cmd.cooldown * 1000;
+              const expiration = now.valueOf() + cooldownMS;
+              this.cooldowns.set(cooldownKey, expiration);
+              setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
+            }
             this.log(
-                `${v?'✓':'✗'} ${(new Date()).toISOString()} ${cmdName}\n`,
+                `${result?'✓':'✗'} ${now.toISOString()} ${cmdName}\n`,
             );
           }
         })
         .catch((error) => {
-          this.log(`✗ ${(new Date()).toISOString()} ${cmdName}\n`);
+          this.log(`✗ ${now.toISOString()} ${cmdName}\n`);
           console.error(
               '--------------------------------------------------\n',
               `Error executing '${msg.content}'\n`,
