@@ -15,6 +15,7 @@ import {exec} from 'child_process';
 export const name = 'owner.git-pull';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.OWNER;
+export const cooldown = 0;
 
 const COMMAND_SUCCESS     = `commands.${name}.success`;
 const COMMAND_ERROR       = `commands.${name}.error`;

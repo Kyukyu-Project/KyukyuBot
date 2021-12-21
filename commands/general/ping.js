@@ -4,9 +4,9 @@
 import {COMMAND_TYPE} from '../../typedef.js';
 
 export const name = 'general.ping';
-export const requireArgs = true;
-
+export const requireArgs = false;
 export const commandType = COMMAND_TYPE.GENERAL;
+export const cooldown = 3;
 
 /**
  * @param {CommandContext} context

@@ -6,6 +6,7 @@ import {COMMAND_TYPE} from '../../typedef.js';
 export const name = 'admin.set-bot-channel';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.ADMIN;
+export const cooldown = 0;
 
 import {getChannelId} from '../../utils/utils.js';
 

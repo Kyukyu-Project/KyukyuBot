@@ -16,6 +16,7 @@ import {
 
 import L10N from './l10n.js';
 import CommandManager from './commands.js';
+import CooldownManager from './cooldowns.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
@@ -73,6 +74,12 @@ class Client extends djsClient {
      * @type {CommandManager}
      */
     this.commands = new CommandManager();
+
+    /**
+     * Cooldown Manager
+     * @type { CooldownManager}
+     */
+    this.cooldowns = new CooldownManager();
 
     this.l10n.defaultLang = clientConfig['default-lang'];
 
@@ -255,8 +262,9 @@ class Client extends djsClient {
       this.l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
 
     if (!cmdName) return;
-
     const cmd = this.commands.get(cmdName);
+
+    if ((cmd.requireArgs) && (parsedArgs.length == 0)) return;
 
     /**
      * Does the user have permission to execute the command?
@@ -323,6 +331,12 @@ class Client extends djsClient {
     if (msg.channel.type === 'GUILD_TEXT') {
       cmdContext.guild = guild;
       cmdContext.guildSettings = guildSettings;
+    }
+
+    if (this.cooldowns.getCooldown(guild.id, user.id, cmdName)) {
+      return false;
+    } else if (cmd.cooldown) {
+      this.cooldowns.setCooldown(guild.id, user.id, cmdName, cmd.cooldown);
     }
 
     cmd.execute(cmdContext)

@@ -7,6 +7,7 @@ import {COMMAND_TYPE} from '../../typedef.js';
 export const name = 'admin.unset-bot-channel';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.ADMIN;
+export const cooldown = 0;
 
 const COMMAND_SUCCESS     = `commands.${name}.success`;
 const NO_BOT_CHANNEL      = `commands.${name}.no-bot-channel`;
