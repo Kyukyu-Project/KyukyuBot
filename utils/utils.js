@@ -4,7 +4,6 @@ import discordJs from 'discord.js';
 
 const {
   Collection,
-  // MessageMentions: {CHANNELS_PATTERN, USERS_PATTERN, ROLES_PATTERN},
 } = discordJs;
 
 /**
@@ -297,4 +296,22 @@ export function parseCommandArguments(prefix, text) {
   } // while (nextToken)
 
   return args;
+}
+
+/**
+ * Asynchronously pause for a few seconds
+ * @param {number} seconds Number of seconds
+ * @return {Promise}
+ */
+export async function pause(seconds) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
+/**
+ * Hard stop the process for a few seconds
+ * @param {number} seconds Number of seconds
+ * @return {Promise}
+ */
+export async function wait(seconds) {
+  await pause(seconds);
 }

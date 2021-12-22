@@ -3,14 +3,11 @@
  */
 
 /**
-* @typedef {import('../../typedef.js').CommandContext} CommandContext
+* @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../typedef.js';
+import {COMMAND_TYPE} from '../../src/typedef.js';
 
-// import {promisify} from 'util';
 import {exec} from 'child_process';
-
-// const execProcess = promisify(exec);
 
 export const name = 'owner.git-pull';
 export const requireArgs = false;

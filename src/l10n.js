@@ -5,7 +5,7 @@
 import {Collection} from 'discord.js';
 import {createFlattenedCollectionFromFiles} from '../utils/utils.js';
 
-const REPLACEALL_SUPPORTED =
+const REPLACE_ALL_SUPPORTED =
   (typeof String.prototype.replaceAll === 'function');
 
 /** Localization class */
@@ -53,6 +53,27 @@ class L10N extends Collection {
       // If default language is not defined, then use the first
       // loaded language as the default language
       if (!this.defaultLang) this.defaultLang = lang;
+    }
+  }
+
+  /**
+   * Load language files
+   * @param {string} lang - Language
+   * @return {boolean} - Result (true if successful)
+   */
+  reloadLanguage(lang) {
+    lang = String(lang).toLowerCase().trim();
+    if (this.has(lang)) {
+      try {
+        const newCollection =
+          createFlattenedCollectionFromFiles(this.sources.get(lang));
+        this.set(lang, newCollection);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    } else {
+      return false;
     }
   }
 
@@ -109,7 +130,7 @@ class L10N extends Collection {
 
     let result = template;
     const args = [].slice.call(strings);
-    if (REPLACEALL_SUPPORTED) {
+    if (REPLACE_ALL_SUPPORTED) {
       for (let i = 0; i < args.length; i=i+2) {
         result = result.replaceAll(args[i], args[i+1]);
       }

@@ -19,14 +19,14 @@ import CommandManager from './commands.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
-import {COMMAND_TYPE} from '../typedef.js';
+import {COMMAND_TYPE} from './typedef.js';
 
 /**
  * @typedef {import('discord.js')} Discord
- * @typedef {import('../typedef.js').CommandContext} CommandContext
- * @typedef {import('../typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../typedef.js').UserSettings} UserSettings
- * @typedef {import('../typedef.js').ClientConfig} ClientConfig
+ * @typedef {import('./typedef.js').CommandContext} CommandContext
+ * @typedef {import('./typedef.js').GuildSettings} GuildSettings
+ * @typedef {import('./typedef.js').UserSettings} UserSettings
+ * @typedef {import('./typedef.js').ClientConfig} ClientConfig
  */
 
 /** Extending Discord Client */
@@ -67,6 +67,7 @@ class Client extends djsClient {
      * @type {L10N}
      */
     this.l10n = new L10N();
+    this.l10n.defaultLang = clientConfig['default-lang'];
 
     /**
      * Command Manager
@@ -80,7 +81,11 @@ class Client extends djsClient {
      */
     this.cooldowns = new Collection();
 
-    this.l10n.defaultLang = clientConfig['default-lang'];
+    /**
+     * Flag for pausing all commands
+     * @type {boolean}
+     */
+    this.pauseProcess = false;
 
     /**
      * Directory path for locally saved client data
@@ -225,6 +230,7 @@ class Client extends djsClient {
    * @param {Discord.Message} msg
    */
   async onMessageCreate(msg) {
+    if (this.pauseProcess) return;
     if (msg.author.bot) return;
 
     // TODO: ECHO command
@@ -320,8 +326,6 @@ class Client extends djsClient {
     }
 
     if (!hasPermission) return;
-
-    console.log(setCooldown);
 
     if (setCooldown) {
       cooldownKey = `${guild.id}.${user.id}.${cmdName}`;

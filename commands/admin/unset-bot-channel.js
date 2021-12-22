@@ -1,8 +1,8 @@
 
 /**
-* @typedef {import('../../typedef.js').CommandContext} CommandContext
+* @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../typedef.js';
+import {COMMAND_TYPE} from '../../src/typedef.js';
 
 export const name = 'admin.unset-bot-channel';
 export const requireArgs = false;

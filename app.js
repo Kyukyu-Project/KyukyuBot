@@ -3,13 +3,15 @@ import {resolve, dirname} from 'path';
 import {getFilesFromDir} from './utils/utils.js';
 import Client from './src/client.js';
 
+import {DEFAULT_CONFIG} from './src/const.js';
+
 const __dirname = resolve();
 global.__basedir = __dirname;
 
 const CLIENT_CONFIG_FILE = './app.json';
 
 /**
- * @typedef {import('./typedef.js').ClientConfig} ClientConfig
+ * @typedef {import('./src/typedef.js').ClientConfig} ClientConfig
  */
 
 // Full file path of the client config file
@@ -31,16 +33,7 @@ if (!clientToken) throw new Error('Login token unknown');
 /** @type ClientConfig */
 const clientConfig = {};
 
-/** @type ClientConfig */
-const defaultConfig = {
-  'default-prefix': '?',
-  'default-lang': 'en',
-  'owner-role-id': '',
-  'owner-guild-id': '',
-  'client-data-path': resolve('./client-data/'),
-};
-
-Object.keys(defaultConfig).forEach((property) => {
+Object.keys(DEFAULT_CONFIG).forEach((property) => {
   clientConfig[property] =
       userConfig?.[property]?.value?.trim() ||
       defaultConfig[property];

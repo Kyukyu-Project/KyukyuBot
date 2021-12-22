@@ -1,0 +1,23 @@
+{
+  "extends": "google",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+  },
+  "rules": {
+    "no-multi-spaces": ["error", {
+      "ignoreEOLComments": true,
+      "exceptions": {
+        "AssignmentExpression": true,
+        "VariableDeclarator": true
+      }
+    }]    
+  }
+}
