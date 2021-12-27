@@ -2,11 +2,15 @@
  * Localization helper class
  **/
 
+import * as fs from 'fs';
+import {resolve} from 'path';
 import {Collection} from 'discord.js';
 import {createFlattenedCollectionFromFiles} from '../utils/utils.js';
 
 const REPLACE_ALL_SUPPORTED =
   (typeof String.prototype.replaceAll === 'function');
+
+const HELP_DIR = resolve('help');
 
 /** Localization class */
 class L10N extends Collection {
@@ -140,6 +144,30 @@ class L10N extends Collection {
       }
     }
     return result;
+  }
+
+  /**
+   * Get command help text
+   * @param {string} lang -Language
+   * @param {string} cmdName -Canonical command name
+   * @return {string}
+   */
+  getCommandHelp(lang, cmdName) {
+    let filePath = resolve(HELP_DIR, lang, cmdName + '.txt');
+    try {
+      fs.accessSync(filePath, fs.constants.R_OK);
+      return fs.readFileSync(filePath, 'utf8');
+    } catch (error) {
+      if (lang == this.defaultLang) return '';
+      try {
+        filePath = resolve(HELP_DIR, this.defaultLang, cmdName + '.txt');
+        fs.accessSync(filePath, fs.constants.R_OK);
+        return fs.readFileSync(filePath, 'utf8');
+      } catch (error) {
+        // file does not exist
+      }
+    }
+    return '';
   }
 }
 

@@ -1,0 +1,12 @@
+?reload-lang
+
+Reload the bot client's language resources.
+
+Aliases
+  ?reload-language
+
+Usages
+  ?reload-lang <language>
+
+Examples
+  ?reload-lang en

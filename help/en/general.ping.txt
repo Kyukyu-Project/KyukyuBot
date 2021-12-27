@@ -1,0 +1,7 @@
+?ping
+
+Get a Pong message from the bot
+
+Aliases
+  ?ピン
+  ?乒

@@ -1,0 +1,21 @@
+?help
+
+Information about bot commands.
+
+Aliases
+  ?h
+  ?command
+  ?cmd
+
+Usages
+  ?help <admin|owner|general>
+  ?help command-name
+
+Options
+  owner, dev  List all bot owner commands
+  admin       List all guild administrator commands
+  general     List all general commands
+
+Examples
+  ?help admin
+  ?help ping

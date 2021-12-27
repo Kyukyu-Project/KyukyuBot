@@ -41,6 +41,8 @@
  * @property {Message} message - message that initiated the command
  * @property {User} user - User who initiated the command
  * @property {string} lang - Language
+ * @property {CHANNEL_TYPE} channelType - Channel type
+ * @property {USER_TYPE} userType - User type
  * @property {string} commandAliasUsed - Command name/alias that was used
  * @property {string[]} args - Parsed command arguments
  */
@@ -55,6 +57,26 @@ export const COMMAND_TYPE = {
   // MODERATOR: 6, //  Can be used by channel moderator only
   GENERAL: 5, // Can be used by anyone
   FUN: 2, // Fun commands
+};
+
+/**
+ * @readonly
+ * @enum {number}
+ */
+export const USER_TYPE = {
+  OWNER: 9, // Client owner
+  ADMIN: 7, //  Guild administrator
+  GENERAL: 5, // General user
+};
+
+/**
+ * @readonly
+ * @enum {string}
+ */
+export const CHANNEL_TYPE = {
+  DM: 'DM', // DM
+  BOT: 'BOT', // Guild text channel for bot commands
+  TEXT: 'TEXT', // Guild text channel
 };
 
 export const unused = {};

@@ -19,7 +19,7 @@ import CommandManager from './commands.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
-import {COMMAND_TYPE} from './typedef.js';
+import {COMMAND_TYPE, CHANNEL_TYPE, USER_TYPE} from './typedef.js';
 
 /**
  * @typedef {import('discord.js')} Discord
@@ -269,7 +269,13 @@ class Client extends djsClient {
     if (!cmdName) return;
     const cmd = this.commands.get(cmdName);
 
-    if ((cmd.requireArgs) && (parsedArgs.length == 0)) return;
+    if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
+      const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
+      if (helpTxt) {
+        channel.send({content: helpTxt, reply: {messageReference: msg.id}});
+      }
+      return;
+    }
 
     /**
      * Does the user have permission to execute the command?
@@ -284,40 +290,70 @@ class Client extends djsClient {
     let setCooldown = false;
 
     /**
+     * Channel type
+     * @type {CHANNEL_TYPE}
+     **/
+    let channelType = CHANNEL_TYPE.TEXT;
+
+    /**
+     * User type
+     * @type {USER_TYPE}
+     **/
+    let userType = USER_TYPE.GENERAL;
+
+    /**
      * Key for cooldown
      * @type {string}
      */
     let cooldownKey = '';
 
-    // Check for permission
     if (channel.type === 'DM') {
+      channelType  = CHANNEL_TYPE.DM;
       hasPermission =
           (cmd.commandType !== COMMAND_TYPE.OWNER) &&
           (cmd.commandType !== COMMAND_TYPE.ADMIN);
     } else if (channel.type === 'GUILD_TEXT') {
-      /** @type {Permissions} */
-      const memberPermissions = msg.member.permissions;
+      const mRoles = msg.member.roles;
+      const mPermissions = msg.member.permissions;
+      if (guild.id == this.ownerGuildId) {
+        if (
+          this.ownerRoleId?
+          mRoles.cache.some((r)=>r.id = this.ownerRoleId):
+          mPermissions.has(Permissions.FLAGS.ADMINISTRATOR)
+        ) {
+          userType = USER_TYPE.OWNER;
+        } else if (
+          mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
+          mPermissions.has(Permissions.FLAGS.MANAGE_GUILD)
+        ) {
+          userType = USER_TYPE.ADMIN;
+        };
+      } else {
+        if (
+          mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
+          mPermissions.has(Permissions.FLAGS.MANAGE_GUILD)
+        ) {
+          userType = USER_TYPE.ADMIN;
+        }
+      }
+
       switch (cmd.commandType) {
         case COMMAND_TYPE.OWNER:
-          if (guild.id == this.ownerGuildId) {
-            hasPermission =
-                (this.ownerRoleId)?
-                msg.member.roles.cache.some((r)=>r.id = this.ownerRoleId):
-                memberPermissions.has(Permissions.FLAGS.ADMINISTRATOR);
-          }
+          hasPermission = (userType == USER_TYPE.OWNER);
           break;
         case COMMAND_TYPE.ADMIN:
           hasPermission =
-            memberPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
-            memberPermissions.has(Permissions.FLAGS.MANAGE_GUILD);
+              (userType == USER_TYPE.OWNER) ||
+              (userType == USER_TYPE.ADMIN);
           break;
         // case COMMAND_TYPE.MODERATOR: break;
         default:
           hasPermission = true;
-          if (
-            (memberPermissions.has(Permissions.FLAGS.ADMINISTRATOR)) ||
-            (channel.id == guildSettings['bot-channel'])
-          ) {
+          if (channel.id == guildSettings['bot-channel']) {
+            // setCooldown = false;
+            channelType  = CHANNEL_TYPE.BOT;
+          } else
+          if ((userType == USER_TYPE.OWNER) || (userType == USER_TYPE.ADMIN)) {
             // setCooldown = false;
           } else {
             setCooldown = cmd.cooldown && (cmd.cooldown > 0);
@@ -339,6 +375,7 @@ class Client extends djsClient {
       message: msg,
       user: user,
       lang: lang,
+      channelType: channelType,
       commandAliasUsed: cmdAlias,
       args: parsedArgs,
     };

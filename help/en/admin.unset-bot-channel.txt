@@ -1,0 +1,6 @@
+?set-bot-channel
+
+Unset the bot-command channel.
+
+Related
+  ?set-bot-channel

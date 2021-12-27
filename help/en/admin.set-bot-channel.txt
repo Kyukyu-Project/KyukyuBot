@@ -1,0 +1,15 @@
+?set-bot-channel
+
+View or set the bot-command channel.
+
+In the bot-command channel, everyone can use commands without any cool-down.
+
+Usages
+  ?set-bot-channel
+  ?set-bot-channel <channel>
+
+Examples
+  ?set-bot-channel #bot-commands
+
+Related
+  ?unset-bot-channel

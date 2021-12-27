@@ -30,7 +30,7 @@ class CommandManager extends Collection {
         const fileUrl = url.pathToFileURL(path);
         const cmd = await import(fileUrl);
         if (this.has(cmd.name)) {
-          console.warn(`Command name collision: ${category}/${cmd.name}`);
+          console.warn(`Command name collision: ${cmd.name}`);
         } else {
           this.set(cmd.name, cmd);
           this.sources.set(cmd.name, fileUrl);
