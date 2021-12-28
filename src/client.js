@@ -269,14 +269,6 @@ class Client extends djsClient {
     if (!cmdName) return;
     const cmd = this.commands.get(cmdName);
 
-    if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
-      const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
-      if (helpTxt) {
-        channel.send({content: helpTxt, reply: {messageReference: msg.id}});
-      }
-      return;
-    }
-
     /**
      * Does the user have permission to execute the command?
      * @type {boolean}
@@ -362,6 +354,17 @@ class Client extends djsClient {
     }
 
     if (!hasPermission) return;
+
+    if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
+      const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
+      if (helpTxt) {
+        channel.send({
+          content: helpTxt.replaceAll('?', prefix),
+          reply: {messageReference: msg.id},
+        });
+      }
+      return;
+    }
 
     if (setCooldown) {
       cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
