@@ -1,3 +1,4 @@
+import 'core-js/es/index.js';
 import {existsSync, readFileSync} from 'fs';
 import {resolve, dirname} from 'path';
 import {getFilesFromDir} from './utils/utils.js';

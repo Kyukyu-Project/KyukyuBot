@@ -2,13 +2,11 @@
  * Localization helper class
  **/
 
+import 'core-js/es/index.js';
 import * as fs from 'fs';
 import {resolve} from 'path';
 import {Collection} from 'discord.js';
 import {createFlattenedCollectionFromFiles} from '../utils/utils.js';
-
-const REPLACE_ALL_SUPPORTED =
-  (typeof String.prototype.replaceAll === 'function');
 
 const HELP_DIR = resolve('help');
 
@@ -134,14 +132,8 @@ class L10N extends Collection {
 
     let result = template;
     const args = [].slice.call(strings);
-    if (REPLACE_ALL_SUPPORTED) {
-      for (let i = 0; i < args.length; i=i+2) {
-        result = result.replaceAll(args[i], args[i+1]);
-      }
-    } else {
-      for (let i = 0; i < args.length; i=i+2) {
-        result = result.replace(new RegExp(args[i], 'g'), args[i+1]);
-      }
+    for (let i = 0; i < args.length; i=i+2) {
+      result = result.replaceAll(args[i], args[i+1]);
     }
     return result;
   }
