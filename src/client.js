@@ -226,49 +226,24 @@ class Client extends djsClient {
   }
 
   /**
-   * Handle message
+   * Get command context
+   * @param {Object} cmd
+   * @param {string} cmdAlias
+   * @param {string} lang
+   * @param {string} prefix
+   * @param {Discord.Guild} guild
+   * @param {GuildSettings} guildSettings
+   * @param {Discord.Channel} channel
+   * @param {Discord.User} user
    * @param {Discord.Message} msg
+   * @param {string[]} parsedArgs
+   * @return {CommandContext}
    */
-  async onMessageCreate(msg) {
-    if (this.pauseProcess) return;
-    if (msg.author.bot) return;
-
-    // TODO: ECHO command
-
-    const guild = msg.guild;
-    const channel = msg.channel;
-    const user = msg.author;
-
-    /** @type {GuildSettings} */
-    let guildSettings;
-
-    let prefix;
-    let lang;
-
-    // Load guild settings
-    if (guild) {
-      guildSettings = this.getGuildSettings(guild);
-      lang = guildSettings.lang;
-      prefix = guildSettings['command-prefix'];
-    } else {
-      lang = this.getUserSettings(user).lang;
-      prefix = this.defaultPrefix;
-    }
-
-    const parsedArgs = parseCommandArguments(prefix, msg.content);
-
-    if (parsedArgs.length == 0) return;
-
-    /** Command alias used */
-    const cmdAlias = parsedArgs.shift();
-
-    /** Canonical command name */
-    const cmdName =
-      this.l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
-
-    if (!cmdName) return;
-    const cmd = this.commands.get(cmdName);
-
+  getCommandContext(
+      cmd, cmdAlias, lang, prefix,
+      guild, guildSettings,
+      channel, user, msg, parsedArgs,
+  ) {
     /**
      * Does the user have permission to execute the command?
      * @type {boolean}
@@ -292,12 +267,6 @@ class Client extends djsClient {
      * @type {USER_TYPE}
      **/
     let userType = USER_TYPE.GENERAL;
-
-    /**
-     * Key for cooldown
-     * @type {string}
-     */
-    let cooldownKey = '';
 
     if (channel.type === 'DM') {
       channelType  = CHANNEL_TYPE.DM;
@@ -353,7 +322,79 @@ class Client extends djsClient {
       } // switch (cmd.commandType)
     }
 
-    if (!hasPermission) return;
+    /** @type CommandContext */
+    const cmdContext = {
+      client: this,
+      channel: channel,
+      message: msg,
+      user: user,
+      lang: lang,
+      channelType: channelType,
+      userType: userType,
+      hasPermission: hasPermission,
+      setCooldown: setCooldown,
+      commandAliasUsed: cmdAlias,
+      commandPrefix: prefix,
+      args: parsedArgs,
+    };
+    if (channel.type === 'GUILD_TEXT') {
+      cmdContext.guild = guild;
+      cmdContext.guildSettings = guildSettings;
+    }
+    return cmdContext;
+  }
+
+  /**
+   * Handle message
+   * @param {Discord.Message} msg
+   */
+  async onMessageCreate(msg) {
+    if (this.pauseProcess) return;
+    if (msg.author.bot) return;
+
+    // TODO: ECHO command
+
+    const guild = msg.guild;
+    const channel = msg.channel;
+    const user = msg.author;
+
+    /** @type {GuildSettings} */
+    let guildSettings;
+
+    let prefix;
+    let lang;
+
+    // Load guild settings
+    if (guild) {
+      guildSettings = this.getGuildSettings(guild);
+      lang = guildSettings.lang;
+      prefix = guildSettings['command-prefix'];
+    } else {
+      lang = this.getUserSettings(user).lang;
+      prefix = this.defaultPrefix;
+    }
+
+    const parsedArgs = parseCommandArguments(prefix, msg.content);
+
+    if (parsedArgs.length == 0) return;
+
+    /** Command alias used */
+    const cmdAlias = parsedArgs.shift();
+
+    /** Canonical command name */
+    const cmdName =
+      this.l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
+
+    if (!cmdName) return;
+    const cmd = this.commands.get(cmdName);
+
+    const cmdContext = this.getCommandContext(
+        cmd, cmdAlias, lang, prefix,
+        guild, guildSettings, channel, user,
+        msg, parsedArgs,
+    );
+
+    if (!cmdContext.hasPermission) return;
 
     if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
       const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
@@ -366,28 +407,18 @@ class Client extends djsClient {
       return;
     }
 
-    if (setCooldown) {
+    /**
+     * Key for cooldown
+     * @type {string}
+     */
+    let cooldownKey = '';
+
+    if (cmdContext.setCooldown) {
       cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
       if (this.cooldowns.get(cooldownKey)) return;
     }
-
-    /** @type CommandContext */
-    const cmdContext = {
-      client: this,
-      channel: channel,
-      message: msg,
-      user: user,
-      lang: lang,
-      channelType: channelType,
-      commandAliasUsed: cmdAlias,
-      args: parsedArgs,
-    };
-    if (msg.channel.type === 'GUILD_TEXT') {
-      cmdContext.guild = guild;
-      cmdContext.guildSettings = guildSettings;
-    }
-
     const now = new Date();
+
     cmd.execute(cmdContext)
         .then((result) => {
           if (typeof result == 'boolean') {
@@ -411,6 +442,7 @@ class Client extends djsClient {
           );
         });
   }
+
 
   /**
    * Get ready

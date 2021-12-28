@@ -43,7 +43,10 @@
  * @property {string} lang - Language
  * @property {CHANNEL_TYPE} channelType - Channel type
  * @property {USER_TYPE} userType - User type
+ * @property {boolean} hasPermission - Does the user have permission?
+ * @property {boolean} setCooldown - Does the command have cooldown?
  * @property {string} commandAliasUsed - Command name/alias that was used
+ * @property {string} commandPrefix - Command prefix
  * @property {string[]} args - Parsed command arguments
  */
 
