@@ -19,10 +19,12 @@ import CommandManager from './commands.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
-import {COMMAND_TYPE, CHANNEL_TYPE, USER_TYPE} from './typedef.js';
+import {COMMAND_TYPE} from './typedef.js';
 
 /**
  * @typedef {import('discord.js')} Discord
+ * @typedef {import('./typedef.js').Command} Command
+ * @typedef {import('./typedef.js').UserPermissions} UserPermissions
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
  * @typedef {import('./typedef.js').UserSettings} UserSettings
@@ -226,122 +228,61 @@ class Client extends djsClient {
   }
 
   /**
-   * Get command context
-   * @param {Object} cmd
-   * @param {string} cmdAlias
-   * @param {string} lang
-   * @param {string} prefix
+   * Get user permissions
    * @param {Discord.Guild} guild
    * @param {GuildSettings} guildSettings
    * @param {Discord.Channel} channel
-   * @param {Discord.User} user
    * @param {Discord.Message} msg
-   * @param {string[]} parsedArgs
-   * @return {CommandContext}
+   * @return {UserPermissions}
    */
-  getCommandContext(
-      cmd, cmdAlias, lang, prefix,
-      guild, guildSettings,
-      channel, user, msg, parsedArgs,
-  ) {
-    /**
-     * Does the user have permission to execute the command?
-     * @type {boolean}
-     */
-    let hasPermission = false;
-
-    /**
-     * Do we need to set a cool-down for this command?
-     * @type {boolean}
-     */
-    let setCooldown = false;
-
-    /**
-     * Channel type
-     * @type {CHANNEL_TYPE}
-     **/
-    let channelType = CHANNEL_TYPE.TEXT;
-
-    /**
-     * User type
-     * @type {USER_TYPE}
-     **/
-    let userType = USER_TYPE.GENERAL;
-
-    if (channel.type === 'DM') {
-      channelType  = CHANNEL_TYPE.DM;
-      hasPermission =
-          (cmd.commandType !== COMMAND_TYPE.OWNER) &&
-          (cmd.commandType !== COMMAND_TYPE.ADMIN);
-    } else if (channel.type === 'GUILD_TEXT') {
+  getUserPermissions(guild, guildSettings, channel, msg) {
+    if (channel.type === 'GUILD_TEXT') {
       const mRoles = msg.member.roles;
       const mPermissions = msg.member.permissions;
-      if (guild.id == this.ownerGuildId) {
-        if (
+
+      const hasOwnerPermission =
+          (guild.id == this.ownerGuildId) &&
           this.ownerRoleId?
           mRoles.cache.some((r)=>r.id = this.ownerRoleId):
-          mPermissions.has(Permissions.FLAGS.ADMINISTRATOR)
-        ) {
-          userType = USER_TYPE.OWNER;
-        } else if (
+          mPermissions.has(Permissions.FLAGS.ADMINISTRATOR);
+
+      const hasAdminPermission =
           mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
-          mPermissions.has(Permissions.FLAGS.MANAGE_GUILD)
-        ) {
-          userType = USER_TYPE.ADMIN;
-        };
-      } else {
-        if (
-          mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
-          mPermissions.has(Permissions.FLAGS.MANAGE_GUILD)
-        ) {
-          userType = USER_TYPE.ADMIN;
-        }
+          mPermissions.has(Permissions.FLAGS.MANAGE_GUILD);
+
+      const modeRoles = guildSettings['mod-roles'];
+      const userIsMod =
+          ((Array.isArray(modeRoles)) && (modeRoles.length > 0))?
+          mRoles.cache.some((r)=>modeRoles.includes(r.id)):
+          false;
+
+      const helperRoles = guildSettings['helper-roles'];
+      const userIsHelper =
+          ((Array.isArray(helperRoles)) && (helperRoles.length > 0))?
+          mRoles.cache.some((r)=>helperRoles.includes(r.id)):
+          false;
+
+      const noCooldown =
+        hasOwnerPermission || hasAdminPermission ||
+        userIsMod || userIsHelper ||
+        (channel.id == guildSettings['bot-channel']);
+
+      return {
+        hasOwnerPermission: hasOwnerPermission,
+        hasAdminPermission: hasAdminPermission,
+        userIsMod: userIsMod,
+        userIsHelper: userIsHelper,
+        setCooldown: !noCooldown,
       }
-
-      switch (cmd.commandType) {
-        case COMMAND_TYPE.OWNER:
-          hasPermission = (userType == USER_TYPE.OWNER);
-          break;
-        case COMMAND_TYPE.ADMIN:
-          hasPermission =
-              (userType == USER_TYPE.OWNER) ||
-              (userType == USER_TYPE.ADMIN);
-          break;
-        // case COMMAND_TYPE.MODERATOR: break;
-        default:
-          hasPermission = true;
-          if (channel.id == guildSettings['bot-channel']) {
-            // setCooldown = false;
-            channelType  = CHANNEL_TYPE.BOT;
-          } else
-          if ((userType == USER_TYPE.OWNER) || (userType == USER_TYPE.ADMIN)) {
-            // setCooldown = false;
-          } else {
-            setCooldown = cmd.cooldown && (cmd.cooldown > 0);
-          }
-      } // switch (cmd.commandType)
+    } else {
+      return {
+        hasOwnerPermission: false,
+        hasAdminPermission: false,
+        userIsMod: false,
+        userIsHelper: false,
+        setCooldown: false,
+      }
     }
-
-    /** @type CommandContext */
-    const cmdContext = {
-      client: this,
-      channel: channel,
-      message: msg,
-      user: user,
-      lang: lang,
-      channelType: channelType,
-      userType: userType,
-      hasPermission: hasPermission,
-      setCooldown: setCooldown,
-      commandAliasUsed: cmdAlias,
-      commandPrefix: prefix,
-      args: parsedArgs,
-    };
-    if (channel.type === 'GUILD_TEXT') {
-      cmdContext.guild = guild;
-      cmdContext.guildSettings = guildSettings;
-    }
-    return cmdContext;
   }
 
   /**
@@ -358,8 +299,8 @@ class Client extends djsClient {
     const channel = msg.channel;
     const user = msg.author;
 
-    /** @type {GuildSettings} */
-    let guildSettings;
+    /** @type {GuildSettings|undefined} */
+    let guildSettings = undefined;
 
     let prefix;
     let lang;
@@ -388,13 +329,18 @@ class Client extends djsClient {
     if (!cmdName) return;
     const cmd = this.commands.get(cmdName);
 
-    const cmdContext = this.getCommandContext(
-        cmd, cmdAlias, lang, prefix,
-        guild, guildSettings, channel, user,
-        msg, parsedArgs,
-    );
+    /** @type {UserPermissions} */
+    const userPermissions =
+      this.getUserPermissions(guild, guildSettings, channel, msg);
 
-    if (!cmdContext.hasPermission) return;
+    switch (cmd.commandType) {
+      case COMMAND_TYPE.OWNER:
+        if (!userPermissions.hasOwnerPermission) return;
+        break;
+      case COMMAND_TYPE.ADMIN:
+        if (!userPermissions.hasAdminPermission) return;
+        break;
+    } // switch (cmd.commandType)
 
     if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
       const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
@@ -407,17 +353,31 @@ class Client extends djsClient {
       return;
     }
 
-    /**
-     * Key for cooldown
-     * @type {string}
-     */
-    let cooldownKey = '';
+    /** @type {string} Key for cool-down */
+    const cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
 
-    if (cmdContext.setCooldown) {
-      cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
+    const setCooldown = cmd.cooldown && userPermissions.setCooldown;
+
+    if (setCooldown) {
+      // Is user still in cool-down?
       if (this.cooldowns.get(cooldownKey)) return;
     }
     const now = new Date();
+
+    const cmdContext = {
+      client: this,
+      guild: guild,
+      guildSettings: guildSettings,
+      channel: channel,
+      message: msg,
+      user: user,
+      lang: lang,
+      commandAliasUsed: cmdAlias,
+      commandPrefix: prefix,
+      args: parsedArgs,
+    };
+
+    Object.assign(cmdContext, userPermissions);
 
     cmd.execute(cmdContext)
         .then((result) => {
@@ -435,11 +395,12 @@ class Client extends djsClient {
         })
         .catch((error) => {
           this.log(`✗ ${now.toISOString()} ${cmdName}\n`);
-          console.error(
-              '--------------------------------------------------\n',
-              `Error executing '${msg.content}'\n`,
-              '> ' + error.message,
-          );
+          console.error(error);
+          // console.error(
+          //     '--------------------------------------------------\n',
+          //     `Error executing '${msg.content}'\n`,
+          //     '> ' + error.message,
+          // );
         });
   }
 
