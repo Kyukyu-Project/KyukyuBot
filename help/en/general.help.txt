@@ -8,14 +8,15 @@ Aliases
   ?cmd
 
 Usages
-  ?help <admin|owner|general>
-  ?help command-name
+  ?help [--general]
+  ?help <--admin|--owner>
+  ?help <command-name>
 
 Options
-  owner, dev  List all bot owner commands
-  admin       List all guild administrator commands
-  general     List all general commands
+  --general       List all general commands
+  --admin         List all guild administrator commands
+  --owner, --dev  List all bot owner commands
 
 Examples
-  ?help admin
+  ?help --general
   ?help ping
