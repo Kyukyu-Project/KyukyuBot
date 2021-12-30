@@ -273,7 +273,7 @@ class Client extends djsClient {
         userIsMod: userIsMod,
         userIsHelper: userIsHelper,
         setCooldown: !noCooldown,
-      }
+      };
     } else {
       return {
         hasOwnerPermission: false,
@@ -281,7 +281,7 @@ class Client extends djsClient {
         userIsMod: false,
         userIsHelper: false,
         setCooldown: false,
-      }
+      };
     }
   }
 
@@ -394,13 +394,11 @@ class Client extends djsClient {
           }
         })
         .catch((error) => {
-          this.log(`✗ ${now.toISOString()} ${cmdName}\n`);
-          console.error(error);
-          // console.error(
-          //     '--------------------------------------------------\n',
-          //     `Error executing '${msg.content}'\n`,
-          //     '> ' + error.message,
-          // );
+          this.log(`✗ ${now.toISOString()} ${cmdName}\n> "${error.message}"\n`);
+          console.error(
+              '--------------------------------------------------\n',
+              `Error executing '${msg.content}'\n`, error,
+          );
         });
   }
 
