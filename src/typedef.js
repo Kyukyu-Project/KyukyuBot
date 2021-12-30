@@ -74,6 +74,7 @@
 /**
  * Command
  * @typedef {Object} Command
+ * @property {string} canonName - Canonical (internal) name
  * @property {string} name - Command name
  * @property {COMMAND_TYPE} commandType - Command type
  * @property {boolean} requireArgs - Does this command require argument(s)?

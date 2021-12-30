@@ -8,14 +8,15 @@
 import {COMMAND_TYPE} from '../../src/typedef.js';
 import {wait} from '../../utils/utils.js';
 
+export const canonName = 'owner.reload-lang';
 export const name = 'owner.reload-lang';
 export const requireArgs = true;
 export const commandType = COMMAND_TYPE.OWNER;
 export const cooldown = 0;
 
-const COMMAND_SUCCESS     = `commands.${name}.success`;
-const COMMAND_ERROR       = `commands.${name}.error`;
-const PLEASE_WAIT         = `commands.${name}.please-wait`;
+const COMMAND_SUCCESS     = `commands.${canonName}.success`;
+const COMMAND_ERROR       = `commands.${canonName}.error`;
+const PLEASE_WAIT         = `commands.${canonName}.please-wait`;
 
 /**
  * @param {CommandContext} context

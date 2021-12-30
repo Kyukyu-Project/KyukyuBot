@@ -5,7 +5,11 @@
 import {Collection} from 'discord.js';
 import url from 'url';
 
-/** Localization class */
+/**
+ * @typedef {import('./typedef.js').Command} Command
+ */
+
+/** Command helper class */
 class CommandManager extends Collection {
   /**
    * Constructor
@@ -28,12 +32,13 @@ class CommandManager extends Collection {
     filePaths.forEach(async (path) => {
       try {
         const fileUrl = url.pathToFileURL(path);
+        /** @type {Command} */
         const cmd = await import(fileUrl);
-        if (this.has(cmd.name)) {
-          console.warn(`Command name collision: ${cmd.name}`);
+        if (this.has(cmd.canonName)) {
+          console.warn(`Command name collision: ${cmd.canonName}`);
         } else {
-          this.set(cmd.name, cmd);
-          this.sources.set(cmd.name, fileUrl);
+          this.set(cmd.canonName, cmd);
+          this.sources.set(cmd.canonName, fileUrl);
         }
       } catch (error) {
         console.warn(`Error loading command module from ${path}`);

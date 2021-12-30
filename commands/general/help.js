@@ -3,7 +3,8 @@
  */
 import {COMMAND_TYPE} from '../../src/typedef.js';
 
-export const name = 'general.help';
+export const canonName = 'general.help';
+export const name = 'help';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.GENERAL;
 export const cooldown = 1;
@@ -37,7 +38,7 @@ export async function execute(context) {
   const helpTxt = client.l10n.getCommandHelp(lang, __cmdName);
   if (helpTxt) {
     channel.send({
-      content: helpTxt.replaceAll('?', commandPrefix),
+      content: '```' + helpTxt.replaceAll('?', commandPrefix) + '```',
       reply: {messageReference: message.id},
     });
     return true;

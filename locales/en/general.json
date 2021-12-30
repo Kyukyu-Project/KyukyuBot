@@ -1,3 +1,6 @@
 {
-  "delimiter": ", "
+  "delimiter": ", ",
+  "messages": {
+    "invalid-command": "Invalid command."
+  }
 }

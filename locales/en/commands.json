@@ -1,15 +1,16 @@
 {
   "commands": {
-    "admin.set-bot-channel": {
-      "success": "{CHANNEL} is now set as the bot channel.",
+    "admin.bot-channel": {
+      "set-success": "{CHANNEL} is now set as the bot channel.",
+      "unset-success": "{CHANNEL} is unset as the bot channel.",
       "show-bot-channel": "The bot channel is {CHANNEL}.",
       "no-bot-channel": "No channel is set as the bot channel.",
       "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
-      "not-a-text-channel": "{CHANNEL} is not a valid text channel."
-    },
-    "admin.unset-bot-channel": {
-      "success": "{CHANNEL} is unset as the bot channel.",
-      "no-bot-channel": "No channel is set as the bot channel."
+      "flags": {
+        "view":  ["--view",  "-v"],
+        "set":   ["--set",   "-s"],
+        "unset": ["--unset", "-u"]
+      }
     },
     "owner.git-pull": {
       "success": "`git-pull` command executed:\n```{LOG}```",
@@ -21,20 +22,20 @@
       "error": "Error reloading language."
     },
     "general.help": {      
+      "flags": {
+        "owner":   ["--owner",   "-o", "--dev"],
+        "admin":   ["--admin",   "-a"],
+        "general": ["--general", "-g"]
+      }
     },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
     }
   },
   "aliases": {
-    "command-categories": [
-      ["admin", "admins", "administrator", "administrators"],
-      ["general"],
-      ["owner", "owners", "dev", "devs", "developer", "developers"]
-    ],
     "commands": [
-      ["admin.set-bot-channel", "set-bot-channel", "set-bot-channels"],
-      ["admin.unset-bot-channel", "unset-bot-channel", "unset-bot-channels"],
+      ["admin.bot-channel", "bot-channel", "bot-channels"],
+      ["admin.bot-channel", "bot-channel", "bot-channels"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],

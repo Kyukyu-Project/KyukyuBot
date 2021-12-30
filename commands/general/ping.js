@@ -3,12 +3,13 @@
  */
 import {COMMAND_TYPE} from '../../src/typedef.js';
 
-export const name = 'general.ping';
+export const canonName = 'general.ping';
+export const name = 'ping';
 export const requireArgs = false;
 export const commandType = COMMAND_TYPE.GENERAL;
 export const cooldown = 3;
 
-const PING_PONG           = `commands.${name}.ping-pong`;
+const PING_PONG           = `commands.${canonName}.ping-pong`;
 
 /**
  * @param {CommandContext} context
