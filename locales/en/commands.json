@@ -22,6 +22,9 @@
       "error": "Error reloading language."
     },
     "general.help": {      
+      "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
+      "admin-commands": "The following is a list of guild administrator commands:\n{COMMANDS}",
+      "general-commands": "The following is a list of general commands:\n{COMMANDS}",
       "flags": {
         "owner":   ["--owner",   "-o", "--dev"],
         "admin":   ["--admin",   "-a"],

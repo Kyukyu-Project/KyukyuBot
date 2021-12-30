@@ -13,9 +13,9 @@ Usages
   ?help <command-name>
 
 Options
-  --general       List all general commands
-  --admin         List all guild administrator commands
-  --owner, --dev  List all bot owner commands
+  -g, --general       List all general commands
+  -a, --admin         List all guild administrator commands
+  -o, --owner, --dev  List all bot owner commands
 
 Examples
   ?help --general
