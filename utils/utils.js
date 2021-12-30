@@ -25,33 +25,52 @@ const ROLES_PATTERN = /<@&(\d{17,19})>/;
  * like `<#222079895583457280>`
  * @type {RegExp}
  */
-const CHANNELS_PATTERN = /<#(\d{17,19})>/;
+const CHANNELS_PATTERN = /^<#(\d{17,19})>$/;
+
+/**
+ * Regular expression that extracts a snowflake ID
+ * like `222079895583457280`
+ * @type {RegExp}
+ */
+const SNOWFLAKE_PATTERN = /^\d{17,19}$/;
 
 /**
 * Get channel id from a text token
-* @param {string} mention channel mention
-* @return {string|null}
+* @param {string} mention - channel mention (<#...>) or channel id
+* @return {string|null} - return string on match, and null on fail
 */
 export function getChannelId(mention) {
-  return CHANNELS_PATTERN.exec(mention)?.[1] || null;
+  if (mention.startsWith('<')) {
+    return CHANNELS_PATTERN.exec(mention)?.[1] || null;
+  } else {
+    return SNOWFLAKE_PATTERN.exec(mention)?.[0] || null;
+  }
 }
 
 /**
 * Get user id from a text token
-* @param {string} mention user mention
+* @param {string} mention - user mention (<@!...>) or user id
 * @return {string|null}
 */
 export function getUserId(mention) {
-  return USERS_PATTERN.exec(mention)?.[1] || null;
+  if (mention.startsWith('<')) {
+    return USERS_PATTERN.exec(mention)?.[1] || null;
+  } else {
+    return SNOWFLAKE_PATTERN.exec(mention)?.[0] || null;
+  }
 }
 
 /**
 * Get role id from a text token
-* @param {string} mention role mention
+* @param {string} mention - role mention (<@&...>) or role id
 * @return {string|null}
 */
 export function getRoleId(mention) {
-  return ROLES_PATTERN.exec(mention)?.[1] || null;
+  if (mention.startsWith('<')) {
+    return ROLES_PATTERN.exec(mention)?.[1] || null;
+  } else {
+    return SNOWFLAKE_PATTERN.exec(mention)?.[0] || null;
+  }
 }
 
 /**
@@ -216,7 +235,7 @@ export function parseCommandArguments(prefix, text) {
   /** temporary char variable */
   let chr = text.charAt(idxStart);
 
-  if (!(text.startsWith(prefix)) || (chr == ' ') || (chr == '\t')) {
+  if (!(text.startsWith(prefix)) || (chr == SPACE) || (chr == TAB)) {
     return [];
   }
 
