@@ -1,0 +1,3 @@
+?bot-avatar
+
+Set the bot's avatar (via attachment).

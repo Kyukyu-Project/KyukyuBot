@@ -1,5 +1,9 @@
 {
   "commands": {
+    "admin.bot-avatar": {
+      "success": "Bot avatar updated",
+      "error": "Error updating bot avatar"
+    },
     "admin.bot-channel": {
       "set-success": "{CHANNEL} is now set as the bot channel.",
       "unset-success": "{CHANNEL} is unset as the bot channel.",
@@ -38,7 +42,7 @@
   "aliases": {
     "commands": [
       ["admin.bot-channel", "bot-channel", "bot-channels"],
-      ["admin.bot-channel", "bot-channel", "bot-channels"],
+      ["admin.bot-avatar", "bot-avatar"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
