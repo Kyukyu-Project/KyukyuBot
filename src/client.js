@@ -327,6 +327,13 @@ class Client extends djsClient {
       this.l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
 
     if (!cmdName) return;
+
+    /** Translation error */
+    if (!this.commands.has(cmdName)) {
+      console.error(`Cannot find command named "${cmdName}"`);
+      return;
+    }
+
     const cmd = this.commands.get(cmdName);
 
     /** @type {UserPermissions} */
