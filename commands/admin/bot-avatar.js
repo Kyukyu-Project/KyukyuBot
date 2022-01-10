@@ -12,7 +12,7 @@ export const cooldown = 0;
 const COMMAND_SUCCESS     = `commands.${canonName}.success`;
 const COMMAND_ERROR       = `commands.${canonName}.error`;
 
-const IMAGE_CT = ['image/jpeg', 'image/gif', 'image/png'];
+const IMG_CONTENT_TYPES = ['image/jpeg', 'image/gif', 'image/png'];
 
 /**
  * @param {CommandContext} context
@@ -23,8 +23,7 @@ export async function execute(context) {
   const attachments = context.message.attachments;
   if (attachments.size) {
     const file = context.message.attachments.first();
-    console.log(file.contentType);
-    if (IMAGE_CT.indexOf(file.contentType.toLowerCase()) !== -1) {
+    if (IMG_CONTENT_TYPES.indexOf(file.contentType.toLowerCase()) !== -1) {
       try {
         await context.client.user.setAvatar(file.url);
         channel.send(client.l10n.s(lang, COMMAND_SUCCESS));
