@@ -23,9 +23,9 @@
       "no-mod-roles": "No role is set as moderator role.",
       "flags": {
         "view":  ["--view", "-v"],
-        "add":   ["--add",  "-a"],
-        "del":   ["--del",  "-d"],
-        "reset": ["--unset","-u"]
+        "add":   ["--add",  "-a", "+"],
+        "del":   ["--del",  "-d", "-"],
+        "reset": ["--reset","-r"]
       }
     },
     "owner.git-pull": {
@@ -62,6 +62,7 @@
     "commands": [
       ["admin.bot-channel", "bot-channel", "bot-channels"],
       ["admin.bot-avatar", "bot-avatar"],
+      ["admin.mod-roles", "mod-roles", "mod-role", "moderator-roles", "moderator-role"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],
       ["general.avatar", "avatar", "pfp"],

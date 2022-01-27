@@ -1,0 +1,33 @@
+?mod-roles
+
+View, add, or remove the moderator roles.
+
+Users who have moderator roles can
+- use commands without any cool-down,
+- use ?say command
+
+Aliases
+  ?mod-role
+  ?moderator-role
+  ?moderator-roles
+
+Usages
+  ?mod-roles [--view]
+  ?mod-roles --add <role-mention|role-id>...
+  ?mod-roles --del <role-mention|role-id>...
+  ?mod-roles --reset
+
+Options
+  -v, --view         Show the list of moderator roles (Default) 
+  -a, --add, +       Add role(s) to the list of moderator roles
+  -d, --del, -       Delete role(s) from the list of moderator roles
+  -r, --reset        Reset the list of moderator roles
+
+Examples
+  ?mod-roles --add @moderator @admin
+  ?mod-roles --add 658601635643392061
+  ?mod-roles + @moderator
+  ?mod-roles --del @trusted
+
+Related
+  ?helper-roles
