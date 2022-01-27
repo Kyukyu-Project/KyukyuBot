@@ -4,6 +4,7 @@
 * @typedef {import('discord.js').Guild} Guild
 * @typedef {import('discord.js').Channel} Channel
 * @typedef {import('discord.js').Message} Message
+* @typedef {import('discord.js').User} User
 */
 
 /**
