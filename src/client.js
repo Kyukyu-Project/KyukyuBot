@@ -26,6 +26,7 @@ import {COMMAND_TYPE} from './typedef.js';
  * @typedef {import('./typedef.js').Command} Command
  * @typedef {import('./typedef.js').UserPermissions} UserPermissions
  * @typedef {import('./typedef.js').CommandContext} CommandContext
+ * @typedef {import('./typedef.js').InteractionContext} InteractionContext
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
  * @typedef {import('./typedef.js').UserSettings} UserSettings
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
@@ -293,8 +294,6 @@ class Client extends djsClient {
     if (this.pauseProcess) return;
     if (msg.author.bot) return;
 
-    // TODO: ECHO command
-
     const guild = msg.guild;
     const channel = msg.channel;
     const user = msg.author;
@@ -409,12 +408,122 @@ class Client extends djsClient {
         });
   }
 
+  /**
+   * Handle message
+   * @param {Discord.Interaction} interaction
+   */
+  async onInteractionCreate(interaction) {
+    if (!interaction.isCommand()) return;
+
+    if (this.pauseProcess) return;
+
+    const guild = interaction.guild;
+    const channel = interaction.channel;
+    const user = interaction.user;
+
+    /** @type {GuildSettings|undefined} */
+    let guildSettings = undefined;
+
+    let lang;
+
+    // Load guild settings
+    if (guild) {
+      guildSettings = this.getGuildSettings(guild);
+      lang = guildSettings.lang;
+    } else {
+      lang = this.getUserSettings(user).lang;
+    }
+
+    /** Slash command name */
+    const slashName = interaction.commandName;
+
+    /** Canonical command name */
+    const cmdName =
+      this.l10n.getCanonicalName(lang, 'aliases.commands', slashName);
+
+    if (!cmdName) {
+      console.error(`Cannot find command named "/${slashName}"`);
+      return;
+    }
+
+    /** Translation error */
+    if (!this.commands.has(cmdName)) {
+      console.error(`Cannot find command named "${cmdName}"`);
+      return;
+    }
+
+    const cmd = this.commands.get(cmdName);
+
+    if (!cmd.slashExecute) {
+      console.error(`Cannot find interaction handler for "/${cmdName}"`);
+      return;
+    }
+
+    /** @type {UserPermissions} */
+    const userPermissions =
+      this.getUserPermissions(guild, guildSettings, channel, interaction);
+
+    switch (cmd.commandType) {
+      case COMMAND_TYPE.OWNER:
+        if (!userPermissions.hasOwnerPermission) return;
+        break;
+      case COMMAND_TYPE.ADMIN:
+        if (!userPermissions.hasAdminPermission) return;
+        break;
+    } // switch (cmd.commandType)
+
+    /** @type {string} Key for cool-down */
+    const cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
+
+    const setCooldown = cmd.cooldown && userPermissions.setCooldown;
+
+    if (setCooldown) { // Is user still in cool-down?
+      if (this.cooldowns.get(cooldownKey)) return;
+    }
+    const now = new Date();
+
+    /** @type {InteractionContext} */
+    const interactionContext = {
+      client: this,
+      guild: guild,
+      guildSettings: guildSettings,
+      channel: channel,
+      interaction: interaction,
+      user: user,
+      lang: lang,
+    };
+
+    Object.assign(interactionContext, userPermissions);
+
+    cmd.slashExecute(interactionContext)
+        .then((result) => {
+          if (typeof result == 'boolean') {
+            if (result && setCooldown) {
+              const cooldownMS = cmd.cooldown * 1000;
+              const expiration = now.valueOf() + cooldownMS;
+              this.cooldowns.set(cooldownKey, expiration);
+              setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
+            }
+            this.log(
+                `${result?'✓':'✗'} ${now.toISOString()} ${cmdName}\n`,
+            );
+          }
+        })
+        .catch((error) => {
+          this.log(`✗ ${now.toISOString()} ${cmdName}\n> "${error.message}"\n`);
+          console.error(
+              '--------------------------------------------------\n',
+              `Error executing '${interaction.content}'\n`, error,
+          );
+        });
+  }
 
   /**
    * Get ready
    */
   ready() {
     this.on('messageCreate', (msg) => this.onMessageCreate(msg));
+    this.on('interactionCreate', (i) => this.onInteractionCreate(i));
   }
 }
 

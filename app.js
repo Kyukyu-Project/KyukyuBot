@@ -13,6 +13,8 @@ const CLIENT_CONFIG_FILE = './app.json';
 
 /**
  * @typedef {import('./src/typedef.js').ClientConfig} ClientConfig
+ * @typedef {import('./src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('discord.js').Guild} Guild
  */
 
 // Full file path of the client config file
@@ -40,8 +42,7 @@ Object.keys(DEFAULT_CONFIG).forEach((property) => {
       defaultConfig[property];
 });
 
-if (clientConfig['client-data-path']) {
-  // Convert to absolute file path
+if (clientConfig['client-data-path']) { // Convert to absolute file path
   clientConfig['client-data-path'] = resolve(
       dirname(configFilePath),
       clientConfig['client-data-path'],
@@ -54,6 +55,7 @@ const client = new Client(clientConfig);
 /** @type {Object.<string, string>} */
 const l10nDirectories = {
   'en': './locales/en',
+  'zh-tw': './locales/zh-tw',
 };
 for (const [lang, dir] of Object.entries(l10nDirectories)) {
   client.l10n.loadLanguageFiles(
@@ -76,3 +78,69 @@ commandDirectories.forEach((dir) => {
 client.ready();
 // client.on('messageCreate', (msg) => client.onMessageCreate(msg));
 client.login(clientToken);
+
+import {REST} from '@discordjs/rest';
+import {Routes} from 'discord-api-types/v9';
+
+const COMMAND_OPTION_TYPES = new Map([
+  ['SUB_COMMAND', 1],
+  ['SUB_COMMAND_GROUP', 2],
+  ['STRING', 3],
+  ['INTEGER', 4],
+  ['BOOLEAN', 5],
+  ['USER', 6],
+  ['CHANNEL', 7],
+  ['ROLE', 8],
+  ['MENTIONABLE', 9],
+  ['NUMBER', 10],
+  ['ATTACHMENT', 11],
+]);
+
+/**
+ * @param {Guild} guild
+ * @param {string} lang
+ * @return {boolean} - true if command is executed
+ */
+export async function deploy(guild, lang) {
+  const clientId = client.application.id;
+  const guildId = guild.id;
+  // console.log(`guildId: ${guildId}`);
+  // console.log(`lang: ${lang}`);
+
+  const pendingData = [];
+
+  client.commands.forEach((cmd) => {
+    const dataKey = `commands.${cmd.canonName}.slashData`;
+    const data = client.l10n.getTemplate(lang, dataKey)?.[0];
+    // console.log(templateKey, slashOptions);
+
+    if ((data) && (data.options)) {
+      data.options.forEach((opt) => {
+        opt.type =
+          (opt.type)?
+          COMMAND_OPTION_TYPES.get(opt.type.toUpperCase()):
+          3;
+      });
+      pendingData.push(data);
+    }
+  });
+
+  const rest = new REST({version: '9'}).setToken(clientToken);
+
+  (async () => {
+    try {
+      console.log('Started refreshing application (/) commands.');
+
+      await rest.put(
+          Routes.applicationGuildCommands(clientId, guildId),
+          {body: pendingData},
+      );
+
+      console.log('Successfully reloaded application (/) commands.');
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+
+  return false;
+}

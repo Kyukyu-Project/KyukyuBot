@@ -56,6 +56,30 @@
     },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
+    },
+    "general.say": {
+      "message-sent": "The message has been sent: {MESSAGE URL}",
+      "sending-message": "Sending message...",
+      "no-permission": "You do not have the permission to use this command.",
+      "slashData": [
+        {
+          "name": "say",
+          "description": "Send a message in this channel",
+          "options": [
+            {
+              "type": "STRING",
+              "name": "message",
+              "description": "Message that I should repeat",
+              "required": true
+            },
+            {
+              "type": "CHANNEL",
+              "name": "channel",
+              "description": "Where the message should be sent"
+            }
+          ]
+        }
+      ]      
     }
   },
   "aliases": {
@@ -63,11 +87,13 @@
       ["admin.bot-channel", "bot-channel", "bot-channels"],
       ["admin.bot-avatar", "bot-avatar"],
       ["admin.mod-roles", "mod-roles", "mod-role", "moderator-roles", "moderator-role"],
+      ["admin.slash-deploy", "slash-deploy", "deploy-slash"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],
       ["general.avatar", "avatar", "pfp"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
-      ["general.ping", "ping", "ピン", "乒"]
+      ["general.ping", "ping", "ピン", "乒"],
+      ["general.say", "say", "speak"]
     ]
   }
 }

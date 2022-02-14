@@ -10,7 +10,8 @@
   "author": "Kitsune",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
+    "@discordjs/rest": "^0.3.0",
+    "@discordjs/builders": "^0.12.0",
     "canvas": "^2.8.0",
     "core-js": "^3.20.1",
     "discord-api-types": "^0.24.0",

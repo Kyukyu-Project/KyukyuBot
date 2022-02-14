@@ -4,6 +4,7 @@
 * @typedef {import('discord.js').Guild} Guild
 * @typedef {import('discord.js').Channel} Channel
 * @typedef {import('discord.js').Message} Message
+* @typedef {import('discord.js').Interaction} Interaction
 * @typedef {import('discord.js').User} User
 */
 
@@ -59,8 +60,23 @@
  */
 
 /**
+ * @typedef {Object} InteractionContextBase
+ * @property {Client} client - bot client
+ * @property {Guild} [guild] - guild where the command was executed
+ * @property {Channel} channel - channel where the command was executed
+ * @property {Interaction} interaction - message that initiated the command
+ * @property {User} user - User who initiated the command
+ * @property {string} lang - Language
+ */
+
+/**
  * Command context
  * @typedef {UserPermissions & CommandContextBase} CommandContext
+ */
+
+/**
+ * Interaction context
+ * @typedef {UserPermissions & InteractionContextBase} InteractionContext
  */
 
 /**

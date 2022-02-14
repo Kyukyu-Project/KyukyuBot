@@ -89,7 +89,7 @@ class L10N extends Collection {
     const template =
       (this.get(lang)?.get(templateKey)) ||
       (this.get(this.defaultLang).get(templateKey)) ||
-      '';
+      undefined;
     return template;
   }
 
@@ -128,7 +128,7 @@ class L10N extends Collection {
     // try to get the string template
     const template = this.getTemplate(lang, templateKey);
 
-    if (template == '') return '';
+    if (typeof template == 'undefined') return '';
 
     let result = template;
     const args = [].slice.call(strings);
