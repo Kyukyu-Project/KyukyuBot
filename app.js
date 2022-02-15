@@ -104,15 +104,12 @@ const COMMAND_OPTION_TYPES = new Map([
 export async function deploy(guild, lang) {
   const clientId = client.application.id;
   const guildId = guild.id;
-  // console.log(`guildId: ${guildId}`);
-  // console.log(`lang: ${lang}`);
 
   const pendingData = [];
 
   client.commands.forEach((cmd) => {
     const dataKey = `commands.${cmd.canonName}.slashData`;
     const data = client.l10n.getTemplate(lang, dataKey)?.[0];
-    // console.log(templateKey, slashOptions);
 
     if ((data) && (data.options)) {
       data.options.forEach((opt) => {
@@ -127,20 +124,9 @@ export async function deploy(guild, lang) {
 
   const rest = new REST({version: '9'}).setToken(clientToken);
 
-  (async () => {
-    try {
-      console.log('Started refreshing application (/) commands.');
-
-      await rest.put(
-          Routes.applicationGuildCommands(clientId, guildId),
-          {body: pendingData},
-      );
-
-      console.log('Successfully reloaded application (/) commands.');
-    } catch (error) {
-      console.error(error);
-    }
-  })();
-
-  return false;
+  await rest.put(
+      Routes.applicationGuildCommands(clientId, guildId),
+      {body: pendingData},
+  );
+  return true;
 }

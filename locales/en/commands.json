@@ -28,6 +28,11 @@
         "reset": ["--reset","-r"]
       }
     },
+    "admin.slash-deploy": {
+      "refresh-start": "{USER TAG}: starting to refresh slash commands.",
+      "refresh-success": "{USER TAG}: slash commands reloaded successfully.",
+      "refresh-error": "{USER TAG}: Error refreshing slash commands."
+    },
     "owner.git-pull": {
       "success": "`git-pull` command executed:\n```{LOG}```",
       "error": "Error executing git command:\n```{LOG}```"
