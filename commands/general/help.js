@@ -2,6 +2,7 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 import {COMMAND_TYPE} from '../../src/typedef.js';
+import {SlashCommandBuilder} from '@discordjs/builders';
 
 export const canonName = 'general.help';
 export const name = 'help';
@@ -12,9 +13,78 @@ export const cooldown = 1;
 const OWNER               = `commands.${canonName}.owner-commands`;
 const ADMIN               = `commands.${canonName}.admin-commands`;
 const GENERAL             = `commands.${canonName}.general-commands`;
-const OWNER_FLAGS         = `commands.${canonName}.flags.owner`;
-const ADMIN_FLAGS         = `commands.${canonName}.flags.admin`;
-const GENERAL_FLAGS       = `commands.${canonName}.flags.general`;
+
+/**
+ * @param {CommandContext} context
+ * @return {object}
+ */
+export function getSlashData(context) {
+  const {client, lang, guild} = context;
+  const {l10n} = client;
+
+  const desc = l10n.s(lang, `commands.${canonName}.desc`);
+  const generalDesc = l10n.s(lang, `commands.${canonName}.general-desc`);
+  const adminDesc = l10n.s(lang, `commands.${canonName}.admin-desc`);
+  const ownerDesc = l10n.s(lang, `commands.${canonName}.owner-desc`);
+  const commandDesc = l10n.s(lang, `commands.${canonName}.command-desc`);
+
+  const generalChoices = [];
+  const adminChoices = [];
+  const ownerChoices = [];
+  const ownerGuild = (guild.id == client.ownerGuildId);
+
+  client.commands.forEach((cmd) => {
+    const choice = [cmd.name, cmd.canonName];
+    switch (cmd.commandType) {
+      case COMMAND_TYPE.GENERAL:
+        generalChoices.push(choice);
+        break;
+      case COMMAND_TYPE.ADMIN:
+        adminChoices.push(choice);
+        break;
+      case COMMAND_TYPE.OWNER:
+        if (ownerGuild) ownerChoices.push(choice);
+        break;
+    }
+  });
+
+  const slashCommand = new SlashCommandBuilder()
+      .setName(name)
+      .setDescription(desc)
+      .addSubcommand((command) => command
+          .setName('general')
+          .setDescription(generalDesc)
+          .addStringOption((option) => option
+              .setName('command')
+              .setDescription(commandDesc)
+              .setRequired(true)
+              .addChoices(generalChoices),
+          ),
+      )
+      .addSubcommand((command) => command
+          .setName('admin')
+          .setDescription(adminDesc)
+          .addStringOption((option) => option
+              .setName('command')
+              .setDescription(commandDesc)
+              .setRequired(true)
+              .addChoices(adminChoices),
+          ),
+      );
+  if (ownerGuild) {
+    slashCommand.addSubcommand((command) => command
+        .setName('owner')
+        .setDescription(ownerDesc)
+        .addStringOption((option) => option
+            .setName('command')
+            .setDescription(commandDesc)
+            .setRequired(true)
+            .addChoices(ownerChoices),
+        ),
+    );
+  }
+  return slashCommand;
+}
 
 /**
  * List owner commands
@@ -95,9 +165,9 @@ export async function execute(context) {
   if (args.length == 0) return listGeneral(context);
 
   const firstArg = args[0].toLowerCase();
-  const ownerFlags = l10n.s(lang, OWNER_FLAGS);
-  const adminFlags = l10n.s(lang, ADMIN_FLAGS);
-  const generalFlags = l10n.s(lang, GENERAL_FLAGS);
+  const ownerFlags = ['--owner', '-o', '--dev'];
+  const adminFlags = ['--admin', '-a'];
+  const generalFlags = ['--general', '-g'];
 
   if (ownerFlags.includes(firstArg)) return listOwner(context);
   if (adminFlags.includes(firstArg)) return listAdmin(context);

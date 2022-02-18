@@ -76,51 +76,31 @@ commandDirectories.forEach((dir) => {
 });
 
 client.ready();
-// client.on('messageCreate', (msg) => client.onMessageCreate(msg));
 client.login(clientToken);
 
 import {REST} from '@discordjs/rest';
 import {Routes} from 'discord-api-types/v9';
 
-const COMMAND_OPTION_TYPES = new Map([
-  ['SUB_COMMAND', 1],
-  ['SUB_COMMAND_GROUP', 2],
-  ['STRING', 3],
-  ['INTEGER', 4],
-  ['BOOLEAN', 5],
-  ['USER', 6],
-  ['CHANNEL', 7],
-  ['ROLE', 8],
-  ['MENTIONABLE', 9],
-  ['NUMBER', 10],
-  ['ATTACHMENT', 11],
-]);
-
 /**
- * @param {Guild} guild
- * @param {string} lang
+ * @param {CommandContext} context
  * @return {boolean} - true if command is executed
  */
-export async function deploy(guild, lang) {
+export async function deploy(context) {
+  const {guild} = context;
+
   const clientId = client.application.id;
   const guildId = guild.id;
 
   const pendingData = [];
 
   client.commands.forEach((cmd) => {
-    const dataKey = `commands.${cmd.canonName}.slashData`;
-    const data = client.l10n.getTemplate(lang, dataKey)?.[0];
-
-    if ((data) && (data.options)) {
-      data.options.forEach((opt) => {
-        opt.type =
-          (opt.type)?
-          COMMAND_OPTION_TYPES.get(opt.type.toUpperCase()):
-          3;
-      });
+    if (cmd.getSlashData) {
+      const data = cmd.getSlashData(context);
       pendingData.push(data);
     }
   });
+
+  console.log(pendingData);
 
   const rest = new REST({version: '9'}).setToken(clientToken);
 

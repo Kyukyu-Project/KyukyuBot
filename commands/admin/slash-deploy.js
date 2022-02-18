@@ -27,7 +27,7 @@ export async function execute(context) {
   channel.send(l10n.t(lang, REFRESH_START, '{USER TAG}', userTag));
 
   return new Promise((resolve, reject) => {
-    deploy(guild, lang).then(() => {
+    deploy(context).then(() => {
       channel.send(l10n.t(lang, REFRESH_SUCCESS, '{USER TAG}', userTag));
       resolve(true);
     }).catch((error) => {

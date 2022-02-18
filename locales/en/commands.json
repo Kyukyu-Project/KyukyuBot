@@ -5,16 +5,16 @@
       "error": "Error updating bot avatar"
     },
     "admin.bot-channel": {
+      "desc": "View, set, or reset the bot-command channel",
       "set-success": "{CHANNEL} is now set as the bot channel.",
       "unset-success": "{CHANNEL} is unset as the bot channel.",
       "show-bot-channel": "The bot channel is {CHANNEL}.",
       "no-bot-channel": "No channel is set as the bot channel.",
       "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
-      "flags": {
-        "view":  ["--view",  "-v"],
-        "set":   ["--set",   "-s"],
-        "unset": ["--unset", "-u"]
-      }
+      "view-desc": "Show the bot-command channel",
+      "set-desc": "Set the bot-command channel",
+      "unset-desc": "Unset the bot-command channel",
+      "channel-desc": "Channel"
     },
     "admin.mod-roles": {
       "add-success": "The following role(s) have been added as moderator roles: {ROLES}",
@@ -42,22 +42,22 @@
       "success": "Language reloaded.",
       "error": "Error reloading language."
     },
-    "general.avatar": {      
+    "general.avatar": { 
       "embed-title": "Avatar of {USER NAME}",
       "flags": {
         "display": ["--display", "-d", "--guild", "--server"],
         "user":    ["--user",    "-u"]
       }
     },
-    "general.help": {      
+    "general.help": {
       "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
       "admin-commands": "The following is a list of guild administrator commands:\n{COMMANDS}",
       "general-commands": "The following is a list of general commands:\n{COMMANDS}",
-      "flags": {
-        "owner":   ["--owner",   "-o", "--dev"],
-        "admin":   ["--admin",   "-a"],
-        "general": ["--general", "-g"]
-      }
+      "desc": "Learn how to use bot commands",
+      "general-desc": "Learn how to use general commands",
+      "admin-desc": "Learn how to use server administrator commands",
+      "owner-desc": "Learn how to use bot owner commands",
+      "command-desc": "Command name"
     },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
@@ -66,25 +66,9 @@
       "message-sent": "The message has been sent: {MESSAGE URL}",
       "sending-message": "Sending message...",
       "no-permission": "You do not have the permission to use this command.",
-      "slashData": [
-        {
-          "name": "say",
-          "description": "Send a message in this channel",
-          "options": [
-            {
-              "type": "STRING",
-              "name": "message",
-              "description": "Message that I should repeat",
-              "required": true
-            },
-            {
-              "type": "CHANNEL",
-              "name": "channel",
-              "description": "Where the message should be sent"
-            }
-          ]
-        }
-      ]      
+      "desc": "Send a message in this channel",
+      "message-desc": "Message that I should repeat",
+      "channel-desc": "Where the message should be sent"
     }
   },
   "aliases": {
