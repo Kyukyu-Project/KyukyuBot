@@ -9,36 +9,32 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 export const canonName = 'general.say';
 export const name = 'say';
 export const requireArgs = true;
-export const commandType = COMMAND_TYPE.GENERAL;
+export const commandType = COMMAND_TYPE.ADMIN;
 export const cooldown = 0;
 
-const MESSAGE_SENT        = `commands.${canonName}.message-sent`;
-const SENDING_MESSAGE     = `commands.${canonName}.sending-message`;
-const NO_PERMISSION       = `commands.${canonName}.no-permission`;
-
 /**
- * @param {CommandContext} context
- * @return {object}
+ * @param {CommandContext|IContext} context
+ * @return {SlashCommandBuilder}
  */
 export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const DESC          = `commands.${canonName}.desc`;
-  const MESSAGE_DESC  = `commands.${canonName}.message-desc`;
-  const CHANNEL_DESC  = `commands.${canonName}.channel-desc`;
+  const desc =        l10n.s(lang, `commands.${canonName}.desc`);
+  const messageDesc = l10n.s(lang, `commands.${canonName}.message-desc`);
+  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-desc`);
 
   return new SlashCommandBuilder()
-      .setName('say')
-      .setDescription(l10n.s(lang, DESC))
+      .setName(name)
+      .setDescription(desc)
       .addStringOption((option) => option
           .setName('message')
-          .setDescription(l10n.s(lang, MESSAGE_DESC))
+          .setDescription(messageDesc)
           .setRequired(true),
       )
       .addChannelOption((option) => option
           .setName('channel')
-          .setDescription(l10n.s(lang, CHANNEL_DESC)),
+          .setDescription(channelDesc),
       );
 }
 
@@ -51,30 +47,23 @@ export async function slashExecute(context) {
   const {l10n} = client;
 
   if (context.userIsMod) {
-    interaction.reply({
-      content: l10n.s(lang, SENDING_MESSAGE),
-      ephemeral: true});
-
     const what = interaction.options.get('message').value;
     const where =
       interaction.options.getChannel('channel') || interaction.channel;
 
     where.send(what).then((msg) => {
-      interaction.editReply({
-        content: l10n.t(lang, MESSAGE_SENT, '{MESSAGE URL}', msg.url),
-        ephemeral: true});
+      const messageSent = l10n.t(
+          lang,
+          `commands.${canonName}.message-sent`,
+          '{MESSAGE URL}',
+          msg.url,
+      );
+      interaction.reply({content: messageSent, ephemeral: true});
+      return true;
     });
   } else {
-    const response = l10n.s(lang, NO_PERMISSION);
-    interaction.reply({content: response, ephemeral: true});
+    const noPermission = l10n.s(lang, 'messages.no-permission');
+    interaction.reply({content: noPermission, ephemeral: true});
+    return false;
   }
-}
-
-/**
- * @param {CommandContext} context
- * @return {boolean} - true if command is executed
- */
-export async function execute(context) {
-  // const {client, lang, channel} = context;
-  return false;
 }

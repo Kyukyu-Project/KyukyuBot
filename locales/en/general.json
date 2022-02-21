@@ -1,6 +1,7 @@
 {
   "delimiter": ", ",
   "messages": {
-    "invalid-command": "Invalid command."
+    "no-permission": "Error executing command: no permission.",
+    "invalid-command": "Error executing command: invalid command."
   }
 }

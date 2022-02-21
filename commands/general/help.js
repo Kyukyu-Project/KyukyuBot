@@ -13,6 +13,7 @@ export const cooldown = 1;
 const OWNER               = `commands.${canonName}.owner-commands`;
 const ADMIN               = `commands.${canonName}.admin-commands`;
 const GENERAL             = `commands.${canonName}.general-commands`;
+const NO_INFO             = `commands.${canonName}.no-info`;
 
 /**
  * @param {CommandContext} context
@@ -84,6 +85,37 @@ export function getSlashData(context) {
     );
   }
   return slashCommand;
+}
+
+/**
+ * @param {IContext} context
+ * @return {boolean} - true if command is executed
+ */
+export async function slashExecute(context) {
+  const {client, lang, commandPrefix, interaction} = context;
+  const {l10n} = client;
+
+  const subCommand = interaction.options.getSubcommand();
+  if (
+    ((subCommand === 'owner') && (!context.hasOwnerPermission)) ||
+    ((subCommand === 'admin') && (!context.hasAdminPermission))
+  ) {
+    const noPermission = l10n.s(lang, 'messages.no-permission');
+    interaction.reply({content: noPermission, ephemeral: true});
+    return false;
+  }
+
+  const cmdCanonName = interaction.options.getString('command');
+  const helpTxt = l10n.getCommandHelp(lang, cmdCanonName);
+  if (helpTxt) {
+    const response = '```' + helpTxt.replaceAll('?', commandPrefix) + '```';
+    interaction.reply({content: response, ephemeral: true});
+    return true;
+  } else {
+    const response = l10n.s(lang, NO_INFO);
+    interaction.reply({content: response, ephemeral: true});
+    return false;
+  }
 }
 
 /**

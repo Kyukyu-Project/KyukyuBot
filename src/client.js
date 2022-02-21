@@ -335,6 +335,8 @@ class Client extends djsClient {
 
     const cmd = this.commands.get(cmdName);
 
+    if (!cmd.execute) return; // Application (/) command only
+
     /** @type {UserPermissions} */
     const userPermissions =
       this.getUserPermissions(guild, guildSettings, channel, msg);
