@@ -1,16 +1,13 @@
 /**
-* @typedef {import('../../src/typedef.js').CommandContext} CommandContext
-*/
+ * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
+ */
 import {COMMAND_PERM} from '../../src/typedef.js';
 
-export const canonName = 'admin.bot-avatar';
+export const canonName = 'owner.bot-avatar';
 export const name = 'bot-avatar';
 export const requireArgs = false;
-export const commandPerm = COMMAND_PERM.ADMIN;
+export const commandPerm = COMMAND_PERM.OWNER;
 export const cooldown = 0;
-
-const COMMAND_SUCCESS     = `commands.${canonName}.success`;
-const COMMAND_ERROR       = `commands.${canonName}.error`;
 
 const IMG_CONTENT_TYPES = ['image/jpeg', 'image/gif', 'image/png'];
 
@@ -26,10 +23,10 @@ export async function execute(context) {
     if (IMG_CONTENT_TYPES.indexOf(file.contentType.toLowerCase()) !== -1) {
       try {
         await context.client.user.setAvatar(file.url);
-        channel.send(client.l10n.s(lang, COMMAND_SUCCESS));
+        channel.send(client.l10n.s(lang, `commands.${canonName}.success`));
         return true;
       } catch (error) {
-        channel.send(client.l10n.s(lang, COMMAND_ERROR));
+        channel.send(client.l10n.s(lang, `commands.${canonName}.error`));
         throw error;
       }
     } else {

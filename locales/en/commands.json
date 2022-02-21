@@ -1,9 +1,5 @@
 {
   "commands": {
-    "admin.bot-avatar": {
-      "success": "Bot avatar updated",
-      "error": "Error updating bot avatar"
-    },
     "admin.bot-channel": {
       "desc": "View, set, or reset the bot-command channel",
       "set-success": "{CHANNEL} is now set as the bot channel.",
@@ -32,6 +28,10 @@
       "refresh-start": "{USER TAG}: starting to refresh slash commands.",
       "refresh-success": "{USER TAG}: slash commands reloaded successfully.",
       "refresh-error": "{USER TAG}: Error refreshing slash commands."
+    },
+    "owner.bot-avatar": {
+      "success": "Bot avatar updated",
+      "error": "Error updating bot avatar"
     },
     "owner.git-pull": {
       "success": "`git-pull` command executed:\n```{LOG}```",
@@ -73,9 +73,9 @@
   "aliases": {
     "commands": [
       ["admin.bot-channel", "bot-channel", "bot-channels"],
-      ["admin.bot-avatar", "bot-avatar"],
       ["admin.mod-roles", "mod-roles", "mod-role", "moderator-roles", "moderator-role"],
       ["admin.slash-deploy", "slash-deploy", "deploy-slash"],
+      ["owner.bot-avatar", "bot-avatar"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],
       ["general.avatar", "avatar", "pfp"],
