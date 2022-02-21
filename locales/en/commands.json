@@ -53,6 +53,7 @@
       "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
       "admin-commands": "The following is a list of guild administrator commands:\n{COMMANDS}",
       "general-commands": "The following is a list of general commands:\n{COMMANDS}",
+      "no-info": "Error loading help text.",
       "desc": "Learn how to use bot commands",
       "general-desc": "Learn how to use general commands",
       "admin-desc": "Learn how to use server administrator commands",
@@ -64,8 +65,6 @@
     },
     "general.say": {
       "message-sent": "The message has been sent: {MESSAGE URL}",
-      "sending-message": "Sending message...",
-      "no-permission": "You do not have the permission to use this command.",
       "desc": "Send a message in this channel",
       "message-desc": "Message that I should repeat",
       "channel-desc": "Where the message should be sent"
