@@ -1,12 +1,12 @@
 /**
 * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 
 export const canonName = 'admin.mod-roles';
 export const name = 'mod-roles';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.ADMIN;
+export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 import {getRoleId} from '../../utils/utils.js';

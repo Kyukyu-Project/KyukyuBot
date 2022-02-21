@@ -3,13 +3,13 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 export const canonName = 'general.say';
 export const name = 'say';
 export const requireArgs = true;
-export const commandType = COMMAND_TYPE.ADMIN;
+export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 /**

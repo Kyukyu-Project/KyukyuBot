@@ -5,13 +5,13 @@
 /**
 * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 import {wait} from '../../utils/utils.js';
 
 export const canonName = 'owner.reload-lang';
 export const name = 'owner.reload-lang';
 export const requireArgs = true;
-export const commandType = COMMAND_TYPE.OWNER;
+export const commandPerm = COMMAND_PERM.OWNER;
 export const cooldown = 0;
 
 const COMMAND_SUCCESS     = `commands.${canonName}.success`;

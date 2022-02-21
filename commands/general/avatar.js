@@ -3,12 +3,12 @@
  * @typedef {import('discord.js').GuildMember} GuildMember
  */
 
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 
 export const canonName = 'general.avatar';
 export const name = 'avatar';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.GENERAL;
+export const commandPerm = COMMAND_PERM.GENERAL;
 export const cooldown = 3;
 
 import {getUserId} from '../../utils/utils.js';

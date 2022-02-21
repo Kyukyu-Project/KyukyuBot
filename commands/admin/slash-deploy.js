@@ -1,14 +1,14 @@
 /**
 * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 
 import {deploy} from '../../app.js';
 
 export const canonName = 'admin.slash-deploy';
 export const name = 'slash-deploy';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.ADMIN;
+export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 const REFRESH_START       = `commands.${canonName}.refresh-start`;

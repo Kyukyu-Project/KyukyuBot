@@ -5,14 +5,14 @@
 /**
 * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 
 import {exec} from 'child_process';
 
 export const canonName = 'owner.git-pull';
 export const name = 'owner.git-pull';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.OWNER;
+export const commandPerm = COMMAND_PERM.OWNER;
 export const cooldown = 0;
 
 const COMMAND_SUCCESS     = `commands.${canonName}.success`;

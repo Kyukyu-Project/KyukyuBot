@@ -1,12 +1,12 @@
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 
 export const canonName = 'general.ping';
 export const name = 'ping';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.GENERAL;
+export const commandPerm = COMMAND_PERM.GENERAL;
 export const cooldown = 3;
 
 const PING_PONG           = `commands.${canonName}.ping-pong`;

@@ -1,12 +1,12 @@
 /**
 * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
 */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 
 export const canonName = 'admin.bot-avatar';
 export const name = 'bot-avatar';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.ADMIN;
+export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 const COMMAND_SUCCESS     = `commands.${canonName}.success`;

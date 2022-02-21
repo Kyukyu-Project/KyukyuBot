@@ -93,7 +93,7 @@
  * @typedef {Object} Command
  * @property {string} canonName - Canonical (internal) name
  * @property {string} name - Command name
- * @property {COMMAND_TYPE} commandType - Command type
+ * @property {COMMAND_PERM} commandPerm - Command type
  * @property {boolean} requireArgs - Does this command require argument(s)?
  * @property {boolean} cooldown - Does this command have cool-down?
  * @property {CommandExecute} execute
@@ -103,7 +103,7 @@
  * @readonly
  * @enum {number}
  */
-export const COMMAND_TYPE = {
+export const COMMAND_PERM = {
   OWNER: 9, // Can be used by client owners only
   ADMIN: 7, //  Can be used by guild administrator only
   // MODERATOR: 6, //  Can be used by channel moderator only

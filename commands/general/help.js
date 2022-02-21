@@ -1,13 +1,13 @@
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 export const canonName = 'general.help';
 export const name = 'help';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.GENERAL;
+export const commandPerm = COMMAND_PERM.GENERAL;
 export const cooldown = 1;
 
 const OWNER               = `commands.${canonName}.owner-commands`;
@@ -36,14 +36,14 @@ export function getSlashData(context) {
 
   client.commands.forEach((cmd) => {
     const choice = [cmd.name, cmd.canonName];
-    switch (cmd.commandType) {
-      case COMMAND_TYPE.GENERAL:
+    switch (cmd.commandPerm) {
+      case COMMAND_PERM.GENERAL:
         generalChoices.push(choice);
         break;
-      case COMMAND_TYPE.ADMIN:
+      case COMMAND_PERM.ADMIN:
         adminChoices.push(choice);
         break;
-      case COMMAND_TYPE.OWNER:
+      case COMMAND_PERM.OWNER:
         if (ownerGuild) ownerChoices.push(choice);
         break;
     }
@@ -130,7 +130,7 @@ function listOwner(context) {
   if (!context.hasOwnerPermission) return false;
 
   const commandList = client.commands
-      .filter((cmd)=>cmd.commandType==COMMAND_TYPE.OWNER)
+      .filter((cmd)=>cmd.commandPerm==COMMAND_PERM.OWNER)
       .map((cmd)=>cmd.name)
       .join(l10n.s(lang, 'delimiter'));
 
@@ -154,7 +154,7 @@ function listAdmin(context) {
   if (!context.hasAdminPermission) return false;
 
   const commandList = client.commands
-      .filter((cmd)=>cmd.commandType==COMMAND_TYPE.ADMIN)
+      .filter((cmd)=>cmd.commandPerm==COMMAND_PERM.ADMIN)
       .map((cmd)=>cmd.name)
       .join(l10n.s(lang, 'delimiter'));
   const response = l10n.t(lang, ADMIN, '{COMMANDS}', commandList);
@@ -175,7 +175,7 @@ function listGeneral(context) {
   const l10n = client.l10n;
 
   const commandList = client.commands
-      .filter((cmd)=>cmd.commandType==COMMAND_TYPE.GENERAL)
+      .filter((cmd)=>cmd.commandPerm==COMMAND_PERM.GENERAL)
       .map((cmd)=>cmd.name)
       .join(l10n.s(lang, 'delimiter'));
   const response = l10n.t(lang, GENERAL, '{COMMANDS}', commandList);
@@ -217,11 +217,11 @@ export async function execute(context) {
 
   const __cmd = client.commands.get(__cmdCanonName);
 
-  switch (__cmd.commandType) {
-    case COMMAND_TYPE.OWNER:
+  switch (__cmd.commandPerm) {
+    case COMMAND_PERM.OWNER:
       if (!context.hasOwnerPermission) return false;
       break;
-    case COMMAND_TYPE.ADMIN:
+    case COMMAND_PERM.ADMIN:
       if (!context.hasAdminPermission) return false;
       break;
   }

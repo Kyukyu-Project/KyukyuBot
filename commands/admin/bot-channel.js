@@ -3,14 +3,14 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  */
-import {COMMAND_TYPE} from '../../src/typedef.js';
+import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import {ChannelType} from 'discord-api-types/v10';
 
 export const canonName = 'admin.bot-channel';
 export const name = 'bot-channel';
 export const requireArgs = false;
-export const commandType = COMMAND_TYPE.ADMIN;
+export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 import {getChannelId} from '../../utils/utils.js';

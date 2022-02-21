@@ -19,7 +19,7 @@ import CommandManager from './commands.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
-import {COMMAND_TYPE} from './typedef.js';
+import {COMMAND_PERM} from './typedef.js';
 
 /**
  * @typedef {import('discord.js')} Discord
@@ -341,14 +341,14 @@ class Client extends djsClient {
     const userPermissions =
       this.getUserPermissions(guild, guildSettings, channel, msg);
 
-    switch (cmd.commandType) {
-      case COMMAND_TYPE.OWNER:
+    switch (cmd.commandPerm) {
+      case COMMAND_PERM.OWNER:
         if (!userPermissions.hasOwnerPermission) return;
         break;
-      case COMMAND_TYPE.ADMIN:
+      case COMMAND_PERM.ADMIN:
         if (!userPermissions.hasAdminPermission) return;
         break;
-    } // switch (cmd.commandType)
+    } // switch (cmd.commandPerm)
 
     if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
       const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
@@ -465,14 +465,14 @@ class Client extends djsClient {
     const userPermissions =
       this.getUserPermissions(guild, guildSettings, channel, interaction);
 
-    switch (cmd.commandType) {
-      case COMMAND_TYPE.OWNER:
+    switch (cmd.commandPerm) {
+      case COMMAND_PERM.OWNER:
         if (!userPermissions.hasOwnerPermission) return;
         break;
-      case COMMAND_TYPE.ADMIN:
+      case COMMAND_PERM.ADMIN:
         if (!userPermissions.hasAdminPermission) return;
         break;
-    } // switch (cmd.commandType)
+    } // switch (cmd.commandPerm)
 
     /** @type {string} Key for cool-down */
     const cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
