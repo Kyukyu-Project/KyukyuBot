@@ -415,7 +415,10 @@ class Client extends djsClient {
    * @param {Discord.Interaction} interaction
    */
   async onInteractionCreate(interaction) {
-    if (!interaction.isCommand()) return;
+    if (
+      !interaction.isCommand() &&
+      !interaction.isContextMenu()
+    ) return;
 
     if (this.pauseProcess) return;
 

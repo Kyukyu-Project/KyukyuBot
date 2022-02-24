@@ -1,33 +1,55 @@
 {
   "commands": {
     "admin.bot-channel": {
-      "desc": "View, set, or reset the bot-command channel",
       "set-success": "{CHANNEL} is now set as the bot channel.",
       "unset-success": "{CHANNEL} is unset as the bot channel.",
       "show-bot-channel": "The bot channel is {CHANNEL}.",
       "no-bot-channel": "No channel is set as the bot channel.",
       "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
+      "desc": "View, set, or reset the bot-command channel",
       "view-desc": "Show the bot-command channel",
       "set-desc": "Set the bot-command channel",
       "unset-desc": "Unset the bot-command channel",
       "channel-desc": "Channel"
     },
     "admin.mod-roles": {
-      "add-success": "The following role(s) have been added as moderator roles: {ROLES}",
-      "del-success": "The following role(s) have been removed as moderator roles: {ROLES}",
-      "show-mod-roles": "The mod role(s) are {ROLES}.",
-      "no-mod-roles": "No role is set as moderator role.",
-      "flags": {
-        "view":  ["--view", "-v"],
-        "add":   ["--add",  "-a", "+"],
-        "del":   ["--del",  "-d", "-"],
-        "reset": ["--reset","-r"]
-      }
+      "add-one": "Moderator role added: {ROLE}",
+      "add-many": "Moderator roles added: {ROLES}",
+      "remove-one": "Moderator role removed: {ROLE}",
+      "remove-many": "Moderator roles removed: {ROLES}",
+      "show-one": "Moderator role: {ROLE}.",
+      "show-many": "Moderator roles: {ROLES}.",
+      "no-mod-role": "No role is set as moderator role.",
+
+      "none-added": "Error: no role is added as a moderator role",
+      "none-removed": "Error: no role is removed as a moderator role",
+      "already-a-mod-role": "{ROLE} is already a moderator role.",
+      "not-a-mod-role": "{ROLE} is not a moderator role.",
+
+      "desc": "View, add, or remove the moderator roles",
+      "view-desc": "Show the moderator roles",
+      "add-desc": "Add a role to the list of moderator roles",
+      "remove-desc": "Remove a role from the list of moderator roles",
+      "clear-desc": "Clear (reset) the list of moderator roles",
+      "role-desc": "Role"
     },
     "admin.slash-deploy": {
       "refresh-start": "{USER TAG}: starting to refresh slash commands.",
       "refresh-success": "{USER TAG}: slash commands reloaded successfully.",
       "refresh-error": "{USER TAG}: Error refreshing slash commands."
+    },
+    "admin.say": {
+      "message-sent": "The message has been sent: {MESSAGE URL}",
+      "desc": "Send a message through the bot",
+      "message-desc": "Message that I should send",
+      "channel-desc": "Channel where the message should be sent"
+    },
+    "admin.reply": {
+      "response-sent": "The response has been sent",
+      "response-error": "Error sending the response",
+      "desc": "Reply to a message through the bot",
+      "message-id-desc": "Id of the message to reply to",
+      "response-desc": "Response message that I should send"
     },
     "owner.bot-avatar": {
       "success": "Bot avatar updated",
@@ -62,12 +84,6 @@
     },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
-    },
-    "general.say": {
-      "message-sent": "The message has been sent: {MESSAGE URL}",
-      "desc": "Send a message in this channel",
-      "message-desc": "Message that I should repeat",
-      "channel-desc": "Where the message should be sent"
     }
   },
   "aliases": {
@@ -75,13 +91,14 @@
       ["admin.bot-channel", "bot-channel", "bot-channels"],
       ["admin.mod-roles", "mod-roles", "mod-role", "moderator-roles", "moderator-role"],
       ["admin.slash-deploy", "slash-deploy", "deploy-slash"],
+      ["admin.say", "say", "speak"],
+      ["admin.reply", "reply"],
       ["owner.bot-avatar", "bot-avatar"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],
       ["general.avatar", "avatar", "pfp"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
-      ["general.ping", "ping", "ピン", "乒"],
-      ["general.say", "say", "speak"]
+      ["general.ping", "ping", "ピン", "乒"]
     ]
   }
 }

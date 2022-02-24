@@ -139,6 +139,16 @@ class L10N extends Collection {
   }
 
   /**
+   * Join a list
+   * @param {string} lang - language
+   * @param {string[]} source - source array
+   * @return {string} list of strings separated by delimiters
+   */
+  join(lang, source) {
+    return source.join(this.getTemplate(lang, 'delimiter'));
+  }
+
+  /**
    * Get command help text
    * @param {string} lang -Language
    * @param {string} cmdName -Canonical command name

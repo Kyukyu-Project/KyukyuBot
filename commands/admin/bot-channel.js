@@ -1,5 +1,4 @@
 /**
- * @typedef {import('../../src/l10n.js').L10N} L10N
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  */
@@ -26,7 +25,7 @@ const setFlags           = ['--set', '-s'];
 const unsetFlags         = ['--unset', '-u'];
 
 /**
- * @param {CommandContext} context
+ * @param {CommandContext|IContext} context
  * @return {object}
  */
 export function getSlashData(context) {

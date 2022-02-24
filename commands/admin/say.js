@@ -6,7 +6,7 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
-export const canonName = 'general.say';
+export const canonName = 'admin.say';
 export const name = 'say';
 export const requireArgs = true;
 export const commandPerm = COMMAND_PERM.ADMIN;
