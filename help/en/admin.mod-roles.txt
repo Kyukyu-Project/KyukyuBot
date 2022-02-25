@@ -18,7 +18,7 @@ Usages
   ?mod-roles --clear
 
 Options
-  -v, --view         Show the list of moderator roles (Default) 
+  -i, --info         Show the list of moderator roles (Default) 
   -a, --add, +       Add role(s) to the list of moderator roles
   -r, --remove, -    Remove role(s) from the list of moderator roles
   -c, --clear        Clear (reset) the list of moderator roles

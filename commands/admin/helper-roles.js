@@ -5,8 +5,8 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
-export const canonName = 'admin.mod-roles';
-export const name = 'mod-roles';
+export const canonName = 'admin.helper-roles';
+export const name = 'helper-roles';
 export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
@@ -16,20 +16,20 @@ import {getRoleId} from '../../utils/utils.js';
 const SHOW_INFO           = `commands.${canonName}.show-info`;
 const SHOW_ONE            = `commands.${canonName}.show-one`;
 const SHOW_MANY           = `commands.${canonName}.show-many`;
-const NO_MOD_ROLE         = `commands.${canonName}.no-mod-role`;
+const NO_HELPER_ROLE      = `commands.${canonName}.no-helper-role`;
 const ADD_ONE             = `commands.${canonName}.add-one`;
 const ADD_MANY            = `commands.${canonName}.add-many`;
 const REMOVE_ONE          = `commands.${canonName}.remove-one`;
 const REMOVE_MANY         = `commands.${canonName}.remove-many`;
 const NONE_ADDED          = `commands.${canonName}.none-added`;
 const NONE_REMOVED        = `commands.${canonName}.none-removed`;
-const NOT_A_MOD_ROLE      = `commands.${canonName}.not-a-mod-role`;
-const ALREADY_A_MOD_ROLE  = `commands.${canonName}.already-a-mod-role`;
+const NOT_A_HELPER_ROLE   = `commands.${canonName}.not-a-helper-role`;
+const ALREADY_A_HELP_ROLE = `commands.${canonName}.already-a-helper-role`;
 const infoFlags   = ['--info', '-i'];
 const addFlags    = ['--add', '-a', '+'];
 const removeFlags = ['--remove', '-r', '-'];
 const clearFlags  = ['--clear', '-c'];
-const infoLabel = 'view';
+const infoLabel = 'info';
 const addLabel = 'add';
 const removeLabel = 'remove';
 const clearLabel = 'clear';
@@ -43,7 +43,7 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const viewDesc = l10n.s(lang, `commands.${canonName}.info-desc`);
+  const infoDesc = l10n.s(lang, `commands.${canonName}.info-desc`);
   const addDesc = l10n.s(lang, `commands.${canonName}.add-desc`);
   const removeDesc = l10n.s(lang, `commands.${canonName}.remove-desc`);
   const clearDesc = l10n.s(lang, `commands.${canonName}.clear-desc`);
@@ -52,7 +52,7 @@ export function getSlashData(context) {
   return new SlashCommandBuilder()
       .setName(name)
       .setDescription(desc)
-      .addSubcommand((c) => c.setName(infoLabel).setDescription(viewDesc))
+      .addSubcommand((c) => c.setName(infoLabel).setDescription(infoDesc))
       .addSubcommand((c) => c.setName(addLabel).setDescription(addDesc)
           .addRoleOption((option) => option
               .setName('role').setDescription(roleDesc).setRequired(true),
@@ -76,7 +76,7 @@ export async function slashExecute(context) {
   const {l10n} = client;
 
   if (context.hasAdminPermission) {
-    const modRoles = guildSettings['mod-roles'] || [];
+    const hRoles = guildSettings['helper-roles'] || [];
     const subCommand = interaction.options.getSubcommand();
     let result;
     if (subCommand === infoLabel) {
@@ -87,9 +87,9 @@ export async function slashExecute(context) {
       const roleId = interaction.options.getRole('role').id;
       const roleTag = `<@&${roleId}>`;
       if (subCommand === addLabel) {
-        if (modRoles.indexOf(roleId) === -1) {
-          modRoles.push(roleId);
-          guildSettings['mod-roles'] = modRoles;
+        if (hRoles.indexOf(roleId) === -1) {
+          hRoles.push(roleId);
+          guildSettings['helper-roles'] = hRoles;
           client.updateGuildSettings(guild, guildSettings);
           result = {
             response: l10n.t(lang, ADD_ONE, '{ROLE}', roleTag),
@@ -97,15 +97,15 @@ export async function slashExecute(context) {
           };
         } else {
           result = {
-            response: l10n.t(lang, ALREADY_A_MOD_ROLE, '{ROLE}', roleTag),
+            response: l10n.t(lang, ALREADY_A_HELP_ROLE, '{ROLE}', roleTag),
             success: false,
           };
         }
       } else if (subCommand === removeLabel) {
-        const spiceAt = modRoles.indexOf(roleId);
+        const spiceAt = hRoles.indexOf(roleId);
         if (spiceAt !== -1) {
-          modRoles.splice(spiceAt, 1);
-          guildSettings['mod-roles'] = modRoles;
+          hRoles.splice(spiceAt, 1);
+          guildSettings['helper-roles'] = hRoles;
           client.updateGuildSettings(guild, guildSettings);
           result = {
             response: l10n.t(lang, REMOVE_ONE, '{ROLE}', roleTag),
@@ -113,7 +113,7 @@ export async function slashExecute(context) {
           };
         } else {
           result = {
-            response: l10n.t(lang, NOT_A_MOD_ROLE, '{ROLE}', roleTag),
+            response: l10n.t(lang, NOT_A_HELPER_ROLE, '{ROLE}', roleTag),
             success: false,
           };
         }
@@ -137,20 +137,20 @@ function addRoles(context, rolesToAdd) {
   const l10n = client.l10n;
 
   /** @type string[] */
-  const modRoles = guildSettings['mod-roles'] || [];
+  const hRoles = guildSettings['helper-roles'] || [];
   const addedRoleTags = [];
 
   rolesToAdd.forEach((id) => {
-    const idx = modRoles.indexOf(id);
+    const idx = hRoles.indexOf(id);
     if (idx === -1) { // not found
-      modRoles.push(id);
+      hRoles.push(id);
       addedRoleTags.push(`<@&${id}>`);
     }
   });
 
   if (addedRoleTags.length) {
     let response;
-    guildSettings['mod-roles'] = modRoles;
+    guildSettings['helper-roles'] = hRoles;
     client.updateGuildSettings(guild, guildSettings);
     if (addedRoleTags.length > 1) {
       response = l10n.t(
@@ -175,20 +175,20 @@ function removeRoles(context, rolesToRemove) {
   const l10n = client.l10n;
 
   /** @type string[] */
-  const modRoles = guildSettings['mod-roles'] || [];
+  const helperRoles = guildSettings['helper-roles'] || [];
   const removedRoleTags = [];
 
   rolesToRemove.forEach((id) => {
-    const idx = modRoles.indexOf(id);
+    const idx = helperRoles.indexOf(id);
     if (idx !== -1) { // found
-      modRoles.splice(idx, 1);
+      helperRoles.splice(idx, 1);
       removedRoleTags.push(`<@&${id}>`);
     }
   });
 
   if (removedRoleTags.length) {
     let response;
-    guildSettings['mod-roles'] = modRoles;
+    guildSettings['helper-roles'] = helperRoles;
     client.updateGuildSettings(guild, guildSettings);
     if (removedRoleTags.length > 1) {
       response = l10n.t(
@@ -211,19 +211,19 @@ function clearRoles(context) {
   const {client, lang, guild, guildSettings} = context;
   const l10n = client.l10n;
 
-  const modRoles = guildSettings['mod-roles'] || [];
-  const modRolesTags = modRoles.map((el)=>`<@&${el}>`);
+  const hRoles = guildSettings['helper-roles'] || [];
+  const hRolesTags = hRoles.map((el)=>`<@&${el}>`);
 
-  if (modRoles.length) {
+  if (hRoles.length) {
     let response;
-    if (modRoles.length > 1) {
+    if (hRoles.length > 1) {
       response = l10n.t(
-          lang, REMOVE_MANY, '{ROLES}', l10n.join(lang, modRolesTags),
+          lang, REMOVE_MANY, '{ROLES}', l10n.join(lang, hRolesTags),
       );
     } else {
-      response = l10n.t(lang, REMOVE_ONE, '{ROLE}', modRolesTags[0]);
+      response = l10n.t(lang, REMOVE_ONE, '{ROLE}', hRolesTags[0]);
     }
-    guildSettings['mod-roles'] = [];
+    guildSettings['helper-roles'] = [];
     client.updateGuildSettings(guild, guildSettings);
     return {success: true, response: response};
   } else {
@@ -239,16 +239,16 @@ function viewRoles(context) {
   const {client, lang, guildSettings} = context;
   const l10n = client.l10n;
 
-  const mRoles = guildSettings['mod-roles'] || [];
-  const mRolesTags = mRoles.map((el)=>`<@&${el}>`);
+  const hRoles = guildSettings['helper-roles'] || [];
+  const hRolesTags = hRoles.map((el)=>`<@&${el}>`);
 
   let response = l10n.s(lang, SHOW_INFO);
-  if (mRoles.length == 1) {
-    response += l10n.t(lang, SHOW_ONE, '{ROLE}', mRolesTags[0]);
-  } else if (mRoles.length > 1) {
-    response += l10n.t(lang, SHOW_MANY, '{ROLES}', l10n.join(lang, mRolesTags));
+  if (hRoles.length == 1) {
+    response += l10n.t(lang, SHOW_ONE, '{ROLE}', hRolesTags[0]);
+  } else if (hRoles.length > 1) {
+    response += l10n.t(lang, SHOW_MANY, '{ROLES}', l10n.join(lang, hRolesTags));
   } else {
-    response += l10n.s(lang, NO_MOD_ROLE);
+    response += l10n.s(lang, NO_HELPER_ROLE);
   }
   return {success: true, response: response};
 }
