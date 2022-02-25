@@ -1,5 +1,6 @@
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  */
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
@@ -92,7 +93,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, commandPrefix, interaction} = context;
+  const {client, lang, guildSettings, interaction} = context;
   const {l10n} = client;
 
   const subCommand = interaction.options.getSubcommand();
@@ -106,6 +107,7 @@ export async function slashExecute(context) {
   }
 
   const cmdCanonName = interaction.options.getString('command');
+  const commandPrefix = guildSettings['command-prefix'];
   const helpTxt = l10n.getCommandHelp(lang, cmdCanonName);
   if (helpTxt) {
     const response = '```' + helpTxt.replaceAll('?', commandPrefix) + '```';
