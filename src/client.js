@@ -361,14 +361,15 @@ class Client extends djsClient {
       return;
     }
 
-    /** @type {string} Key for cool-down */
-    const cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
-
     const setCooldown = cmd.cooldown && userPermissions.setCooldown;
+
+    /** @type {string} Key for cool-down */
+    let cooldownKey = '';
 
     if (setCooldown) {
       // Is user still in cool-down?
       if (this.cooldowns.get(cooldownKey)) return;
+      cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
     }
     const now = new Date();
 
