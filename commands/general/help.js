@@ -110,12 +110,10 @@ export async function slashExecute(context) {
   const commandPrefix = guildSettings['command-prefix'];
   const helpTxt = l10n.getCommandHelp(lang, cmdCanonName);
   if (helpTxt) {
-    const response = '```' + helpTxt.replaceAll('?', commandPrefix) + '```';
-    interaction.reply({content: response, ephemeral: true});
+    interaction.reply(helpTxt.replaceAll('?', commandPrefix));
     return true;
   } else {
-    const response = l10n.s(lang, NO_INFO);
-    interaction.reply({content: response, ephemeral: true});
+    interaction.reply({content: l10n.s(lang, NO_INFO), ephemeral: true});
     return false;
   }
 }
