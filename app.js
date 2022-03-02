@@ -100,8 +100,6 @@ export async function deploy(context) {
     }
   });
 
-  console.log(pendingData);
-
   const rest = new REST({version: '9'}).setToken(clientToken);
 
   await rest.put(

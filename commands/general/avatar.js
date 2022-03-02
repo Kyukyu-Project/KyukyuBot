@@ -62,7 +62,6 @@ export async function execute(context) {
       avatarUrl = member.displayAvatarURL();
     }
   } else {
-    console.log('5');
     member = guild.members.cache.get(user.id);
     avatarUrl = member.displayAvatarURL();
   }
