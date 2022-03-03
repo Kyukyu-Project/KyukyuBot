@@ -23,10 +23,11 @@ import {COMMAND_PERM} from './typedef.js';
 
 /**
  * @typedef {import('discord.js')} Discord
+ * @typedef {import('discord.js').CommandInteractionOption} CommandInteractionOption
  * @typedef {import('./typedef.js').Command} Command
  * @typedef {import('./typedef.js').UserPermissions} UserPermissions
  * @typedef {import('./typedef.js').CommandContext} CommandContext
- * @typedef {import('./typedef.js').InteractionContext} InteractionContext
+ * @typedef {import('./typedef.js').InteractionContext} IContext
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
  * @typedef {import('./typedef.js').UserSettings} UserSettings
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
@@ -233,7 +234,7 @@ class Client extends djsClient {
    * @param {Discord.Guild} guild
    * @param {GuildSettings} guildSettings
    * @param {Discord.Channel} channel
-   * @param {Discord.Message} msg
+   * @param {Discord.Message|Discord.Interaction} msg
    * @return {UserPermissions}
    */
   getUserPermissions(guild, guildSettings, channel, msg) {
@@ -322,18 +323,18 @@ class Client extends djsClient {
     const cmdAlias = parsedArgs.shift();
 
     /** Canonical command name */
-    const cmdName =
+    const cmdCanonName =
       this.l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
 
-    if (!cmdName) return;
+    if (!cmdCanonName) return;
 
     /** Translation error */
-    if (!this.commands.has(cmdName)) {
-      console.error(`Cannot find command named "${cmdName}"`);
+    if (!this.commands.has(cmdCanonName)) {
+      console.error(`Cannot find command named "${cmdCanonName}"`);
       return;
     }
 
-    const cmd = this.commands.get(cmdName);
+    const cmd = this.commands.get(cmdCanonName);
 
     if (!cmd.execute) return; // Application (/) command only
 
@@ -351,7 +352,7 @@ class Client extends djsClient {
     } // switch (cmd.commandPerm)
 
     if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
-      const helpTxt = this.l10n.getCommandHelp(lang, cmdName);
+      const helpTxt = this.l10n.getCommandHelp(lang, cmdCanonName);
       if (helpTxt) {
         channel.send({
           content: helpTxt.replaceAll('?', prefix),
@@ -367,11 +368,11 @@ class Client extends djsClient {
     let cooldownKey = '';
 
     if (setCooldown) {
-      // Is user still in cool-down?
-      if (this.cooldowns.get(cooldownKey)) return;
-      cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
+      cooldownKey = `${guild.id}.${user.id}.${cmdCanonName}`;
+      if (this.cooldowns.has(cooldownKey)) return; // User is in cool-down
     }
-    const now = new Date();
+    /** Execution time       */ const execTime = new Date();
+    /** Execution time stamp */ const execTS = execTime.toISOString();
 
     const cmdContext = {
       client: this,
@@ -393,17 +394,17 @@ class Client extends djsClient {
           if (typeof result == 'boolean') {
             if (result && setCooldown) {
               const cooldownMS = cmd.cooldown * 1000;
-              const expiration = now.valueOf() + cooldownMS;
+              const expiration = execTime.valueOf() + cooldownMS;
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
-            this.log(
-                `${result?'✓':'✗'} ${now.toISOString()} ${cmdName}\n`,
-            );
+            this.log(`${result?'✓':'✗'} ${execTS} ${cmdCanonName}\n`);
+          } else {
+            console.error(`"${cmdCanonName}" does not return boolean result.`);
           }
         })
         .catch((error) => {
-          this.log(`✗ ${now.toISOString()} ${cmdName}\n> "${error.message}"\n`);
+          this.log(`✗ ${execTS} ${cmdCanonName}\n> "${error.message}"\n`);
           console.error(
               '--------------------------------------------------\n',
               `Error executing '${msg.content}'\n`, error,
@@ -442,28 +443,31 @@ class Client extends djsClient {
 
     /** Slash command name */
     const slashName = interaction.commandName;
+    const cmd = this.commands.find((c) => c.name === slashName);
 
-    /** Canonical command name */
-    const cmdName =
-      this.l10n.getCanonicalName(lang, 'aliases.commands', slashName);
-
-    if (!cmdName) {
-      console.error(`Cannot find command named "/${slashName}"`);
+    if ((!cmd) || (!cmd.slashExecute)) {
+      console.error(`Cannot execute "/${slashName}"`);
       return;
     }
 
-    /** Translation error */
-    if (!this.commands.has(cmdName)) {
-      console.error(`Cannot find command named "${cmdName}"`);
-      return;
+    /**
+      * Convert command interaction options to an array
+      * @param {string[]} result - initial array
+      * @param {CommandInteractionOption[]} options - command options
+      * @return {string[]}
+      */
+    function arrayFromOptions(result, options) {
+      return options.reduce((res, opt) => {
+        if (opt.type === 'SUB_COMMAND') {
+          return res.concat(opt.name, arrayFromOptions(res, opt.options));
+        } else {
+          return res.concat(`${opt.name}:"${opt.value}"`);
+        }
+      }, result);
     }
 
-    const cmd = this.commands.get(cmdName);
-
-    if (!cmd.slashExecute) {
-      console.error(`Cannot find interaction handler for "/${cmdName}"`);
-      return;
-    }
+    const fullCommand =
+      arrayFromOptions([`/${slashName}`], interaction.options.data).join(' ');
 
     /** @type {UserPermissions} */
     const userPermissions =
@@ -479,16 +483,18 @@ class Client extends djsClient {
     } // switch (cmd.commandPerm)
 
     /** @type {string} Key for cool-down */
-    const cooldownKey = `${guild.id}.${user.id}.${cmdName}`;
+    const cooldownKey = `${guild.id}.${user.id}.${cmd.canonName}`;
 
     const setCooldown = cmd.cooldown && userPermissions.setCooldown;
 
     if (setCooldown) { // Is user still in cool-down?
       if (this.cooldowns.get(cooldownKey)) return;
     }
-    const now = new Date();
 
-    /** @type {InteractionContext} */
+    /** Execution time       */ const execTime = new Date();
+    /** Execution time stamp */ const execTS = execTime.toISOString();
+
+    /** @type {IContext} */
     const interactionContext = {
       client: this,
       guild: guild,
@@ -506,20 +512,20 @@ class Client extends djsClient {
           if (typeof result == 'boolean') {
             if (result && setCooldown) {
               const cooldownMS = cmd.cooldown * 1000;
-              const expiration = now.valueOf() + cooldownMS;
+              const expiration = execTime.valueOf() + cooldownMS;
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
-            this.log(
-                `${result?'✓':'✗'} ${now.toISOString()} ${cmdName}\n`,
-            );
+            this.log(`${result?'✓':'✗'} ${execTS} ${fullCommand}\n`);
+          } else {
+            console.error(`"/${slashName}" does not return boolean result.`);
           }
         })
         .catch((error) => {
-          this.log(`✗ ${now.toISOString()} ${cmdName}\n> "${error.message}"\n`);
+          this.log(`✗ ${execTS} ${fullCommand}\n> "${error.message}"\n`);
           console.error(
               '--------------------------------------------------\n',
-              `Error executing '${interaction.content}'\n`, error,
+              `Error executing '${fullCommand}'\n`, error,
           );
         });
   }
@@ -532,5 +538,4 @@ class Client extends djsClient {
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
   }
 }
-
 export default Client;
