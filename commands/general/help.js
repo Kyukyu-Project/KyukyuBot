@@ -25,10 +25,10 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const generalDesc = l10n.s(lang, `commands.${canonName}.general-desc`);
-  const adminDesc = l10n.s(lang, `commands.${canonName}.admin-desc`);
-  const ownerDesc = l10n.s(lang, `commands.${canonName}.owner-desc`);
-  const commandDesc = l10n.s(lang, `commands.${canonName}.command-desc`);
+  const generalDesc = l10n.s(lang, `commands.${canonName}.general-hint`);
+  const adminDesc = l10n.s(lang, `commands.${canonName}.admin-hint`);
+  const ownerDesc = l10n.s(lang, `commands.${canonName}.owner-hint`);
+  const commandDesc = l10n.s(lang, `commands.${canonName}.command-hint`);
 
   const generalChoices = [];
   const adminChoices = [];
@@ -54,20 +54,20 @@ export function getSlashData(context) {
       .setName(name)
       .setDescription(desc)
       .addSubcommand((command) => command
-          .setName('general')
+          .setName('general-command')
           .setDescription(generalDesc)
           .addStringOption((option) => option
-              .setName('command')
+              .setName('command-name')
               .setDescription(commandDesc)
               .setRequired(true)
               .addChoices(generalChoices),
           ),
       )
       .addSubcommand((command) => command
-          .setName('admin')
+          .setName('admin-command')
           .setDescription(adminDesc)
           .addStringOption((option) => option
-              .setName('command')
+              .setName('command-name')
               .setDescription(commandDesc)
               .setRequired(true)
               .addChoices(adminChoices),
@@ -75,10 +75,10 @@ export function getSlashData(context) {
       );
   if (ownerGuild) {
     slashCommand.addSubcommand((command) => command
-        .setName('owner')
+        .setName('owner-command')
         .setDescription(ownerDesc)
         .addStringOption((option) => option
-            .setName('command')
+            .setName('command-name')
             .setDescription(commandDesc)
             .setRequired(true)
             .addChoices(ownerChoices),

@@ -9,7 +9,7 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 export const canonName = 'admin.say';
 export const name = 'say';
 export const requireArgs = true;
-export const commandPerm = COMMAND_PERM.ADMIN;
+export const commandPerm = COMMAND_PERM.MODERATOR;
 export const cooldown = 0;
 
 /**
@@ -21,8 +21,8 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const desc =        l10n.s(lang, `commands.${canonName}.desc`);
-  const messageDesc = l10n.s(lang, `commands.${canonName}.message-desc`);
-  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-desc`);
+  const messageDesc = l10n.s(lang, `commands.${canonName}.message-hint`);
+  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)

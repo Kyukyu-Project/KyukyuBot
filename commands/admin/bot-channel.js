@@ -33,10 +33,10 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const viewDesc = l10n.s(lang, `commands.${canonName}.view-desc`);
-  const setDesc = l10n.s(lang, `commands.${canonName}.set-desc`);
-  const unsetDesc = l10n.s(lang, `commands.${canonName}.unset-desc`);
-  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-desc`);
+  const viewDesc = l10n.s(lang, `commands.${canonName}.view-hint`);
+  const setDesc = l10n.s(lang, `commands.${canonName}.set-hint`);
+  const unsetDesc = l10n.s(lang, `commands.${canonName}.unset-hint`);
+  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)

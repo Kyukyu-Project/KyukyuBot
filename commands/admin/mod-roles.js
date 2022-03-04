@@ -43,11 +43,11 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const viewDesc = l10n.s(lang, `commands.${canonName}.info-desc`);
-  const addDesc = l10n.s(lang, `commands.${canonName}.add-desc`);
-  const removeDesc = l10n.s(lang, `commands.${canonName}.remove-desc`);
-  const clearDesc = l10n.s(lang, `commands.${canonName}.clear-desc`);
-  const roleDesc = l10n.s(lang, `commands.${canonName}.role-desc`);
+  const viewDesc = l10n.s(lang, `commands.${canonName}.info-hint`);
+  const addDesc = l10n.s(lang, `commands.${canonName}.add-hint`);
+  const removeDesc = l10n.s(lang, `commands.${canonName}.remove-hint`);
+  const clearDesc = l10n.s(lang, `commands.${canonName}.clear-hint`);
+  const roleDesc = l10n.s(lang, `commands.${canonName}.role-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)

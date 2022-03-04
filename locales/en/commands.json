@@ -7,10 +7,10 @@
       "no-bot-channel": "No channel is set as the bot channel.",
       "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
       "desc": "View, set, or reset the bot-command channel",
-      "view-desc": "Show the bot-command channel",
-      "set-desc": "Set the bot-command channel",
-      "unset-desc": "Unset the bot-command channel",
-      "channel-desc": "Channel"
+      "view-hint": "Show the bot-command channel",
+      "set-hint": "Set the bot-command channel",
+      "unset-hint": "Unset the bot-command channel",
+      "channel-hint": "Channel"
     },
     "admin.mod-roles": {
       "add-one": "Moderator role added: {ROLE}",
@@ -26,11 +26,11 @@
       "already-a-mod-role": "{ROLE} is already a moderator role.",
       "not-a-mod-role": "{ROLE} is not a moderator role.",
       "desc": "View, add, or remove the moderator roles",
-      "info-desc": "Show information about the moderator roles",
-      "add-desc": "Add a role to the list of moderator roles",
-      "remove-desc": "Remove a role from the list of moderator roles",
-      "clear-desc": "Clear (reset) the list of moderator roles",
-      "role-desc": "Role"
+      "info-hint": "Show information about the moderator roles",
+      "add-hint": "Add a role to the list of moderator roles",
+      "remove-hint": "Remove a role from the list of moderator roles",
+      "clear-hint": "Clear (reset) the list of moderator roles",
+      "role-hint": "Role"
     },
     "admin.helper-roles": {
       "add-one": "Helper role added: {ROLE}",
@@ -46,11 +46,11 @@
       "already-a-helper-role": "{ROLE} is already a helper role.",
       "not-a-helper-role": "{ROLE} is not a helper role.",
       "desc": "View, add, or remove the helper roles",
-      "info-desc": "Show information about the helper roles",
-      "add-desc": "Add a role to the list of helper roles",
-      "remove-desc": "Remove a role from the list of helper roles",
-      "clear-desc": "Clear (reset) the list of helper roles",
-      "role-desc": "Role"
+      "info-hint": "Show information about the helper roles",
+      "add-hint": "Add a role to the list of helper roles",
+      "remove-hint": "Remove a role from the list of helper roles",
+      "clear-hint": "Clear (reset) the list of helper roles",
+      "role-hint": "Role"
     },
     "admin.slash-deploy": {
       "refresh-start": "{USER TAG}: starting to refresh slash commands.",
@@ -60,15 +60,15 @@
     "admin.say": {
       "message-sent": "The message has been sent: {MESSAGE URL}",
       "desc": "Send a message through the bot",
-      "message-desc": "Message that I should send",
-      "channel-desc": "Channel where the message should be sent"
+      "message-hint": "Message that I should send",
+      "channel-hint": "Channel where the message should be sent"
     },
     "admin.reply": {
       "response-sent": "The response has been sent",
       "response-error": "Error sending the response",
       "desc": "Reply to a message through the bot",
-      "message-id-desc": "Id of the message to reply to",
-      "response-desc": "Response message that I should send"
+      "message-id-hint": "Id of the message to reply to",
+      "response-hint": "Response message that I should send"
     },
     "owner.bot-avatar": {
       "success": "Bot avatar updated",
@@ -96,10 +96,10 @@
       "general-commands": "The following is a list of general commands:\n{COMMANDS}",
       "no-info": "Error loading help text.",
       "desc": "Learn how to use bot commands",
-      "general-desc": "Learn how to use general commands",
-      "admin-desc": "Learn how to use server administrator commands",
-      "owner-desc": "Learn how to use bot owner commands",
-      "command-desc": "Command name"
+      "general-hint": "Learn how to use general commands",
+      "admin-hint": "Learn how to use server administrator commands",
+      "owner-hint": "Learn how to use bot owner commands",
+      "command-hint": "Command name"
     },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]

@@ -24,8 +24,8 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const desc          = l10n.s(lang, `commands.${canonName}.desc`);
-  const responseDesc  = l10n.s(lang, `commands.${canonName}.response-desc`);
-  const messageIdDesc = l10n.s(lang, `commands.${canonName}.message-id-desc`);
+  const responseDesc  = l10n.s(lang, `commands.${canonName}.response-hint`);
+  const messageIdDesc = l10n.s(lang, `commands.${canonName}.message-id-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
