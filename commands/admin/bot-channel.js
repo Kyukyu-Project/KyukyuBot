@@ -32,25 +32,25 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const viewDesc = l10n.s(lang, `commands.${canonName}.view-hint`);
-  const setDesc = l10n.s(lang, `commands.${canonName}.set-hint`);
-  const unsetDesc = l10n.s(lang, `commands.${canonName}.unset-hint`);
-  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-hint`);
+  const hint = l10n.s(lang, `commands.${canonName}.hint`);
+  const viewHint = l10n.s(lang, `commands.${canonName}.view-hint`);
+  const setHint = l10n.s(lang, `commands.${canonName}.set-hint`);
+  const unsetHint = l10n.s(lang, `commands.${canonName}.unset-hint`);
+  const channelHint = l10n.s(lang, `commands.${canonName}.channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(desc)
-      .addSubcommand((c) => c.setName('view').setDescription(viewDesc))
-      .addSubcommand((c) => c.setName('set').setDescription(setDesc)
+      .setDescription(hint)
+      .addSubcommand((c) => c.setName('view').setDescription(viewHint))
+      .addSubcommand((c) => c.setName('set').setDescription(setHint)
           .addChannelOption((option) => option
               .setName('channel')
-              .setDescription(channelDesc)
+              .setDescription(channelHint)
               .setRequired(true)
               .addChannelType(ChannelType.GuildText),
           ),
       )
-      .addSubcommand((c) => c.setName('unset').setDescription(unsetDesc),
+      .addSubcommand((c) => c.setName('unset').setDescription(unsetHint),
       );
 }
 

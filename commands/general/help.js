@@ -24,11 +24,11 @@ export function getSlashData(context) {
   const {client, lang, guild} = context;
   const {l10n} = client;
 
-  const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const generalDesc = l10n.s(lang, `commands.${canonName}.general-hint`);
-  const adminDesc = l10n.s(lang, `commands.${canonName}.admin-hint`);
-  const ownerDesc = l10n.s(lang, `commands.${canonName}.owner-hint`);
-  const commandDesc = l10n.s(lang, `commands.${canonName}.command-hint`);
+  const hint = l10n.s(lang, `commands.${canonName}.hint`);
+  const generalHint = l10n.s(lang, `commands.${canonName}.general-hint`);
+  const adminHint = l10n.s(lang, `commands.${canonName}.admin-hint`);
+  const ownerHint = l10n.s(lang, `commands.${canonName}.owner-hint`);
+  const commandHint = l10n.s(lang, `commands.${canonName}.command-hint`);
 
   const generalChoices = [];
   const adminChoices = [];
@@ -52,23 +52,23 @@ export function getSlashData(context) {
 
   const slashCommand = new SlashCommandBuilder()
       .setName(name)
-      .setDescription(desc)
+      .setDescription(hint)
       .addSubcommand((command) => command
           .setName('general-command')
-          .setDescription(generalDesc)
+          .setDescription(generalHint)
           .addStringOption((option) => option
               .setName('command-name')
-              .setDescription(commandDesc)
+              .setDescription(commandHint)
               .setRequired(true)
               .addChoices(generalChoices),
           ),
       )
       .addSubcommand((command) => command
           .setName('admin-command')
-          .setDescription(adminDesc)
+          .setDescription(adminHint)
           .addStringOption((option) => option
               .setName('command-name')
-              .setDescription(commandDesc)
+              .setDescription(commandHint)
               .setRequired(true)
               .addChoices(adminChoices),
           ),
@@ -76,10 +76,10 @@ export function getSlashData(context) {
   if (ownerGuild) {
     slashCommand.addSubcommand((command) => command
         .setName('owner-command')
-        .setDescription(ownerDesc)
+        .setDescription(ownerHint)
         .addStringOption((option) => option
             .setName('command-name')
-            .setDescription(commandDesc)
+            .setDescription(commandHint)
             .setRequired(true)
             .addChoices(ownerChoices),
         ),

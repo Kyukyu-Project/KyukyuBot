@@ -42,28 +42,28 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const desc = l10n.s(lang, `commands.${canonName}.desc`);
-  const viewDesc = l10n.s(lang, `commands.${canonName}.info-hint`);
-  const addDesc = l10n.s(lang, `commands.${canonName}.add-hint`);
-  const removeDesc = l10n.s(lang, `commands.${canonName}.remove-hint`);
-  const clearDesc = l10n.s(lang, `commands.${canonName}.clear-hint`);
-  const roleDesc = l10n.s(lang, `commands.${canonName}.role-hint`);
+  const hint = l10n.s(lang, `commands.${canonName}.hint`);
+  const viewHint = l10n.s(lang, `commands.${canonName}.info-hint`);
+  const addHint = l10n.s(lang, `commands.${canonName}.add-hint`);
+  const removeHint = l10n.s(lang, `commands.${canonName}.remove-hint`);
+  const clearHint = l10n.s(lang, `commands.${canonName}.clear-hint`);
+  const roleHint = l10n.s(lang, `commands.${canonName}.role-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(desc)
-      .addSubcommand((c) => c.setName(infoLabel).setDescription(viewDesc))
-      .addSubcommand((c) => c.setName(addLabel).setDescription(addDesc)
+      .setDescription(hint)
+      .addSubcommand((c) => c.setName(infoLabel).setDescription(viewHint))
+      .addSubcommand((c) => c.setName(addLabel).setDescription(addHint)
           .addRoleOption((option) => option
-              .setName('role').setDescription(roleDesc).setRequired(true),
+              .setName('role').setDescription(roleHint).setRequired(true),
           ),
       )
-      .addSubcommand((c) => c.setName(removeLabel).setDescription(removeDesc)
+      .addSubcommand((c) => c.setName(removeLabel).setDescription(removeHint)
           .addRoleOption((option) => option
-              .setName('role').setDescription(roleDesc).setRequired(true),
+              .setName('role').setDescription(roleHint).setRequired(true),
           ),
       )
-      .addSubcommand((c) => c.setName(clearLabel).setDescription(clearDesc),
+      .addSubcommand((c) => c.setName(clearLabel).setDescription(clearHint),
       );
 }
 

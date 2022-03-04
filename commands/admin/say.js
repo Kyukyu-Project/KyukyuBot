@@ -20,21 +20,21 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const desc =        l10n.s(lang, `commands.${canonName}.desc`);
-  const messageDesc = l10n.s(lang, `commands.${canonName}.message-hint`);
-  const channelDesc = l10n.s(lang, `commands.${canonName}.channel-hint`);
+  const hint =        l10n.s(lang, `commands.${canonName}.hint`);
+  const messageHint = l10n.s(lang, `commands.${canonName}.message-hint`);
+  const channelHint = l10n.s(lang, `commands.${canonName}.channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(desc)
+      .setDescription(hint)
       .addStringOption((option) => option
           .setName('message')
-          .setDescription(messageDesc)
+          .setDescription(messageHint)
           .setRequired(true),
       )
       .addChannelOption((option) => option
           .setName('channel')
-          .setDescription(channelDesc),
+          .setDescription(channelHint),
       );
 }
 
