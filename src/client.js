@@ -2,6 +2,8 @@
  * Main client class
  **/
 
+/* eslint max-len: ["error", { "ignoreComments": true }] */
+
 import {
   existsSync,
   statSync,
@@ -170,10 +172,13 @@ class Client extends djsClient {
   /**
    * Update guild settings
    * @param {Discord.Guild} guild - Guild
-   * @param {GuildSettings} settings - New settings
+   * @param {string} key - Setting key
+   * @param {string|string[]} value - New value
    */
-  updateGuildSettings(guild, settings) {
-    this.guildConfig.set(guild.id, Object.assign({}, settings));
+  updateGuildSettings(guild, key, value) {
+    const settings = this.getGuildSettings(guild.id);
+    settings[key] = value;
+    this.guildConfig.set(guild.id, settings);
     this.saveGuildSettings();
   }
 

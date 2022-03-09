@@ -14,7 +14,7 @@ export const cooldown = 0;
 
 import {getChannelId} from '../../utils/utils.js';
 
-const SHOW_BOT_CHANNEL    = `commands.${canonName}.show-bot-channel`;
+const SHOW_BOT_CHANNEL    = `commands.${canonName}.info-bot-channel`;
 const NO_BOT_CHANNEL      = `commands.${canonName}.no-bot-channel`;
 const ALREADY_BOT_CHANNEL = `commands.${canonName}.already-the-bot-channel`;
 const SET_SUCCESS         = `commands.${canonName}.set-success`;
@@ -32,7 +32,7 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const hint = l10n.s(lang, `commands.${canonName}.hint`);
+  const hint = l10n.s(lang, `commands.${canonName}.command-hint`);
   const viewHint = l10n.s(lang, `commands.${canonName}.view-hint`);
   const setHint = l10n.s(lang, `commands.${canonName}.set-hint`);
   const unsetHint = l10n.s(lang, `commands.${canonName}.unset-hint`);
@@ -89,8 +89,7 @@ export async function slashExecute(context) {
               lang, SET_SUCCESS,
               '{CHANNEL}', newChannelTag,
           );
-          guildSettings['bot-channel'] = newChannelId;
-          client.updateGuildSettings(guild, guildSettings);
+          client.updateGuildSettings(guild, 'bot-channel', newChannelId);
         }
         break;
       case 'unset':
@@ -99,8 +98,7 @@ export async function slashExecute(context) {
               lang, UNSET_SUCCESS,
               '{CHANNEL}', `<#${oldBotChannelId}>`,
           );
-          guildSettings['bot-channel'] = '';
-          client.updateGuildSettings(guild, guildSettings);
+          client.updateGuildSettings(guild, 'bot-channel', '');
         } else {
           response = l10n.s(lang, NO_BOT_CHANNEL);
         }
@@ -128,7 +126,7 @@ export async function slashExecute(context) {
  * @return {boolean}
  */
 function set(context, prevId, newId) {
-  const {client, lang, guild, guildSettings, channel, message} = context;
+  const {client, lang, guild, channel, message} = context;
   const l10n = client.l10n;
   let response;
   let result = false;
@@ -138,8 +136,7 @@ function set(context, prevId, newId) {
       response = l10n.t(lang, ALREADY_BOT_CHANNEL, '{CHANNEL}', `<#${newId}>`);
     } else if (guild.channels.cache.get(newId)?.isText()) { // set
       response = l10n.t(lang, SET_SUCCESS, '{CHANNEL}', `<#${newId}>`);
-      guildSettings['bot-channel'] = newId;
-      client.updateGuildSettings(guild, guildSettings);
+      client.updateGuildSettings(guild, 'bot-channel', newId);
       result = true;
     } else { // invalid
       response = l10n.s(lang, INVALID_COMMAND);
@@ -160,15 +157,14 @@ function set(context, prevId, newId) {
  * @return {boolean}
  */
 function unset(context, prevId) {
-  const {client, lang, guild, guildSettings, channel, message} = context;
+  const {client, lang, guild, channel, message} = context;
   const l10n = client.l10n;
   let response;
   let result = false;
 
   if (typeof prevId == 'string') {
     response = l10n.t(lang, UNSET_SUCCESS, '{CHANNEL}', `<#${prevId}>`);
-    guildSettings['bot-channel'] = '';
-    client.updateGuildSettings(guild, guildSettings);
+    client.updateGuildSettings(guild, 'bot-channel', '');
     result = true;
   } else {
     response = l10n.s(lang, NO_BOT_CHANNEL);

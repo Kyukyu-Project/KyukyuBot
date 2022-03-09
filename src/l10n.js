@@ -129,7 +129,16 @@ class L10N extends Collection {
     const template = this.getTemplate(lang, templateKey);
 
     if (typeof template == 'undefined') return '';
+    return this.r(template, ...strings);
+  }
 
+  /**
+   * Replace strings in a template
+   * @param {string} template - string template
+   * @param {string[]} strings
+   * @return {string} resultant string
+   */
+  r(template, ...strings) {
     let result = template;
     const args = [].slice.call(strings);
     for (let i = 0; i < args.length; i=i+2) {

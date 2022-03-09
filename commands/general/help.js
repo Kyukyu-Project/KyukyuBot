@@ -24,7 +24,7 @@ export function getSlashData(context) {
   const {client, lang, guild} = context;
   const {l10n} = client;
 
-  const hint = l10n.s(lang, `commands.${canonName}.hint`);
+  const hint = l10n.s(lang, `commands.${canonName}.command-hint`);
   const generalHint = l10n.s(lang, `commands.${canonName}.general-hint`);
   const adminHint = l10n.s(lang, `commands.${canonName}.admin-hint`);
   const ownerHint = l10n.s(lang, `commands.${canonName}.owner-hint`);

@@ -7,13 +7,13 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import * as RoleManager from '../../src/role-manager.js';
 
-export const canonName = 'admin.helper-roles';
-export const name = 'helper-roles';
+export const canonName = 'admin.admin-roles';
+export const name = 'admin-roles';
 export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
-const settingKey = 'helper-roles';
+const settingKey = 'admin-roles';
 
 /**
   * Get translation strings

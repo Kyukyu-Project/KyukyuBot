@@ -23,7 +23,7 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const hint          = l10n.s(lang, `commands.${canonName}.hint`);
+  const hint          = l10n.s(lang, `commands.${canonName}.command-hint`);
   const responseHint  = l10n.s(lang, `commands.${canonName}.response-hint`);
   const messageIdHint = l10n.s(lang, `commands.${canonName}.message-id-hint`);
 

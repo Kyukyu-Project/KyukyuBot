@@ -104,9 +104,9 @@
  * @enum {number}
  */
 export const COMMAND_PERM = {
-  OWNER: 9, // Can be used by client owners only
-  ADMIN: 7, //  Can be used by guild administrator only
-  // MODERATOR: 6, //  Can be used by channel moderator only
+  OWNER: 9, // Can only be used by client owners
+  ADMIN: 7, //  Can only be used by guild administrator
+  MODERATOR: 6, //  Can only be used by moderator and guild administrator
   GENERAL: 5, // Can be used by anyone
   FUN: 2, // Fun commands
 };
