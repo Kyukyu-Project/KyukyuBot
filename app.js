@@ -77,34 +77,3 @@ commandDirectories.forEach((dir) => {
 
 client.ready();
 client.login(clientToken);
-
-import {REST} from '@discordjs/rest';
-import {Routes} from 'discord-api-types/v9';
-
-/**
- * @param {CommandContext} context
- * @return {boolean} - true if command is executed
- */
-export async function deploy(context) {
-  const {guild} = context;
-
-  const clientId = client.application.id;
-  const guildId = guild.id;
-
-  const pendingData = [];
-
-  client.commands.forEach((cmd) => {
-    if (cmd.getSlashData) {
-      const data = cmd.getSlashData(context);
-      pendingData.push(data);
-    }
-  });
-
-  const rest = new REST({version: '9'}).setToken(clientToken);
-
-  await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
-      {body: pendingData},
-  );
-  return true;
-}
