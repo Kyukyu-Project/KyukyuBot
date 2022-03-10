@@ -2,6 +2,8 @@
  * Role command helper
  **/
 
+/* eslint max-len: ["error", { "ignoreComments": true }] */
+
 /**
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').InteractionContext} IContext
@@ -23,14 +25,14 @@ const fClear  = ['--clear', '-c'];
  * @property {string} `info-one'  - "XXX role: {ROLE}."
  * @property {string} `info-many' - "XXX roles: {ROLES}."
  * @property {string} `error-add-none` - "XXX role added: none"
- * @property {string} `add-one`  - "XXX role added: {ROLE}"
- * @property {string} `add-many' - "XXX roles added: {ROLES}"
- * @property {string} `error-remove-none` - "XXX role removed: none"
- * @property {string} `remove-one`  - "XXX role removed: {ROLE}"
- * @property {string} `remove-many' - "XXX roles removed: {ROLES}"
- * @property {string} `error-remove-none` - "XXX role removed: none"
- * @property {string} `remove-one`  - "XXX role removed: {ROLE}"
- * @property {string} `remove-many' - "XXX roles removed: {ROLES}"
+ * @property {string} `add-one`  - "Done! 1 role has been added: {ROLE}"
+ * @property {string} `add-many' - "Done! {COUNT} roles have been added: {ROLES}"
+ * @property {string} `remove-one`  - "Done! 1 role has been removed: {ROLE}"
+ * @property {string} `remove-many' - "Done! {COUNT} roles have been removed: {ROLES}"
+ * @property {string} `clear-one`  - "Done! 1 role has been removed: {ROLE}"
+ * @property {string} `clear-many' - "Done! {COUNT} roles have been removed: {ROLES}"
+ * @property {string} `error-remove-none` - "Error: {ROLE} is not an mod role"
+ * @property {string} `error-empty-list` - "Error: the list of XXX roles is already empty"
  * @property {string} `info-hint`   - "Show information about the XXX roles"
  * @property {string} `add-hint'    - "Add a role to the list of XXX roles"
  * @property {string} `remove-hint' - "Remove a role from the list of XXX roles"
@@ -39,7 +41,6 @@ const fClear  = ['--clear', '-c'];
  * @property {string} `role-to-remove-hint` - "Role to remove"
  * @property {string} `delimiter` - List delimiter (", ")
  * @property {string} `please-update` - "Please update..."
- * @property {string} `no-permission`
  */
 
 /**
@@ -47,6 +48,38 @@ const fClear  = ['--clear', '-c'];
  * @property {string} response - Response message
  * @property {boolean} success - Is the command successful?
  */
+
+/**
+  * Get translation strings
+  * @param {object} l10n
+  * @param {string} lang - language
+  * @param {string} name - command name
+  * @param {string} canonName - command canonical name
+  * @return {RoleCommandStrings}
+  */
+export function getStrings(l10n, lang, name, canonName) {
+  const strings = {
+    'command-name': name,
+    'delimiter': l10n.s(lang, 'delimiter'),
+    'invalid-command': l10n.s(lang, 'messages.invalid-command'),
+    'please-update': l10n.s(lang, 'commands.common.roles.please-update'),
+    'role-to-add-hint': l10n.s(lang, 'commands.common.roles.role-to-add-hint'),
+    'role-to-remove-hint': l10n.s(lang,
+        'commands.common.roles.role-to-remove-hint'),
+  };
+
+  [
+    'add-one', 'add-many', 'error-add-none', 'error-add-one',
+    'remove-one', 'remove-many', 'error-remove-one', 'error-remove-none',
+    'clear-one', 'clear-many', 'error-empty-list',
+    'info-desc', 'info-one', 'info-many', 'info-none',
+    'command-hint', 'info-hint', 'add-hint', 'remove-hint', 'clear-hint',
+  ].forEach((prop) => {
+    strings[prop] = l10n.s(lang, `commands.${canonName}.${prop}`);
+  });
+
+  return strings;
+}
 
 /**
  * @param {CommandContext|IContext} CTX
@@ -160,7 +193,7 @@ function removeManyRoles(CTX, KEY, STR, what) {
   const {l10n} = client;
   const currRoles = guildSettings[KEY];
   if ((!Array.isArray(currRoles)) || (!currRoles.length)) {
-    return {success: false, response: STR['clear-error-empty-list']};
+    return {success: false, response: STR['error-empty-list']};
   }
   const removed = [];
   what.forEach((r) => {
@@ -275,18 +308,17 @@ function viewRoles(CTX, KEY, STR) {
  */
 export async function slashExecute(CTX, KEY, STR) {
   const {interaction} = CTX;
-  if (CTX.hasAdminPermission) {
-    const noPermission = STR['no-permission'];
-    interaction.reply({content: noPermission, ephemeral: true});
-    return false;
-  }
   const subCommand = interaction.options.getSubcommand();
   let result;
   switch (subCommand) {
     case 'info': result = viewRoles(CTX, KEY, STR); break;
     case 'clear': result = clearRoles(CTX, KEY, STR); break;
-    case 'add': result = addOneRole(CTX, KEY, STR); break;
-    case 'remove': result = removeOneRole(CTX, KEY, STR); break;
+    case 'add': result = addOneRole(CTX, KEY, STR,
+        interaction.options.getRole('role').id);
+      break;
+    case 'remove': result = removeOneRole(CTX, KEY, STR,
+        interaction.options.getString('role').id);
+      break;
   }
   interaction.reply({content: result.response, ephemeral: true});
   return result.success;
@@ -355,4 +387,3 @@ export async function execute(CTX, KEY, STR) {
   });
   return result.success;
 }
-

@@ -176,7 +176,7 @@ class Client extends djsClient {
    * @param {string|string[]} value - New value
    */
   updateGuildSettings(guild, key, value) {
-    const settings = this.getGuildSettings(guild.id);
+    const settings = this.getGuildSettings(guild);
     settings[key] = value;
     this.guildConfig.set(guild.id, settings);
     this.saveGuildSettings();
@@ -478,14 +478,21 @@ class Client extends djsClient {
     const userPermissions =
       this.getUserPermissions(guild, guildSettings, channel, interaction);
 
-    switch (cmd.commandPerm) {
-      case COMMAND_PERM.OWNER:
-        if (!userPermissions.hasOwnerPermission) return;
-        break;
-      case COMMAND_PERM.ADMIN:
-        if (!userPermissions.hasAdminPermission) return;
-        break;
-    } // switch (cmd.commandPerm)
+    if (
+      (
+        (cmd.commandPerm === COMMAND_PERM.OWNER) &&
+        (!userPermissions.hasOwnerPermission)
+      ) || (
+        (cmd.commandPerm === COMMAND_PERM.ADMIN) &&
+        (!userPermissions.hasAdminPermission)
+      )
+    ) {
+      interaction.reply({
+        content: this.l10n.t(lang, 'messages.no-permission'),
+        ephemeral: true,
+      });
+      return;
+    }
 
     /** @type {string} Key for cool-down */
     const cooldownKey = `${guild.id}.${user.id}.${cmd.canonName}`;

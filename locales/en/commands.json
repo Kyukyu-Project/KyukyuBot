@@ -3,7 +3,7 @@
     "common.roles": {
       "role-to-add-hint": "Role to add",
       "role-to-remove-hint": "Role to remove",
-      "please-update": "\nPlease update app commands using `app-command`"
+      "please-update": "\nPlease update app commands using `slash-deploy`"
     },
     "admin.mod-roles": {
       "add-one": "Done! 1 role has been added: {ROLE}",
@@ -83,7 +83,7 @@
       "unset-hint": "Unset the bot-command channel",
       "channel-hint": "Channel"
     },
-    "admin.app-command": {
+    "admin.slash-deploy": {
       "deploy-start": "{USER TAG}: starting to deploy slash commands.",
       "deploy-success": "{USER TAG}: slash commands deployed successfully.",
       "deploy-error": "{USER TAG}: Error deploying slash commands."
@@ -142,7 +142,7 @@
       ["admin.admin-roles", "admin-roles", "admin-role", "administrator-roles", "administrator-role"],
       ["admin.mod-roles", "mod-roles", "mod-role", "moderator-roles", "moderator-role"],
       ["admin.helper-roles", "helper-roles", "helper-role"],
-      ["admin.app-command", "app-command", "app-commands"],
+      ["admin.slash-deploy", "slash-deploy", "deploy", "deploy-slash"],
       ["admin.say", "say", "speak"],
       ["admin.reply", "reply"],
       ["owner.bot-avatar", "bot-avatar"],
