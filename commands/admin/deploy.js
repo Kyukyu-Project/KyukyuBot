@@ -12,9 +12,49 @@ export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
+import {SlashCommandBuilder} from '@discordjs/builders';
 const DEPLOY_START       = `commands.${canonName}.deploy-start`;
 const DEPLOY_SUCCESS     = `commands.${canonName}.deploy-success`;
 const DEPLOY_ERROR       = `commands.${canonName}.deploy-error`;
+
+/**
+ * @param {CommandContext|IContext} context
+ * @return {object}
+ */
+export function getSlashData(context) {
+  const {client, lang} = context;
+  const {l10n} = client;
+
+  const hint = l10n.s(lang, `commands.${canonName}.command-hint`);
+  return new SlashCommandBuilder()
+      .setName(name)
+      .setDescription(hint);
+}
+
+
+/**
+ * @param {IContext} context
+ * @return {boolean} - true if command is executed
+ */
+export async function slashExecute(context) {
+  const {client, lang, interaction} = context;
+  const {l10n} = client;
+
+  interaction.reply({content: l10n.s(lang, DEPLOY_START), ephemeral: true});
+
+  return new Promise((resolve, reject) => {
+    deploy(context).then(() => {
+      interaction.editReply(
+          {content: l10n.s(lang, DEPLOY_SUCCESS), ephemeral: true});
+      resolve(true);
+    }).catch((error) => {
+      interaction.editReply(
+          {content: l10n.s(lang, DEPLOY_ERROR), ephemeral: true});
+      reject(error);
+    });
+  });
+}
+
 /**
   * @param {CommandContext|IContext} context
   * @return {boolean} - true if command is executed
@@ -124,19 +164,26 @@ async function deploy(context) {
  * @return {boolean} - true if command is executed
  */
 export async function execute(context) {
-  const {client, user, lang, channel} = context;
+  const {client, lang, channel, message} = context;
   const {l10n} = client;
 
-  const userTag = `<@${user.id}>`;
-
-  channel.send(l10n.t(lang, DEPLOY_START, '{USER TAG}', userTag));
+  channel.send({
+    content: l10n.s(lang, DEPLOY_START),
+    reply: {messageReference: message.id},
+  });
 
   return new Promise((resolve, reject) => {
     deploy(context).then(() => {
-      channel.send(l10n.t(lang, DEPLOY_SUCCESS, '{USER TAG}', userTag));
+      channel.send({
+        content: l10n.s(lang, DEPLOY_SUCCESS),
+        reply: {messageReference: message.id},
+      });
       resolve(true);
     }).catch((error) => {
-      channel.send(l10n.t(lang, DEPLOY_ERROR, '{USER TAG}', userTag));
+      channel.send({
+        content: l10n.s(lang, DEPLOY_ERROR),
+        reply: {messageReference: message.id},
+      });
       reject(error);
     });
   });

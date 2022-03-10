@@ -253,21 +253,20 @@ class Client extends djsClient {
           mRoles.cache.some((r)=>r.id = this.ownerRoleId):
           mPermissions.has(Permissions.FLAGS.ADMINISTRATOR);
 
+      const adminRoles = guildSettings['admin-roles'] || [];
       const hasAdminPermission =
+          ((adminRoles.length) &&
+            (mRoles.cache.some((r)=> adminRoles.includes(r.id)))) ||
           mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
           mPermissions.has(Permissions.FLAGS.MANAGE_GUILD);
 
-      const modeRoles = guildSettings['mod-roles'];
-      const userIsMod =
-          ((Array.isArray(modeRoles)) && (modeRoles.length > 0))?
-          mRoles.cache.some((r)=>modeRoles.includes(r.id)):
-          false;
+      const modRoles = guildSettings['mod-roles'] || [];
+      const userIsMod = (modRoles.length)?
+          mRoles.cache.some((r)=>modRoles.includes(r.id)):false;
 
-      const helperRoles = guildSettings['helper-roles'];
-      const userIsHelper =
-          ((Array.isArray(helperRoles)) && (helperRoles.length > 0))?
-          mRoles.cache.some((r)=>helperRoles.includes(r.id)):
-          false;
+      const helperRoles = guildSettings['helper-roles'] || [];
+      const userIsHelper = (helperRoles.length)?
+        mRoles.cache.some((r)=>helperRoles.includes(r.id)):false;
 
       const noCooldown =
         hasOwnerPermission || hasAdminPermission ||

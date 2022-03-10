@@ -84,9 +84,10 @@
       "channel-hint": "Channel"
     },
     "admin.slash-deploy": {
-      "deploy-start": "{USER TAG}: starting to deploy slash commands.",
-      "deploy-success": "{USER TAG}: slash commands deployed successfully.",
-      "deploy-error": "{USER TAG}: Error deploying slash commands."
+      "command-hint": "Update slash (/) commands",
+      "deploy-start": "Starting to deploy slash commands.",
+      "deploy-success": "Slash commands deployed successfully.",
+      "deploy-error": "Error deploying slash commands."
     },
     "admin.say": {
       "message-sent": "The message has been sent: {MESSAGE URL}",
