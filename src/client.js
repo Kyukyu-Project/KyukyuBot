@@ -312,8 +312,8 @@ class Client extends djsClient {
     // Load guild settings
     if (guild) {
       guildSettings = this.getGuildSettings(guild);
-      lang = guildSettings.lang;
-      prefix = guildSettings['command-prefix'];
+      lang = guildSettings['lang']||this.l10n.defaultLang;
+      prefix = guildSettings['command-prefix']||this.defaultPrefix;
     } else {
       lang = this.getUserSettings(user).lang;
       prefix = this.defaultPrefix;
@@ -440,7 +440,7 @@ class Client extends djsClient {
     // Load guild settings
     if (guild) {
       guildSettings = this.getGuildSettings(guild);
-      lang = guildSettings.lang;
+      lang = guildSettings['lang']||this.l10n.defaultLang;
     } else {
       lang = this.getUserSettings(user).lang;
     }
