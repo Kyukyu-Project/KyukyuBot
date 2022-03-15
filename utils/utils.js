@@ -292,7 +292,7 @@ export function parseCommandArguments(prefix, text) {
         if ((chr == SPACE) || (chr == TAB)) break;
       };
       if (idxEnd == lastCharPos) {
-        token = text.substring(idxStart, lastCharPos+1);
+        token = text.substring(idxStart).trim();
         args.push(token);
         getNextToken = false;
       } else {
@@ -310,7 +310,7 @@ export function parseCommandArguments(prefix, text) {
         chr = text.charAt(idxStart);
         if ((chr !== SPACE) && (chr != TAB)) break;
       };
-      getNextToken = (idxStart < lastCharPos);
+      getNextToken = (idxStart <= lastCharPos);
     }
   } // while (nextToken)
 
