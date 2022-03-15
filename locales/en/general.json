@@ -1,4 +1,11 @@
 {
+  "languages": {
+    "de": "Deutsch",
+    "en": "English",
+    "es": "Español",
+    "fr": "français",
+    "zh-tw": "正體中文"
+  },
   "delimiter": ", ",
   "messages": {
     "no-permission": "Error executing command: no permission.",

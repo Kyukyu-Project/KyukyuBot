@@ -54,6 +54,7 @@ const client = new Client(clientConfig);
 // Load language files
 /** @type {Object.<string, string>} */
 const l10nDirectories = {
+  'de': './locales/de',
   'en': './locales/en',
   'zh-tw': './locales/zh-tw',
 };

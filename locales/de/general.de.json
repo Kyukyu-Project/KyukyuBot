@@ -1,0 +1,7 @@
+{
+  "delimiter": ", ",
+  "messages": {
+    "no-permission": "Fehler beim Ausführen des Befehls: keine Berechtigung.",
+    "invalid-command": "Fehler beim Ausführen des Befehls: ungültiger Befehl."
+  }
+}
