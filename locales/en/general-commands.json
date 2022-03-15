@@ -1,0 +1,32 @@
+{
+  "commands": {
+    "general.avatar": { 
+      "embed-title": "Avatar of {USER NAME}",
+      "flags": {
+        "display": ["--display", "-d", "--guild", "--server"],
+        "user":    ["--user",    "-u"]
+      }
+    },
+    "general.help": {
+      "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
+      "admin-commands": "The following is a list of guild administrator commands:\n{COMMANDS}",
+      "general-commands": "The following is a list of general commands:\n{COMMANDS}",
+      "no-info": "Error loading help text.",
+      "command-hint": "Learn how to use bot commands",
+      "general-hint": "Learn how to use general commands",
+      "admin-hint": "Learn how to use server administrator commands",
+      "owner-hint": "Learn how to use bot owner commands",
+      "command-name-hint": "Command name"
+    },
+    "general.ping": {
+      "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
+    }
+  },
+  "aliases": {
+    "commands": [
+      ["general.avatar", "avatar", "pfp"],
+      ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
+      ["general.ping", "ping", "ピン", "乒"]
+    ]
+  }
+}

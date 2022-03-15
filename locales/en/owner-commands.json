@@ -1,0 +1,24 @@
+{
+  "commands": {
+    "owner.bot-avatar": {
+      "success": "Bot avatar updated",
+      "error": "Error updating bot avatar"
+    },
+    "owner.git-pull": {
+      "success": "`git-pull` command executed:\n```{LOG}```",
+      "error": "Error executing git command:\n```{LOG}```"
+    },
+    "owner.reload-lang": {
+      "please-wait": "Reloading language in 3 seconds.",
+      "success": "Language reloaded.",
+      "error": "Error reloading language."
+    }
+  },
+  "aliases": {
+    "commands": [
+      ["owner.bot-avatar", "bot-avatar"],
+      ["owner.git-pull", "git-pull", "git-update"],
+      ["owner.reload-lang", "reload-lang", "reload-language"]
+    ]
+  }
+}

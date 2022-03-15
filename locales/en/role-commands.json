@@ -1,5 +1,5 @@
 {
-  "commands": {    
+  "commands": {
     "common.roles": {
       "role-to-add-hint": "Role to add",
       "role-to-remove-hint": "Role to remove",
@@ -70,101 +70,13 @@
       "add-hint": "Add a role to the list of admin roles",
       "remove-hint": "Remove a role from the list of admin roles",
       "clear-hint": "Clear (reset) the list of admin roles"
-    },
-    "admin.bot-channel": {
-      "set-success": "Done! {CHANNEL} is now set as the bot-command channel.",
-      "clear-success": "Done! {CHANNEL} is unset as the bot-command channel.",
-      "info-desc": "In the bot-command channel, anyone can use bot commands without cool-down.\n",
-      "info-one": "Bot-channel: {CHANNEL}.",
-      "info-none": "Bot-channel: none",
-      "error-clear": "Error: no channel is set as the bot-command channel.",
-      "error-set": "Error: {CHANNEL} is already the bot-command channel.",
-      "command-hint": "View, set, or reset the bot-command channel",
-      "info-hint": "Show information about the bot-command channel",
-      "set-hint": "Set the bot-command channel",
-      "clear-hint": "Clear (unset) the bot-command channel",
-      "channel-hint": "Channel"
-    },
-    "admin.slash-deploy": {
-      "command-hint": "Update slash (/) commands",
-      "deploy-start": "Starting to deploy slash commands.",
-      "deploy-success": "Slash commands deployed successfully.",
-      "deploy-error": "Error deploying slash commands."
-    },
-    "admin.say": {
-      "message-sent": "The message has been sent: {MESSAGE URL}",
-      "command-hint": "Send a message through the bot",
-      "message-hint": "Message that I should send",
-      "channel-hint": "Channel where the message should be sent"
-    },
-    "admin.reply": {
-      "response-sent": "The response has been sent",
-      "response-error": "Error sending the response",
-      "command-hint": "Reply to a message through the bot",
-      "message-id-hint": "Id of the message to reply to",
-      "response-hint": "Response message that I should send"
-    },
-    "admin.prefix": {
-      "set-success": "Done! {PREFIX} is now set as the command prefix.",
-      "info-prefix": "Command prefix: {PREFIX}",
-      "info-default": "Command prefix: {PREFIX} (default)",
-      "command-hint": "View or set the bot-command prefix",
-      "error-zero-length": "Error: command prefix cannot have zero length.",
-      "set-hint": "Set the bot-command prefix",
-      "info-hint": "Show the bot-command prefix",
-      "prefix-hint": "Prefix"
-    },
-    "owner.bot-avatar": {
-      "success": "Bot avatar updated",
-      "error": "Error updating bot avatar"
-    },
-    "owner.git-pull": {
-      "success": "`git-pull` command executed:\n```{LOG}```",
-      "error": "Error executing git command:\n```{LOG}```"
-    },
-    "owner.reload-lang": {
-      "please-wait": "Reloading language in 3 seconds.",
-      "success": "Language reloaded.",
-      "error": "Error reloading language."
-    },
-    "general.avatar": { 
-      "embed-title": "Avatar of {USER NAME}",
-      "flags": {
-        "display": ["--display", "-d", "--guild", "--server"],
-        "user":    ["--user",    "-u"]
-      }
-    },
-    "general.help": {
-      "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
-      "admin-commands": "The following is a list of guild administrator commands:\n{COMMANDS}",
-      "general-commands": "The following is a list of general commands:\n{COMMANDS}",
-      "no-info": "Error loading help text.",
-      "command-hint": "Learn how to use bot commands",
-      "general-hint": "Learn how to use general commands",
-      "admin-hint": "Learn how to use server administrator commands",
-      "owner-hint": "Learn how to use bot owner commands",
-      "command-name-hint": "Command name"
-    },
-    "general.ping": {
-      "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
     }
   },
   "aliases": {
     "commands": [
-      ["admin.bot-channel", "bot-channel", "bot-channels"],
       ["admin.admin-roles", "admin-roles", "admin-role", "administrator-roles", "administrator-role"],
       ["admin.mod-roles", "mod-roles", "mod-role", "moderator-roles", "moderator-role"],
-      ["admin.helper-roles", "helper-roles", "helper-role"],
-      ["admin.slash-deploy", "slash-deploy", "deploy", "deploy-slash"],
-      ["admin.say", "say", "speak"],
-      ["admin.reply", "reply"],
-      ["admin.prefix", "prefix", "command-prefix"],
-      ["owner.bot-avatar", "bot-avatar"],
-      ["owner.git-pull", "git-pull", "git-update"],
-      ["owner.reload-lang", "reload-lang", "reload-language"],
-      ["general.avatar", "avatar", "pfp"],
-      ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
-      ["general.ping", "ping", "ピン", "乒"]
+      ["admin.helper-roles", "helper-roles", "helper-role"]
     ]
   }
 }
