@@ -22,8 +22,9 @@ const fClear  = ['--clear', '-c'];
  * @property {string} `command-name` - command name
  * @property {string} `command-hint` - "View, add, or remove the XXX roles"
  * @property {string} `info-desc' - "Users with XXX roles can..."
- * @property {string} `info-one'  - "XXX role: {ROLE}."
- * @property {string} `info-many' - "XXX roles: {ROLES}."
+ * @property {string} `info-one'  - "XXX role: {ROLE}"
+ * @property {string} `info-many' - "XXX roles: {ROLES}"
+ * @property {string} `info-none' - "XXX roles: none"
  * @property {string} `error-add-none` - "XXX role added: none"
  * @property {string} `add-one`  - "Done! 1 role has been added: {ROLE}"
  * @property {string} `add-many' - "Done! {COUNT} roles have been added: {ROLES}"

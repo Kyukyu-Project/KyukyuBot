@@ -9,7 +9,7 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 export const canonName = 'admin.reply';
 export const name = 'reply';
 export const requireArgs = true;
-export const commandPerm = COMMAND_PERM.ADMIN;
+export const commandPerm = COMMAND_PERM.MODERATOR;
 export const cooldown = 0;
 
 const responseLabel = 'response';
