@@ -72,15 +72,17 @@
       "clear-hint": "Clear (reset) the list of admin roles"
     },
     "admin.bot-channel": {
-      "set-success": "{CHANNEL} is now set as the bot channel.",
-      "unset-success": "{CHANNEL} is unset as the bot channel.",
-      "info-bot-channel": "The bot channel is {CHANNEL}.",
-      "no-bot-channel": "No channel is set as the bot channel.",
-      "already-the-bot-channel": "{CHANNEL} is already the bot channel.",
+      "set-success": "Done! {CHANNEL} is now set as the bot-command channel.",
+      "clear-success": "Done! {CHANNEL} is unset as the bot-command channel.",
+      "info-desc": "In the bot-command channel, anyone can use bot commands without cool-down.\n",
+      "info-one": "Bot-channel: {CHANNEL}.",
+      "info-none": "Bot-channel: none",
+      "error-clear": "Error: no channel is set as the bot-command channel.",
+      "error-set": "Error: {CHANNEL} is already the bot-command channel.",
       "command-hint": "View, set, or reset the bot-command channel",
-      "view-hint": "Show the bot-command channel",
+      "info-hint": "Show information about the bot-command channel",
       "set-hint": "Set the bot-command channel",
-      "unset-hint": "Unset the bot-command channel",
+      "clear-hint": "Clear (unset) the bot-command channel",
       "channel-hint": "Channel"
     },
     "admin.slash-deploy": {
@@ -101,6 +103,16 @@
       "command-hint": "Reply to a message through the bot",
       "message-id-hint": "Id of the message to reply to",
       "response-hint": "Response message that I should send"
+    },
+    "admin.prefix": {
+      "set-success": "Done! {PREFIX} is now set as the command prefix.",
+      "info-prefix": "Command prefix: {PREFIX}",
+      "info-default": "Command prefix: {PREFIX} (default)",
+      "command-hint": "View or set the bot-command prefix",
+      "error-zero-length": "Error: command prefix cannot have zero length.",
+      "set-hint": "Set the bot-command prefix",
+      "info-hint": "Show the bot-command prefix",
+      "prefix-hint": "Prefix"
     },
     "owner.bot-avatar": {
       "success": "Bot avatar updated",
@@ -146,6 +158,7 @@
       ["admin.slash-deploy", "slash-deploy", "deploy", "deploy-slash"],
       ["admin.say", "say", "speak"],
       ["admin.reply", "reply"],
+      ["admin.prefix", "prefix", "command-prefix"],
       ["owner.bot-avatar", "bot-avatar"],
       ["owner.git-pull", "git-pull", "git-update"],
       ["owner.reload-lang", "reload-lang", "reload-language"],

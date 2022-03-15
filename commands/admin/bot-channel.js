@@ -1,7 +1,10 @@
+/* eslint max-len: ["error", { "ignoreComments": true }] */
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
+ * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
+
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import {ChannelType} from 'discord-api-types/v10';
@@ -12,17 +15,21 @@ export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
+const settingKey = 'bot-channel';
+
 import {getChannelId} from '../../utils/utils.js';
 
-const SHOW_BOT_CHANNEL    = `commands.${canonName}.info-bot-channel`;
-const NO_BOT_CHANNEL      = `commands.${canonName}.no-bot-channel`;
-const ALREADY_BOT_CHANNEL = `commands.${canonName}.already-the-bot-channel`;
+const INFO_DESC           = `commands.${canonName}.info-desc`;
+const INFO_ONE            = `commands.${canonName}.info-one`;
+const INFO_NONE           = `commands.${canonName}.info-none`;
+const ERROR_CLEAR         = `commands.${canonName}.error-clear`;
+const ERROR_SET           = `commands.${canonName}.error-set`;
 const SET_SUCCESS         = `commands.${canonName}.set-success`;
-const UNSET_SUCCESS       = `commands.${canonName}.unset-success`;
+const CLEAR_SUCCESS       = `commands.${canonName}.clear-success`;
 const INVALID_COMMAND     = `messages.invalid-command`;
-const viewFlags          = ['--view', '-v'];
-const setFlags           = ['--set', '-s'];
-const unsetFlags         = ['--unset', '-u'];
+const fInfo               = ['--info', '-i'];
+const fSet                = ['--set', '-s'];
+const fClear              = ['--clear', '-c'];
 
 /**
  * @param {CommandContext|IContext} context
@@ -32,16 +39,16 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const hint = l10n.s(lang, `commands.${canonName}.command-hint`);
-  const viewHint = l10n.s(lang, `commands.${canonName}.view-hint`);
+  const commandHint = l10n.s(lang, `commands.${canonName}.command-hint`);
+  const infoHint = l10n.s(lang, `commands.${canonName}.info-hint`);
   const setHint = l10n.s(lang, `commands.${canonName}.set-hint`);
-  const unsetHint = l10n.s(lang, `commands.${canonName}.unset-hint`);
+  const clearHint = l10n.s(lang, `commands.${canonName}.clear-hint`);
   const channelHint = l10n.s(lang, `commands.${canonName}.channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(hint)
-      .addSubcommand((c) => c.setName('view').setDescription(viewHint))
+      .setDescription(commandHint)
+      .addSubcommand((c) => c.setName('info').setDescription(infoHint))
       .addSubcommand((c) => c.setName('set').setDescription(setHint)
           .addChannelOption((option) => option
               .setName('channel')
@@ -50,7 +57,9 @@ export function getSlashData(context) {
               .addChannelType(ChannelType.GuildText),
           ),
       )
-      .addSubcommand((c) => c.setName('unset').setDescription(unsetHint),
+      .addSubcommand((c) => c
+          .setName('clear')
+          .setDescription(clearHint),
       );
 }
 
@@ -59,141 +68,105 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {
-    client,
-    lang,
-    guild,
-    guildSettings,
-    interaction,
-  } = context;
-
+  const {client, lang, interaction} = context;
   const {l10n} = client;
-  const oldBotChannelId = guildSettings['bot-channel'] || null;
-
-  let response;
-  let result = false;
 
   if (context.hasAdminPermission) {
     const subCommand = interaction.options.getSubcommand();
+    let result;
     switch (subCommand) {
       case 'set':
         const newChannelId = interaction.options.getChannel('channel').id;
-        const newChannelTag = `<#${newChannelId}>`;
-        if (oldBotChannelId == newChannelId) { // already the bot channel
-          response = l10n.t(
-              lang, ALREADY_BOT_CHANNEL,
-              '{CHANNEL}', newChannelTag,
-          );
-        } else { // set
-          response = l10n.t(
-              lang, SET_SUCCESS,
-              '{CHANNEL}', newChannelTag,
-          );
-          client.updateGuildSettings(guild, 'bot-channel', newChannelId);
-        }
+        result = set(context, newChannelId);
         break;
-      case 'unset':
-        if (typeof oldBotChannelId == 'string') {
-          response = l10n.t(
-              lang, UNSET_SUCCESS,
-              '{CHANNEL}', `<#${oldBotChannelId}>`,
-          );
-          client.updateGuildSettings(guild, 'bot-channel', '');
-        } else {
-          response = l10n.s(lang, NO_BOT_CHANNEL);
-        }
+      case 'clear':
+        result = clear(context);
         break;
+      case 'info':
       default:
-        response =
-          (oldBotChannelId)?
-          l10n.t(lang, SHOW_BOT_CHANNEL, '{CHANNEL}', `<#${oldBotChannelId}>`):
-          l10n.s(lang, NO_BOT_CHANNEL);
-        result = true;
+        result = view(context);
     }
-    interaction.reply({content: response, ephemeral: true});
-    result = false;
-  } else {
-    response = l10n.s(lang, NO_PERMISSION);
-    interaction.reply({content: response, ephemeral: true});
+    interaction.reply({content: result.response, ephemeral: true});
+    return result.success;
   }
-  return result;
+  const response = l10n.s(lang, 'messages.no-permission');
+  interaction.reply({content: response, ephemeral: true});
+  return false;
 }
 
 /**
  * @param {CommandContext} context
- * @param {string|null} prevId
- * @param {string|null} newId
- * @return {boolean}
+ * @param {string|null} newId - id of new bot-command channel
+ * @return {ActionResult}
  */
-function set(context, prevId, newId) {
-  const {client, lang, guild, channel, message} = context;
+function set(context, newId) {
+  const {client, lang, guild, guildSettings} = context;
   const l10n = client.l10n;
-  let response;
-  let result = false;
-
+  const prevId = guildSettings['bot-channel'] || null;
   if (newId) {
     if (prevId == newId) { // already the bot channel
-      response = l10n.t(lang, ALREADY_BOT_CHANNEL, '{CHANNEL}', `<#${newId}>`);
+      return {
+        response: l10n.t(lang, ERROR_SET, '{CHANNEL}', `<#${newId}>`),
+        success: false,
+      };
     } else if (guild.channels.cache.get(newId)?.isText()) { // set
-      response = l10n.t(lang, SET_SUCCESS, '{CHANNEL}', `<#${newId}>`);
-      client.updateGuildSettings(guild, 'bot-channel', newId);
-      result = true;
-    } else { // invalid
-      response = l10n.s(lang, INVALID_COMMAND);
+      client.updateGuildSettings(guild, settingKey, newId);
+      return {
+        response: l10n.t(lang, SET_SUCCESS, '{CHANNEL}', `<#${newId}>`),
+        success: true,
+      };
     }
-  } else {
-    response = l10n.s(lang, INVALID_COMMAND);
   }
+  return {
+    response: l10n.s(lang, INVALID_COMMAND),
+    success: false,
+  };
+}
 
-  channel.send({
-    content: response, reply: {messageReference: message.id},
-  });
-  return result;
+/**
+ * @param {CommandContext|IContext} context
+ * @param {string|null} prevId
+ * @return {ActionResult}
+ */
+function clear(context) {
+  const {client, lang, guild, guildSettings} = context;
+  const l10n = client.l10n;
+  const currId = guildSettings['bot-channel'] || null;
+
+  if (typeof currId === 'string') {
+    client.updateGuildSettings(guild, settingKey, '');
+    return {
+      response: l10n.t(lang, CLEAR_SUCCESS, '{CHANNEL}', `<#${currId}>`),
+      success: true,
+    };
+  } else {
+    return {
+      response: l10n.s(lang, ERROR_CLEAR),
+      success: false,
+    };
+  }
 }
 
 /**
  * @param {CommandContext} context
- * @param {string|null} prevId
- * @return {boolean}
+ * @return {ActionResult}
  */
-function unset(context, prevId) {
-  const {client, lang, guild, channel, message} = context;
+function view(context) {
+  const {client, lang, guildSettings} = context;
   const l10n = client.l10n;
-  let response;
-  let result = false;
-
-  if (typeof prevId == 'string') {
-    response = l10n.t(lang, UNSET_SUCCESS, '{CHANNEL}', `<#${prevId}>`);
-    client.updateGuildSettings(guild, 'bot-channel', '');
-    result = true;
-  } else {
-    response = l10n.s(lang, NO_BOT_CHANNEL);
-  }
-
-  channel.send({
-    content: response, reply: {messageReference: message.id},
-  });
-  return result;
-}
-
-/**
- * @param {CommandContext} context
- * @param {string|null} prevId
- * @return {boolean}
- */
-function view(context, prevId) {
-  const {client, lang, channel, message} = context;
-  const l10n = client.l10n;
+  const currId = guildSettings[settingKey] || null;
 
   const response =
-      (prevId)?
-      l10n.t(lang, SHOW_BOT_CHANNEL, '{CHANNEL}', `<#${prevId}>`):
-      l10n.s(lang, NO_BOT_CHANNEL);
+      l10n.s(lang, INFO_DESC) + (
+        (currId)?
+        l10n.t(lang, INFO_ONE, '{CHANNEL}', `<#${currId}>`):
+        l10n.s(lang, INFO_NONE)
+      );
 
-  channel.send({
-    content: response, reply: {messageReference: message.id},
-  });
-  return true;
+  return {
+    response: response,
+    success: true,
+  };
 }
 
 /**
@@ -201,18 +174,27 @@ function view(context, prevId) {
  * @return {boolean} - true if command is executed
  */
 export async function execute(context) {
-  const {guildSettings, args} = context;
-  const prevId = guildSettings['bot-channel'] || null;
+  const {channel, message, args} = context;
+  /** @type {ActionResult} */ let actionResult;
 
-  if (args.length == 0) return view(context, prevId);
-
-  const firstArg = args[0].toLowerCase();
-
-  if (viewFlags.includes(firstArg)) return view(context, prevId);
-  if (unsetFlags.includes(firstArg)) return unset(context, prevId);
-  if (setFlags.includes(firstArg) && (args.length > 1)) {
-    const newId = getChannelId(args[1]);
-    return set(context, prevId, newId);
+  if (args.length == 0) {
+    actionResult = view(context);
+  } else {
+    const firstArg = args[0].toLowerCase();
+    if (fInfo.includes(firstArg)) {
+      actionResult = view(context);
+    } else if (fClear.includes(firstArg)) {
+      actionResult = clear(context);
+    } else if (fSet.includes(firstArg) && (args.length > 1)) {
+      actionResult = set(context, getChannelId(args[1]));
+    } else {
+      actionResult = view(context);
+    }
   }
-  return set(context, prevId, getChannelId(firstArg));
+
+  channel.send({
+    content: actionResult.response,
+    reply: {messageReference: message.id},
+  });
+  return actionResult.success;
 }

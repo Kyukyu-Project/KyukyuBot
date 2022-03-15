@@ -100,6 +100,12 @@
  */
 
 /**
+ * @typedef {Object} CommandActionResult
+ * @property {string} response - Response message
+ * @property {boolean} success - Is the command successful?
+ */
+
+/**
  * @readonly
  * @enum {number}
  */
