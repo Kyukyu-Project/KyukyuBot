@@ -106,7 +106,7 @@ export async function slashExecute(context) {
     return false;
   }
 
-  const cmdCanonName = interaction.options.getString('command');
+  const cmdCanonName = interaction.options.getString('command-name');
   const commandPrefix = guildSettings['command-prefix'];
   const helpTxt = l10n.getCommandHelp(lang, cmdCanonName);
   if (helpTxt) {
@@ -229,7 +229,7 @@ export async function execute(context) {
   const helpTxt = l10n.getCommandHelp(lang, __cmdCanonName);
   if (helpTxt) {
     channel.send({
-      content: '```' + helpTxt.replaceAll('?', commandPrefix) + '```',
+      content: helpTxt.replaceAll('?', commandPrefix),
       reply: {messageReference: message.id},
     });
     return true;
