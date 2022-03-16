@@ -13,9 +13,9 @@
 * `?bot-channel --clear`
 
 **Options**
-* `-i, --info         `Show the bot-command channel (Default) 
-* `-s, --set          `Set the bot-command channel
-* `-c, --clear        `Clear (reset) the bot-command channel
+* `-i, --info   `Show the bot-command channel (Default) 
+* `-s, --set    `Set the bot-command channel
+* `-c, --clear  `Clear (reset) the bot-command channel
 
 **Examples**
 * `?bot-channel -i`

@@ -15,10 +15,10 @@
 * `?helper-roles --clear`
 
 **Options**
-* `-i, --info         `Show the list of helper roles (Default) 
-* `-a, --add, +       `Add role(s) to the list of helper roles
-* `-r, --remove, -    `Remove role(s) from the list of helper roles
-* `-c, --clear        `Clear (reset) the list of helper roles
+* `-i, --info       `Show the list of helper roles (Default) 
+* `-a, --add, +     `Add role(s) to the list of helper roles
+* `-r, --remove, -  `Remove role(s) from the list of helper roles
+* `-c, --clear      `Clear (reset) the list of helper roles
 
 **Examples**
 * `?helper-roles --add @helper @admin`

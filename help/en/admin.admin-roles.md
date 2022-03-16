@@ -19,10 +19,10 @@
 * `?admin-roles --clear`
 
 **Options**
-* `-i, --info         `Show the list of moderator roles (Default) 
-* `-a, --add, +       `Add role(s) to the list of moderator roles
-* `-r, --remove, -    `Remove role(s) from the list of moderator roles
-* `-c, --clear        `Clear (reset) the list of moderator roles
+* `-i, --info       `Show the list of moderator roles (Default) 
+* `-a, --add, +     `Add role(s) to the list of moderator roles
+* `-r, --remove, -  `Remove role(s) from the list of moderator roles
+* `-c, --clear      `Clear (reset) the list of moderator roles
 
 **Examples**
 * `?admin-roles --add @admin @feedback-team`
