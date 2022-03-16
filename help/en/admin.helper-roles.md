@@ -27,4 +27,5 @@
 * `?helper-roles --remove @trusted`
 
 **Related**
+* `?admin-roles`
 * `?moderator-roles`

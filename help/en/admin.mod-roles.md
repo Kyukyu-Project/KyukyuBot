@@ -30,4 +30,5 @@
 * `?mod-roles --remove @trusted`
 
 **Related**
+* `?admin-roles`
 * `?helper-roles`
