@@ -31,20 +31,29 @@ class CommandManager extends Collection {
   loadCommandFiles(filePaths) {
     filePaths.forEach(async (path) => {
       try {
-        const fileUrl = url.pathToFileURL(path);
+        const href = url.pathToFileURL(path).href;
         /** @type {Command} */
-        const cmd = await import(fileUrl);
+        const cmd = await import(href);
         if (this.has(cmd.canonName)) {
           console.warn(`Command name collision: ${cmd.canonName}`);
         } else {
           this.set(cmd.canonName, cmd);
-          this.sources.set(cmd.canonName, fileUrl);
+          this.sources.set(cmd.canonName, href);
         }
       } catch (error) {
         console.warn(`Error loading command module from ${path}`);
         console.warn(error);
       }
     });
+  }
+
+  /**
+   * Get source path of a command
+   * @param {string[]} canonName - Canonical command name
+   * @return {string}
+   */
+  getSourcePath(canonName) {
+    return this.sources.get(canonName);
   }
 }
 

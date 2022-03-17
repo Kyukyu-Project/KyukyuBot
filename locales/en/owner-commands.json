@@ -8,7 +8,7 @@
       "success": "`git-pull` command executed:\n```{LOG}```",
       "error": "Error executing git command:\n```{LOG}```"
     },
-    "owner.reload-lang": {
+    "owner.reload": {
       "please-wait": "Reloading language in 3 seconds.",
       "success": "Language reloaded.",
       "error": "Error reloading language."
@@ -18,7 +18,7 @@
     "commands": [
       ["owner.bot-avatar", "bot-avatar"],
       ["owner.git-pull", "git-pull", "git-update"],
-      ["owner.reload-lang", "reload-lang", "reload-language"]
+      ["owner.reload", "reload"]
     ]
   }
 }
