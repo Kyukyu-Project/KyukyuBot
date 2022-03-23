@@ -14,6 +14,7 @@ export const cooldown = 0;
 
 const responseLabel = 'response';
 const messageIdLabel = 'message-id';
+const channelLabel = 'channel';
 
 /**
  * @param {CommandContext|IContext} context
@@ -26,6 +27,7 @@ export function getSlashData(context) {
   const hint          = l10n.s(lang, `commands.${canonName}.command-hint`);
   const responseHint  = l10n.s(lang, `commands.${canonName}.response-hint`);
   const messageIdHint = l10n.s(lang, `commands.${canonName}.message-id-hint`);
+  const channelHint = l10n.s(lang, `commands.${canonName}.channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
@@ -39,6 +41,11 @@ export function getSlashData(context) {
           .setName(messageIdLabel)
           .setDescription(messageIdHint)
           .setRequired(true),
+      )
+      .addChannelOption((option) => option
+          .setName(channelLabel)
+          .setDescription(channelHint)
+          .setRequired(false),
       );
 }
 
@@ -50,20 +57,41 @@ export async function slashExecute(context) {
   const {client, channel, lang, interaction} = context;
   const {l10n} = client;
 
-  if (context.userIsMod) {
-    interaction.deferReply({ephemeral: true});
+  if (context.userIsMod || context.hasAdminPermission) {
+    await interaction.deferReply({ephemeral: true});
     const replyWith = interaction.options.get(responseLabel).value;
     const replyTo = interaction.options.get(messageIdLabel).value;
-    const responseSent = l10n.s(lang, `commands.${canonName}.response-sent`);
+    const replyWhere = interaction.options.getChannel(channelLabel);
     const responseError = l10n.s(lang, `commands.${canonName}.response-error`);
 
-    channel
-        .send({
+    try {
+      if ((replyWhere) && (replyWhere.id !== channel.id)) {
+        const sentMessage = await replyWhere.send({
           content: replyWith,
           reply: {messageReference: replyTo, failIfNotExists: true},
-        })
-        .then(() => interaction.editReply(responseSent))
-        .catch(() => interaction.editReply(responseError));
+        });
+
+        interaction.editReply(
+            l10n.t(
+                lang,
+                `commands.${canonName}.response-sent-elsewhere`,
+                '{MESSAGE URL}',
+                sentMessage.url,
+            ),
+        );
+      } else {
+        await channel.send({
+          content: replyWith,
+          reply: {messageReference: replyTo, failIfNotExists: true},
+        });
+
+        interaction.editReply(
+            l10n.s(lang, `commands.${canonName}.response-sent-here`),
+        );
+      }
+    } catch (error) {
+      interaction.editReply(responseError);
+    }
     return true;
   } else {
     const noPermission = l10n.s(lang, 'messages.no-permission');

@@ -15,23 +15,26 @@
       "channel-hint": "Channel"
     },
     "admin.slash-deploy": {
-      "command-hint": "Update slash (/) commands",
+      "command-hint": "Deploy (update) slash (/) commands",
       "deploy-start": "Starting to deploy slash commands.",
       "deploy-success": "Slash commands deployed successfully.",
       "deploy-error": "Error deploying slash commands."
     },
     "admin.say": {
-      "message-sent": "The message has been sent: {MESSAGE URL}",
+      "message-sent-elsewhere": "The message has been sent: {MESSAGE URL}",
+      "message-sent-here": "The message has been sent",
       "command-hint": "Send a message through the bot",
       "message-hint": "Message that I should send",
       "channel-hint": "Channel where the message should be sent"
     },
     "admin.reply": {
-      "response-sent": "The response has been sent",
+      "response-sent-elsewhere": "The response has been sent: {MESSAGE URL}",
+      "response-sent-here": "The response has been sent",
       "response-error": "Error sending the response",
       "command-hint": "Reply to a message through the bot",
       "message-id-hint": "Id of the message to reply to",
-      "response-hint": "Response message that I should send"
+      "channel-hint": "Channel where the reply message should be sent",
+      "response-hint": "Reply message that I should send"
     },
     "admin.prefix": {
       "set-success": "Done! {PREFIX} is now set as the command prefix.",
