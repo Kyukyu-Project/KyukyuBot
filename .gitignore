@@ -5,6 +5,9 @@ logs
 # Dependency directories
 node_modules/
 
+# Tests
+tests/
+
 # Configuration
 /*.json
 !/*.example.json

@@ -7,7 +7,6 @@
 
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {ChannelType} from 'discord-api-types/v10';
 
 export const canonName = 'admin.lang';
 export const name = 'lang';
