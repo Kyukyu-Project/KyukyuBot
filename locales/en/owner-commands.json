@@ -9,9 +9,19 @@
       "error": "Error executing git command:\n```{LOG}```"
     },
     "owner.reload": {
-      "please-wait": "Reloading language in 3 seconds.",
-      "success": "Language reloaded.",
-      "error": "Error reloading language."
+      "c-hint": "Reload command or language",
+      "sc-general-hint": "Reload a general command",
+      "sc-admin-hint": "Reload a server administrator command",
+      "sc-owner-hint": "Reload a bot owner command",
+      "opt-cmd-hint": "Command name",
+      "sc-lang-hint": "Reload a language",
+      "opt-lang-hint": "Language",
+      "reloading-cmd": "Reloading command in 3 seconds. The bot will not process any new command during this period.",
+      "cmd-reloaded": "Done! Command reloaded.",
+      "cmd-reloading-error": "Error: command could not be reloaded.",
+      "reloading-lang": "Reloading language in 3 seconds. The bot will not process any new command during this period.",
+      "lang-reloaded": "Done! Language reloaded.",
+      "lang-reloading-error": "Error: language could not be reloaded."
     }
   },
   "aliases": {

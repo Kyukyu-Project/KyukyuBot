@@ -48,12 +48,16 @@ class CommandManager extends Collection {
   }
 
   /**
-   * Get source path of a command
-   * @param {string[]} canonName - Canonical command name
-   * @return {string}
+   * @param {string} cmdCanonName - canonical command name
    */
-  getSourcePath(canonName) {
-    return this.sources.get(canonName);
+  async reloadCommand(cmdCanonName) {
+    const oldPath = this.sources.get(cmdCanonName);
+    const timeStamp = (new Date()).getTime();
+
+    return import(`${oldPath}?update=${timeStamp}`)
+        .then((newCmd) => {
+          this.set(cmdCanonName, newCmd);
+        });
   }
 }
 
