@@ -1,56 +1,56 @@
 {
   "commands": {
     "admin.bot-channel": {
+      "c-hint": "View, set, or reset the bot-command channel",
+      "sc-info-hint": "Show information about the bot-command channel",
+      "sc-set-hint": "Set the bot-command channel",
+      "sc-clear-hint": "Clear (unset) the bot-command channel",
+      "opt-channel-hint": "Channel",
       "set-success": "Done! {CHANNEL} is now set as the bot-command channel.",
       "clear-success": "Done! {CHANNEL} is unset as the bot-command channel.",
       "info-desc": "In the bot-command channel, anyone can use bot commands without cool-down.\n",
       "info-one": "Bot-channel: {CHANNEL}.",
       "info-none": "Bot-channel: none",
       "error-clear": "Error: no channel is set as the bot-command channel.",
-      "error-set": "Error: {CHANNEL} is already the bot-command channel.",
-      "command-hint": "View, set, or reset the bot-command channel",
-      "info-hint": "Show information about the bot-command channel",
-      "set-hint": "Set the bot-command channel",
-      "clear-hint": "Clear (unset) the bot-command channel",
-      "channel-hint": "Channel"
+      "error-set": "Error: {CHANNEL} is already the bot-command channel."
     },
     "admin.slash-deploy": {
-      "command-hint": "Deploy (update) slash (/) commands",
+      "c-hint": "Deploy (update) slash (/) commands",
       "deploy-start": "Starting to deploy slash commands.",
       "deploy-success": "Slash commands deployed successfully.",
       "deploy-error": "Error deploying slash commands."
     },
     "admin.say": {
+      "c-hint": "Send a message through the bot",
+      "opt-message-hint": "Message that I should send",
+      "opt-channel-hint": "Channel where the message should be sent",
       "message-sent-elsewhere": "The message has been sent: {MESSAGE URL}",
-      "message-sent-here": "The message has been sent",
-      "command-hint": "Send a message through the bot",
-      "message-hint": "Message that I should send",
-      "channel-hint": "Channel where the message should be sent"
+      "message-sent-here": "The message has been sent"
     },
     "admin.reply": {
+      "c-hint": "Reply to a message through the bot",
+      "opt-response-hint": "Reply message that I should send",
+      "opt-message-id-hint": "Id of the message to reply to",
+      "opt-channel-hint": "Channel where the reply message should be sent",
       "response-sent-elsewhere": "The response has been sent: {MESSAGE URL}",
       "response-sent-here": "The response has been sent",
-      "response-error": "Error sending the response",
-      "command-hint": "Reply to a message through the bot",
-      "message-id-hint": "Id of the message to reply to",
-      "channel-hint": "Channel where the reply message should be sent",
-      "response-hint": "Reply message that I should send"
+      "response-error": "Error sending the response"
     },
     "admin.prefix": {
+      "c-hint": "View or set the bot-command prefix",
+      "sc-set-hint": "Set the bot-command prefix",
+      "sc-info-hint": "Show the bot-command prefix",
+      "opt-prefix-hint": "Prefix",
       "set-success": "Done! {PREFIX} is now set as the command prefix.",
       "info-prefix": "Command prefix: {PREFIX}",
       "info-default": "Command prefix: {PREFIX} (default)",
-      "command-hint": "View or set the bot-command prefix",
-      "error-zero-length": "Error: command prefix cannot have zero length.",
-      "set-hint": "Set the bot-command prefix",
-      "info-hint": "Show the bot-command prefix",
-      "prefix-hint": "Prefix"
+      "error-zero-length": "Error: command prefix cannot have zero length."
     },
     "admin.lang": {
-      "command-hint": "Set the bot language",
-      "set-success": "Done! Language is set to {LANG}.",
-      "set-hint": "Set the bot language",
-      "lang-hint": "Language"
+      "c-hint": "Set the bot language",
+      "sc-set-hint": "Set the bot language",
+      "opt-lang-hint": "Language",
+      "set-success": "Done! Language is set to {LANG}."
     }
   },
   "aliases": {

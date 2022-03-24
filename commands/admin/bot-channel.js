@@ -27,6 +27,10 @@ const ERROR_SET           = `commands.${canonName}.error-set`;
 const SET_SUCCESS         = `commands.${canonName}.set-success`;
 const CLEAR_SUCCESS       = `commands.${canonName}.clear-success`;
 const INVALID_COMMAND     = `messages.invalid-command`;
+const scInfoLabel  = 'info';
+const scSetLabel   = 'set';
+const scClearLabel = 'clear';
+const optChannelLabel = 'channel';
 const fInfo               = ['--info', '-i'];
 const fSet                = ['--set', '-s'];
 const fClear              = ['--clear', '-c'];
@@ -39,27 +43,27 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const commandHint = l10n.s(lang, `commands.${canonName}.command-hint`);
-  const infoHint = l10n.s(lang, `commands.${canonName}.info-hint`);
-  const setHint = l10n.s(lang, `commands.${canonName}.set-hint`);
-  const clearHint = l10n.s(lang, `commands.${canonName}.clear-hint`);
-  const channelHint = l10n.s(lang, `commands.${canonName}.channel-hint`);
+  const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
+  const scInfoHint = l10n.s(lang, `commands.${canonName}.sc-info-hint`);
+  const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
+  const scClearHint = l10n.s(lang, `commands.${canonName}.sc-clear-hint`);
+  const optChannelHint = l10n.s(lang, `commands.${canonName}.opt-channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(commandHint)
-      .addSubcommand((c) => c.setName('info').setDescription(infoHint))
-      .addSubcommand((c) => c.setName('set').setDescription(setHint)
+      .setDescription(cHint)
+      .addSubcommand((c) => c.setName(scInfoLabel).setDescription(scInfoHint))
+      .addSubcommand((c) => c.setName(scSetLabel).setDescription(scSetHint)
           .addChannelOption((option) => option
-              .setName('channel')
-              .setDescription(channelHint)
+              .setName(optChannelLabel)
+              .setDescription(optChannelHint)
               .setRequired(true)
               .addChannelType(ChannelType.GuildText),
           ),
       )
       .addSubcommand((c) => c
-          .setName('clear')
-          .setDescription(clearHint),
+          .setName(scClearLabel)
+          .setDescription(scClearHint),
       );
 }
 
@@ -75,14 +79,14 @@ export async function slashExecute(context) {
     const subCommand = interaction.options.getSubcommand();
     let result;
     switch (subCommand) {
-      case 'set':
-        const newChannelId = interaction.options.getChannel('channel').id;
+      case scSetLabel:
+        const newChannelId = interaction.options.getChannel(optChannelLabel).id;
         result = set(context, newChannelId);
         break;
-      case 'clear':
+      case scClearLabel:
         result = clear(context);
         break;
-      case 'info':
+      case scInfoLabel:
       default:
         result = view(context);
     }

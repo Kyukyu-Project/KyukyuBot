@@ -18,6 +18,7 @@ const settingKey = 'lang';
 
 const SET_SUCCESS         = `commands.${canonName}.set-success`;
 const INVALID_COMMAND     = `messages.invalid-command`;
+const optLangLabel        = 'language';
 const fSet                = ['--set', '-s'];
 
 /**
@@ -28,19 +29,19 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const commandHint = l10n.s(lang, `commands.${canonName}.command-hint`);
-  const setHint = l10n.s(lang, `commands.${canonName}.set-hint`);
-  const langHint = l10n.s(lang, `commands.${canonName}.lang-hint`);
+  const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
+  const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
+  const optLangHint = l10n.s(lang, `commands.${canonName}.opt-lang-hint`);
   const choices = Array.from(l10n.keys()).map((langCode) =>
     [l10n.s(lang, `languages.${langCode}`), langCode]);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(commandHint)
-      .addSubcommand((c) => c.setName('set').setDescription(setHint)
+      .setDescription(cHint)
+      .addSubcommand((c) => c.setName('set').setDescription(scSetHint)
           .addStringOption((option) => option
-              .setName('language')
-              .setDescription(langHint)
+              .setName(optLangLabel)
+              .setDescription(optLangHint)
               .setRequired(true)
               .addChoices(choices),
           ),

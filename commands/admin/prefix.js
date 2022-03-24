@@ -19,6 +19,9 @@ const INFO_DEFAULT        = `commands.${canonName}.info-default`;
 const ERROR_ZERO_LEN      = `commands.${canonName}.error-zero-length`;
 const SET_SUCCESS         = `commands.${canonName}.set-success`;
 
+const scInfoLabel  = 'info';
+const scSetLabel   = 'set';
+const optPrefixLabel = 'prefix';
 const fInfo  = ['--info', '-i'];
 const fSet   = ['--set', '-s'];
 
@@ -30,23 +33,23 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const commandHint = l10n.s(lang, `commands.${canonName}.command-hint`);
-  const infoHint = l10n.s(lang, `commands.${canonName}.info-hint`);
-  const setHint = l10n.s(lang, `commands.${canonName}.set-hint`);
-  const prefixHint = l10n.s(lang, `commands.${canonName}.prefix-hint`);
+  const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
+  const scInfoHint = l10n.s(lang, `commands.${canonName}.sc-info-hint`);
+  const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
+  const optPrefixHint = l10n.s(lang, `commands.${canonName}.opt-prefix-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(commandHint)
+      .setDescription(cHint)
       .addSubcommand((c) => c
-          .setName('info')
-          .setDescription(infoHint))
+          .setName(scInfoLabel)
+          .setDescription(scInfoHint))
       .addSubcommand((c) => c
-          .setName('set')
-          .setDescription(setHint)
+          .setName(scSetLabel)
+          .setDescription(scSetHint)
           .addStringOption((option) => option
-              .setName('prefix')
-              .setDescription(prefixHint)
+              .setName(optPrefixLabel)
+              .setDescription(optPrefixHint)
               .setRequired(true),
           ),
       );
@@ -64,11 +67,11 @@ export async function slashExecute(context) {
     const subCommand = interaction.options.getSubcommand();
     let result;
     switch (subCommand) {
-      case 'set':
-        const newPrefix = interaction.options.getString('prefix').trim();
+      case scSetLabel:
+        const newPrefix = interaction.options.getString(optPrefixLabel).trim();
         result = set(context, newPrefix);
         break;
-      case 'info':
+      case scInfoLabel:
       default:
         result = view(context);
     }
@@ -119,7 +122,6 @@ function view(context) {
     success: true,
   };
 }
-
 
 /**
  * @param {CommandContext} context

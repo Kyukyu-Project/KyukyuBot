@@ -25,10 +25,10 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const hint = l10n.s(lang, `commands.${canonName}.command-hint`);
+  const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(hint);
+      .setDescription(cHint);
 }
 
 

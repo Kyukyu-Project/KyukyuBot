@@ -12,9 +12,9 @@ export const requireArgs = true;
 export const commandPerm = COMMAND_PERM.MODERATOR;
 export const cooldown = 0;
 
-const responseLabel = 'response';
-const messageIdLabel = 'message-id';
-const channelLabel = 'channel';
+const optResponseLabel = 'response';
+const optMessageIdLabel = 'message-id';
+const optChannelLabel = 'channel';
 
 /**
  * @param {CommandContext|IContext} context
@@ -24,27 +24,31 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
 
-  const hint          = l10n.s(lang, `commands.${canonName}.command-hint`);
-  const responseHint  = l10n.s(lang, `commands.${canonName}.response-hint`);
-  const messageIdHint = l10n.s(lang, `commands.${canonName}.message-id-hint`);
-  const channelHint = l10n.s(lang, `commands.${canonName}.channel-hint`);
+  const cHint =
+      l10n.s(lang, `commands.${canonName}.c-hint`);
+  const optResponseHint  =
+      l10n.s(lang, `commands.${canonName}.opt-response-hint`);
+  const optMessageIdHint =
+      l10n.s(lang, `commands.${canonName}.opt-message-id-hint`);
+  const optChannelHint =
+      l10n.s(lang, `commands.${canonName}.opt-channel-hint`);
 
   return new SlashCommandBuilder()
       .setName(name)
-      .setDescription(hint)
+      .setDescription(cHint)
       .addStringOption((option) => option
-          .setName(responseLabel)
-          .setDescription(responseHint)
+          .setName(optResponseLabel)
+          .setDescription(optResponseHint)
           .setRequired(true),
       )
       .addStringOption((option) => option
-          .setName(messageIdLabel)
-          .setDescription(messageIdHint)
+          .setName(optMessageIdLabel)
+          .setDescription(optMessageIdHint)
           .setRequired(true),
       )
       .addChannelOption((option) => option
-          .setName(channelLabel)
-          .setDescription(channelHint)
+          .setName(optChannelLabel)
+          .setDescription(optChannelHint)
           .setRequired(false),
       );
 }
@@ -59,9 +63,9 @@ export async function slashExecute(context) {
 
   if (context.userIsMod || context.hasAdminPermission) {
     await interaction.deferReply({ephemeral: true});
-    const replyWith = interaction.options.get(responseLabel).value;
-    const replyTo = interaction.options.get(messageIdLabel).value;
-    const replyWhere = interaction.options.getChannel(channelLabel);
+    const replyWith = interaction.options.get(optResponseLabel).value;
+    const replyTo = interaction.options.get(optMessageIdLabel).value;
+    const replyWhere = interaction.options.getChannel(optChannelLabel);
     const responseError = l10n.s(lang, `commands.${canonName}.response-error`);
 
     try {
