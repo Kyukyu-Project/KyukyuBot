@@ -66,14 +66,10 @@ class L10N extends Collection {
   reloadLanguage(lang) {
     lang = String(lang).toLowerCase().trim();
     if (this.has(lang)) {
-      try {
-        const newCollection =
+      const newCollection =
           createFlattenedCollectionFromFiles(this.sources.get(lang));
-        this.set(lang, newCollection);
-        return true;
-      } catch (error) {
-        return false;
-      }
+      this.set(lang, newCollection);
+      return true;
     } else {
       return false;
     }
