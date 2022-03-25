@@ -31,7 +31,6 @@ export function getSlashData(context) {
       .setDescription(cHint);
 }
 
-
 /**
  * @param {IContext} context
  * @return {boolean} - true if command is executed
@@ -44,12 +43,10 @@ export async function slashExecute(context) {
 
   return new Promise((resolve, reject) => {
     deploy(context).then(() => {
-      interaction.editReply(
-          {content: l10n.s(lang, DEPLOY_SUCCESS), ephemeral: true});
+      interaction.editReply(l10n.s(lang, DEPLOY_SUCCESS));
       resolve(true);
     }).catch((error) => {
-      interaction.editReply(
-          {content: l10n.s(lang, DEPLOY_ERROR), ephemeral: true});
+      interaction.editReply(l10n.s(lang, DEPLOY_ERROR));
       reject(error);
     });
   });
