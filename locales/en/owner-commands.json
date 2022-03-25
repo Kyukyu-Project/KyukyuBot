@@ -5,8 +5,9 @@
       "error": "Error updating bot avatar"
     },
     "owner.git-pull": {
-      "success": "`git-pull` command executed:\n```{LOG}```",
-      "error": "Error executing git command:\n```{LOG}```"
+      "c-hint": "Load the latest source code from git",
+      "success": "Done! `git-pull` command executed:\n```{LOG}```",
+      "error": "Error: git command could not be executed:\n```{LOG}```"
     },
     "owner.reload": {
       "c-hint": "Reload command or language",
