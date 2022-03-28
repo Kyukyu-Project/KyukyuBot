@@ -7,8 +7,7 @@
 import {
   existsSync,
   statSync,
-  mkdirSync,
-  createWriteStream} from 'fs';
+  mkdirSync} from 'fs';
 import {join} from 'path';
 import {
   Client as djsClient,
@@ -18,6 +17,7 @@ import {
 
 import L10N from './l10n.js';
 import CommandManager from './commands.js';
+import LogManager from './log-manager.js';
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
 
@@ -139,9 +139,7 @@ class Client extends djsClient {
        */
       this.userConfig = createCollectionFromFile(this.userConfigPath);
 
-      this.logger = createWriteStream(
-          join(this.clientDataPath, 'commands.log'), {flags: 'a' /* append */},
-      );
+      /** @type {LogManager} */ this.logManager = new LogManager(this);
     } else {
       this.guildConfigPath = '';
       this.guildConfig = new Collection();
@@ -228,10 +226,11 @@ class Client extends djsClient {
 
   /**
    * Log
+   * @param {string} guildId - Guild Id
    * @param {string} log - Log text
    */
-  log(log) {
-    if (this.logger) this.logger.write(log);
+  log(guildId, log) {
+    if (this.logManager) this.logManager.writeLog(guildId, log);
   }
 
   /**
@@ -402,13 +401,23 @@ class Client extends djsClient {
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
-            this.log(`${result?'✓':'✗'} ${execTS} ${cmdCanonName}\n`);
+            if (guild) {
+              this.log(
+                  guild.id,
+                  `${result?'✓':'✗'} ${execTS} ${cmdCanonName}\n`,
+              );
+            }
           } else {
             console.error(`"${cmdCanonName}" does not return boolean result.`);
           }
         })
         .catch((error) => {
-          this.log(`✗ ${execTS} ${cmdCanonName}\n> "${error.message}"\n`);
+          if (guild) {
+            this.log(
+                guild.id,
+                `✗ ${execTS} ${cmdCanonName}\n> "${error.message}"\n`,
+            );
+          }
           console.error(
               '--------------------------------------------------\n',
               `Error executing '${msg.content}'\n`, error,
@@ -528,13 +537,19 @@ class Client extends djsClient {
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
-            this.log(`${result?'✓':'✗'} ${execTS} ${fullCommand}\n`);
+            this.log(
+                guild.id,
+                `${result?'✓':'✗'} ${execTS} ${fullCommand}\n`,
+            );
           } else {
             console.error(`"/${slashName}" does not return boolean result.`);
           }
         })
         .catch((error) => {
-          this.log(`✗ ${execTS} ${fullCommand}\n> "${error.message}"\n`);
+          this.log(
+              guild.id,
+              `✗ ${execTS} ${fullCommand}\n> "${error.message}"\n`,
+          );
           console.error(
               '--------------------------------------------------\n',
               `Error executing '${fullCommand}'\n`, error,
@@ -548,6 +563,8 @@ class Client extends djsClient {
   ready() {
     this.on('messageCreate', (msg) => this.onMessageCreate(msg));
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
+    this.on('guildCreate', (g) => console.log(`Joined server <${g.id}>`));
+    this.on('guildDelete', (g) => console.log(`Left server <${g.id}>`));
   }
 }
 export default Client;

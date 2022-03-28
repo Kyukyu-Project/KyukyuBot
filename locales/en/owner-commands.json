@@ -9,6 +9,17 @@
       "success": "Done! `git-pull` command executed:\n```{LOG}```",
       "error": "Error: git command could not be executed:\n```{LOG}```"
     },
+    "owner.log": {
+      "c-hint": "Get or clear command log",
+      "sc-get-hint": "Get guild command log",
+      "sc-clear-hint": "Clear guild command log",
+      "opt-guild-hint": "Server name",
+      "choice-all-label": "all servers",
+      "log-attached": "Command log for \"{GUILD}\":",
+      "log-is-empty": "Log for \"{GUILD}\" is empty.",
+      "log-cleared": "Command log for \"{GUILD}\" cleared",
+      "all-log-cleared":  "Command log for all servers cleared"
+    },
     "owner.reload": {
       "c-hint": "Reload command or language",
       "sc-general-hint": "Reload a general command",
