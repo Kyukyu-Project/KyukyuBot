@@ -85,7 +85,7 @@ export async function slashExecute(context) {
 
 /**
  * @param {CommandContext} context
- * @param {string|null} newPrefix - id of new bot-command channel
+ * @param {string|null} newPrefix - new prefix
  * @return {ActionResult}
  */
 function set(context, newPrefix) {
