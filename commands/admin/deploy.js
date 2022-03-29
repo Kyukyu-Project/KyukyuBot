@@ -92,7 +92,9 @@ async function deploy(context) {
   const commandFilter =
       (ownerGuild)?
       (c) => (c.getSlashData):
-      (c) => (c.getSlashData) && (c.commandPerm !== COMMAND_PERM.OWNER);
+      (c) => (c.getSlashData) &&
+             (c.commandPerm !== COMMAND_PERM.OWNER) &&
+             ((!c.guilds) || (c.guilds.includes(guildId)));
 
   /** @type object[] */
   const pendingData = client.commands

@@ -68,6 +68,7 @@ const commandDirectories = [
   './commands/admin',
   './commands/owner',
   './commands/general',
+  './custom-commands/',
 ];
 
 commandDirectories.forEach((dir) => {
