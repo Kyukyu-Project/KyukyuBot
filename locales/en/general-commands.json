@@ -1,11 +1,10 @@
 {
   "commands": {
-    "general.avatar": { 
-      "embed-title": "Avatar of {USER NAME}",
-      "flags": {
-        "display": ["--display", "-d", "--guild", "--server"],
-        "user":    ["--user",    "-u"]
-      }
+    "general.avatar": {
+      "embed-title": "Avatar of {USER NAME}"
+    },
+    "general.server-avatar": {
+      "embed-title": "Server avatar of {USER NAME}"
     },
     "general.help": {
       "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
@@ -25,6 +24,7 @@
   "aliases": {
     "commands": [
       ["general.avatar", "avatar", "pfp"],
+      ["general.server-avatar", "server-avatar", "server-pfp"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
       ["general.ping", "ping", "ピン", "乒"]
     ]
