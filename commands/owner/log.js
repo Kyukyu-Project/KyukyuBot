@@ -22,8 +22,6 @@ const ALL_LOG_CLEARED     = `commands.${canonName}.all-log-cleared`;
 const scGetLabel   = 'get';
 const scClearLabel  = 'clear';
 const optGuildLabel = 'server';
-const fClear = ['--clear', '-c'];
-const fGet   = ['--get', '-g'];
 
 /**
   * @param {CommandContext|IContext} context
