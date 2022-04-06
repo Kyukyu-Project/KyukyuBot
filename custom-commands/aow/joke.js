@@ -26,15 +26,45 @@ const filters = [
   /(what|which) hero is (?:very |really |real )?bad at basketball/i,
   /why (?:do|does) mages? skip (?:class|school)/i,
   /how (?:do|can) you summon (?:a |an )?azrael/i,
-  /who is the most self-centered hero?/i,
+  /(who is the most self-centered hero|what hero is the most self-centered)/i,
+  /who (?:won|win) (?:the )?(?:aow|art of war|aowl) (?:beauty|beauty pageant) contest/i,
+  /(?:how would|how'd) you describe (?:the )?spider[ -]queen/i,
+  /why (?:did|do) (?:the )?spider[ -]queen quit/i,
+  /(?:hear|heard|know|knew) what happened in.*concert/i,
+  /ivan (?:broke|break|storm|stormed|bursted|burst) into .*meeting (?:room )?and (demanded|asked for) (?:a )?buff/i,
+  /why (?:is|was) zeus fired .*as (?:a )lifeguard/i,
+  /why (?:did|do) (?:the )?(peltasts|peltast) lose the marathon/i,
+  /why is (?:Rhino Knight|RK).*credit score so low/i,
+  /why (?:was|is) Ivan banned from (?:the )?zoo/i,
+  /why is (?:the )(beast master|BM) (bad|terrible) at math/i,
+  /(think cactuses (?:will|would) be buffed|think about cactuses buff)/i,
+  /why isn't hohenheim (?:a )?legendary/i,
+  /you can only live once/i,
+  /who (?:is|was) banned (?:from Discord|.*by Ogre Warrior)/i,
+  /Why is kriss (bad at farming|a bad farmer)/i,
 ];
 
 const answers = [
-  'Because their relationship is Poselene (porcelain)',
+  'Because their relationship is *Poselene* (porcelain)',
   'Aly, because she keeps dropping the ball',
   'Because they don\'t want to become scholars',
   'with *nun*-stop praying',
   'Chi**one**',
+  'Selene. She was stunning.',
+  'Lots of *lags*',
+  'Not even she can handle the *lags*.',
+  'Yeah, Goblikazes got booed off the stage \'cuz they totally bombed.',
+  'Yes. But the room was in full *silence*.',
+  'Electricity and water don\'t mix.',
+  'They kept running backwards',
+  'He keeps charging.',
+  'He kept chasing the squirrels',
+  'He got the Axe but not the Whys',
+  'That question is too thorny to answer.',
+  'Because he can\'t create gems with alchemy',
+  '"say what?", said the undead soldier',
+  'Voodoo Dolls because they kept cursing',
+  '\'cuz Hoheheim got all the hoes',
 ];
 
 /**
@@ -72,7 +102,7 @@ async function onMessageCreate(msg) {
 export async function slashExecute(context) {
   if (!joking) {
     joking = true;
-    setTimeout(()=> joking = false, 3 * 60 * 1000);
+    setTimeout(()=> joking = false, 5 * 60 * 1000);
   }
   if (!eventHandlerAttached) {
     context.client.on('messageCreate', (msg) => onMessageCreate(msg));
