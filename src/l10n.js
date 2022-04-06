@@ -32,7 +32,7 @@ class L10N extends Collection {
      */
     this.sources = new Collection();
 
-    this.s = this.getTemplate; // function short-hand
+    this.s = this.getResource; // function short-hand
   }
 
   /**
@@ -76,15 +76,15 @@ class L10N extends Collection {
   }
 
   /**
-   * Translate from a string template
+   * Get content of a resource key
    * @param {string} lang - language
-   * @param {string} templateKey - Name of the string template
+   * @param {string} resourceKey - resource key
    * @return {string} string template
    */
-  getTemplate(lang, templateKey) {
+  getResource(lang, resourceKey) {
     const template =
-      (this.get(lang)?.get(templateKey)) ||
-      (this.get(this.defaultLang).get(templateKey)) ||
+      (this.get(lang)?.get(resourceKey)) ||
+      (this.get(this.defaultLang).get(resourceKey)) ||
       undefined;
     return template;
   }
@@ -116,13 +116,13 @@ class L10N extends Collection {
   /**
    * Translate from a string template
    * @param {string} lang - language
-   * @param {string} templateKey - Name of the string template
+   * @param {string} resourceKey - Resource key of the string template
    * @param {string[]} strings
    * @return {string} translated string
    */
-  t(lang, templateKey, ...strings) {
+  t(lang, resourceKey, ...strings) {
     // try to get the string template
-    const template = this.getTemplate(lang, templateKey);
+    const template = this.getResource(lang, resourceKey);
 
     if (typeof template == 'undefined') return '';
     return this.r(template, ...strings);
@@ -150,7 +150,7 @@ class L10N extends Collection {
    * @return {string} list of strings separated by delimiters
    */
   join(lang, source) {
-    return source.join(this.getTemplate(lang, 'delimiter'));
+    return source.join(this.getResource(lang, 'delimiter'));
   }
 
   /**
