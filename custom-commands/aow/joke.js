@@ -41,7 +41,9 @@ const filters = [
   /why isn't hohenheim (?:a )?legendary/i,
   /you can only live once/i,
   /who (?:is|was) banned (?:from Discord|.*by Ogre Warrior)/i,
-  /Why is kriss (bad at farming|a bad farmer)/i,
+  /why is kriss (bad at farming|a bad farmer)/i,
+  /(?:what|which) hero is (?:both )?(sacred and wild|wild and sacred)/i,
+  /is planck a greek god/i,
 ];
 
 const answers = [
@@ -65,6 +67,8 @@ const answers = [
   '"say what?", said the undead soldier',
   'Voodoo Dolls because they kept cursing',
   '\'cuz Hoheheim got all the hoes',
+  `Zoos`,
+  'idk, but he sure uses a lot of *greece*',
 ];
 
 /**
