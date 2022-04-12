@@ -34,13 +34,18 @@
       "reloading-lang": "Reloading language in 3 seconds. The bot will not process any new command during this period.",
       "lang-reloaded": "Done! Language reloaded.",
       "lang-reloading-error": "Error: language could not be reloaded."
+    },
+    "owner.shut-down": {
+      "c-hint": "Shut down the bot",
+      "shutting-down": "The bot will shut down in 3 minutes..."
     }
   },
   "aliases": {
     "commands": [
       ["owner.bot-avatar", "bot-avatar"],
       ["owner.git-pull", "git-pull", "git-update"],
-      ["owner.reload", "reload"]
+      ["owner.reload", "reload"],
+      ["owner.shut-down", "shut-down", "kill"]
     ]
   }
 }
