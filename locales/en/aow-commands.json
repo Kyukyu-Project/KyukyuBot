@@ -3,7 +3,8 @@
     "aow.hero-event": {
       "c-hint": "Information on hero events",
       "sc-info-hint": "Information on current hero event",
-      "sc-list-hint": "List recent events",
+      "sc-list-hint": "List recent hero events",
+      "sc-stats-hint": "Get stats of recent hero events",
       "sc-find-legendary-hint": "Find recent events of a legendary hero",
       "sc-find-epic-hint": "Find recent events of an epic hero",
       "sc-download-hint": "Download the event file",
@@ -27,6 +28,8 @@
       "response-recent-4x": "\n4×: {HEROES}",
       "response-recent-5x": "\n5×: {HEROES}",
       "response-recent-6x": "\n≥6×: {HEROES}",
+      "response-list-cm":  "<:eventcard:909986289535832104> {DATE}: {HEROES}",
+      "response-list-wof": "<:eventwheel:909986289552617502> {DATE}: {HERO} ({HERO2})",
       "response-added": "Event starting at {DATE} added: {HEROES}",
       "error-add": "Error adding new event",
       "response-remove": "Event starting at {DATE} removed: {HEROES}",

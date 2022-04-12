@@ -71,6 +71,8 @@ class EventManager {
         .map((h) => h.name);
 
     this.recentEventStats13 = this.getRecentEventStats(13);
+    this.recentEventList6 = this.getRecentEventList(6);
+    this.recentEventList12 = this.getRecentEventList(12);
   }
 
   /**
@@ -102,6 +104,20 @@ class EventManager {
       heroStats.filter((h) => h.occurrences === 5).map((h) => h.name),
       heroStats.filter((h) => h.occurrences > 5).map((h) => h.name),
     ];
+  }
+
+  /**
+    * Get list of recent events
+    * @param {number} count - how many events to list
+    * @return {object}
+    */
+  getRecentEventList(count) {
+    return this.events.slice(0, count-1).map((evt) => {
+      return {
+        date: formatDate(new Date(evt.date)),
+        heroes: evt.heroes,
+      };
+    });
   }
 
   /**

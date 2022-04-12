@@ -16,6 +16,7 @@ export const cooldown = 5;
 
 const scInfoLabel      = 'info';
 const scListLabel      = 'list';
+const scStatsLabel     = 'stats';
 const scFindLabel      = 'find-legendary';
 const scFind2Label     = 'find-epic';
 const scDownloadLabel  = 'download';
@@ -65,6 +66,7 @@ export function getSlashData(context) {
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scInfoHint = l10n.s(lang, `commands.${canonName}.sc-info-hint`);
   const scListHint = l10n.s(lang, `commands.${canonName}.sc-list-hint`);
+  const scStatsHint = l10n.s(lang, `commands.${canonName}.sc-stats-hint`);
   const scFindHint =
     l10n.s(lang, `commands.${canonName}.sc-find-legendary-hint`);
   const scFind2Hint =
@@ -87,6 +89,10 @@ export function getSlashData(context) {
       .addSubcommand((command) => command
           .setName(scListLabel)
           .setDescription(scListHint),
+      )
+      .addSubcommand((command) => command
+          .setName(scStatsLabel)
+          .setDescription(scStatsHint),
       )
       .addSubcommand((command) => command
           .setName(scFindLabel)
@@ -197,6 +203,14 @@ export async function slashExecute(context) {
       actionResult = view(context);
       interaction.reply(actionResult.response);
       return actionResult.success;
+    case scListLabel:
+      actionResult = list(context);
+      interaction.reply(actionResult.response);
+      return actionResult.success;
+    case scStatsLabel:
+      actionResult = stats(context);
+      interaction.reply(actionResult.response);
+      return actionResult.success;
     case scDownloadLabel:
       const buffer = download(context);
       const file = new MessageAttachment(buffer, 'aow-hero-events.json');
@@ -246,10 +260,6 @@ function view(context) {
   const {client, lang} = context;
   const l10n = client.l10n;
   const EVENT_DURATION = (7 * 24 * 60 - 1) * 60 * 1000;
-
-  const getHeroList = (heroes) => l10n.join(
-      lang, heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
-  );
 
   const getHeroDisplayNames = (event) => {
     if (event.heroes.length === 2 ) {
@@ -379,8 +389,27 @@ function view(context) {
     }
   }
 
+  return {
+    response: response,
+    success: true,
+  };
+}
+
+
+/**
+ * @param {CommandContext} context
+ * @return {ActionResult}
+ */
+function stats(context) {
+  const {client, lang} = context;
+  const l10n = client.l10n;
+
+  const getHeroList = (heroes) => l10n.join(
+      lang, heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
+  );
+
   const recentEventStats = client.events.recentEventStats13;
-  response += l10n.s(lang, `commands.${canonName}.response-recent-13`);
+  let response = l10n.s(lang, `commands.${canonName}.response-recent-13`);
 
   if (recentEventStats[0].length > 0) {
     response += l10n.t(
@@ -421,6 +450,61 @@ function view(context) {
 
   return {
     response: response,
+    success: true,
+  };
+}
+
+/**
+ * @param {CommandContext} context
+ * @return {ActionResult}
+ */
+function list(context) {
+  const {client, lang} = context;
+  const l10n = client.l10n;
+
+  const eventList =
+    context.hasOwnerPermission?
+    client.events.recentEventList12:
+    client.events.recentEventList6;
+
+  const lines = eventList.map((event) => {
+    if (event.heroes.length === 2 ) {
+      const hero1Rarity =
+          heroBase.find((data) => data.name === event.heroes[0]).rarity;
+
+      if (hero1Rarity === 'epic') {
+        return l10n.t(
+            lang,
+            `commands.${canonName}.response-list-wof`,
+            '{DATE}', event.date,
+            '{HERO}', l10n.s(lang, `hero-display-names.${event.heroes[1]}`),
+            '{HERO2}', l10n.s(lang, `hero-display-names.${event.heroes[0]}`),
+        );
+      } else {
+        return l10n.t(
+            lang,
+            `commands.${canonName}.response-list-wof`,
+            '{DATE}', event.date,
+            '{HERO}', l10n.s(lang, `hero-display-names.${event.heroes[0]}`),
+            '{HERO2}', l10n.s(lang, `hero-display-names.${event.heroes[1]}`),
+        );
+      }
+    } else {
+      return l10n.t(
+          lang,
+          `commands.${canonName}.response-list-cm`,
+          '{DATE}', event.date,
+          '{HEROES}',
+          l10n.join(
+              lang,
+              event.heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
+          ),
+      );
+    }
+  });
+
+  return {
+    response: lines.join('\n'),
     success: true,
   };
 }
