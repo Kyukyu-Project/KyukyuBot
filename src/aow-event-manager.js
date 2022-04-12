@@ -124,11 +124,27 @@ class EventManager {
     }
 
     this.events.unshift({date: Number(eventDate), heroes: heroesToAdd});
-    writeFileSync(this.eventFilePath, JSON.stringify(this.events));
+    writeFileSync(this.eventFilePath, JSON.stringify({event: this.events}));
 
-    statsRefresh();
+    this.statsRefresh();
 
     return {date: formatDate(eventDate), heroes: heroesToAdd};
+  }
+
+  /**
+   * Delete an event
+   * @return {object}
+   */
+  removeEvent() {
+    if (this.events.length == 0) return {date: '', heroes: []};
+
+    const lastEvent = this.events.shift();
+    const eventDate = new Date(lastEvent.date);
+
+    writeFileSync(this.eventFilePath, JSON.stringify({event: this.events}));
+    this.statsRefresh();
+
+    return {date: formatDate(eventDate), heroes: lastEvent.heroes};
   }
 }
 

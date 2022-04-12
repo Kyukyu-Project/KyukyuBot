@@ -1,0 +1,41 @@
+{
+  "commands": {
+    "aow.hero-event": {
+      "c-hint": "Information on hero events",
+      "sc-info-hint": "Information on current hero event",
+      "sc-list-hint": "List recent events",
+      "sc-find-legendary-hint": "Find recent events of a legendary hero",
+      "sc-find-epic-hint": "Find recent events of an epic hero",
+      "sc-download-hint": "Download the event file",
+      "sc-add-wof-hint": "Add a new Wheel of Fortune event",
+      "sc-add-cm-hint": "Add a new CM event",
+      "sc-remove-hint": "Remove an event",
+      "opt-hero-hint": "Hero name",
+      "response-last-cm": "Heroes in last Card Master event: {HEROES}\n",
+      "response-last-wof": "Heroes in last Wheel of Fortune event: {HERO} ({HERO2})\n",
+      "response-current-cm": "Heroes in this Card Master event: {HEROES}\n",
+      "response-current-wof": "Heroes in this Wheel of Fortune event: {HERO} ({HERO2})\n",
+      "response-next-cm": "\nThe next Card Master event will have: {HERO}\n",
+      "response-next-wof": "\nThe next Wheel of Fortune event will have: {HERO} ({HERO2})\n",
+      "response-count-down": "This event will end in {DAY}d {HOUR}h {MINUTE}m.\n",
+      "response-patience-padawan": "\nThe next event will be announced soon (usually around Friday).\n",
+      "response-recent-14": "\n**Hero appearances in the 14 most recent events:**",
+      "response-recent-13": "\n**Hero appearances in the 13 most recent events:**",
+      "response-recent-1x": "\n1×: {HEROES}",
+      "response-recent-2x": "\n2×: {HEROES}",
+      "response-recent-3x": "\n3×: {HEROES}",
+      "response-recent-4x": "\n4×: {HEROES}",
+      "response-recent-5x": "\n5×: {HEROES}",
+      "response-recent-6x": "\n≥6×: {HEROES}",
+      "response-added": "Event starting at {DATE} added: {HEROES}",
+      "error-add": "Error adding new event",
+      "response-remove": "Event starting at {DATE} removed: {HEROES}",
+      "error-remove": "Error removing an event"
+    }
+  },
+  "aliases": {
+    "commands": [
+      ["aow.hero-event", "hero-event", "event"]
+    ]
+  }
+}
