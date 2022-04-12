@@ -124,8 +124,7 @@ class EventManager {
     }
 
     this.events.unshift({date: Number(eventDate), heroes: heroesToAdd});
-    writeFileSync(this.eventFilePath, JSON.stringify({event: this.events}));
-
+    writeFileSync(this.eventFilePath, JSON.stringify({events: this.events}));
     this.statsRefresh();
 
     return {date: formatDate(eventDate), heroes: heroesToAdd};
@@ -141,10 +140,24 @@ class EventManager {
     const lastEvent = this.events.shift();
     const eventDate = new Date(lastEvent.date);
 
-    writeFileSync(this.eventFilePath, JSON.stringify({event: this.events}));
+    writeFileSync(this.eventFilePath, JSON.stringify({events: this.events}));
     this.statsRefresh();
 
     return {date: formatDate(eventDate), heroes: lastEvent.heroes};
+  }
+
+  /**
+   * @return {object}
+   */
+  toJSON() {
+    return {
+      events: this.events.map((evt) => {
+        return {
+          date: formatDate(new Date(evt.date)),
+          heroes: evt.heroes,
+        };
+      }),
+    };
   }
 }
 

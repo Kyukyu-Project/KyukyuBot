@@ -6,6 +6,7 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import heroBase from '../../data/heroes.js';
+import {MessageAttachment} from 'discord.js';
 
 export const canonName = 'aow.hero-event';
 export const name = 'hero-event';
@@ -196,6 +197,11 @@ export async function slashExecute(context) {
       actionResult = view(context);
       interaction.reply(actionResult.response);
       return actionResult.success;
+    case scDownloadLabel:
+      const buffer = download(context);
+      const file = new MessageAttachment(buffer, 'aow-hero-events.json');
+      await interaction.reply({files: [file], ephemeral: true});
+      return true;
   }
 
   if (!context.hasOwnerPermission) {
@@ -482,4 +488,13 @@ function remove(context) {
       success: false,
     };
   }
+}
+
+/**
+ * @param {CommandContext} context
+ * @return {Buffer}
+ */
+function download(context) {
+  const {client} = context;
+  return Buffer.from(JSON.stringify(client.events, null, 2));
 }
