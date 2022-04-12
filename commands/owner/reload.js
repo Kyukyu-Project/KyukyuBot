@@ -113,6 +113,7 @@ export function getSlashData(context) {
           ),
       );
 }
+
 /**
  * @param {IContext} context
  * @return {boolean} - true if command is executed
@@ -121,7 +122,11 @@ export async function slashExecute(context) {
   const {client, lang, interaction} = context;
   const {l10n} = client;
 
-  if (!context.hasOwnerPermission) return false;
+  if (!context.hasOwnerPermission) {
+    const response = l10n.s(lang, 'messages.no-permission');
+    interaction.reply({content: response, ephemeral: true});
+    return false;
+  }
 
   const subCommand = interaction.options.getSubcommand();
 
