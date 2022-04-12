@@ -44,6 +44,8 @@ const filters = [
   /why is kriss (bad at farming|a bad farmer)/i,
   /(?:what|which) hero is (?:both )?(sacred and wild|wild and sacred)/i,
   /is planck a greek god/i,
+  /what was green before he grew up/i,
+  // /what happens? to meteor golems at 4:?20/i,
 ];
 
 const answers = [
@@ -69,6 +71,8 @@ const answers = [
   '\'cuz Hoheheim got all the hoes',
   `Zoos`,
   'idk, but he sure uses a lot of *greece*',
+  'an Infantry (infant tree)',
+  // 'They become Stoned Golems',
 ];
 
 /**
