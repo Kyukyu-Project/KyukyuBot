@@ -71,8 +71,8 @@ class EventManager {
         .map((h) => h.name);
 
     this.recentEventStats13 = this.getRecentEventStats(13);
-    this.recentEventList6 = this.getRecentEventList(6);
-    this.recentEventList12 = this.getRecentEventList(12);
+    this.recentEventList6 = this.getRecentEventList('*', 6);
+    this.recentEventList12 = this.getRecentEventList('*', 12);
   }
 
   /**
@@ -108,11 +108,18 @@ class EventManager {
 
   /**
     * Get list of recent events
+    * @param {string} hero - hero to search for ("*" for all heroes)
     * @param {number} count - how many events to list
     * @return {object}
     */
-  getRecentEventList(count) {
-    return this.events.slice(0, count-1).map((evt) => {
+  getRecentEventList(hero, count) {
+    let events = this.events;
+    if (hero === 'athena') return [];
+    if (hero !== '*') {
+      events = events.filter((evt) => evt.heroes.includes(hero));
+    }
+
+    return events.slice(0, count-1).map((evt) => {
       return {
         date: formatDate(new Date(evt.date)),
         heroes: evt.heroes,

@@ -26,7 +26,7 @@ const scRemoveLabel    = 'remove';
 const optHeroLabel     = 'hero';
 
 /**
- * @param {CommandContext} context
+ * @param {CommandContext|IContext} context
  * @return {object}
  */
 export function getSlashData(context) {
@@ -204,7 +204,7 @@ export async function slashExecute(context) {
       interaction.reply(actionResult.response);
       return actionResult.success;
     case scListLabel:
-      actionResult = list(context);
+      actionResult = listAllRecent(context);
       interaction.reply(actionResult.response);
       return actionResult.success;
     case scStatsLabel:
@@ -216,6 +216,12 @@ export async function slashExecute(context) {
       const file = new MessageAttachment(buffer, 'aow-hero-events.json');
       await interaction.reply({files: [file], ephemeral: true});
       return true;
+    case scFindLabel:
+    case scFind2Label:
+      actionResult = listRecent(
+          context, interaction.options.getString(optHeroLabel));
+      interaction.reply(actionResult.response);
+      return actionResult.success;
   }
 
   if (!context.hasOwnerPermission) {
@@ -253,7 +259,7 @@ export async function slashExecute(context) {
 }
 
 /**
- * @param {CommandContext} context
+ * @param {CommandContext|IContext} context
  * @return {ActionResult}
  */
 function view(context) {
@@ -397,7 +403,7 @@ function view(context) {
 
 
 /**
- * @param {CommandContext} context
+ * @param {CommandContext|IContext} context
  * @return {ActionResult}
  */
 function stats(context) {
@@ -455,10 +461,11 @@ function stats(context) {
 }
 
 /**
- * @param {CommandContext} context
+ * List recent events of all heroes
+ * @param {CommandContext|IContext} context
  * @return {ActionResult}
  */
-function list(context) {
+function listAllRecent(context) {
   const {client, lang} = context;
   const l10n = client.l10n;
 
@@ -503,6 +510,8 @@ function list(context) {
     }
   });
 
+  lines.unshift(l10n.s(lang, `commands.${canonName}.response-list`));
+
   return {
     response: lines.join('\n'),
     success: true,
@@ -510,7 +519,55 @@ function list(context) {
 }
 
 /**
- * @param {CommandContext} context
+ * List recent events of a hero
+ * @param {CommandContext|IContext} context
+ * @param {string} hero
+ * @return {ActionResult}
+ */
+function listRecent(context, hero) {
+  const {client, lang} = context;
+  const l10n = client.l10n;
+
+  const eventList =
+    (context.hasOwnerPermission|context.hasAdminPermission)?
+    client.events.getRecentEventList(hero, 12):
+    client.events.getRecentEventList(hero, 6);
+
+  if (eventList.length === 0) {
+    return {
+      response: l10n.t(
+          lang, `commands.${canonName}.response-list-none`,
+          '{HERO}', l10n.s(lang, `hero-display-names.${hero}`),
+      ),
+      success: false,
+    };
+  }
+
+  const lines = eventList.map((event) => {
+    if (event.heroes.length === 2 ) {
+      return l10n.t(
+          lang, `commands.${canonName}.response-find-wof`, '{DATE}', event.date,
+      );
+    } else {
+      return l10n.t(
+          lang, `commands.${canonName}.response-find-cm`, '{DATE}', event.date,
+      );
+    }
+  });
+
+  lines.unshift(l10n.t(
+      lang, `commands.${canonName}.response-find`,
+      '{HERO}', l10n.s(lang, `hero-display-names.${hero}`),
+  ));
+
+  return {
+    response: lines.join('\n'),
+    success: true,
+  };
+}
+
+/**
+ * @param {CommandContext|IContext} context
  * @param {string} heroes
  * @return {ActionResult}
  */
@@ -543,7 +600,7 @@ function add(context, ...heroes) {
 }
 
 /**
- * @param {CommandContext} context
+ * @param {CommandContext|IContext} context
  * @return {ActionResult}
  */
 function remove(context) {
@@ -575,7 +632,7 @@ function remove(context) {
 }
 
 /**
- * @param {CommandContext} context
+ * @param {CommandContext|IContext} context
  * @return {Buffer}
  */
 function download(context) {
