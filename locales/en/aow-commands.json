@@ -16,7 +16,7 @@
       "response-last-wof": "Heroes in last Wheel of Fortune event: {HERO} ({HERO2})\n",
       "response-current-cm": "Heroes in this Card Master event: {HEROES}\n",
       "response-current-wof": "Heroes in this Wheel of Fortune event: {HERO} ({HERO2})\n",
-      "response-next-cm": "\nThe next Card Master event will have: {HERO}\n",
+      "response-next-cm": "\nThe next Card Master event will have: {HEROES}\n",
       "response-next-wof": "\nThe next Wheel of Fortune event will have: {HERO} ({HERO2})\n",
       "response-count-down": "This event will end in {DAY}d {HOUR}h {MINUTE}m.\n",
       "response-patience-padawan": "\nThe next event will be announced soon (usually around Friday).\n",
@@ -39,6 +39,54 @@
       "error-add": "Error adding new event",
       "response-remove": "Event starting at {DATE} removed: {HEROES}",
       "error-remove": "Error removing an event"
+    },
+    "aow.wof": {
+      "c-hint": "Information on wheel probabilities",
+
+      "cg-legendary-hint": "Wheel probability for legendary hero shards",
+      "cg-epic-hint": "Wheel probability for epic hero shards",
+      "cg-voucher-hint": "Wheel probability for super card vouchers",
+
+      "sc-legendary-mode-hint": "Most likely result of legendary shards",
+      "sc-epic-mode-hint": "Most likely result of epic shards",
+      "sc-voucher-mode-hint": "Most likely result of vouchers",
+
+      "sc-legendary-exact-hint": "Wheel probability for exactly X legendary shards",
+      "sc-epic-exact-hint": "Wheel probability for exactly X epic shards",
+      "sc-voucher-exact-hint": "Wheel probability for exactly X vouchers",
+
+      "sc-legendary-at-least-hint": "Probability for X or more legendary shards",
+      "sc-epic-at-least-hint": "Probability for X or more epic shards",
+      "sc-voucher-at-least-hint": "Probability for X or more vouchers",
+
+      "sc-legendary-range-hint": "Probability for a range of legendary shards",
+      "sc-epic-range-hint": "Probability for a range of epic shards",
+      "sc-voucher-range-hint": "Probability for a range of vouchers",
+
+      "opt-exact-hint": "the exact quantity",
+      "opt-min-hint": "the minimum quantity",
+      "opt-max-hint": "the max quantity",
+      "opt-spin-count-hint": "the total spin count",
+
+      "legendary-prob-mode": "With {SPIN_COUNT} spins, the most likely result (mode) is {X} legendary shard(s) ({PROB}% probability).",
+      "legendary-prob-exact":  "The probability of getting exactly {X} legendary shard(s) in {SPIN_COUNT} spins is {PROB}%.",
+      "legendary-prob-at-least": "The probability of getting {X} or more legendary shards in {SPIN_COUNT} spins is {PROB}%.",
+      "legendary-prob-range":  "The probability of getting {X} to {Y} legendary shard(s) in {SPIN_COUNT} spins is {PROB}%.",
+
+      "epic-prob-mode": "With {SPIN_COUNT} spins, the most likely result (mode) is {X} epic shard(s) ({PROB}% probability).",
+      "epic-prob-exact":  "The probability of getting exactly {X} epic shard(s) in {SPIN_COUNT} spins is {PROB}%.",
+      "epic-prob-at-least": "The probability of getting {X} or more epic shards in {SPIN_COUNT} spins is {PROB}%.",
+      "epic-prob-range":  "The probability of getting {X} to {Y} epic shards in {SPIN_COUNT} spins is {PROB}%.",
+
+      "voucher-prob-mode": "With {SPIN_COUNT} spins, the most likely result (mode) is {X} voucher(s) ({PROB}% probability).",
+      "voucher-prob-exact":  "The probability of getting exactly {X} voucher(s) in {SPIN_COUNT} spins is {PROB}%.",
+      "voucher-prob-at-least": "The probability of getting {X} or more vouchers in {SPIN_COUNT} spins is {PROB}%.",
+      "voucher-prob-range":  "The probability of getting {X} to {Y} vouchers in {SPIN_COUNT} spins is {PROB}%.",
+
+      "error": "Error calculating the result.",
+
+      "img-voucher-probabilities": "https://cdn.discordapp.com/attachments/833978786395586600/836143023582085120/WoF_probability_voucher.png",
+      "img-shard-probabilities": "https://cdn.discordapp.com/attachments/833978786395586600/836143026522816522/WoF_probability_shard.png"
     }
   },
   "aliases": {

@@ -334,3 +334,23 @@ export async function pause(seconds) {
 export async function wait(seconds) {
   await pause(seconds);
 }
+
+/**
+ * Format number
+ * @param {number} value
+ * @param {string|null} decimalMarker - decimal marker
+ * @param {number} decimals - Maximum number of decimal digits
+ * @return {string}
+ */
+export function formatNumber(value, decimalMarker, decimals) {
+  const str = value.toFixed(decimals).split('.');
+  if (str[0].length >= 5) {
+    str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1\u2009');
+  }
+  if (str[1] && str[1].length >= 5) {
+    str[1] = str[1].replace(/(\d{3})/g, '$1\u2009');
+  }
+
+  if (decimals > 0) return str.join(decimalMarker);
+  else return str[0];
+}

@@ -7,6 +7,7 @@
     "zh-tw": "正體中文"
   },
   "delimiter": ", ",
+  "decimal-marker": ".",
   "messages": {
     "no-permission": "Error executing command: no permission.",
     "invalid-command": "Error executing command: invalid command."
