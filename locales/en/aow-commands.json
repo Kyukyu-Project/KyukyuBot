@@ -87,6 +87,14 @@
 
       "img-voucher-probabilities": "https://cdn.discordapp.com/attachments/833978786395586600/836143023582085120/WoF_probability_voucher.png",
       "img-shard-probabilities": "https://cdn.discordapp.com/attachments/833978786395586600/836143026522816522/WoF_probability_shard.png"
+    },
+    "aow.exp": {
+      "c-hint": "Estimate the gold needed for Exp levelling",
+      "opt-current-hint": "your current Exp points",
+      "opt-level-hint": "your target Exp level",
+      "response-next": "You are at level {CURR LEVEL}, and you need about {GOLD AMOUNT}M gold to level up to {NEXT LEVEL}.",
+      "response-you-are-close": "You are at level {CURR LEVEL}, and you are very close to level {NEXT LEVEL}!",
+      "response-target-reached": "You have already reached level {NEXT LEVEL}. Congratulation!"
     }
   },
   "aliases": {
