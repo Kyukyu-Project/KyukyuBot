@@ -1,0 +1,97 @@
+{
+  "commands": {
+    "aow.hero-event": {
+      "c-hint": "Informationen zum Helden-Event",
+      "sc-info-hint": "Informationen zum aktuellen Helden-Event",
+      "sc-list-hint": "Liste der letzten Helden-Events",
+      "sc-stats-hint": "Statistiken der letzten Helden-Events abrufen",
+      "sc-find-legendary-hint": "Finde die letzten Events eines legendären Helden",
+      "sc-find-epic-hint": "Finde die letzten Events eines epischen Helden",
+      "sc-download-hint": "Download der Event-Datei",
+      "sc-add-wof-hint": "Ein neues Glücksrad-Event hinzufügen",
+      "sc-add-cm-hint": "Ein neues KM-Event hinzufügen",
+      "sc-remove-hint": "Ein Event entfernen",
+      "opt-hero-hint": "Name des Helden",
+      "response-last-cm": "Helden im letzten Kartenmeister-Event: {HEROES}\n",
+      "response-last-wof": "Helden im letzten Glücksrad-Event: {HERO} ({HERO2})\n",
+      "response-current-cm": "Helden in diesem Kartenmeister-Event: {HEROES}\n",
+      "response-current-wof": "Helden in diesem Glücksrad-Event: {HERO} ({HERO2})\n",
+      "response-next-cm": "\nIm nächsten Kartenmeister-Event kommt: {HEROES}\n",
+      "response-next-wof": "\nIm nächsten Glücksrad-Event kommt: {HERO} ({HERO2})\n",
+      "response-count-down": "Dieses Event endet in {DAY}d {HOUR}h {MINUTE}m.\n",
+      "response-patience-padawan": "\nDas nächste Event wird bald bekannt gegeben (normalerweise am Freitag).\n",
+      "response-recent-14": "\n**Heldenauftritte in den letzten 14 Events:**",
+      "response-recent-13": "\n**Heldenauftritte in den letzten 13 Events:**",
+
+      "response-list": "Letzte Helden-Events:",
+      "response-list-cm":  "<:eventcard:909986289535832104> {DATE}: {HEROES}",
+      "response-list-wof": "<:eventwheel:909986289552617502> {DATE}: {HERO} ({HERO2})",
+      "response-find": "Letzte Events für {HERO}:",
+      "response-find-none": "Keine Informationen über die letzten Events für {HERO}.",
+      "response-find-cm":  "<:eventcard:909986289535832104> {DATE}",
+      "response-find-wof": "<:eventwheel:909986289552617502> {DATE}",
+      "response-added": "Event startet am {DATE} hinzugefügt wurde: {HEROES}",
+      "error-add": "Fehler beim Hinzufügen eines neuen Events",
+      "response-remove": "Event startet am {DATE} entfernt wurde: {HEROES}",
+      "error-remove": "Fehler beim Entfernen eines Events"
+    },
+    "aow.wof": {
+      "c-hint": "Informationen über die Wahrscheinlichkeiten beim Glücksrad",
+
+      "cg-legendary-hint": "Glücksrad-Wahrscheinlichkeit für legendäre Helden-Scherben",
+      "cg-epic-hint": "Glücksrad-Wahrscheinlichkeit für epische Helden-Scherben",
+      "cg-voucher-hint": "Glücksrad-Wahrscheinlichkeit für Supercard-Gutscheine",
+
+      "sc-legendary-mode-hint": "Sehr wahrscheinlich das Ergebnis von legendären Scherben",
+      "sc-epic-mode-hint": "Sehr wahrscheinlich das Ergebnis von epischen Scherben",
+      "sc-voucher-mode-hint": "Sehr wahrscheinlich das Ergebnis für Gutscheine",
+
+      "sc-legendary-exact-hint": "Glücksrad-Wahrscheinlichkeit für genau X legendäre Scherben",
+      "sc-epic-exact-hint": "Glücksrad-Wahrscheinlichkeit für genau X epische Scherben",
+      "sc-voucher-exact-hint": "Glücksrad-Wahrscheinlichkeit für genau X Gutscheine",
+
+      "sc-legendary-at-least-hint": "Wahrscheinlichkeit für X oder mehr legendäre Scherben",
+      "sc-epic-at-least-hint": "Wahrscheinlichkeit für X oder mehr epische Scherben",
+      "sc-voucher-at-least-hint": "Wahrscheinlichkeit für X oder mehr Gutscheine",
+
+      "sc-legendary-range-hint": "Wahrscheinlichkeit für eine Vielzahl von legendären Scherben",
+      "sc-epic-range-hint": "Wahrscheinlichkeit für eine Vielzahl von epischen Scherben",
+      "sc-voucher-range-hint": "Wahrscheinlichkeit für eine Vielzahl von Gutscheinen",
+
+      "opt-exact-hint": "die genaue Anzahl",
+      "opt-min-hint": "die Mindestanzahl",
+      "opt-max-hint": "die maximale Anzahl",
+      "opt-spin-count-hint": "die Gesamtzahl der Drehungen",
+
+      "legendary-prob-mode": "Bei {SPIN_COUNT} Drehungen ist das wahrscheinlichste Ergebnis (Modus) {X} legendäre(n) Splitter ({PROB}% Wahrscheinlichkeit).",
+      "legendary-prob-exact":  "Die Wahrscheinlichkeit, in {SPIN_COUNT} Drehungen genau {X} legendäre(n) Splitter zu erhalten, ist {PROB}%.",
+      "legendary-prob-at-least": "Die Wahrscheinlichkeit, {X} oder mehr legendäre Scherben in {SPIN_COUNT} Drehungen zu erhalten, ist {PROB}%.",
+      "legendary-prob-range":  "Die Wahrscheinlichkeit, in {SPIN_COUNT} Spins {X} bis {Y} legendäre(n) Splitter zu erhalten, ist {PROB}%.",
+
+      "epic-prob-mode": "Bei {SPIN_COUNT} Drehungen ist das wahrscheinlichste Ergebnis (Modus) {X} epische(n) Splitter ({PROB}% Wahrscheinlichkeit).",
+      "epic-prob-exact":  "Die Wahrscheinlichkeit, genau {X} epische Splitter in {SPIN_COUNT} Drehungen zu erhalten, ist {PROB}%.",
+      "epic-prob-at-least": "Die Wahrscheinlichkeit, {X} oder mehr epische Splitter in {SPIN_COUNT} Spins zu erhalten, ist {PROB}%.",
+      "epic-prob-range":  "Die Wahrscheinlichkeit, {X} bis {Y} epische Splitter in {SPIN_COUNT} Drehungen zu erhalten, ist {PROB}%.",
+
+      "voucher-prob-mode": "Bei {SPIN_COUNT} Spins ist das wahrscheinlichste Ergebnis (Modus) {X} Gutschein(e) ({PROB}% probability).",
+      "voucher-prob-exact":  "Die Wahrscheinlichkeit, in {SPIN_COUNT} Drehungen genau {X} Gutschein(e) zu erhalten, ist {PROB}%.",
+      "voucher-prob-at-least": "Die Wahrscheinlichkeit, {X} oder mehr Gutscheine in {SPIN_COUNT} Drehungen zu erhalten, ist {PROB}%.",
+      "voucher-prob-range":  "Die Wahrscheinlichkeit, {X} bis {Y} Gutscheine in {SPIN_COUNT} Drehungen zu erhalten, ist {PROB}%.",
+
+      "error": "Fehler bei der Berechnung des Ergebnisses."
+    },
+    "aow.exp": {
+      "c-hint": "Schätzung des Goldes, das für das Leveln von Exp benötigt wird",
+      "opt-current-hint": "Deine aktuellen Exp-Punkte",
+      "opt-level-hint": "Dein angestrebtes Exp-Level",
+      "response-next": "Du bist auf Level {CURR LEVEL}, du brauchst ungefähr {GOLD AMOUNT}M Gold, um auf Level {NEXT LEVEL} zu kommen.",
+      "response-you-are-close": "Du bist auf Level {CURR LEVEL}, du bist sehr nahe an Level {NEXT LEVEL}!",
+      "response-target-reached": "Du hast bereits Level {NEXT LEVEL} erreicht. Herzlichen Glückwunsch!"
+    }
+  },
+  "aliases": {
+    "commands": [
+      ["aow.hero-event", "Helden-Event", "Event"]
+    ]
+  }
+}

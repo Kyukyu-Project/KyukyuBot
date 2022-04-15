@@ -1,0 +1,32 @@
+{
+  "commands": {
+    "general.avatar": {
+      "embed-title": "Avatar von {USER NAME}"
+    },
+    "general.server-avatar": {
+      "embed-title": "Server Avatar von {USER NAME}"
+    },
+    "general.help": {
+      "owner-commands": "Im Folgenden ist eine Liste der Besitzerbefehle aufgeführt:\n{COMMANDS}",
+      "admin-commands": "Im folgenden werden die Befehle des Gildenadministrators aufgelistet:\n{COMMANDS}",
+      "general-commands": "Im Folgenden werden die allgemeinen Befehle aufgelistet:\n{COMMANDS}",
+      "no-info": "Fehler beim Laden des Hilfetextes.",
+      "command-hint": "Lerne, wie man Bot-Befehle verwendet",
+      "general-hint": "Lerne, wie man allgemeine Befehle benutzt",
+      "admin-hint": "Lerne, wie man Server-Administrator-Befehle verwendet",
+      "owner-hint": "Lerne, wie man Bot-Besitzer-Befehle verwendet",
+      "command-name-hint": "Name des Befehls"
+    },
+    "general.ping": {
+      "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
+    }
+  },
+  "aliases": {
+    "commands": [
+      ["general.avatar", "avatar", "pfp"],
+      ["general.server-avatar", "server-avatar", "server-pfp"],
+      ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
+      ["general.ping", "ping", "ピン", "乒"]
+    ]
+  }
+}
