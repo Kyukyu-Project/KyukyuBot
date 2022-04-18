@@ -142,8 +142,8 @@ export async function slashExecute(context) {
         l10n.defaultLang;
 
     const reloadLangFunctions = [
-      new Promise((resolve) => setTimeout(resolve, 3 * 1000)),
-      async () => l10n.reloadLanguage(langCode),
+      new Promise((resolve) => setTimeout(resolve, 3 * 1000, true)),
+      new Promise((resolve) => resolve(l10n.reloadLanguage(langCode))),
     ];
 
     return Promise
