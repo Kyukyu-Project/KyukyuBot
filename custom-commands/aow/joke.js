@@ -43,9 +43,14 @@ const filters = [
   /who (?:is|was) banned (?:from Discord|.*by Ogre Warrior)/i,
   /why is kriss (bad at farming|a bad farmer)/i,
   /(?:what|which) hero is (?:both )?(sacred and wild|wild and sacred)/i,
-  /is planck a greek god/i,
-  /what was green before he grew up/i,
+  /stop .* pun jokes?/i,
+  /is planck (?:a )?greek god/i,
+  /what was green (?:before he grew up|when he was a child|when he was a baby)/i,
   // /what happens? to meteor golems at 4:?20/i,
+  /Do(?:es)? (?:davison and cactuses|davison and cactus|davi and cactuses|davi and cactus|davison & cactuses|davison & cactus|davi & cactuses|davi & cactus) stack/i,
+  /what (?:kind of |type of )?sho(?:es)? do(?:es?) seon(?:deok)? wear/i,
+  /what is (?:the ?)(?:goblin tech|GT)(?:'s)? favorite classical music/i,
+  /why do(?:es)? (?:musician|cellist)s? hate (?:goblin tech|GT)/i,
 ];
 
 const answers = [
@@ -70,9 +75,14 @@ const answers = [
   'Voodoo Dolls because they kept cursing',
   '\'cuz Hoheheim got all the hoes',
   `Zoos`,
+  'My Apollo-gee',
   'idk, but he sure uses a lot of *greece*',
-  'an Infantry (infant tree)',
+  'he was an Infantry (infant tree)',
   // 'They become Stoned Golems',
+  'Not sure. But cactuses sure stuck to Davison after his dive',
+  'Heels (heals)',
+  'Canon (cannon) in D',
+  'They are reminded of Canon in D',
 ];
 
 /**
