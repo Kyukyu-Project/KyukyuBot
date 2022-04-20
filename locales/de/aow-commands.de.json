@@ -91,7 +91,8 @@
   },
   "aliases": {
     "commands": [
-      ["aow.hero-event", "Helden-Event", "Event"]
+      ["aow.hero-event", "Helden-Event", "Event"],
+      ["aow.tips", "tips", "tip"]
     ]
   }
 }

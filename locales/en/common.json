@@ -8,6 +8,7 @@
   },
   "delimiter": ", ",
   "decimal-marker": ".",
+  "disclaimer": "Information contributed by AoW players.",
   "messages": {
     "no-permission": "Error executing command: no permission.",
     "invalid-command": "Error executing command: invalid command."

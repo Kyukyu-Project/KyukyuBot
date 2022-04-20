@@ -95,11 +95,19 @@
       "response-next": "You are at level {CURR LEVEL}, and you need about {GOLD AMOUNT}M gold to level up to {NEXT LEVEL}.",
       "response-you-are-close": "You are at level {CURR LEVEL}, and you are very close to level {NEXT LEVEL}!",
       "response-target-reached": "You have already reached level {NEXT LEVEL}. Congratulation!"
+    },
+    "aow.tips": {
+      "c-hint": "Get tips on on Art of War:Legion",
+      "title": "Art of War:Legion Tip #{ID}",
+      "tip-navigation": "A random tip has been displayed. You can change the tips for the next 5 minutes.",
+      "tip-navigation-next": "Next Tip",
+      "tip-navigation-prev": "Previous Tip"
     }
   },
   "aliases": {
     "commands": [
-      ["aow.hero-event", "hero-event", "event"]
+      ["aow.hero-event", "hero-event", "event"],
+      ["aow.tips", "tips", "tip"]
     ]
   }
 }
