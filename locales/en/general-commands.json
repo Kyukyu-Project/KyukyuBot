@@ -1,11 +1,5 @@
 {
   "commands": {
-    "general.avatar": {
-      "embed-title": "Avatar of {USER NAME}"
-    },
-    "general.server-avatar": {
-      "embed-title": "Server avatar of {USER NAME}"
-    },
     "general.help": {
       "owner-commands": "The following is a list of owner commands:\n{COMMANDS}",
       "admin-commands": "The following is a list of guild administrator commands:\n{COMMANDS}",
@@ -19,12 +13,19 @@
     },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
+    },
+    "general.user-info": {
+      "response": "Information on <@!{USER ID}>",
+      "tag-label": "Tag",
+      "id-label": "ID",
+      "nickname-label": "Nickname",
+      "roles-label": "Roles",
+      "creation-date-label": "Creation date",
+      "join-date-label": "Join date"
     }
   },
   "aliases": {
     "commands": [
-      ["general.avatar", "avatar", "pfp"],
-      ["general.server-avatar", "server-avatar", "server-pfp"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
       ["general.ping", "ping", "ピン", "乒"]
     ]

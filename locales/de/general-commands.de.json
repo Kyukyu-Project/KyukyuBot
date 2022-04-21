@@ -1,11 +1,5 @@
 {
   "commands": {
-    "general.avatar": {
-      "embed-title": "Avatar von {USER NAME}"
-    },
-    "general.server-avatar": {
-      "embed-title": "Server Avatar von {USER NAME}"
-    },
     "general.help": {
       "owner-commands": "Im Folgenden ist eine Liste der Besitzerbefehle aufgeführt:\n{COMMANDS}",
       "admin-commands": "Im folgenden werden die Befehle des Gildenadministrators aufgelistet:\n{COMMANDS}",
@@ -23,8 +17,6 @@
   },
   "aliases": {
     "commands": [
-      ["general.avatar", "avatar", "pfp"],
-      ["general.server-avatar", "server-avatar", "server-pfp"],
       ["general.help", "h", "help", "command", "commands", "cmd", "cmds"],
       ["general.ping", "ping", "ピン", "乒"]
     ]

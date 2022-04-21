@@ -7,6 +7,7 @@
     "zh-tw": "正體中文"
   },
   "delimiter": ", ",
+  "ellipsis": " ...",
   "decimal-marker": ".",
   "disclaimer": "Information contributed by AoW players.",
   "messages": {

@@ -1,5 +1,6 @@
 {
   "delimiter": ", ",
+  "ellipsis": " ...",
   "decimal-marker": ",",
   "messages": {
     "no-permission": "Fehler beim Ausführen des Befehls: keine Berechtigung.",
