@@ -36,10 +36,31 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
+  const {client, guild, lang, interaction} = context;
   const {l10n} = client;
 
   interaction.reply({content: l10n.s(lang, DEPLOY_START), ephemeral: true});
+
+  if (guild.id === client.ownerGuildId) {
+    client.guilds.cache.forEach((newGuild) => {
+      const newSettings = client.getGuildSettings(newGuild);
+      const newContext = Object.assign(
+          context,
+          {
+            guild: newGuild,
+            guildSettings: newSettings,
+            lang: newSettings.lang,
+          },
+      );
+      interaction.followUp(newGuild.name);
+      deploy(newContext).then(() => {
+        interaction.followUp(l10n.s(lang, DEPLOY_SUCCESS));
+      }).catch((error) => {
+        interaction.followUp(l10n.s(lang, DEPLOY_ERROR));
+      });
+    });
+    return true;
+  }
 
   return new Promise((resolve, reject) => {
     deploy(context).then(() => {
