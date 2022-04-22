@@ -82,15 +82,16 @@ export async function slashExecute(context) {
     });
   }
 
+  const dateLocale = l10n.s(lang, 'date-locale');
   embed.fields.push({
     'name': l10n.s(lang, `commands.${canonName}.creation-date-label`),
-    'value': formatDate(user.createdAt),
+    'value': formatDate(user.createdAt, dateLocale),
     'inline': true,
   });
 
   embed.fields.push({
     'name': l10n.s(lang, `commands.${canonName}.join-date-label`),
-    'value': formatDate(member.joinedAt),
+    'value': formatDate(member.joinedAt, dateLocale),
     'inline': true,
   });
 

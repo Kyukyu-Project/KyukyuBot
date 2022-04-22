@@ -268,7 +268,7 @@ export async function slashExecute(context) {
   const options = interaction.options;
   const subcommandGroup = options.getSubcommandGroup();
   const subCommand = options.getSubcommand();
-  const decimalMarker = l10n.s(lang, 'decimal-marker');
+  const numberLocale = l10n.s(lang, 'number-locale');
 
   let qty1 = 0;
   let prob1 = 0;
@@ -278,6 +278,10 @@ export async function slashExecute(context) {
   /** template string for exact */ let exactTemplate;
   /** template string for at least */ let atLeastTemplate;
   /** template string for range */ let rangTemplate;
+
+  let xValue = 0;
+  let yValue = 0;
+  let probValue = 0;
 
   switch (subcommandGroup) {
     case cgVoucherLabel:
@@ -315,14 +319,19 @@ export async function slashExecute(context) {
   switch (subCommand) {
     case scModeLabel:
       const modeResult = calculateMode(spinCount, prob1, qty1, prob2, qty2);
+      xValue = formatNumber(modeResult.mode, numberLocale);
+      probValue = formatNumber(
+          modeResult.probability * 100,
+          numberLocale,
+          {minimumFractionDigits: 2},
+      );
       interaction.reply(
           l10n.t(
               lang,
               `commands.aow.wof.${modeTemplate}`,
               '{SPIN_COUNT}', spinCount,
-              '{X}', formatNumber(modeResult.mode, null, 0),
-              '{PROB}',
-              formatNumber(modeResult.probability * 100, decimalMarker, 4),
+              '{X}', xValue,
+              '{PROB}', probValue,
           ),
       );
       return true;
@@ -338,12 +347,16 @@ export async function slashExecute(context) {
       const exactProb =
         getProbability(spinCount, exact, prob1, qty1, prob2, qty2);
 
+      xValue = formatNumber(exact, numberLocale);
+      probValue = formatNumber(
+          exactProb * 100,
+          numberLocale,
+          {minimumFractionDigits: 2},
+      );
+
       interaction.reply(l10n.t(
-          lang,
-          `commands.aow.wof.${exactTemplate}`,
-          '{SPIN_COUNT}', spinCount,
-          '{X}', formatNumber(exact, null, 0),
-          '{PROB}', formatNumber(exactProb * 100, decimalMarker, 2),
+          lang, `commands.aow.wof.${exactTemplate}`,
+          '{SPIN_COUNT}', spinCount, '{X}', xValue, '{PROB}', probValue,
       ));
       return true;
     case scAtLeastLabel:
@@ -358,12 +371,16 @@ export async function slashExecute(context) {
       const atLeastProbability =
         calculateAtLeast(spinCount, atLeast, prob1, qty1, prob2, qty2);
 
+      xValue = formatNumber(atLeast, numberLocale);
+      probValue = formatNumber(
+          atLeastProbability * 100,
+          numberLocale,
+          {minimumFractionDigits: 2},
+      );
+
       interaction.reply(l10n.t(
-          lang,
-          `commands.aow.wof.${atLeastTemplate}`,
-          '{SPIN_COUNT}', spinCount,
-          '{X}', formatNumber(atLeast, null, 0),
-          '{PROB}', formatNumber(atLeastProbability * 100, decimalMarker, 2),
+          lang, `commands.aow.wof.${atLeastTemplate}`,
+          '{SPIN_COUNT}', spinCount, '{X}', xValue, '{PROB}', probValue,
       ));
       return true;
     case scRangeLabel:
@@ -385,13 +402,20 @@ export async function slashExecute(context) {
       const rangProbability =
         calculateRange(spinCount, min, max, prob1, qty1, prob2, qty2);
 
+      xValue = formatNumber(min, numberLocale);
+      yValue = formatNumber(max, numberLocale);
+      probValue = formatNumber(
+          rangProbability * 100,
+          numberLocale,
+          {minimumFractionDigits: 2},
+      );
+
       interaction.reply(l10n.t(
           lang,
           `commands.aow.wof.${rangTemplate}`,
           '{SPIN_COUNT}', spinCount,
-          '{X}', formatNumber(min, null, 0),
-          '{Y}', formatNumber(max, null, 0),
-          '{PROB}', formatNumber(rangProbability * 100, decimalMarker, 2),
+          '{X}', xValue, '{Y}', yValue,
+          '{PROB}', probValue,
       ));
       return true;
   }

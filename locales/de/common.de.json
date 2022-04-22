@@ -1,7 +1,8 @@
 {
   "delimiter": ", ",
   "ellipsis": " ...",
-  "decimal-marker": ",",
+  "number-locale": "de-DE",
+  "date-locale": "de-DE",
   "messages": {
     "no-permission": "Fehler beim Ausführen des Befehls: keine Berechtigung.",
     "invalid-command": "Fehler beim Ausführen des Befehls: ungültiger Befehl."

@@ -7,6 +7,7 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import heroBase from '../../data/heroes.js';
 import {MessageAttachment} from 'discord.js';
+import {formatDate} from '../../utils/utils.js';
 
 export const canonName = 'aow.hero-event';
 export const name = 'hero-event';
@@ -474,6 +475,8 @@ function listAllRecent(context) {
     client.events.recentEventList12:
     client.events.recentEventList6;
 
+  const dateLocale = l10n.s(lang, 'date-locale');
+
   const lines = eventList.map((event) => {
     if (event.heroes.length === 2 ) {
       const hero1Rarity =
@@ -483,7 +486,7 @@ function listAllRecent(context) {
         return l10n.t(
             lang,
             `commands.${canonName}.response-list-wof`,
-            '{DATE}', event.date,
+            '{DATE}', formatDate(new Date(event.date), dateLocale),
             '{HERO}', l10n.s(lang, `hero-display-names.${event.heroes[1]}`),
             '{HERO2}', l10n.s(lang, `hero-display-names.${event.heroes[0]}`),
         );
@@ -491,7 +494,7 @@ function listAllRecent(context) {
         return l10n.t(
             lang,
             `commands.${canonName}.response-list-wof`,
-            '{DATE}', event.date,
+            '{DATE}', formatDate(new Date(event.date), dateLocale),
             '{HERO}', l10n.s(lang, `hero-display-names.${event.heroes[0]}`),
             '{HERO2}', l10n.s(lang, `hero-display-names.${event.heroes[1]}`),
         );
@@ -500,7 +503,7 @@ function listAllRecent(context) {
       return l10n.t(
           lang,
           `commands.${canonName}.response-list-cm`,
-          '{DATE}', event.date,
+          '{DATE}', formatDate(new Date(event.date), dateLocale),
           '{HEROES}',
           l10n.join(
               lang,
@@ -543,14 +546,17 @@ function listRecent(context, hero) {
     };
   }
 
+  const dateLocale = l10n.s(lang, 'date-locale');
   const lines = eventList.map((event) => {
     if (event.heroes.length === 2 ) {
       return l10n.t(
-          lang, `commands.${canonName}.response-find-wof`, '{DATE}', event.date,
+          lang, `commands.${canonName}.response-find-wof`,
+          '{DATE}', formatDate(new Date(event.date), dateLocale),
       );
     } else {
       return l10n.t(
-          lang, `commands.${canonName}.response-find-cm`, '{DATE}', event.date,
+          lang, `commands.${canonName}.response-find-cm`,
+          '{DATE}', formatDate(new Date(event.date), dateLocale),
       );
     }
   });
@@ -582,11 +588,12 @@ function add(context, ...heroes) {
         result.heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
     );
 
+    const dateLocale = l10n.s(lang, 'date-locale');
     return {
       response: l10n.t(
           lang,
           `commands.${canonName}.response-added`,
-          '{DATE}', result.date,
+          '{DATE}', formatDate(new Date(result.date), dateLocale),
           '{HEROES}', heroDisplayNames,
       ),
       success: true,
@@ -614,11 +621,12 @@ function remove(context) {
         result.heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
     );
 
+    const dateLocale = l10n.s(lang, 'date-locale');
     return {
       response: l10n.t(
           lang,
           `commands.${canonName}.response-remove`,
-          '{DATE}', result.date,
+          '{DATE}', formatDate(new Date(result.date), dateLocale),
           '{HEROES}', heroDisplayNames,
       ),
       success: true,
@@ -636,6 +644,17 @@ function remove(context) {
  * @return {Buffer}
  */
 function download(context) {
-  const {client} = context;
-  return Buffer.from(JSON.stringify(client.events, null, 2));
+  const {client, lang} = context;
+  const {l10n} = client;
+
+  const dateLocale = l10n.s(lang, 'date-locale');
+
+  const json = client.events.events.map((evt) => {
+    return {
+      date: formatDate(new Date(evt.date), dateLocale),
+      heroes: evt.heroes,
+    };
+  });
+
+  return Buffer.from(JSON.stringify(json, null, 2));
 }

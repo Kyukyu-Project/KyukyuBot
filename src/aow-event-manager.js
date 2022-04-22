@@ -6,22 +6,6 @@ import heroBase from '../data/heroes.js';
  * @typedef {import('./client.js').default} Client
  */
 
-/**
- * Convert date to 'yyyy.mm.dd' format
- * @param {date} d - date
- * @return {string}
- */
-function formatDate(d) {
-  const yyyy = d.getUTCFullYear();
-
-  let mm = d.getUTCMonth() + 1;
-  let dd = d.getUTCDate();
-
-  if (mm < 10) mm = '0' + mm;
-  if (dd < 10) dd = '0' + dd;
-  return `${yyyy}.${mm}.${dd}`;
-}
-
 /** Command helper class */
 class EventManager {
   /**
@@ -119,12 +103,7 @@ class EventManager {
       events = events.filter((evt) => evt.heroes.includes(hero));
     }
 
-    return events.slice(0, count-1).map((evt) => {
-      return {
-        date: formatDate(new Date(evt.date)),
-        heroes: evt.heroes,
-      };
-    });
+    return events.slice(0, count-1);
   }
 
   /**
@@ -146,11 +125,13 @@ class EventManager {
       eventDate.setUTCDate(eventDate.getUTCDate() + 7);
     }
 
-    this.events.unshift({date: Number(eventDate), heroes: heroesToAdd});
+    const newEvent = {date: Number(eventDate), heroes: heroesToAdd};
+
+    this.events.unshift(newEvent);
     writeFileSync(this.eventFilePath, JSON.stringify({events: this.events}));
     this.statsRefresh();
 
-    return {date: formatDate(eventDate), heroes: heroesToAdd};
+    return newEvent;
   }
 
   /**
@@ -158,29 +139,14 @@ class EventManager {
    * @return {object}
    */
   removeEvent() {
-    if (this.events.length == 0) return {date: '', heroes: []};
+    if (this.events.length == 0) return {date: 0, heroes: []};
 
     const lastEvent = this.events.shift();
-    const eventDate = new Date(lastEvent.date);
 
     writeFileSync(this.eventFilePath, JSON.stringify({events: this.events}));
     this.statsRefresh();
 
-    return {date: formatDate(eventDate), heroes: lastEvent.heroes};
-  }
-
-  /**
-   * @return {object}
-   */
-  toJSON() {
-    return {
-      events: this.events.map((evt) => {
-        return {
-          date: formatDate(new Date(evt.date)),
-          heroes: evt.heroes,
-        };
-      }),
-    };
+    return lastEvent;
   }
 }
 

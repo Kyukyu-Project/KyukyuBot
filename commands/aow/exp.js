@@ -108,12 +108,16 @@ export async function slashExecute(context) {
   const goldToNextLevel = pointsToNextLevel / 240;
 
   if (goldToNextLevel > 4) {
-    const decimalMarker = l10n.s(lang, 'decimal-marker');
+    const gold = formatNumber(
+        goldToNextLevel,
+        l10n.s(lang, 'number-locale'),
+        {minimumFractionDigits: 1},
+    );
     interaction.reply(l10n.t(
         lang, `commands.${canonName}.response-next`,
         '{CURR LEVEL}', currLevel,
         '{NEXT LEVEL}', targetLevel,
-        '{GOLD AMOUNT}', formatNumber(goldToNextLevel, decimalMarker, 2),
+        '{GOLD AMOUNT}', gold,
     ));
   } else {
     interaction.reply(l10n.t(

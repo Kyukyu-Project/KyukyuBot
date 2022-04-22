@@ -1,7 +1,8 @@
 {
   "delimiter": "、",
   "ellipsis": "……",
-  "decimal-marker": ".",
+  "number-locale": "zh-TW",
+  "date-locale": "zh-TW",
   "messages": {
     "no-permission": "執行指令時出錯：沒有權限。",
     "invalid-command": "執行指令時出錯：指令無效。"

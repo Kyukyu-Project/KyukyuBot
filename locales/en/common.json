@@ -8,7 +8,8 @@
   },
   "delimiter": ", ",
   "ellipsis": " ...",
-  "decimal-marker": ".",
+  "number-locale": "SI",
+  "date-locale": "ISO",
   "disclaimer": "Information contributed by AoW players.",
   "messages": {
     "no-permission": "Error executing command: no permission.",

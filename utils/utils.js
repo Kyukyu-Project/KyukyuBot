@@ -338,19 +338,40 @@ export async function wait(seconds) {
 /**
  * Format number
  * @param {number} value
- * @param {string|null} decimalMarker - decimal marker
- * @param {number} decimals - Maximum number of decimal digits
+ * @param {string} locale - 'SI' or locale
+ * @param {object|undefined} options - formatting options
  * @return {string}
  */
-export function formatNumber(value, decimalMarker, decimals) {
-  const str = value.toFixed(decimals).split('.');
-  if (str[0].length >= 5) {
-    str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1\u2009');
-  }
-  if (str[1] && str[1].length >= 5) {
-    str[1] = str[1].replace(/(\d{3})/g, '$1\u2009');
-  }
+export function formatNumber(value, locale, options) {
+  options = Object.assign({minimumFractionDigits: 0}, options);
 
-  if (decimals > 0) return str.join(decimalMarker);
-  else return str[0];
+  if (locale.toLocaleUpperCase() === 'SI') {
+    const decimals = options.minimumFractionDigits;
+
+    const str = value.toFixed(decimals).split('.');
+    if (str[0].length >= 5) {
+      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1\u2009');
+    }
+    if (str[1] && str[1].length >= 5) {
+      str[1] = str[1].replace(/(\d{3})/g, '$1\u2009');
+    }
+
+    if (decimals > 0) return str.join('.');
+    else return str[0];
+  }
+  return new Intl.NumberFormat(locale, options).format(value);
+}
+
+
+/**
+ * Convert date to ISO or locale format
+ * @param {date} d - date
+ * @param {string} locale - 'ISO' or locale
+ * @return {string}
+ */
+export function formatDate(d, locale) {
+  if (locale.toLocaleUpperCase() === 'ISO') {
+    return d.toISOString().split('T')[0];
+  }
+  return d.toLocaleString(locale, {dateStyle: 'medium'});
 }
