@@ -102,6 +102,10 @@
       "tip-navigation": "A random tip has been displayed. You can change the tips for the next 5 minutes.",
       "tip-navigation-next": "Next Tip",
       "tip-navigation-prev": "Previous Tip"
+    },
+    "aow.info": {
+      "c-hint": "Get information on on Art of War:Legion",
+      "opt-subject-hint": "subject"
     }
   },
   "aliases": {

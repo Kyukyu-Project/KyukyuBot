@@ -1,0 +1,25 @@
+{
+    "aow.info": [
+      {
+          "name": "Arena Battle",
+          "embed": {
+            "title": "Arena Battle",
+            "fields": [
+              {
+                "name": "Gem Battle",
+                "value": "Each day, a player can do up to 10 additional arena battles with gems. The gem cost is 10 / 10 / 10 / 20 / 20 / 30 / 30 / 40 / 40 / 50 (total **260 gems**)."
+              },
+              {
+                "name": "Time Limit",
+                "value": "• Each battle has a time limit of 2 minutes and 30 seconds.\n• After 2 minutes of fighting, Grim Reaper will come to the battlefield, and all units will lose 10% of their maximum life every second (Grim Reaper will ignore any damage immunity).\n• If a battle reaches the time limit, the defender automatically wins."
+              },
+              {
+                "name": "Network Error / Game Crashing",
+                "value": "• If a battle ends but fails to connect to the server due to network error, the player can try to reconnect to the server.\n• If the server does not receive the battle result 5 minutes after the start of battle (due to game crashing or persistent network error), the server will rule that the defender wins the battle.\n• This mechanism was implemented to address a common past abuse where players would intentionally quit battles to avoid losses."
+              }
+            ]
+          }
+      }
+    ]
+  }
+  
