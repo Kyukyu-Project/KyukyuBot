@@ -13,6 +13,7 @@
   "disclaimer": "Information contributed by AoW players.",
   "messages": {
     "no-permission": "Error executing command: no permission.",
-    "invalid-command": "Error executing command: invalid command."
+    "invalid-command": "Error executing command: invalid command.",
+    "slash-command": "`/{COMMAND}` by <@!{USER ID}>"
   }
 }
