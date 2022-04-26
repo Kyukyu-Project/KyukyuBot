@@ -15,7 +15,7 @@
               },
               {
                 "name": "Network Error / Game Crashing",
-                "value": "• If a battle ends but fails to connect to the server due to network error, the player can try to reconnect to the server.\n• If the server does not receive the battle result 5 minutes after the start of battle (due to game crashing or persistent network error), the server will rule that the defender wins the battle.\n• This mechanism was implemented to address a common past abuse where players would intentionally quit battles to avoid losses."
+                "value": "• If a battle ends but fails to connect to the server due to network error, the player can try to reconnect to the server.\n• If the server does not receive the battle result 5 minutes after the start of battle (due to game crashing or persistent network error), the server will rule that the defender wins the battle.\n• This mechanism was implemented to address a past abuse where players would intentionally quit battles to avoid losses."
               }
             ]
           }
