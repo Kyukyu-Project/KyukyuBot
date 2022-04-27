@@ -2,6 +2,8 @@
     "aow.info": [
       {
           "name": "Arena Battle",
+          "description": "Information about arena battles",
+          "aliases": ["arena-battle", "arena-battles"],
           "embed": {
             "title": "Arena Battle",
             "fields": [

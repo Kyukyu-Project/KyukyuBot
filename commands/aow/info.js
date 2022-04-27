@@ -53,17 +53,21 @@ export async function slashExecute(context) {
   const info = l10n.s(lang, 'aow.info')?.find((el) => el.name === subject);
 
   if (info) {
+    const embeds = info.embed?[info.embed]:info.embeds;
+
     // cannot send Embed using interaction.reply due to Discord API bug #2612
     interaction.channel.send({
       content: l10n.t(
-          lang, 'messages.slash-command',
+          lang, 'messages.use-command',
+          '{PREFIX}', '/',
           '{COMMAND}', name,
           '{USER ID}', interaction.user.id),
-      embeds: [info.embed],
+      embeds: embeds,
     });
     interaction.reply({
       content: l10n.s(lang, `commands.${canonName}.response-sent`),
-      ephemeral: true});
+      ephemeral: true,
+    });
     return true;
   } else {
     interaction.reply({content: l10n.s(lang, NO_INFO), ephemeral: true});

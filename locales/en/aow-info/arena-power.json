@@ -2,10 +2,12 @@
     "aow.info": [
       {
           "name": "Power Rating",
+          "description": "Information about power rating",
+          "aliases": ["power-rating", "power", "arena-power", "attack-power", "defense-power"],
           "embed": {
             "title": "Power Rating",
             "description": "• Each troops and hero has a power rating which depends on the unit’s rarity and level. The sum of power ratings of all units used is the power rating of an army.\n• You can a player’s current attack power (<:atkpower:849194035733069828>) and defense power (<:defpower:968339445512306748>) in the player’s profile page.\n• The power rating doesn’t necessarily correlate to the strength of an army. In general, two armies with less than 300k power rating difference are considered even."
-          }          
+          }
       }
     ]
 }
