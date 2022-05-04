@@ -42,23 +42,29 @@ export async function slashExecute(context) {
   interaction.reply({content: l10n.s(lang, DEPLOY_START), ephemeral: true});
 
   if (guild.id === client.ownerGuildId) {
-    client.guilds.cache.forEach((newGuild) => {
-      const newSettings = client.getGuildSettings(newGuild);
+    const guilds = Array
+        .from(client.guilds.cache)
+        .map(([name, value]) => value);
+
+    for (let i=0; i<guilds.length; i++) {
+      const newSettings = client.getGuildSettings(guilds[i]);
       const newContext = Object.assign(
           context,
           {
-            guild: newGuild,
+            guild: guilds[i],
             guildSettings: newSettings,
             lang: newSettings.lang,
           },
       );
-      interaction.followUp(newGuild.name);
-      deploy(newContext).then(() => {
+      interaction.followUp(guilds[i].name);
+
+      await deploy(newContext).then(() => {
         interaction.followUp(l10n.s(lang, DEPLOY_SUCCESS));
       }).catch((error) => {
         interaction.followUp(l10n.s(lang, DEPLOY_ERROR));
+        throw error;
       });
-    });
+    }
     return true;
   }
 
@@ -121,26 +127,30 @@ async function deploy(context) {
   const pendingData = client.commands
       .filter(commandFilter)
       .map((c) => {
-        const data = c.getSlashData(context);
-        switch (c.commandPerm) {
-          case COMMAND_PERM.OWNER:
-            // Enable the app command for everyone if no owner role is set
-            data['defaultPermission'] = (ownerPermissions.length == 0);
-            ownerCommands.push(c.name);
-            break;
-          case COMMAND_PERM.ADMIN:
-            // Enable the app command for everyone if no admin role is set
-            data['defaultPermission'] = (adminPermissions.length == 0);
-            adminCommands.push(c.name);
-            break;
-          case COMMAND_PERM.MODERATOR:
-            data['defaultPermission'] = false;
-            modCommands.push(c.name);
-            break;
-          default:
-            data['defaultPermission'] = true;
+        try {
+          const data = c.getSlashData(context);
+          switch (c.commandPerm) {
+            case COMMAND_PERM.OWNER:
+              // Enable the app command for everyone if no owner role is set
+              data['defaultPermission'] = (ownerPermissions.length == 0);
+              ownerCommands.push(c.name);
+              break;
+            case COMMAND_PERM.ADMIN:
+              // Enable the app command for everyone if no admin role is set
+              data['defaultPermission'] = (adminPermissions.length == 0);
+              adminCommands.push(c.name);
+              break;
+            case COMMAND_PERM.MODERATOR:
+              data['defaultPermission'] = false;
+              modCommands.push(c.name);
+              break;
+            default:
+              data['defaultPermission'] = true;
+          }
+          return data;
+        } catch (e) {
+          throw new Error(`Error getting application data for "${c.name}"`);
         }
-        return data;
       });
 
   const rest = new REST({version: '9'}).setToken(client.token);
@@ -174,9 +184,7 @@ async function deploy(context) {
     });
   });
 
-  await guild.commands.permissions.set({fullPermissions: fullPermissions});
-
-  return true;
+  return guild.commands.permissions.set({fullPermissions: fullPermissions});
 }
 
 /**
