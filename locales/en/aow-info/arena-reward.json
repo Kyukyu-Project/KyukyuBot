@@ -1,14 +1,15 @@
 {
-    "aow.info": [
-      {
-          "name": "Arena Rewards",
-          "description": "Information about arena rewards",
-          "aliases": ["arena-reward", "arena-rewards"],
-          "embed": {
-            "title": "Arena Rewards",
-            "description": "You can unlock different levels of arena rewards by accumulating wins. You need a total of **375** wins to unlock all levels (225 wins to unlock level-20).\n\n__With Battle Pass__: If you have Battle Pass, consider doing **33** attacks each day. On Day 13, you should be close to unlocking all rewards, and on Day 14 you can focus on pushing for arena rank. In case you miss a day of attack, you can also recover easily.\n\n__Without Battle Pass__: If you do not have Battle Pass, consider doing **20** attacks each day. On Day 13, you should be close to unlocking level-20 rewards, and on Day 14 you can focus on pushing for arena rank.\n\n__Wins Needed for Reward Levels__\n``` 1 ~  5:  5 wins each level\n 6 ~ 10: 10 wins each level\n11 ~ 30: 15 wins each level```"
-          }
+  "aow.info": [
+    {
+      "category": "arena",
+      "name": "Arena Rewards",
+      "description": "Information about arena rewards",
+      "aliases": ["arena-reward", "arena-rewards"],
+      "embed": {
+        "title": "Arena Rewards",
+        "description": "You can unlock different levels of arena rewards by accumulating wins. You need a total of **375** wins to unlock all levels (225 wins to unlock level-20).\n\n__With Battle Pass__: If you have Battle Pass, consider doing **33** attacks each day. On Day 13, you should be close to unlocking all rewards, and on Day 14 you can focus on pushing for arena rank. In case you miss a day of attack, you can also recover easily.\n\n__Without Battle Pass__: If you do not have Battle Pass, consider doing **20** attacks each day. On Day 13, you should be close to unlocking level-20 rewards, and on Day 14 you can focus on pushing for arena rank.\n\n__Wins Needed for Reward Levels__\n``` 1 ~  5:  5 wins each level\n 6 ~ 10: 10 wins each level\n11 ~ 30: 15 wins each level```"
       }
-    ]
-  }
+    }
+  ]
+}
   

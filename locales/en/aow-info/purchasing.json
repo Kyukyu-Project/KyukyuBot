@@ -1,37 +1,39 @@
 {
-    "aow.info": [
-      {
-          "name": "Purchasing (P2P)",
-          "description": "Guide to P2P game items",
-          "aliases": ["p2p", "p2w", "money", "$"],
-          "embed": {
-            "title": "Guide to P2P (pay-to-play) game items",
-            "image": {
-              "url": "https://cdn.discordapp.com/attachments/833978786395586600/968688545663430726/purchase-guide_1.png"
-            }
-          }
-      },
-      {
-        "name": "Purchasing (F2P)",
-        "description": "Guide to F2P game items",
-        "aliases": ["f2p", "gems", "gem"],
-        "embed": {
-          "title": "Guide to F2P (free-to-play) game items",
-          "description": "Gems are precious currency. Use them wisely.",
-          "fields": [
-            {
-              "name": "Recommended",
-              "value": "• Acquiring hero shards through hero events (about 320k <:aowgem:847363788592119838> to get one hero to level 15).\n• Temple of Fusion (use sparingly).\n• Upgrading troops to level-9 and level-10.\n• Extra arena battles"
-            },
-            {
-              "name": "Not Recommended",
-              "value": "• Opening hero/troops chests.\n• Buying items in the Shop page.\n• Buying items in the Mystic Store.\n• Buying additional troops during Lucky Draws.\n• Honor Hunting demo"
-            }
-          ],
-          "image": {
-            "url": "https://cdn.discordapp.com/attachments/833978786395586600/968439637502746624/purchase-guide_2.png"
-          }
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Purchasing (P2P)",
+      "description": "Guide to P2P game items",
+      "aliases": ["p2p", "p2w", "money", "$"],
+      "embed": {
+        "title": "Guide to P2P (pay-to-play) game items",
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/968688545663430726/purchase-guide_1.png"
         }
       }
-    ]
+    },
+    {
+      "category": "general",
+      "name": "Purchasing (F2P)",
+      "description": "Guide to F2P game items",
+      "aliases": ["f2p", "gems", "gem"],
+      "embed": {
+        "title": "Guide to F2P (free-to-play) game items",
+        "description": "Gems are precious currency. Use them wisely.",
+        "fields": [
+          {
+            "name": "Recommended",
+            "value": "• Acquiring hero shards through hero events (about 320k <:aowgem:847363788592119838> to get one hero to level 15).\n• Temple of Fusion (use sparingly).\n• Upgrading troops to level-9 and level-10.\n• Extra arena battles"
+          },
+          {
+            "name": "Not Recommended",
+            "value": "• Opening hero/troops chests.\n• Buying items in the Shop page.\n• Buying items in the Mystic Store.\n• Buying additional troops during Lucky Draws.\n• Honor Hunting demo"
+          }
+        ],
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/968439637502746624/purchase-guide_2.png"
+        }
+      }
+    }
+  ]
 }

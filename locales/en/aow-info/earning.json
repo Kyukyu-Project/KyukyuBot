@@ -1,15 +1,16 @@
 {
-    "aow.info": [
-      {
-          "name": "Resource Earnings",
-          "description": "Estimates on resource earning",
-          "aliases": ["income", "incomes", "resource", "resources"],
-          "embed": {
-            "title": "Resource Earnings Estimates",
-            "image": {
-              "url": "https://cdn.discordapp.com/attachments/833978786395586600/968719200468205598/info-earning.png"
-            }
-          }
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Resource Earnings",
+      "description": "Estimates on resource earning",
+      "aliases": ["income", "incomes", "resource", "resources"],
+      "embed": {
+        "title": "Resource Earnings Estimates",
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/968719200468205598/info-earning.png"
+        }
       }
-    ]
-  }
+    }
+  ]
+}

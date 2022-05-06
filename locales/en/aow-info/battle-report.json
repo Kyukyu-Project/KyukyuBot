@@ -1,16 +1,17 @@
 {
-    "aow.info": [
-      {
-          "name": "Battle Report",
-          "description": "Information about Battle Report",
-          "aliases": ["battle-report", "battle-reports", "report", "reports"],
-          "embed": {
-              "title": "Battle Report",
-              "image": {
-                "url": "https://cdn.discordapp.com/attachments/833978786395586600/851311994350469191/battle-report.png"
-              }
-          }
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Battle Report",
+      "description": "Information about Battle Report",
+      "aliases": ["battle-report", "battle-reports", "report", "reports"],
+      "embed": {
+        "title": "Battle Report",
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/851311994350469191/battle-report.png"
+        }
       }
-    ]
-  }
+    }
+  ]
+}
   

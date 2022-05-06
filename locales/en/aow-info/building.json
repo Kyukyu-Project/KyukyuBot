@@ -1,30 +1,31 @@
 {
-    "aow.info": [
-      {
-          "name": "Army Building",
-          "description": "Tips for building your barrack",
-          "aliases": ["building", "barrack"],
-          "embeds": [
-            {
-              "title": "Barrack Building",
-              "description": "• A strong army often relies on high troops count. A 9-load troops (such as Undead Soldier) is often preferred over a single-load troops (such as Ogre Warriors) due to higher __combined__ health and attack power.\n• 9-load long-range troops are notoriously difficult to obtain. On average, a player needs about __17M__ coins to obtain a level 8 Archers through 240k packs, and __82M__ coins to obtain a level 8 Peltasts and a level 8 Taurus Witchers through 120k packs. New players are encouraged to focus on buying 240k packs to obtain at least 7 level-8 Archers/Taurus Witchers before switching to 120k packs."
-            },
-            {
-              "title": "240k packs",
-              "description": "• Many Common and Rare troops form the the __backbone__ of a strong formation, and the best way to obtain them is through the 30× troops pack purchases.\n• On the Home Screen, a player can tap the Recruitment Camp icon and obtain 30× common/rare troops for 240k gold coins (216k with ᴠɪᴘ)",
-              "thumbnail": {
-                "url": "https://cdn.discordapp.com/attachments/667757428816871434/830848309086126180/240k.png"
-              }
-            },
-            {
-              "title": "120k packs",
-              "description": "• After acquiring plenty of base troops, a player can start focusing on Epic and Legendary troops, and the best way to obtain them is through 4-star troops purchases.\n• On the Battle Screen, a player can tap the Troops Card icon to obtain Epic troops via 4-star troops purchases. When the Lucky Meter fills up, a player also has a chance to obtain Epic or Legendary troops through Lucky Time.",
-              "thumbnail": {
-                "url": "https://cdn.discordapp.com/attachments/667757428816871434/830848307953795092/120k.png"
-              }
-            }
-          ]
-      }
-    ]
-  }
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Army Building",
+      "description": "Tips for building your barrack",
+      "aliases": ["building", "barrack"],
+      "embeds": [
+        {
+          "title": "Barrack Building",
+          "description": "• A strong army often relies on high troops count. A 9-load troops (such as Undead Soldier) is often preferred over a single-load troops (such as Ogre Warriors) due to higher __combined__ health and attack power.\n• 9-load long-range troops are notoriously difficult to obtain. On average, a player needs about __17M__ coins to obtain a level 8 Archers through 240k packs, and __82M__ coins to obtain a level 8 Peltasts and a level 8 Taurus Witchers through 120k packs. New players are encouraged to focus on buying 240k packs to obtain at least 7 level-8 Archers/Taurus Witchers before switching to 120k packs."
+        },
+        {
+          "title": "240k packs",
+          "description": "• Many Common and Rare troops form the the __backbone__ of a strong formation, and the best way to obtain them is through the 30× troops pack purchases.\n• On the Home Screen, a player can tap the Recruitment Camp icon and obtain 30× common/rare troops for 240k gold coins (216k with ᴠɪᴘ)",
+          "thumbnail": {
+            "url": "https://cdn.discordapp.com/attachments/667757428816871434/830848309086126180/240k.png"
+          }
+        },
+        {
+          "title": "120k packs",
+          "description": "• After acquiring plenty of base troops, a player can start focusing on Epic and Legendary troops, and the best way to obtain them is through 4-star troops purchases.\n• On the Battle Screen, a player can tap the Troops Card icon to obtain Epic troops via 4-star troops purchases. When the Lucky Meter fills up, a player also has a chance to obtain Epic or Legendary troops through Lucky Time.",
+          "thumbnail": {
+            "url": "https://cdn.discordapp.com/attachments/667757428816871434/830848307953795092/120k.png"
+          }
+        }
+      ]
+    }
+  ]
+}
   
