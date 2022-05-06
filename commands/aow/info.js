@@ -24,21 +24,43 @@ export function getSlashData(context) {
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const optSubjectHint = l10n.s(lang, `commands.${canonName}.opt-subject-hint`);
 
-  const info = l10n.s(lang, 'aow.info') || [];
-  const choices = info
-      .map((item) => item.name)
-      .sort((a, b) => a[0].localeCompare(b[0], lang))
-      .map((item) => [item, item]);
+  const directory = new Map();
 
-  return new SlashCommandBuilder()
+  l10n.s(lang, 'aow.info.categories').forEach((category) => {
+    directory.set(
+        category.name,
+        {description: category.description, subjects: new Set()},
+    );
+  });
+
+  l10n.s(lang, 'aow.info').forEach((info) => {
+    if (directory.has(info.category)) {
+      directory.get(info.category).subjects.add(info.name);
+    };
+  });
+
+  const data = new SlashCommandBuilder()
       .setName(name)
-      .setDescription(cHint)
-      .addStringOption((option) => option
-          .setName(optSubjectLabel)
-          .setDescription(optSubjectHint)
-          .setRequired(true)
-          .addChoices(choices),
-      );
+      .setDescription(cHint);
+
+  for (const [key, value] of directory) {
+    data.addSubcommand((c) => c
+        .setName(key)
+        .setDescription(value.description)
+        .addStringOption((option) => option
+            .setName(optSubjectLabel)
+            .setDescription(optSubjectHint)
+            .setRequired(true)
+            .addChoices(
+                Array
+                    .from(value.subjects)
+                    .sort((a, b) => a[0].localeCompare(b[0], lang))
+                    .map((subject) => [subject, subject]),
+            ),
+        ));
+  }
+
+  return data;
 }
 
 /**
