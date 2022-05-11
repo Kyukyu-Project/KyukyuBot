@@ -87,7 +87,7 @@ export async function slashExecute(context) {
       embeds: embeds,
     });
     interaction.reply({
-      content: l10n.s(lang, `commands.${canonName}.response-sent`),
+      content: l10n.s(lang, 'messages.info-sent'),
       ephemeral: true,
     });
     return true;

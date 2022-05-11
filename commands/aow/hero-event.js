@@ -199,6 +199,23 @@ export async function slashExecute(context) {
 
   const subCommand = interaction.options.getSubcommand();
 
+  /** Send content which uses external emoji */
+  function richReply() {
+    // cannot send Embed using interaction.reply due to Discord API bug #2612
+    interaction.channel.send({
+      content: l10n.t(
+          lang, 'messages.use-command',
+          '{PREFIX}', '/',
+          '{COMMAND}', name,
+          '{USER ID}', interaction.user.id),
+      embeds: [{description: actionResult.response}],
+    });
+    interaction.reply({
+      content: l10n.s(lang, 'messages.info-sent'),
+      ephemeral: true,
+    });
+  }
+
   switch (subCommand) {
     case scInfoLabel:
       actionResult = view(context);
@@ -206,7 +223,7 @@ export async function slashExecute(context) {
       return actionResult.success;
     case scListLabel:
       actionResult = listAllRecent(context);
-      interaction.reply(actionResult.response);
+      richReply();
       return actionResult.success;
     case scStatsLabel:
       actionResult = stats(context);
@@ -221,7 +238,7 @@ export async function slashExecute(context) {
     case scFind2Label:
       actionResult = listRecent(
           context, interaction.options.getString(optHeroLabel));
-      interaction.reply(actionResult.response);
+      richReply();
       return actionResult.success;
   }
 

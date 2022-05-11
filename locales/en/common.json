@@ -14,6 +14,7 @@
   "messages": {
     "no-permission": "Error executing command: no permission.",
     "invalid-command": "Error executing command: invalid command.",
-    "use-command": "<@!{USER ID}> used the `{PREFIX}{COMMAND}` command"
+    "use-command": "<@!{USER ID}> used the `{PREFIX}{COMMAND}` command.",
+    "info-sent": "The requested info has been posted."
   }
 }

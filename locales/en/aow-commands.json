@@ -105,8 +105,7 @@
     },
     "aow.info": {
       "c-hint": "Get information on Art of War:Legion",
-      "opt-subject-hint": "subject",
-      "response-sent": "Information has been sent."
+      "opt-subject-hint": "subject"
     }
   },
   "aliases": {
