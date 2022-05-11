@@ -476,8 +476,7 @@ class Client extends djsClient {
     function arrayFromOptions(result, options) {
       return options.reduce((res, opt) => {
         if (opt.type === 'SUB_COMMAND') {
-          res.concat(opt.name);
-          return arrayFromOptions(res, opt.options);
+          return arrayFromOptions(res.concat(opt.name), opt.options);
         } else {
           return res.concat(`${opt.name}:"${opt.value}"`);
         }
