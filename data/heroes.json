@@ -328,7 +328,7 @@
       "race": "dark",
       "profession": "tank",
       "rarity": "legendary",
-      "released": false,
+      "released": true,
       "exclusive": false,
       "icon": ""
     },
