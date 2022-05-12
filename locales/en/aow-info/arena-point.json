@@ -1,0 +1,17 @@
+{
+  "aow.info": [
+    {
+      "category": "arena",
+      "name": "Arena Point",
+      "description": "Information about arena point",
+      "aliases": ["arena-point", "arena-points", "arena-score", "arena-score"],
+      "embed": {
+        "title": "Arena Point",
+        "description": "• Each player starts each Arena season with 2500, 2000, or 1000 Rank Points (<:aowcup:849196168495628309>), depending on the player’s performance in the previous season.\n• After a player does a battle (either on offense and defense), the player’s Rank Points are updated.\n• The game uses the winner’s Rank Point and the loser’s Rank Point to calculate both players’ final points.",
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/974212698554400788/arena-point-formula.png"
+        }
+      }
+    }
+  ]
+}
