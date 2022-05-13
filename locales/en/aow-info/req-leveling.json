@@ -1,0 +1,16 @@
+{
+  "aow.info": [
+    {
+      "category": "requirement",
+      "name": "Leveling (Troops and Heroes)",
+      "description": "Information on troops and hero leveling unlocking requirements",
+      "aliases": ["req-slot", "req-slots"],
+      "embed": {
+        "title": "Leveling Unlocking Requirements",
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/974580408157093898/req-leveling.png"
+        }
+      }
+    }
+  ]
+}
