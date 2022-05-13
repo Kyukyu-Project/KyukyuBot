@@ -92,24 +92,24 @@ async function deploy(context) {
 
   const ownerGuild = (guildId === client.ownerGuildId);
 
-  await guild.roles.fetch();
+  const guildRoles = await guild.roles.fetch();
 
   const rolePerm = (roleId) => {
     return {id: roleId, type: 'ROLE', permission: true};
   };
 
   const modPermissions = (guildSettings['mod-roles'] || [])
-      .filter((roleId) => guild.roles.cache.has(roleId))
+      .filter((roleId) => guildRoles.has(roleId))
       .map(rolePerm);
 
   const adminPermissions =(guildSettings['admin-roles'] || [])
-      .filter((roleId) => guild.roles.cache.has(roleId))
+      .filter((roleId) => guildRoles.has(roleId))
       .map(rolePerm)
       .concat(modPermissions);
 
   const ownerPermissions =
-      (ownerGuild && guild.roles.cache.has(ownerRoleId))?
-      [rolePerm(ownerRoleId)].concat(adminPermissions):
+      (ownerGuild && guildRoles.has(ownerRoleId))?
+      [rolePerm(ownerRoleId)]:
       [];
 
   /** @type {string[]} owner commands */ const ownerCommands = [];
@@ -184,7 +184,11 @@ async function deploy(context) {
     });
   });
 
-  return guild.commands.permissions.set({fullPermissions: fullPermissions});
+  guild.commands.permissions
+      .set({fullPermissions: fullPermissions})
+      .then(()=>{}).catch(()=>{}); // Silence 405 error
+
+  return true;
 }
 
 /**
