@@ -12,9 +12,12 @@
   "date-locale": "ISO",
   "disclaimer": "Information contributed by AoW players.",
   "messages": {
+    "no-interaction-permission": "You cannot use this!",
     "no-permission": "Error executing command: no permission.",
     "invalid-command": "Error executing command: invalid command.",
     "use-command": "<@!{USER ID}> used the `{PREFIX}{COMMAND}` command.",
+    "tag-user": "<@!{USER ID}> tagged <@!{TAGGED ID}>.",
+    "tag-user-with-message": "<@!{USER ID}> tagged <@!{TAGGED ID}>, \"{MESSAGE}\".",
     "info-sent": "The requested info has been posted."
   }
 }

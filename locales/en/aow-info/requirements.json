@@ -1,0 +1,47 @@
+{
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Requirements",
+      "description": "Information on prerequisite to game features",
+      "aliases": [
+        "requirements", "requirement",
+        "formation-slots", "formation-slot",
+        "slot", "slots",
+        "hero-levels", "hero-level",
+        "troops-levels", "troops-level",
+        "territory"
+      ],
+      "embeds": [
+        {
+          "title": "Territory",
+          "description": "Prerequisites to territory features",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/974580432161107988/req-territory.png"
+          }
+        },
+        {
+          "title": "Troops",
+          "description": "Prerequisites to troops",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/974582157030875167/req-troops.png"
+          }
+        },
+        {
+          "title": "Leveling",
+          "description": "Prerequisites to troops and hero leveling",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/974580408157093898/req-leveling.png"
+          }
+        },
+        {
+          "title": "Formation Slots",
+          "description": "Prerequisites to additional formation slots",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/974580420140220416/req-slots.png"
+          }
+        }
+      ]
+    }
+  ]
+}
