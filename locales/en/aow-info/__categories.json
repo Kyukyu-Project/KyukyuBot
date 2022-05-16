@@ -11,10 +11,6 @@
     {
       "name": "formation",
       "description": "Get information on topics related to troops and army formation"
-    },
-    {
-      "name": "requirement",
-      "description": "Get information on unlocking requirement of game features"
     }
   ]
 }
