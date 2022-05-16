@@ -12,8 +12,8 @@ export const commandPerm = COMMAND_PERM.GENERAL;
 export const cooldown = 5;
 
 const optSubjectLabel  = 'subject';
-const optTagLabel      = 'tag';
-const optMessageLabel  = 'message';
+const optTagLabel      = 'tag-user';
+const optMessageLabel  = 'tag-message';
 
 /**
  * @param {CommandContext} context
@@ -149,7 +149,7 @@ export async function slashExecute(context) {
         const collector = response.createMessageComponentCollector({
           componentType: 'SELECT_MENU',
           time: 10 * 60 * 1000,
-          idle: 1 * 60 * 1000,
+          idle: 5 * 60 * 1000,
         });
 
         collector.on('collect',
