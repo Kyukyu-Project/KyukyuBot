@@ -18,7 +18,6 @@ import {
 import L10N from './l10n.js';
 import CommandManager from './commands.js';
 import LogManager from './log-manager.js';
-import EventManager from './aow-event-manager.js';
 
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
@@ -148,8 +147,6 @@ class Client extends djsClient {
       this.userConfigPath = '';
       this.userConfig = new Collection();
     }
-
-    this.events = new EventManager(this);
   } // constructor
 
   /**

@@ -9,6 +9,17 @@ import heroBase from '../../data/heroes.js';
 import {MessageAttachment} from 'discord.js';
 import {formatDate} from '../../utils/utils.js';
 
+import {
+  events,
+  addEvent,
+  removeEvent,
+  pastEventLegendaryHeroes,
+  pastEventEpicHeroes,
+  recentEventStats13,
+  recentEventList6,
+  recentEventList12,
+} from './hero-events/hero-events.js';
+
 export const canonName = 'aow.hero-event';
 export const name = 'hero-event';
 export const requireArgs = true;
@@ -35,12 +46,12 @@ export function getSlashData(context) {
   const {l10n} = client;
 
   const findChoices =
-    client.events.pastEventLegendaryHeroes
+    pastEventLegendaryHeroes
         .map((hero)=> [l10n.s(lang, `hero-display-names.${hero}`), hero])
         .sort((a, b) => a[0].localeCompare(b[0], lang));
 
   const find2Choices =
-    client.events.pastEventEpicHeroes
+    pastEventEpicHeroes
         .map((hero)=> [l10n.s(lang, `hero-display-names.${hero}`), hero])
         .sort((a, b) => a[0].localeCompare(b[0], lang));
 
@@ -235,6 +246,10 @@ export async function slashExecute(context) {
       await interaction.reply({files: [file], ephemeral: true});
       return true;
     case scFindLabel:
+      actionResult = getEventInfo(
+          context, interaction.options.getString(optHeroLabel));
+      richReply();
+      return actionResult.success;
     case scFind2Label:
       actionResult = listRecent(
           context, interaction.options.getString(optHeroLabel));
@@ -324,9 +339,9 @@ function view(context) {
   const nowTS = Number(utcTime);
 
   /** latest event entry */
-  const latestEvent = client.events.events[0];
+  const latestEvent = events[0];
 
-  let eventStart = latestEvent.date;
+  let eventStart = latestEvent.ts;
   let eventEnd = eventStart + EVENT_DURATION;
 
   let lastEvent = undefined;
@@ -337,8 +352,8 @@ function view(context) {
     lastEvent = latestEvent;
   } else {
     if (eventStart > nowTS) { // next event has been announced
-      thisEvent = client.events.events[1];
-      eventStart = thisEvent.date;
+      thisEvent = events[1];
+      eventStart = thisEvent.ts;
       eventEnd = eventStart + EVENT_DURATION;
       nextEvent = latestEvent;
     } else {
@@ -432,7 +447,7 @@ function stats(context) {
       lang, heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
   );
 
-  const recentEventStats = client.events.recentEventStats13;
+  const recentEventStats = recentEventStats13;
   let response = l10n.s(lang, `commands.${canonName}.response-recent-13`);
 
   if (recentEventStats[0].length > 0) {
@@ -488,9 +503,7 @@ function listAllRecent(context) {
   const l10n = client.l10n;
 
   const eventList =
-    context.hasOwnerPermission?
-    client.events.recentEventList12:
-    client.events.recentEventList6;
+    context.hasOwnerPermission?recentEventList12:recentEventList6;
 
   const dateLocale = l10n.s(lang, 'date-locale');
 
@@ -503,7 +516,7 @@ function listAllRecent(context) {
         return l10n.t(
             lang,
             `commands.${canonName}.response-list-wof`,
-            '{DATE}', formatDate(new Date(event.date), dateLocale),
+            '{DATE}', formatDate(new Date(event.ts), dateLocale),
             '{HERO}', l10n.s(lang, `hero-display-names.${event.heroes[1]}`),
             '{HERO2}', l10n.s(lang, `hero-display-names.${event.heroes[0]}`),
         );
@@ -511,7 +524,7 @@ function listAllRecent(context) {
         return l10n.t(
             lang,
             `commands.${canonName}.response-list-wof`,
-            '{DATE}', formatDate(new Date(event.date), dateLocale),
+            '{DATE}', formatDate(new Date(event.ts), dateLocale),
             '{HERO}', l10n.s(lang, `hero-display-names.${event.heroes[0]}`),
             '{HERO2}', l10n.s(lang, `hero-display-names.${event.heroes[1]}`),
         );
@@ -520,7 +533,7 @@ function listAllRecent(context) {
       return l10n.t(
           lang,
           `commands.${canonName}.response-list-cm`,
-          '{DATE}', formatDate(new Date(event.date), dateLocale),
+          '{DATE}', formatDate(new Date(event.ts), dateLocale),
           '{HEROES}',
           l10n.join(
               lang,
@@ -550,8 +563,8 @@ function listRecent(context, hero) {
 
   const eventList =
     (context.hasOwnerPermission|context.hasAdminPermission)?
-    client.events.getRecentEventList(hero, 12):
-    client.events.getRecentEventList(hero, 6);
+    getRecentEventList(hero, 12):
+    getRecentEventList(hero, 6);
 
   if (eventList.length === 0) {
     return {
@@ -568,12 +581,12 @@ function listRecent(context, hero) {
     if (event.heroes.length === 2 ) {
       return l10n.t(
           lang, `commands.${canonName}.response-find-wof`,
-          '{DATE}', formatDate(new Date(event.date), dateLocale),
+          '{DATE}', formatDate(new Date(event.ts), dateLocale),
       );
     } else {
       return l10n.t(
           lang, `commands.${canonName}.response-find-cm`,
-          '{DATE}', formatDate(new Date(event.date), dateLocale),
+          '{DATE}', formatDate(new Date(event.ts), dateLocale),
       );
     }
   });
@@ -581,6 +594,80 @@ function listRecent(context, hero) {
   lines.unshift(l10n.t(
       lang, `commands.${canonName}.response-find`,
       '{HERO}', l10n.s(lang, `hero-display-names.${hero}`),
+  ));
+
+  return {
+    response: lines.join('\n'),
+    success: true,
+  };
+}
+
+/**
+ * Get event information of a legendary hero
+ * @param {CommandContext|IContext} context
+ * @param {string} hero
+ * @return {ActionResult}
+ */
+function getEventInfo(context, hero) {
+  const {client, lang} = context;
+  const l10n = client.l10n;
+
+  const eventList =
+    (hero === 'athena')?[]:events.filter((evt) => evt.heroes.includes(hero));
+
+  const recentEventList =
+    (context.hasOwnerPermission|context.hasAdminPermission)?
+    eventList.slice(0, 12-1):
+    eventList.slice(0, 6-1);
+
+  if (recentEventList.length === 0) {
+    return {
+      response: l10n.t(
+          lang, `commands.${canonName}.response-list-none`,
+          '{HERO}', l10n.s(lang, `hero-display-names.${hero}`),
+      ),
+      success: false,
+    };
+  }
+
+  const dateLocale = l10n.s(lang, 'date-locale');
+  const lines = recentEventList.map((event) => {
+    if (event.heroes.length === 2 ) {
+      return l10n.t(
+          lang, `commands.${canonName}.response-find-wof`,
+          '{DATE}', formatDate(new Date(event.ts), dateLocale),
+      );
+    } else {
+      return l10n.t(
+          lang, `commands.${canonName}.response-find-cm`,
+          '{DATE}', formatDate(new Date(event.ts), dateLocale),
+      );
+    }
+  });
+
+  const cm = l10n.s(lang, `commands.${canonName}.cm`);
+  const wof = l10n.s(lang, `commands.${canonName}.wof`);
+
+  const firstEvent = eventList[eventList.length-1];
+  const firstDate = formatDate(new Date(firstEvent.ts), dateLocale);
+  const firstType = (firstEvent.type === 'cm')?cm:wof;
+
+  const lastEvent = eventList[0];
+  const lastDate = formatDate(new Date(lastEvent.ts), dateLocale);
+  const lastType = (lastEvent.type === 'cm')?cm:wof;
+  const cmCount = eventList.filter((evt)=>evt.type==='cm').length;
+  const wofCount = eventList.filter((evt)=>evt.type==='wof').length;
+
+  lines.unshift(l10n.t(
+      lang,
+      `commands.${canonName}.response-find-legendary`,
+      '{HERO}', l10n.s(lang, `hero-display-names.${hero}`),
+      '{FIRST DATE}', firstDate,
+      '{FIRST TYPE}', firstType,
+      '{LAST DATE}', lastDate,
+      '{LAST TYPE}', lastType,
+      '{CM COUNT}', cmCount,
+      '{WOF COUNT}', wofCount,
   ));
 
   return {
@@ -598,7 +685,7 @@ function add(context, ...heroes) {
   const {client, lang} = context;
   const l10n = client.l10n;
 
-  const result = client.events.addEvent(heroes);
+  const result = addEvent(heroes);
   if (result.heroes.length) {
     const heroDisplayNames = l10n.join(
         lang,
@@ -610,7 +697,7 @@ function add(context, ...heroes) {
       response: l10n.t(
           lang,
           `commands.${canonName}.response-added`,
-          '{DATE}', formatDate(new Date(result.date), dateLocale),
+          '{DATE}', formatDate(new Date(result.ts), dateLocale),
           '{HEROES}', heroDisplayNames,
       ),
       success: true,
@@ -631,7 +718,7 @@ function remove(context) {
   const {client, lang} = context;
   const l10n = client.l10n;
 
-  const result = client.events.removeEvent();
+  const result = removeEvent();
   if (result.heroes.length) {
     const heroDisplayNames = l10n.join(
         lang,
@@ -643,7 +730,7 @@ function remove(context) {
       response: l10n.t(
           lang,
           `commands.${canonName}.response-remove`,
-          '{DATE}', formatDate(new Date(result.date), dateLocale),
+          '{DATE}', formatDate(new Date(result.ts), dateLocale),
           '{HEROES}', heroDisplayNames,
       ),
       success: true,
@@ -666,9 +753,9 @@ function download(context) {
 
   const dateLocale = l10n.s(lang, 'date-locale');
 
-  const json = client.events.events.map((evt) => {
+  const json = events.map((evt) => {
     return {
-      date: formatDate(new Date(evt.date), dateLocale),
+      date: formatDate(new Date(evt.ts), dateLocale),
       heroes: evt.heroes,
     };
   });

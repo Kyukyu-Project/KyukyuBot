@@ -31,6 +31,7 @@
       "response-list": "Recent hero events:",
       "response-list-cm":  "<:eventcard:909986289535832104> {DATE}: {HEROES}",
       "response-list-wof": "<:eventwheel:909986289552617502> {DATE}: {HERO} ({HERO2})",
+      "response-find-legendary": "Information of **{HERO}** in hero events:\n\n- First appearance: {FIRST DATE} ({FIRST TYPE})\n- Most recent appearance: {LAST DATE} ({LAST TYPE})\n- Total appearances in Card Master: {CM COUNT}\n- Total appearances in Wheel of Fortune: {WOF COUNT}\n\nRecent appearances:",
       "response-find": "Recent events for {HERO}:",
       "response-find-none": "No information on recent events for {HERO}.",
       "response-find-cm":  "<:eventcard:909986289535832104> {DATE}",
@@ -38,7 +39,9 @@
       "response-added": "Event starting at {DATE} added: {HEROES}",
       "error-add": "Error adding new event",
       "response-remove": "Event starting at {DATE} removed: {HEROES}",
-      "error-remove": "Error removing an event"
+      "error-remove": "Error removing an event",
+      "cm": "Card Master",
+      "wof": "Wheel of Fortune"
     },
     "aow.wof": {
       "c-hint": "Information on wheel probabilities",
@@ -115,8 +118,7 @@
       "c-hint": "Get information on Art of War:Legion",
       "opt-subject-hint": "subject",
       "opt-tag-hint": "a person you want to tag",
-      "opt-message-hint": "message for the person you are tagging",
-      "select-placeholder": "section"
+      "opt-message-hint": "message for the person you are tagging"
     }
   },
   "aliases": {
