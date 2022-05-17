@@ -4,6 +4,7 @@
  */
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+import {postNavigable} from '../../utils/navigable.js';
 
 export const canonName = 'aow.info';
 export const name = 'info';
@@ -91,6 +92,8 @@ export async function slashExecute(context) {
   if (info) {
     const userId = interaction.user.id;
     const taggedId = interaction.options.getUser(optTagLabel)?.id || null;
+    const users = taggedId?[userId, taggedId]:[userId];
+
     const message = interaction.options.getString(optMessageLabel) || null;
 
     let content = l10n.t(
@@ -115,72 +118,11 @@ export async function slashExecute(context) {
     }
 
     if (info.embeds) { // tabbed
-      const tabOptions = info.embeds.map((embed, index) =>
-        embed.description?
-        ({
-          label: embed.title,
-          value: index.toString(),
-          description: embed.description,
-        }):
-        ({
-          label: embed.title,
-          value: index.toString(),
-        }),
-      );
+      postNavigable(context, content, info.embeds, users);
 
-      const components = [{
-        type: 1,
-        components: [{
-          type: 3,
-          custom_id: `${name}.select`,
-          placeholder: l10n.s(lang, `${name}.select-placeholder`),
-          options: tabOptions,
-        }],
-      }];
-
-      let currentEmbed = info.embeds[0];
-
-      // cannot send Embed using interaction.reply due to Discord API bug #2612
-      interaction.channel.send({
-        content: content,
-        embeds: [currentEmbed],
-        components: components,
-      }).then((response) => {
-        const collector = response.createMessageComponentCollector({
-          componentType: 'SELECT_MENU',
-          time: 10 * 60 * 1000,
-          idle: 5 * 60 * 1000,
-        });
-
-        collector.on('collect',
-            async (i) => {
-              if (i.user.id === userId || i.user.id === taggedId) {
-                currentEmbed = info.embeds[parseInt(i.values[0])];
-                i.message.edit({
-                  content: content,
-                  embeds: [currentEmbed],
-                  components: components,
-                });
-                i.deferUpdate();
-              } else {
-                i.reply({
-                  content: l10n.s(lang, 'messages.no-interaction-permission'),
-                  ephemeral: true,
-                });
-              }
-            },
-        );
-
-        collector.on('end', (collected) => {
-          response.edit({
-            content: content, embeds: [currentEmbed], components: [],
-          });
-        });
-
-        interaction.reply({
-          content: l10n.s(lang, 'messages.info-sent'),
-          ephemeral: true,
-        });
+      interaction.reply({
+        content: l10n.s(lang, 'messages.info-sent'),
+        ephemeral: true,
       });
     } else { // non-tabbed
       // cannot send Embed using interaction.reply due to Discord API bug #2612
