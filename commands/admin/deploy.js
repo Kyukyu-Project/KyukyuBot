@@ -39,7 +39,10 @@ export async function slashExecute(context) {
   const {client, guild, lang, interaction} = context;
   const {l10n} = client;
 
-  interaction.reply({content: l10n.s(lang, DEPLOY_START), ephemeral: true});
+  await interaction.reply({
+    content: l10n.s(lang, DEPLOY_START),
+    ephemeral: true,
+  });
 
   if (guild.id === client.ownerGuildId) {
     const guilds = Array

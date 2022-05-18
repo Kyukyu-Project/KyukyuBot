@@ -60,9 +60,10 @@ export function getSlashData(context) {
     const choice = [cmd.name, cmd.canonName];
     switch (cmd.commandPerm) {
       case COMMAND_PERM.OWNER: ownerChoices.push(choice); break;
+      case COMMAND_PERM.MODERATOR:
       case COMMAND_PERM.ADMIN: adminChoices.push(choice); break;
-      case COMMAND_PERM.GENERAL:
-      default: generalChoices.push(choice); break;
+      case COMMAND_PERM.GENERAL: generalChoices.push(choice); break;
+      default: console.warn(`"${cmd}" has undefined command permission`);
     }
   });
 

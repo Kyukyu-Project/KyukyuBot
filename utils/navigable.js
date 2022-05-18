@@ -3,15 +3,17 @@
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('discord.js').Message} Message
  */
+
 /**
+ * Post a message with select menu for navigation
  * @param {IContext|CommandContext} context - command context
  * @param {string} content - text content
- * @param {object[]} embeds
- * @param {number[]} users - Ids of users who can interact with this
+ * @param {object[]} embeds - the 'pages'
+ * @param {number[]} users - Ids of users who can use the menu
  * @return {Message}
  */
 export async function postNavigable(context, content, embeds, users) {
-  const {client, lang, interaction} = context;
+  const {client, lang, channel} = context;
   const {l10n} = client;
 
   const tabOptions = embeds.map((mbd, idx) =>
@@ -36,8 +38,7 @@ export async function postNavigable(context, content, embeds, users) {
 
   let currentEmbed = embeds[0];
 
-  // cannot send Embed using interaction.reply due to Discord API bug #2612
-  const response = await interaction.channel.send({
+  const response = await channel.send({
     content: content,
     embeds: [currentEmbed],
     components: components,
