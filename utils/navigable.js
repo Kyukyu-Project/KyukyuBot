@@ -30,8 +30,8 @@ export async function postNavigable(context, content, embeds, users) {
     type: 1,
     components: [{
       type: 3,
-      custom_id: `select`,
-      placeholder: l10n.s(lang, `select-placeholder`),
+      custom_id: 'select',
+      placeholder: l10n.s(lang, 'select-placeholder'),
       options: tabOptions,
     }],
   }];
