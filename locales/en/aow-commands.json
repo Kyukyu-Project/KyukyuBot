@@ -103,7 +103,7 @@
       "c-hint": "Estimate the gold needed for Exp levelling",
       "opt-current-hint": "your current Exp points",
       "opt-level-hint": "your target Exp level",
-      "response-next": "You are at level {CURR LEVEL}, and you need about {GOLD AMOUNT}M gold to level up to {NEXT LEVEL}.",
+      "response-next": "With {EXP POINT} Exp points, you are at level __{CURR LEVEL}__.\nYu need about **{GOLD AMOUNT}M** gold to level up to __{NEXT LEVEL}__.\n\nNote: this assumes that you get Exp points from 4-star troops packs only. In reality, you'd also get Exp points from hero leveling and obtaining troops by other means.",
       "response-you-are-close": "You are at level {CURR LEVEL}, and you are very close to level {NEXT LEVEL}!",
       "response-target-reached": "You have already reached level {NEXT LEVEL}. Congratulation!"
     },
