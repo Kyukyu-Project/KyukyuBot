@@ -119,6 +119,12 @@
       "opt-subject-hint": "subject",
       "opt-tag-hint": "a person you want to tag",
       "opt-message-hint": "message for the person you are tagging"
+    },
+    "aow.troops": {
+      "c-hint": "Get information on troops in  Art of War:Legion",
+      "opt-troops-hint": "troops",
+      "opt-tag-hint": "a person you want to tag",
+      "opt-message-hint": "message for the person you are tagging"
     }
   },
   "aliases": {

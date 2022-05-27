@@ -1,0 +1,41 @@
+{
+  "aow.troops": [
+    {
+      "name": "Nun",
+      "embeds": [
+        {
+          "title": "Basic",
+          "description": "Information on basic attributes",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979668024808312872/nun.en-01.png"
+          }
+        },
+        {
+          "title": "Skill",
+          "description": "Information on skill",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979668025047392316/nun.en-02.png"
+          }
+        },
+        {
+          "title": "Text",
+          "description": "Troops information in text",
+          "fields": [
+            {
+              "name": "Basic",
+              "value": "• Nun will randomly select a friendly unit within the shooting range (8) as the target.\n• If no friendly unit is within range, Nun will target the closest friendly unit.\n• The target unit must be within Nun's shooting range (8) for the healing to take effect.\n• At the start of battle, Nun will not target Ghost Assassins, Magic Apprentice, Demon, or Shadow Ninja.\n• At the start of battle, Nun may target Orc Hunters.\n• The target unit will receives healing."
+            },
+            {
+              "name": "Skill <Healing Light>",
+              "value": "• When releasing skill, Nun will randomly select a friendly unit within the shooting range (8) as the new target.\n• If no friendly unit is within range, Nun will select the closest friendly unit.\n• The target unit must be within Nun's shooting range (8) for the skill to take effect.\n• With the target unit as the center, all friendly units within the skill range (2) will receives healing.\n• With the target unit as the center, all friendly units within the skill range (2) will receives control removal.\n• Removable control include stun, binding, and freezing."
+            },
+            {
+              "name": "Tips",
+              "value": "• Avoid placing Nun close to other fast-moving units"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

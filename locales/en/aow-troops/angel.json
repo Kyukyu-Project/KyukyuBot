@@ -1,0 +1,30 @@
+{
+  "aow.troops": [
+    {
+      "name": "Angel",
+      "embeds": [
+        {
+          "title": "Skill",
+          "description": "Information on skill",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979667992243736586/angel.en-02.png"
+          }
+        },
+        {
+          "title": "Text",
+          "description": "Troops information in text",
+          "fields": [
+            {
+              "name": "Basic",
+              "value": "• None"
+            },
+            {
+              "name": "Skill <Devine Protect>",
+              "value": "• Angel will randomly select a non-Angel friendly unit within range (3) as the target.\n• If no target is found, Angel will select the closest non-Angel friendly unit.\n• If all friendly units are Angel, all Angels will not move or select a target.\n• Angel's skill cool-down is 5 seconds (the first skill release is 5 seconds after the start of the battle).\n• With Angel as the center, all friendly units within range (2) will receives evasion buff.\n• A friendly unit under the evasion buff has the ability to evade control triggered by normal attack (e.g. Frost Archers’s Chill) but not control triggered by skill (e.g. Aly’s fire bomb)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
