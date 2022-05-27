@@ -5,12 +5,29 @@
       "name": "Resource Earnings",
       "description": "Estimates on resource earning",
       "aliases": ["income", "incomes", "resource", "resources"],
-      "embed": {
-        "title": "Resource Earnings Estimates",
-        "image": {
-          "url": "https://cdn.discordapp.com/attachments/833978786395586600/968719200468205598/info-earning.png"
+      "embeds": [
+        {
+          "title": "Gem",
+          "description": "Estimates on gem earning",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979643044338991164/info-earning.en-01.png"
+          }
+        },
+        {
+          "title": "Voucher",
+          "description": "Estimates on voucher earning",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979643044896854016/info-earning.en-02.png"
+          }
+        },
+        {
+          "title": "Medals",
+          "description": "Estimates on medal earning",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979643045207224320/info-earning.en-03.png"
+          }
         }
-      }
+      ]
     }
   ]
 }

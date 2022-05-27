@@ -1,0 +1,33 @@
+{
+  "aow.info": [
+    {
+      "category": "一般",
+      "name": "資源受益",
+      "description": "資源受益的預估",
+      "aliases": ["income", "incomes", "resource", "resources"],
+      "embeds": [
+        {
+          "title": "寶石",
+          "description": "寶石受益預估",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979643043265257522/info-earning.zh-01.png"
+          }
+        },
+        {
+          "title": "高級卡包禮卷",
+          "description": "高級卡包禮卷受益預估",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979643043630174228/info-earning.zh-02.png"
+          }
+        },
+        {
+          "title": "狩獵勳章",
+          "description": "狩獵勳章受益預估",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/979643043948924928/info-earning.zh-03.png"
+          }
+        }
+      ]
+    }
+  ]
+}

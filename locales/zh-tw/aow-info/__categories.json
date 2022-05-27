@@ -1,0 +1,16 @@
+{
+  "aow.info.categories": [
+    {
+      "name": "一般",
+      "description": "Get information on general topics"
+    },
+    {
+      "name": "競技場",
+      "description": "Get information on topics related to arena"
+    },
+    {
+      "name": "陣型",
+      "description": "Get information on topics related to troops and army formation"
+    }
+  ]
+}
