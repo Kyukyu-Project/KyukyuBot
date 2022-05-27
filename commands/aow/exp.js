@@ -113,7 +113,7 @@ export async function slashExecute(context) {
         goldToNextLevel, numberLocale, {minimumFractionDigits: 1},
     );
     const expFormatted = formatNumber(
-        currPoints, numberLocale, {maximumFractionDigits: 0}
+        currPoints, numberLocale, {maximumFractionDigits: 0},
     );
     interaction.reply(l10n.t(
         lang, `commands.${canonName}.response-next`,
