@@ -10,8 +10,8 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 const AOW_SERVER_ID = '658594298983350293';
 const OWNER_SERVER_ID = '762562773333835787';
 
-export const canonName = 'fun.joke-mode';
-export const name = 'joke-mode';
+export const canonName = 'fun.harmless';
+export const name = 'harmless';
 export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.MODERATOR;
 export const cooldown = 3;
@@ -51,6 +51,7 @@ const filters = [
   /what (?:kind of |type of )?sho(?:es)? do(?:es?) seon(?:deok)? wear/i,
   /what is (?:the ?)(?:goblin tech|GT)(?:'s)? favorite classical music/i,
   /why do(?:es)? (?:musician|cellist)s? hate (?:goblin tech|GT)/i,
+  /(what|which) hero is (?:the )?best deal/i,
 ];
 
 const answers = [
@@ -83,6 +84,7 @@ const answers = [
   'Heels (heals)',
   'Canon (cannon) in D',
   'They are reminded of Canon in D',
+  'Charon. He\s always on sail',
 ];
 
 /**
@@ -90,7 +92,7 @@ const answers = [
  * @return {object}
  */
 export function getSlashData(context) {
-  const cHint = 'start joke mode';
+  const cHint = 'start harmless mode';
   return new SlashCommandBuilder()
       .setName(name)
       .setDescription(cHint);
@@ -126,6 +128,6 @@ export async function slashExecute(context) {
     context.client.on('messageCreate', (msg) => onMessageCreate(msg));
     eventHandlerAttached = true;
   }
-  context.interaction.reply({content: 'joke mode activated', ephemeral: true});
+  context.interaction.reply({content: 'harmless mode activated', ephemeral: true});
   return true;
 }
