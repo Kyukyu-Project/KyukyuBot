@@ -52,6 +52,9 @@ const filters = [
   /what is (?:the ?)(?:goblin tech|GT)(?:'s)? favorite classical music/i,
   /why do(?:es)? (?:musician|cellist)s? hate (?:goblin tech|GT)/i,
   /(what|which) hero is (?:the )?best deal/i,
+  /(real|true|good|best) (soldier|soldiers|troops|troop) (never|don't|do not) abandon (their|the) post/i,
+  /what is Kraken's favorite (?:TV )(drama|show)/i,
+  /if (zeus and kraken|zeus & kraken|kraken and zeus|kraken & zeus) (swam|competed|swim|compete) in (?:the )olympics, who (would|will) win/i,
 ];
 
 const answers = [
@@ -84,7 +87,10 @@ const answers = [
   'Heels (heals)',
   'Canon (cannon) in D',
   'They are reminded of Canon in D',
-  'Charon. He\s always on sail',
+  'Charon. He\'s always on sail',
+  'How \'bout a boat?',
+  'Squid Game',
+  'Neither, because Kraken won\'t survive in fresh water, and Zeus would short circuit himself.',
 ];
 
 /**
