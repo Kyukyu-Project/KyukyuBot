@@ -558,6 +558,56 @@ class Client extends djsClient {
   }
 
   /**
+   * Handle message
+   * @param {Discord.MessageReaction} reaction
+   * @param {Discord.User} user
+   */
+  async onReactionAdd(reaction, user) {
+    if (this.pauseProcess) return;
+    const {client, message} = reaction;
+
+    message.fetch().then((msg) => {
+      const {guild} = msg;
+
+      if (!guild) return;
+
+      const authorId = msg?.author?.id || undefined;
+
+      if (authorId !== client.user.id) return;
+
+      if (reaction.emoji.name !== 'trash') return;
+
+      const guildSettings = this.getGuildSettings(guild);
+
+      guild.members.fetch(user.id)
+          .then((member) => {
+            const mRoles = member.roles;
+            const mPermissions = msg.member.permissions;
+            const hasOwnerPermission =
+                (guild.id == this.ownerGuildId) &&
+                this.ownerRoleId?
+                mRoles.cache.some((r)=>r.id = this.ownerRoleId):
+                mPermissions.has(Permissions.FLAGS.ADMINISTRATOR);
+
+            const adminRoles = guildSettings['admin-roles'] || [];
+            const hasAdminPermission =
+                ((adminRoles.length) &&
+                  (mRoles.cache.some((r)=> adminRoles.includes(r.id)))) ||
+                mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
+                mPermissions.has(Permissions.FLAGS.MANAGE_GUILD);
+
+            const modRoles = guildSettings['mod-roles'] || [];
+            const userIsMod = (modRoles.length)?
+                mRoles.cache.some((r)=>modRoles.includes(r.id)):false;
+
+            if (hasOwnerPermission || hasAdminPermission || userIsMod) {
+              msg.delete();
+            }
+          });
+    });
+  }
+
+  /**
    * Get ready
    */
   ready() {
@@ -565,6 +615,8 @@ class Client extends djsClient {
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
     this.on('guildCreate', (g) => console.log(`Joined server <${g.id}>`));
     this.on('guildDelete', (g) => console.log(`Left server <${g.id}>`));
+    this.on('messageReactionAdd', (reaction, user) =>
+      this.onReactionAdd(reaction, user));
   }
 }
 export default Client;
