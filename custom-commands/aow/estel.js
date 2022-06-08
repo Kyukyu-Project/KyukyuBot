@@ -79,54 +79,61 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {guild, interaction} = context;
+  const {guild, channel, interaction} = context;
 
-  const CLAN_ROLES = [];
+  const CLAN_ROLES =
+      guild.roles.cache
+          .filter((role) =>
+            (role.name.length < 15) &&
+            (role.mentionable) &&
+            (!role.name.startsWith('@')),
+          )
+          .map((role) => (
+            {
+              name: role.name,
+              id: role.id,
+              color: color(role.hexColor),
+            }
+          ))
+          .filter((clanRole) => (
+            clanRole.color.sat > 0.15 // filter out gray/black
+          ))
+          .sort((a, b) => (a.color.hue > b.color.hue)?1:-1);
 
-  guild.roles.cache.forEach((role) => {
-    if (
-      (role.name.length <= 4) &&
-      (role.mentionable) &&
-      (!role.name.startsWith('@'))
-    ) {
-      const clanRole = {
-        name: role.name,
-        id: role.id,
-        color: color(role.hexColor),
-      };
-      CLAN_ROLES.push(clanRole);
-    }
+  const W = Math.floor(CLAN_ROLES.length / 10);
+
+  const CLAN_GROUPS = [];
+
+  for (let r = 0; r < 11; r++) {
+    CLAN_GROUPS.push(CLAN_ROLES.slice(r * W, r * W + W));
+  }
+
+  CLAN_GROUPS.push(CLAN_ROLES.slice(11 * W));
+
+  CLAN_GROUPS.forEach((row) => {
+    row.sort((a, b) => a.color.luma - b.color.luma);
   });
 
-  const colorTables = [
-    [], [], [], [], [],
-    [], [], [], [], [],
-    [], [], [], [], [],
-    [], [], [], [], [],
-  ];
-
-  CLAN_ROLES.forEach((clanRole)=> {
-    const h = Math.floor(clanRole.color.hue/30);
-    colorTables[(h>=20)?19:h].push(clanRole);
-  });
+  const mentions = CLAN_GROUPS
+      .map((row) => (row.map((r) => `<@&${r.id}>`).join(' ')));
 
   const publicMessage = (
     context.hasOwnerPermission ||
     context.hasAdminPermission ||
     context.userIsMod);
 
-  colorTables.forEach((row) => {
-    row.sort((a, b) => a.color.luma - b.color.luma);
-  });
-
-  const mentions = colorTables
-      .filter((row) => (row.length > 0))
-      .map((row) => (row.map((r) => `<@&${r.id}>`).join(' ')));
-
-  interaction.reply({
-    content: mentions.join('\n'),
-    ephemeral: !publicMessage,
-  });
+  if (publicMessage) {
+    interaction.reply({
+      content: 'there you go',
+      ephemeral: true,
+    });
+    channel.send(mentions.join('\n'));
+  } else {
+    interaction.reply({
+      content: mentions.join('\n'),
+      ephemeral: true,
+    });
+  }
 
   return true;
 }
