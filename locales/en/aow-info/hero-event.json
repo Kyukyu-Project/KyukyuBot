@@ -1,0 +1,59 @@
+{
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Hero Events",
+      "description": "Guide to hero events",
+      "aliases": ["hero-events", "hero-event"],
+      "embeds": [
+        {
+          "title": "Card Master",
+          "description": "Guide to Card Master",
+          "thumbnail": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/900654569141456916/icon-card-master.png"
+          },
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/890130015025524756/cm-progress-bar-en.png"
+          },
+          "fields": [
+            {
+              "name": "General",
+              "value": "• End your round when you get the hero shard.\n• Do not start a round if you cannot complete it in the worst-case scenario (5100 gems for 9 flips)."
+            },
+            {
+              "name": "Best Strategy",
+              "value": "• Have around 24 000 <:aowgem:847363788592119838> ready and do ~8 rounds (and get **1** extra shard). The average shard cost is 2390 <:aowgem:847363788592119838>\n• Have around 62 000 <:aowgem:847363788592119838> ready and do ~22 rounds (and get **3** extra shards). The average shard cost is 2380 <:aowgem:847363788592119838>"
+            }
+          ]
+        },
+        {
+          "title": "Wheel of Fortune",
+          "description": "Guide to Wheel of Fortune",
+          "thumbnail": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/900654546483826688/icon-wheel.png"
+          },
+          "fields": [
+            {
+              "name": "General",
+              "value": "• With average luck, a player can get around 8 shards in 200 spins (4 from spins, and 4 from chests).\n• The average cost for 200 spins is 19440 gems.\n• The first spin is always free.\n• On day 2~7 of the event, the first spin costs 60 gems __if you do not have any unused Raffle Ticket__.\n• You can save unused Raffle Ticket for future Wheel events.\n"
+            },
+            {
+              "name": "Best Strategy",
+              "value": "• Have around 19 440 <:aowgem:847363788592119838> ready and do 200 spins. The average shard cost is 2430 <:aowgem:847363788592119838>\n• Have around 97 200 <:aowgem:847363788592119838> ready and do ~1000 spins. The average shard cost (after the first 200 spins) is 4860 <:aowgem:847363788592119838>\n• If you aren't after the hero and just want Super Card Vouchers, have around 5000 <:aowgem:847363788592119838> ready and do 50 spins.\n• Distribute your spins and make sure you use all Raffle Tickets each day so you can take advantage of discount the next day."
+            }
+          ]
+        },        
+        {
+          "title": "Miscellaneous",
+          "description": "Miscellaneous",
+          "fields": [
+            {
+              "name": "Tips",
+              "value": "• Focus on one hero. It usually takes about 6 month to level up a hero to level-15 through hero events.\n• The best hero event is one that features the hero you want.\n• Always assume that the hero you are leveling will be in events back-to-back. Many heroes have appeared in Card Master four or five times consecutively."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
