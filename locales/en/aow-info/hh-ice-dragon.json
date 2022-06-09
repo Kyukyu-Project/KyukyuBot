@@ -1,0 +1,67 @@
+{
+  "aow.info": [
+    {
+      "category": "hunting",
+      "name": "Honor Hunting - Ice Dragon",
+      "description": "Info on Ice Dragon.",
+      "aliases": ["honor-hunting", "hh"],
+      "embeds": [
+        {
+          "title": "General",
+          "description": "General tips on Ice Dragon",
+          "fields": [
+            {
+              "name": "Best Heroes",
+              "value": "• Jinn, Zeus, Aly, Davison"
+            },
+            {
+              "name": "Best Troops",
+              "value": "• Pilgrims: 3 or more\n• Brawlers: 4 or more\n• Pumpkin Guard: many\n• Undead Warrior: many"
+            },
+            {
+              "name": "Filler Troops",
+              "value": "• Voodoo Dolls\n• Ghost Assassins\n• Undead Soldier\n• Other 9-load troops (except Goblikazes)\n• Yasha\n• Witchcraft Totem"
+            },
+            {
+              "name": "Stages",
+              "value": "• Stage 1: day 1-3\n• Stage 2: day 4-6\n• Stage 3: day 7"
+            }
+          ]
+        },
+        {
+          "title": "Formation",
+          "description": "Reference formation (by [INA] Choco-B)",
+          "image": {
+            "url": "https://media.discordapp.net/attachments/963368592437563412/981390472255778826/Screen_Shot_2022-06-01_at_09.48.24.png?width=266&height=325"
+          }
+        },
+        {
+          "title": "Boss Skills",
+          "description": "Boss skills",
+          "fields": [
+            {
+              "name": "Lands of Ice and Snow",
+              "value": "Under the shelter of the blizzard, the ice dragon has **75%** damage immunity, but at the same time, the ice dragon has an Achilles heel, when the control time applied to the ice dragon is accumulated to **350** seconds, the ice dragon will enter a weakened state. In the weakened state, the damage to the ice dragon will be greatly increased. Each weakened state lasts for **5** seconds. __The control duration caused by freezing has no effect on the ice dragon__."
+            },
+            {
+              "name": "Blizzard Wind",
+              "value": "At the beginning of the game, the ice dragon summoned the blizzard, which blew from behind the ice dragon to the enemy. Enemies in the Blizzard will lose every **0.2** seconds **1%** maximum health and reduce **10%** attack speed, movement speed and **10%** double damage, long-range enemy reduced by **30%** double injuries."
+            },
+            {
+              "name": "Ice Shock",
+              "value": "The ice dragon erupts a large amount of cold energy. The fierce cold energy will repel the surrounding enemies, cause **2500/2800/3000** damage and reduce the enemy **10%** attack speed and movement speed for 5 seconds."
+            },
+            {
+              "name": "Frost Breath",
+              "value": "The ice dragon spits out cold air, causing **1600/1800/2000** to all enemies and reducing the enemy's **10%** attack speed and movement speed for 5 seconds."
+            },
+            {
+              "name": "Freezing Burst",
+              "value": "The ice dragon spits out frozen light and causes **800/900/1000** damage to the enemy on the line every second for **2** seconds. While damaging the enemy, the frozen light will guide the power of ice. When the frozen light is about to end, the guidance of the power of ice will be completed. Taking the frozen light as the center, it will spread around to produce a large-scale ice explosion, causing **1000/2000/2500** to the whole field. All damage from freeze blast will be reduced to the enemy **20%** attack speed and movement speed for 5 seconds."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

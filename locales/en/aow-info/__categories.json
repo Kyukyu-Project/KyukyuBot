@@ -11,6 +11,10 @@
     {
       "name": "formation",
       "description": "Get information on topics related to troops and army formation"
+    },
+    {
+      "name": "hunting",
+      "description": "Get information on topics related to Honor Hunting"
     }
   ]
 }
