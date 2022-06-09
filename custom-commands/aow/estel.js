@@ -124,8 +124,7 @@ export async function slashExecute(context) {
 
   if (publicMessage) {
     interaction.reply({
-      content: 'there you go',
-      ephemeral: true,
+      content: 'Mass pings incoming!',
     });
     channel.send(mentions.join('\n'));
   } else {
