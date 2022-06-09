@@ -1,0 +1,17 @@
+{
+  "aow.info": [
+    {
+      "category": "arena",
+      "name": "Fishing",
+      "description": "Information about fishing (baiting)",
+      "aliases": ["fishing", "baiting", "5x5"],
+      "embed": {
+        "title": "Fishing",
+        "description": "Fishing refers to the practice of luring others to attack with a baiting defense. A player typically makes a baiting formation by\n• leaving empty spaces in their defense formation, or\n• filling the defense formation with many low-level troops",
+        "image": {
+          "url": "https://cdn.discordapp.com/attachments/833978786395586600/900646570414968882/5x5.png"
+        }
+      }
+    }
+  ]
+}
