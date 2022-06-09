@@ -575,7 +575,7 @@ class Client extends djsClient {
 
       if (authorId !== client.user.id) return;
 
-      if (reaction.emoji.name !== 'trash') return;
+      if (reaction.emoji.name !== '🗑️') return;
 
       const guildSettings = this.getGuildSettings(guild);
 
@@ -591,8 +591,10 @@ class Client extends djsClient {
 
             const adminRoles = guildSettings['admin-roles'] || [];
             const hasAdminPermission =
-                ((adminRoles.length) &&
-                  (mRoles.cache.some((r)=> adminRoles.includes(r.id)))) ||
+                (
+                  (adminRoles.length) &&
+                  (mRoles.cache.some((r)=> adminRoles.includes(r.id)))
+                ) ||
                 mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
                 mPermissions.has(Permissions.FLAGS.MANAGE_GUILD);
 
@@ -600,7 +602,14 @@ class Client extends djsClient {
             const userIsMod = (modRoles.length)?
                 mRoles.cache.some((r)=>modRoles.includes(r.id)):false;
 
-            if (hasOwnerPermission || hasAdminPermission || userIsMod) {
+            const helperRoles = guildSettings['helper-roles'] || [];
+            const userIsHelper = (helperRoles.length)?
+              mRoles.cache.some((r)=>helperRoles.includes(r.id)):false;
+
+            if (
+              hasOwnerPermission || hasAdminPermission ||
+              userIsMod || userIsHelper
+            ) {
               msg.delete();
             }
           });
