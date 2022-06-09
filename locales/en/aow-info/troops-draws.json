@@ -1,0 +1,33 @@
+{
+  "aow.info": [
+    {
+      "category": "general",
+      "name": "Troops Draws",
+      "description": "Stats on actual troops draws",
+      "aliases": [],
+      "embeds": [
+        {
+          "title": "Draws",
+          "description": "4-star troops draws",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/978503842457063434/unknown.png"
+          }
+        },
+        {
+          "title": "Luck Draws",
+          "description": "Lucky Draws",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/978503943141351474/unknown.png"
+          }
+        },
+        {
+          "title": "Stats",
+          "description": "Stats",
+          "image": {
+            "url": "https://cdn.discordapp.com/attachments/833978786395586600/978503989857509386/unknown.png"
+          }
+        }
+      ]
+    }
+  ]
+}
