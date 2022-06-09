@@ -1,5 +1,18 @@
 [
   {
+    "ts": 1655164800000,
+    "date": "2022-06-14",
+    "type": "cm",
+    "heroes": [
+      "davison",
+      "dracula",
+      "harrison",
+      "wukong",
+      "nezha",
+      "poseidon"
+    ]
+  },
+  {
     "ts": 1654560000000,
     "date": "2022-06-07",
     "type": "wof",
