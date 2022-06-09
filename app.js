@@ -39,7 +39,7 @@ const clientConfig = {};
 Object.keys(DEFAULT_CONFIG).forEach((property) => {
   clientConfig[property] =
       userConfig?.[property]?.value?.trim() ||
-      defaultConfig[property];
+      DEFAULT_CONFIG[property];
 });
 
 if (clientConfig['client-data-path']) { // Convert to absolute file path
