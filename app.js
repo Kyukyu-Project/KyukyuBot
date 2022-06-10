@@ -1,55 +1,17 @@
-import 'core-js/es/index.js';
-import {existsSync, readFileSync} from 'fs';
-import {resolve, dirname} from 'path';
-import {getFilesFromDir} from './utils/utils.js';
-import Client from './src/client.js';
-
-import {DEFAULT_CONFIG} from './src/const.js';
-
+// Get application configuration
+import {getClientConfig} from './utils/load-config.js';
 const __dirname = resolve();
-global.__basedir = __dirname;
+const [clientConfig, clientToken] = getClientConfig(__dirname);
 
-const CLIENT_CONFIG_FILE = './app.json';
+// Make sure ES engine has all the core functions
+import 'core-js/es/index.js';
 
-/**
- * @typedef {import('./src/typedef.js').ClientConfig} ClientConfig
- * @typedef {import('./src/typedef.js').CommandContext} CommandContext
- * @typedef {import('discord.js').Guild} Guild
- */
-
-// Full file path of the client config file
-const configFilePath =
-  resolve(process.argv.slice(2)?.[0] || CLIENT_CONFIG_FILE);
-
-if (!existsSync(configFilePath)) {
-  throw new Error(`Config file not found: ${configFilePath}`);
-}
-
-const userConfig = JSON.parse(readFileSync(configFilePath, 'utf8'));
-
-const clientToken =
-    userConfig?.['login-token']?.value?.trim() ||
-    process.env.DISCORD_TOKEN;
-
-if (!clientToken) throw new Error('Login token unknown');
-
-/** @type ClientConfig */
-const clientConfig = {};
-
-Object.keys(DEFAULT_CONFIG).forEach((property) => {
-  clientConfig[property] =
-      userConfig?.[property]?.value?.trim() ||
-      DEFAULT_CONFIG[property];
-});
-
-if (clientConfig['client-data-path']) { // Convert to absolute file path
-  clientConfig['client-data-path'] = resolve(
-      dirname(configFilePath),
-      clientConfig['client-data-path'],
-  );
-}
-
+// Initiate Discord client
+import Client from './src/client.js';
 const client = new Client(clientConfig);
+
+import {resolve} from 'path';
+import {getFilesFromDir} from './utils/utils.js';
 
 // Load language files
 /** @type {Object.<string, string>} */

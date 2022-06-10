@@ -1,5 +1,3 @@
-import {resolve} from 'path';
-
 /**
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
  */
@@ -11,5 +9,7 @@ export const DEFAULT_CONFIG = {
   'default-lang': 'en',
   'owner-role-id': '',
   'owner-guild-id': '',
-  'client-data-path': resolve('./client-data/'),
+  'client-data-path': './client-data/',
 };
+
+export const DEFAULT_CONFIG_FILE = './app.json';
