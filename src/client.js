@@ -80,7 +80,7 @@ class Client extends djsClient {
      * Command Manager
      * @type {CommandManager}
      */
-    this.commands = new CommandManager();
+    this.commands = new CommandManager(this);
 
     /**
      * Cooldown Manager

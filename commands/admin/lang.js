@@ -76,12 +76,15 @@ export async function slashExecute(context) {
  * @return {ActionResult}
  */
 function set(context, langCode) {
-  const {client, guild} = context;
+  const {client, guild, guildSettings} = context;
   const {l10n} = client;
   const currLang = context.lang;
 
   if (l10n.has(langCode)) {
-    client.updateGuildSettings(guild, settingKey, langCode);
+    if (guildSettings.lang !== langCode) {
+      client.updateGuildSettings(guild, settingKey, langCode);
+      client.commands.slowDeploy(guild);
+    }
     const langDisplay = l10n.s(langCode, `languages.${langCode}`);
     return {
       response: l10n.t(langCode, SET_SUCCESS, '{LANG}', langDisplay),

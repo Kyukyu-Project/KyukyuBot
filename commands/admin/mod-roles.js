@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /**
+ * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('../../src/role-manager.js').RoleCommandStrings} RoleCommandStrings
@@ -14,10 +15,11 @@ export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 const settingKey = 'mod-roles';
+
 /**
-  * @param {CommandContext|IContext} context
-  * @return {object}
-  */
+ * @param {DeploymentContext} context
+ * @return {object}
+ */
 export function getSlashData(context) {
   const {client, lang} = context;
   return RoleManager.getSlashData(
@@ -26,9 +28,9 @@ export function getSlashData(context) {
 }
 
 /**
-  * @param {IContext} context
-  * @return {boolean} - true if command is executed
-  */
+ * @param {IContext} context
+ * @return {boolean} - true if command is executed
+ */
 export async function slashExecute(context) {
   const {client, lang} = context;
   return RoleManager.slashExecute(
@@ -37,9 +39,9 @@ export async function slashExecute(context) {
 }
 
 /**
-  * @param {CommandContext} context
-  * @return {boolean} - true if command is executed
-  */
+ * @param {CommandContext} context
+ * @return {boolean} - true if command is executed
+ */
 export async function execute(context) {
   const {client, lang} = context;
   return RoleManager.execute(

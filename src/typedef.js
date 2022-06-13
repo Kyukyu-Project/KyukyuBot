@@ -70,6 +70,15 @@
  */
 
 /**
+ * Context object for slash command deployment
+ * @typedef {Object} DeploymentContext
+ * @property {Client} client - bot client
+ * @property {Guild} guild - the target guild
+ * @property {GuildSettings} guildSettings - settings of the target guild
+ * @property {string} lang - language of the target guild
+ */
+
+/**
  * Command context
  * @typedef {UserPermissions & CommandContextBase} CommandContext
  */

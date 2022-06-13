@@ -5,6 +5,7 @@
 /* eslint max-len: ["error", { "ignoreComments": true }] */
 
 /**
+ * @typedef {import('./typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').InteractionContext} IContext
  */
@@ -83,7 +84,7 @@ export function getStrings(l10n, lang, name, canonName) {
 }
 
 /**
- * @param {CommandContext|IContext} CTX
+ * @param {DeploymentContext} CTX
  * @param {string} KEY - key of the guild setting
  * @param {RoleCommandStrings} STR
  * @return {object}
@@ -149,6 +150,7 @@ function addRoles(CTX, KEY, STR, what) {
   const added = what.filter((id) => currRoles.indexOf(id) === -1);
   if (added.length) {
     client.updateGuildSettings(guild, KEY, currRoles.concat(added));
+    client.commands.slowDeploy(guild);
     const response =
         (added.length > 1)?
         l10n.r(STR['add-many'],
@@ -174,6 +176,7 @@ function addOneRole(CTX, KEY, STR, what) {
   if (currRoles.indexOf(what) === -1) {
     currRoles.push(what);
     client.updateGuildSettings(guild, KEY, currRoles);
+    client.commands.slowDeploy(guild);
     const response = STR['add-one'].replace('{ROLE}', `<@&${what}>`);
     return {success: true, response: response};
   } else {
@@ -206,6 +209,7 @@ function removeManyRoles(CTX, KEY, STR, what) {
   });
   if (removed.length) {
     client.updateGuildSettings(guild, KEY, currRoles);
+    client.commands.slowDeploy(guild);
     const response = (removed.length == 1)?
       STR['remove-one'].replace('{ROLE}', `<@&${removed[0]}>`):
       l10n.r(
@@ -232,6 +236,7 @@ function removeOneRole(CTX, KEY, STR, what) {
   if (spliceAt !== -1) {
     currRoles.splice(spliceAt, 1);
     client.updateGuildSettings(guild, KEY, currRoles);
+    client.commands.slowDeploy(guild);
     const response = STR['remove-one'].replace('{ROLE}', `<@&${what}>`);
     return {success: true, response: response};
   } else {
@@ -263,6 +268,7 @@ function clearRoles(CTX, KEY, STR) {
       response = STR['clear-one'].replace('{ROLE}', `<@&${currRoles[0]}>`);
     }
     client.updateGuildSettings(guild, KEY, []);
+    client.commands.slowDeploy(guild);
     return {success: true, response: response};
   } else {
     return {success: false, response: STR['error-empty-list']};
@@ -284,6 +290,7 @@ function viewRoles(CTX, KEY, STR) {
 
   if (currRoles.length !== validRoles.length) {
     client.updateGuildSettings(guild, KEY, validRoles);
+    client.commands.slowDeploy(guild);
   }
 
   let response = STR['info-desc'];

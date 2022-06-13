@@ -16,9 +16,8 @@
     },
     "admin.slash-deploy": {
       "c-hint": "Deploy (update) slash (/) commands",
-      "deploy-start": "Starting to deploy slash commands.",
-      "deploy-success": "Slash commands deployed successfully.",
-      "deploy-error": "Error deploying slash commands."
+      "deploy-this": "Deploying slash commands for this server.",
+      "deploy-all": "Deploying slash commands for all servers."
     },
     "admin.say": {
       "c-hint": "Send a message through the bot",

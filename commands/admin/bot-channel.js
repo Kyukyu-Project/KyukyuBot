@@ -1,5 +1,6 @@
 /* eslint max-len: ["error", { "ignoreComments": true }] */
 /**
+ * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
@@ -36,7 +37,7 @@ const fSet                = ['--set', '-s'];
 const fClear              = ['--clear', '-c'];
 
 /**
- * @param {CommandContext|IContext} context
+ * @param {DeploymentContext} context
  * @return {object}
  */
 export function getSlashData(context) {
@@ -115,6 +116,7 @@ function set(context, newId) {
       };
     } else if (guild.channels.cache.get(newId)?.isText()) { // set
       client.updateGuildSettings(guild, settingKey, newId);
+      client.commands.slowDeploy(guild);
       return {
         response: l10n.t(lang, SET_SUCCESS, '{CHANNEL}', `<#${newId}>`),
         success: true,
@@ -139,6 +141,7 @@ function clear(context) {
 
   if (typeof currId === 'string') {
     client.updateGuildSettings(guild, settingKey, '');
+    client.commands.slowDeploy(guild);
     return {
       response: l10n.t(lang, CLEAR_SUCCESS, '{CHANNEL}', `<#${currId}>`),
       success: true,
