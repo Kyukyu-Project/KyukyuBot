@@ -292,7 +292,7 @@ class Client extends djsClient {
   }
 
   /**
-   * Handle message
+   * Process text command
    * @param {Discord.Message} msg
    */
   async onMessageCreate(msg) {
@@ -427,7 +427,7 @@ class Client extends djsClient {
   }
 
   /**
-   * Handle message
+   * Process slash command
    * @param {Discord.Interaction} interaction
    */
   async onInteractionCreate(interaction) {
@@ -558,7 +558,7 @@ class Client extends djsClient {
   }
 
   /**
-   * Handle message
+   * Process waste bin reaction (🗑️) for deleting bot's own message
    * @param {Discord.MessageReaction} reaction
    * @param {Discord.User} user
    */
@@ -617,15 +617,23 @@ class Client extends djsClient {
   }
 
   /**
+   * Register slash commands when joining a new server
+   * @param {Discord.Guild} guild
+   */
+  async onGuildCreate(guild) {
+    console.log(`Joined server "${guild.name}" <${guild.id}>`);
+    this.commands.fastDeploy(guild);
+  }
+
+  /**
    * Get ready
    */
   ready() {
     this.on('messageCreate', (msg) => this.onMessageCreate(msg));
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
-    this.on('guildCreate', (g) => console.log(`Joined server <${g.id}>`));
+    this.on('guildCreate', (g) => this.onGuildCreate(g));
     this.on('guildDelete', (g) => console.log(`Left server <${g.id}>`));
-    this.on('messageReactionAdd', (reaction, user) =>
-      this.onReactionAdd(reaction, user));
+    this.on('messageReactionAdd', (r, u) => this.onReactionAdd(r, u));
   }
 }
 export default Client;

@@ -8,6 +8,8 @@ import url from 'url';
 import {REST} from '@discordjs/rest';
 import {Routes} from 'discord-api-types/v9';
 
+import {COMMAND_PERM} from './typedef.js';
+
 /**
  * @typedef {import('./client.js').default} Client
  * @typedef {import('./typedef.js').Command} Command
@@ -120,6 +122,7 @@ class CommandManager extends Collection {
 
     /** @type {DeploymentContext} */
     const deploymentCtx = {
+      client: client,
       guild: guild,
       guildSettings: guildSettings,
       lang: guildSettings.lang,

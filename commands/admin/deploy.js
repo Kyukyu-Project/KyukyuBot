@@ -1,8 +1,10 @@
 /**
-* @typedef {import('../../src/typedef.js').CommandContext} CommandContext
-* @typedef {import('../../src/typedef.js').InteractionContext} IContext
+ * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
+ * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('../../src/typedef.js').InteractionContext} IContext
 */
 import {COMMAND_PERM} from '../../src/typedef.js';
+import {SlashCommandBuilder} from '@discordjs/builders';
 
 export const canonName = 'admin.slash-deploy';
 export const name = 'slash-deploy';
@@ -10,12 +12,11 @@ export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
-import {SlashCommandBuilder} from '@discordjs/builders';
 const DEPLOY_THIS        = `commands.${canonName}.deploy-this`;
 const DEPLOY_ALL         = `commands.${canonName}.deploy-all`;
 
 /**
- * @param {CommandContext|IContext} context
+ * @param {DeploymentContext} context
  * @return {object}
  */
 export function getSlashData(context) {
@@ -59,7 +60,7 @@ export async function slashExecute(context) {
  * @return {boolean} - true if command is executed
  */
 export async function execute(context) {
-  const {client, lang, channel, message} = context;
+  const {client, lang, guild, channel, message} = context;
   const {l10n} = client;
 
   if (guild.id === client.ownerGuildId) {
