@@ -117,22 +117,10 @@ export async function slashExecute(context) {
   const mentions = CLAN_GROUPS
       .map((row) => (row.map((r) => `<@&${r.id}>`).join(' ')));
 
-  const publicMessage = (
-    context.hasOwnerPermission ||
-    context.hasAdminPermission ||
-    context.userIsMod);
-
-  if (publicMessage) {
-    interaction.reply({
-      content: 'Mass pings incoming!',
-    });
-    channel.send(mentions.join('\n'));
-  } else {
-    interaction.reply({
-      content: mentions.join('\n'),
-      ephemeral: true,
-    });
-  }
+  interaction.reply('Mass mentions incoming!');
+  const dummyText = '<@!117203285152104448> '.repeat(10);
+  const dummyMessage = await channel.send(dummyText);
+  setTimeout(()=> dummyMessage.edit(mentions.join('\n')), 5 * 1000);
 
   return true;
 }
