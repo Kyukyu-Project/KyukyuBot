@@ -42,7 +42,7 @@
  * @property {boolean} hasAdminPermission - Can the user execute guild admin commands?
  * @property {boolean} userIsMod - Does the user have a moderator role?
  * @property {boolean} userIsHelper - Does the user have a helper role?
- * @property {boolean} setCooldown - Do we need to set a cool-down?
+ * @property {boolean} applyCooldown - Do we set a cool-down (if the command has cool-down)?
  */
 
 /**

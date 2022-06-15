@@ -258,13 +258,13 @@ class Client extends djsClient {
    * @param {Discord.Guild} guild
    * @param {GuildSettings} guildSettings
    * @param {Discord.Channel} channel
-   * @param {Discord.Message|Discord.Interaction} msg
+   * @param {Discord.GuildMember} member
    * @return {UserPermissions}
    */
-  getUserPermissions(guild, guildSettings, channel, msg) {
+  getUserPermissions(guild, guildSettings, channel, member) {
     if (channel.type === 'GUILD_TEXT') {
-      const mRoles = msg.member.roles;
-      const mPermissions = msg.member.permissions;
+      const mRoles = member.roles;
+      const mPermissions = member.permissions;
 
       const hasOwnerPermission =
           (guild.id == this.ownerGuildId) &&
@@ -362,8 +362,12 @@ class Client extends djsClient {
     if (!cmd.execute) return; // Application (/) command only
 
     /** @type {UserPermissions} */
-    const userPermissions =
-      this.getUserPermissions(guild, guildSettings, channel, msg);
+    const userPermissions = this.getUserPermissions(
+        guild,
+        guildSettings,
+        channel,
+        msg.member,
+    );
 
     switch (cmd.commandPerm) {
       case COMMAND_PERM.OWNER:
@@ -506,8 +510,12 @@ class Client extends djsClient {
       arrayFromOptions([`/${slashName}`], interaction.options.data).join(' ');
 
     /** @type {UserPermissions} */
-    const userPermissions =
-      this.getUserPermissions(guild, guildSettings, channel, interaction);
+    const userPermissions = this.getUserPermissions(
+        guild,
+        guildSettings,
+        channel,
+        interaction.member,
+    );
 
     if (
       (
