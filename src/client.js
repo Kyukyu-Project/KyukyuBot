@@ -226,12 +226,31 @@ class Client extends djsClient {
   }
 
   /**
-   * Log
+   * Write command execution log
    * @param {string} guildId - Guild Id
-   * @param {string} log - Log text
+   * @param {string} log - Entry text
+   * @param {Date} [time] - Entry time
    */
-  log(guildId, log) {
-    if (this.logManager) this.logManager.writeLog(guildId, log);
+  commandLog(guildId, log, time) {
+    if (this.logManager) this.logManager.writeLog(guildId, log, time);
+  }
+
+  /**
+   * Write general log
+   * @param {string} log - Entry text
+   * @param {Date} [time] - Entry time
+   */
+  log(log, time) {
+    if (this.logManager) this.logManager.writeLog('log', log, time);
+  }
+
+  /**
+   * Write error log
+   * @param {string} log - Entry text
+   * @param {Date} [time] - Entry time
+   */
+  errorLog(log, time) {
+    if (this.logManager) this.logManager.writeLog('error', log, time);
   }
 
   /**
@@ -278,7 +297,7 @@ class Client extends djsClient {
         hasAdminPermission: hasAdminPermission,
         userIsMod: userIsMod,
         userIsHelper: userIsHelper,
-        setCooldown: !noCooldown,
+        applyCooldown: !noCooldown,
       };
     } else {
       return {
@@ -286,7 +305,7 @@ class Client extends djsClient {
         hasAdminPermission: false,
         userIsMod: false,
         userIsHelper: false,
-        setCooldown: false,
+        applyCooldown: false,
       };
     }
   }
@@ -334,7 +353,7 @@ class Client extends djsClient {
 
     /** Translation error */
     if (!this.commands.has(cmdCanonName)) {
-      console.error(`Cannot find command named "${cmdCanonName}"`);
+      this.errorLog(`Cannot find command named "${cmdCanonName}"`);
       return;
     }
 
@@ -366,17 +385,17 @@ class Client extends djsClient {
       return;
     }
 
-    const setCooldown = cmd.cooldown && userPermissions.setCooldown;
+    const applyCooldown = cmd.cooldown && userPermissions.applyCooldown;
 
     /** @type {string} Key for cool-down */
     let cooldownKey = '';
 
-    if (setCooldown) {
+    if (applyCooldown) {
       cooldownKey = `${guild.id}.${user.id}.${cmdCanonName}`;
       if (this.cooldowns.has(cooldownKey)) return; // User is in cool-down
     }
-    /** Execution time       */ const execTime = new Date();
-    /** Execution time stamp */ const execTS = execTime.toISOString();
+
+    /** Execution time */ const execTime = new Date();
 
     const cmdContext = {
       client: this,
@@ -396,33 +415,36 @@ class Client extends djsClient {
     cmd.execute(cmdContext)
         .then((result) => {
           if (typeof result == 'boolean') {
-            if (result && setCooldown) {
+            if (result && applyCooldown) {
               const cooldownMS = cmd.cooldown * 1000;
               const expiration = execTime.valueOf() + cooldownMS;
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
             if (guild) {
-              this.log(
+              this.commandLog(
                   guild.id,
-                  `${result?'✓':'✗'} ${execTS} ${cmdCanonName}\n`,
+                  cmdCanonName,
+                  execTime,
               );
             }
           } else {
-            console.error(`"${cmdCanonName}" does not return boolean result.`);
+            this.errorLog(
+                `"${cmdCanonName}" does not return boolean result.`,
+                execTime,
+            );
           }
         })
         .catch((error) => {
           if (guild) {
-            this.log(
-                guild.id,
-                `✗ ${execTS} ${cmdCanonName}\n> "${error.message}"\n`,
-            );
+            const errorMessage =
+                `Error executing "${msg.content}"\n` +
+                `"${error.message}"\n` +
+                '--------------------------------------------------\n' +
+                error;
+
+            this.errorLog(errorMessage, execTime);
           }
-          console.error(
-              '--------------------------------------------------\n',
-              `Error executing '${msg.content}'\n`, error,
-          );
         });
   }
 
@@ -460,7 +482,7 @@ class Client extends djsClient {
     const cmd = this.commands.find((c) => c.name === slashName);
 
     if ((!cmd) || (!cmd.slashExecute)) {
-      console.error(`Cannot execute "/${slashName}"`);
+      this.errorLog(`Cannot execute "/${slashName}"`);
       return;
     }
 
@@ -506,14 +528,13 @@ class Client extends djsClient {
     /** @type {string} Key for cool-down */
     const cooldownKey = `${guild.id}.${user.id}.${cmd.canonName}`;
 
-    const setCooldown = cmd.cooldown && userPermissions.setCooldown;
+    const applyCooldown = cmd.cooldown && userPermissions.applyCooldown;
 
-    if (setCooldown) { // Is user still in cool-down?
+    if (applyCooldown) { // Is user still in cool-down?
       if (this.cooldowns.get(cooldownKey)) return;
     }
 
     /** Execution time       */ const execTime = new Date();
-    /** Execution time stamp */ const execTS = execTime.toISOString();
 
     /** @type {IContext} */
     const interactionContext = {
@@ -531,29 +552,29 @@ class Client extends djsClient {
     cmd.slashExecute(interactionContext)
         .then((result) => {
           if (typeof result == 'boolean') {
-            if (result && setCooldown) {
+            if (result && applyCooldown) {
               const cooldownMS = cmd.cooldown * 1000;
               const expiration = execTime.valueOf() + cooldownMS;
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
-            this.log(
+            this.commandLog(
                 guild.id,
-                `${result?'✓':'✗'} ${execTS} ${fullCommand}\n`,
+                fullCommand,
+                execTime,
             );
           } else {
             console.error(`"/${slashName}" does not return boolean result.`);
           }
         })
         .catch((error) => {
-          this.log(
-              guild.id,
-              `✗ ${execTS} ${fullCommand}\n> "${error.message}"\n`,
-          );
-          console.error(
-              '--------------------------------------------------\n',
-              `Error executing '${fullCommand}'\n`, error,
-          );
+          const errorMessage =
+              `Error executing ${fullCommand}\n` +
+              `"${error.message}"\n` +
+              '--------------------------------------------------\n' +
+              error;
+
+          this.errorLog(errorMessage, execTime);
         });
   }
 
@@ -621,7 +642,7 @@ class Client extends djsClient {
    * @param {Discord.Guild} guild
    */
   async onGuildCreate(guild) {
-    console.log(`Joined server "${guild.name}" <${guild.id}>`);
+    this.log(`Joined server "${guild.name}" <${guild.id}>`);
     this.commands.fastDeploy(guild);
   }
 
@@ -632,7 +653,7 @@ class Client extends djsClient {
     this.on('messageCreate', (msg) => this.onMessageCreate(msg));
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
     this.on('guildCreate', (g) => this.onGuildCreate(g));
-    this.on('guildDelete', (g) => console.log(`Left server <${g.id}>`));
+    this.on('guildDelete', (g) => this.log(`Left server <${g.id}>`));
     this.on('messageReactionAdd', (r, u) => this.onReactionAdd(r, u));
   }
 }

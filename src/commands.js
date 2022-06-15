@@ -57,14 +57,14 @@ class CommandManager extends Collection {
         /** @type {Command} */
         const cmd = await import(href);
         if (this.has(cmd.canonName)) {
-          console.warn(`Command name collision: ${cmd.canonName}`);
+          this.client.errorLog(`Command name collision: ${cmd.canonName}`);
         } else {
           this.set(cmd.canonName, cmd);
           this.sources.set(cmd.canonName, href);
         }
       } catch (error) {
-        console.warn(`Error loading command module from ${path}`);
-        console.warn(error);
+        this.client.errorLog(`Error loading command module from ${path}`);
+        this.client.errorLog(error);
       }
     });
   }

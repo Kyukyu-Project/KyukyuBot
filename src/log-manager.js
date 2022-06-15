@@ -23,48 +23,62 @@ class LogManager {
     /** @type {Client} */ this.client = client;
     /** @type {Set} */ this.fileStreams = new Map();
     client.on('ready', (c) => {
-      c.guilds.cache.forEach((g) => this.createFileStream(g.id));
+      c.guilds.cache
+          .map((g) => g.id)
+          .concat(['log', 'error'])
+          .forEach((id) => this.createFileStream(id));
     });
-
-    client.on('guildCreate', (g) => this.createFileStream(g.id));
   }
 
   /**
    * Create a file stream for a new gild
-   * @param {string} guildId - Guild Id
-   * @param {string} log - Log text
+   * @param {string} logId - Log Id
+   * @return {stream}
    */
-  createFileStream(guildId) {
+  createFileStream(logId) {
     const {client, fileStreams} = this;
-    if (!fileStreams.has(guildId)) {
-      fileStreams.set(
-          guildId,
-          createWriteStream(
-              joinPath(client.clientDataPath, `${guildId}.log`),
-              {flags: 'a' /* append */},
-          ),
+    if (!fileStreams.has(logId)) {
+      const stream = createWriteStream(
+          joinPath(client.clientDataPath, `${logId}.log`),
+          {flags: 'a' /* append */},
       );
+      fileStreams.set(logId, stream);
+      return stream;
+    } else {
+      return fileStreams.get(logId);
     }
   }
 
   /**
    * Write a log entry
-   * @param {string} guildId - Guild Id
-   * @param {string} log - Log text
+   * @param {string} logId - Log Id
+   * @param {string} log - Entry text
+   * @param {Date} [time] - Entry time
    */
-  writeLog(guildId, log) {
-    if (this.fileStreams.has(guildId)) {
-      this.fileStreams.get(guildId).write(log);
-    }
+  writeLog(logId, log, time) {
+    const timeStamp =
+        ((time instanceof Date)?(time):(new Date())).toISOString();
+
+    const stream =
+        this.fileStreams.has(logId)?
+        this.fileStreams.get(logId):
+        this.createFileStream(logId);
+
+    const formattedLog = log
+        .split('\n')
+        .map((s) => timeStamp + '\t' + s)
+        .join('\n') + '\n';
+
+    stream.write(formattedLog);
   }
 
   /**
    * Clear a log
-   * @param {string} guildId - Guild Id
+   * @param {string} logId - Log Id
    */
-  clearLog(guildId) {
-    if (this.fileStreams.has(guildId)) {
-      truncateSync(this.fileStreams.get(guildId).path, 0);
+  clearLog(logId) {
+    if (this.fileStreams.has(logId)) {
+      truncateSync(this.fileStreams.get(logId).path, 0);
     }
   }
 

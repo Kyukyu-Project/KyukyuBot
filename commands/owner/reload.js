@@ -63,7 +63,7 @@ export function getSlashData(context) {
       case COMMAND_PERM.MODERATOR:
       case COMMAND_PERM.ADMIN: adminChoices.push(choice); break;
       case COMMAND_PERM.GENERAL: generalChoices.push(choice); break;
-      default: console.warn(`"${cmd}" has undefined command permission`);
+      default: client.errorLog(`"${cmd}" has undefined command permission`);
     }
   });
 
@@ -181,7 +181,7 @@ export async function slashExecute(context) {
         })
         .catch((error) => {
           interaction.editReply(l10n.s(lang, CMD_RELOADING_ERR));
-          console.error(error);
+          client.errorLog(error);
           client.pauseProcess = false;
           return false;
         });
@@ -260,7 +260,7 @@ export async function execute(context) {
             content: l10n.s(lang, CMD_RELOADING_ERR),
             reply: {messageReference: message.id},
           });
-          console.error(error);
+          client.errorLog(error);
           client.pauseProcess = false;
           return false;
         });
