@@ -651,6 +651,35 @@ class Client extends djsClient {
    */
   async onGuildCreate(guild) {
     this.log(`Joined server "${guild.name}" <${guild.id}>`);
+    // Check bot permission
+    const client = this;
+    const bot = await guild.members.fetch(client.user.id);
+    const botPermissions = bot.permissions;
+
+    const requiredPermissions = [
+      'MANAGE_ROLES',
+      'SEND_MESSAGES',
+      'SEND_MESSAGES_IN_THREADS',
+      'ATTACH_FILES',
+      'EMBED_LINKS',
+      'READ_MESSAGE_HISTORY',
+      'USE_EXTERNAL_EMOJIS',
+      'ADD_REACTIONS',
+      'USE_APPLICATION_COMMANDS',
+    ];
+
+    const missingPermissions = requiredPermissions.filter(
+        (p) => (!botPermissions.has(p)),
+    );
+
+    if (missingPermissions.length > 0) {
+      this.errorLog(
+          'Error: bot is missing some required permissions: ' +
+          missingPermissions.join(', '),
+      );
+      return;
+    }
+
     this.commands.fastDeploy(guild);
   }
 
