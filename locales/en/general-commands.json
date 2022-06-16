@@ -11,6 +11,10 @@
       "owner-hint": "Learn how to use bot owner commands",
       "command-name-hint": "Command name"
     },
+    "general.invite": {
+      "c-hint": "Invite the bot to your own server",
+      "response": "[(click here)]({INVITE LINK})"
+    },
     "general.ping": {
       "ping-pong": ["Ping", "Pong", "ピン", "ポン", "乒", "乓"]
     },
