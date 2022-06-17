@@ -30,8 +30,8 @@ export async function slashExecute(context) {
   await interaction.deferReply({ephemeral: true});
   const message = channel.messages.cache.get(interaction.targetId);
   await message.react('❤️');
-  await message.react('💛');
   await message.react('🧡');
+  await message.react('💛');
   await message.react('💚');
   await message.react('💙');
   await message.react('💜');
