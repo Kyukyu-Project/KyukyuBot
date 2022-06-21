@@ -114,6 +114,13 @@
       "tip-navigation-next": "Next Tip",
       "tip-navigation-prev": "Previous Tip"
     },
+    "aow.trivia": {
+      "c-hint": "Start a quiz on Art of War:Legion",
+      "response-correct": "Correct! Good job.",
+      "response-incorrect": "Unfortunately that is the incorrect answer.",
+      "response-already-answered": "You have already attempted an answer already.",
+      "winner-none": "You have already attempted an answer already."
+    },
     "aow.info": {
       "c-hint": "Get information on Art of War:Legion",
       "opt-subject-hint": "subject",

@@ -1,0 +1,39 @@
+{
+  "aow.trivia": [
+    {
+      "question": "What is the correct pronunciation of Sakura Blade?",
+      "type": "multiple",
+      "choices": ["Gen-i-chi-ro", "Ge-ni-chi-ro", "Gen-ni-chi-ro"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "What is the symbol on Ivan’s cape?",
+      "type": "multiple",
+      "choices": ["Crown", "Sword", "Shield", "No symbol"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "What is the symbol on Arthur’s cape?",
+      "type": "multiple",
+      "choices": ["Crown", "Sword", "Lightening", "No symbol"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "What weapon do brawlers weld? ",
+      "type": "multiple",
+      "choices": ["Axe", "Sword", "Spear", "Harpoon"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following troops does not have horns?",
+      "type": "multiple",
+      "choices": ["Taurus Witcher", "Yasha", "Demon", "They all have horns"],
+      "correct-answer": 3,
+      "order": "fixed"
+    }
+  ]
+}
