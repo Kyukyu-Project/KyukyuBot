@@ -34,6 +34,55 @@
       "choices": ["Taurus Witcher", "Yasha", "Demon", "They all have horns"],
       "correct-answer": 3,
       "order": "fixed"
+    },
+    {
+      "question": "Which of the following colors best describes the attire of enemy __Undead Warrior__?",
+      "type": "multiple",
+      "choices": ["Dark purple", "Dark red", "Dark green", "Camouflage"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following colors best describes the attire of enemy __Shadow Ninja__?",
+      "type": "multiple",
+      "choices": ["Bright red", "Dark red", "Dark green", "Dark blue"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which troops does not have wings?",
+      "type": "multiple",
+      "choices": ["Ghost Assassins", "Hell Jailers", "Undead Soldier", "Demon"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following troops does not carry a shield?",
+      "type": "multiple",
+      "choices": ["Pilgrims", "Brawlers", "Skeletons", "Paladin", "They all carry shields"],
+      "correct-answer": 4,
+      "order": "fixed"
+    },
+    {
+      "question": "How many tentacles does Kraken have",
+      "type": "multiple",
+      "choices": ["6", "7", "8", "10"],
+      "correct-answer": 2,
+      "order": "fixed"
+    },
+    {
+      "question": "Which hero is not of Marksman profession?",
+      "type": "multiple",
+      "choices": ["Athena", "Robin Hood", "Apollo", "Freyja"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which hero is not of Support Profession?",
+      "type": "multiple",
+      "choices": ["Jinn", "Selene", "Hoheheim", "Edward", "They are all Support heroes"],
+      "correct-answer": 4,
+      "order": "fixed"
     }
   ]
 }

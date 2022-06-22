@@ -116,10 +116,17 @@
     },
     "aow.trivia": {
       "c-hint": "Start a quiz on Art of War:Legion",
+      "opt-count-hint": "number for questions for this round",
+      "response-start": "Alright alright alright, let's start a round of AoW Trivia!",
+      "trivia-title": "Trivia {NUMBER}/{COUNT}",
+      "question-label": "Question",
+      "choices-label": "Choices",
+      "answer-label": "Correct Answer",
+      "tally-label": "Tally",
+      "tally-message": "{CORRECT}/{TOTAL} people got this one correct.",
       "response-correct": "Correct! Good job.",
       "response-incorrect": "Unfortunately that is the incorrect answer.",
-      "response-already-answered": "You have already attempted an answer already.",
-      "winner-none": "You have already attempted an answer already."
+      "response-already-answered": "You have already attempted an answer already."
     },
     "aow.info": {
       "c-hint": "Get information on Art of War:Legion",
