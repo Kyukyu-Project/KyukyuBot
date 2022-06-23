@@ -254,7 +254,7 @@ export async function slashExecute(context) {
     quizMessage = await channel.send(quizContent);
 
     const quizCollector = quizMessage
-        .createMessageComponentCollector({time: 1 * 60 * 1000});
+        .createMessageComponentCollector({time: 1 * 30 * 1000});
 
     quizCollector.on('collect', collectQuizAnswers);
     quizCollector.on('end', tallyQuizAnswers);
