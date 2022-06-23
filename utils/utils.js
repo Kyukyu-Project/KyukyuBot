@@ -119,7 +119,7 @@ function flattenObject(obj, prefix = '', result = {}) {
       if ((typeof obj[i]) === 'object' && !Array.isArray(obj[i])) {
         flattenObject(obj[i], prefix + i, result);
       } else {
-        result[prefix + i] = obj[i];
+        if (!i.startsWith('__')) result[prefix + i] = obj[i];
       }
     }
   }
