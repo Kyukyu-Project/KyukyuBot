@@ -1,0 +1,19 @@
+{
+  "__description": "Trivia questions related to equipment of hero and troops",
+  "aow.trivia": [
+    {
+      "question": "What weapon do brawlers weld? ",
+      "type": "multiple",
+      "choices": ["Axe", "Sword", "Spear", "Harpoon"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following troops does not carry a shield?",
+      "type": "multiple",
+      "choices": ["Pilgrims", "Brawlers", "Skeletons", "Paladin", "They all carry shields"],
+      "correct-answer": 4,
+      "order": "fixed"
+    }
+  ]
+}

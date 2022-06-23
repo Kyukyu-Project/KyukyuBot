@@ -1,0 +1,82 @@
+{
+  "__description": "Trivia questions on names, races, and professions",
+  "aow.trivia": [
+    {
+      "question": "What is the correct pronunciation of Sakura Blade?",
+      "type": "multiple",
+      "choices": ["Gen-i-chi-ro", "Ge-ni-chi-ro", "Gen-ni-chi-ro"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which hero is not Marksman?",
+      "type": "multiple",
+      "choices": ["Athena", "Robin Hood", "Apollo", "Freyja"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which hero is not Support?",
+      "type": "multiple",
+      "choices": ["Jinn", "Selene", "Hoheheim", "Edward", "They are all Support heroes"],
+      "correct-answer": 4,
+      "order": "fixed"
+    },
+    {
+      "question": "Which hero is not Support?",
+      "type": "multiple",
+      "choices": ["Harrison", "Plank", "Jinn", "Selene", "They are all Support heroes"],
+      "correct-answer": 1,
+      "order": "fixed"
+    },
+    {
+      "question": "Which hero is not Tank?",
+      "type": "multiple",
+      "choices": ["Beowulf", "Davison", "Kraken", "Charon", "They are all Tank heroes"],
+      "correct-answer": 4,
+      "order": "fixed"
+    },
+    {
+      "question": "Which hero is not Tank?",
+      "type": "multiple",
+      "choices": ["Davison", "Beowulf", "Mephisto", "Charon", "They are all Tank heroes"],
+      "correct-answer": 2,
+      "order": "fixed"
+    },
+    {
+      "question": "Who is the Heart of Forest?",
+      "type": "multiple",
+      "choices": ["Freyja", "Diana", "Green", "Titania"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Who is the Heart of Forest?",
+      "type": "multiple",
+      "choices": ["Freyja", "Diana", "Green", "Aly"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Who is the Soul Ferryman?",
+      "type": "multiple",
+      "choices": ["Charon", "Hades", "Chiron", "Sauron"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Who is Black Beard?",
+      "type": "multiple",
+      "choices": ["Edward", "Jack Sparrow", "Ammand", "Barbossa"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Who is Scythe of Darkmoon?",
+      "type": "multiple",
+      "choices": ["Selene", "Chione", "Artemis", "Luna"],
+      "correct-answer": 0,
+      "order": "random"
+    }
+  ]
+}

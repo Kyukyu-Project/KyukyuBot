@@ -1,0 +1,19 @@
+{
+  "__description": "Trivia questions related to hero skills",
+  "aow.trivia": [
+    {
+      "question": "Which hero has the ability to summon troops to the field? ",
+      "type": "multiple",
+      "choices": ["Charon", "Dracula", "Mephisto", "They all can summon troops"],
+      "correct-answer": 3,
+      "order": "fixed"
+    },
+    {
+      "question": "What is the name of Davison's legendary skill?",
+      "type": "multiple",
+      "choices": ["Dragon rage", "Dragon fury", "Dragon blood", "Dragon wrath"],
+      "correct-answer": 0,
+      "order": "random"
+    }
+  ]
+}
