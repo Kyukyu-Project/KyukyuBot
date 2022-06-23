@@ -1,0 +1,28 @@
+{
+  "__description": "Trivia on rules",
+  "aow.trivia": [
+    {
+      "question": "Which of the following is not considered fair play?",
+      "type": "multiple",
+      "choices": [
+        "Using a 5x5 defense form to bait for defensive wins",
+        "Boosting a clan mate by deliberately losing battles",
+        "Hiding heroes behind Davison with Burning Council skin in Hero Trial",
+        "Changing arena defense frequently"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "After farming gold in level 8000 for a while, you noticed you aren't getting gold after battle victories. What is the most likely cause?",
+      "type": "multiple",
+      "choices": [
+        "You've reached the daily limit of 6M gold earning",
+        "You've reached the hourly limit of 80 battles",
+        "It's a known visual glitch, and you still get gold",
+        "The server is under maintenance"
+      ],
+      "correct-answer": 0,
+      "order": "fixed"
+    }
+  ]
+}

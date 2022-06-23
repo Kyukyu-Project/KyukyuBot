@@ -44,13 +44,6 @@
       "order": "fixed"
     },
     {
-      "question": "Which of the following is not considered fair play?",
-      "type": "multiple",
-      "choices": ["Using a 5x5 defense form to bait for defensive wins", "Boosting a clan mate by deliberately losing battles", "Hiding heroes behind Davison with Burning Council skin in Hero Trial", "Changing arena defense frequently"],
-      "correct-answer": 1,
-      "order": "random"
-    },
-    {
       "question": "What is the basic attack of level-9 Goblikazes?",
       "type": "multiple",
       "choices": ["0", "530", "928", "1115"],
