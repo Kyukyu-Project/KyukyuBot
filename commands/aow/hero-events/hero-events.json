@@ -1,5 +1,18 @@
 [
   {
+    "ts": 1656374400000,
+    "date": "2022-06-28",
+    "type": "cm",
+    "heroes": [
+      "seondeok",
+      "kraken",
+      "apollo",
+      "horus",
+      "mephisto",
+      "beowulf"
+    ]
+  },
+  {
     "ts": 1655769600000,
     "date": "2022-06-21",
     "type": "wof",
