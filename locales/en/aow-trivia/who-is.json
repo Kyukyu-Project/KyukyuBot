@@ -77,6 +77,22 @@
       "choices": ["Selene", "Chione", "Artemis", "Luna"],
       "correct-answer": 0,
       "order": "random"
+    },
+    {
+      "question": "Which hero had profession (class) changed?",
+      "type": "multiple",
+      "choices": ["Dracula", "Azrael", "Charon", "Mephisto"],
+      "correct-answer": 0,
+      "answer-note": "Dracula was originally classified as Tank. See [news release](https://discord.com/channels/658594298983350293/658964105046261760/774122152730951722)",
+      "order": "random"
+    },
+    {
+      "question": "Which hero had profession (class) changed?",
+      "type": "multiple",
+      "choices": ["Selene", "Chione", "Zeus", "Jinn"],
+      "answer-note": "Selene was originally classified as Mage. See [news release](https://discord.com/channels/658594298983350293/658964105046261760/774122152730951722)",
+      "correct-answer": 0,
+      "order": "random"
     }
   ]
 }

@@ -44,10 +44,11 @@
       "order": "fixed"
     },
     {
-      "question": "What is the basic attack of level-9 Goblikazes?",
+      "question": "What is the normal attack of level-9 Goblikazes?",
       "type": "multiple",
       "choices": ["0", "530", "928", "1115"],
       "correct-answer": 0,
+      "answer-note": "Goblikazes deal skill damage and have no normal attack.",
       "order": "fixed"
     }
   ]

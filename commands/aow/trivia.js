@@ -21,8 +21,10 @@ const TRIVIA_TITLE = `commands.${canonName}.trivia-title`;
 const QUESTION_LABEL = `commands.${canonName}.question-label`;
 const CHOICES_LABEL = `commands.${canonName}.choices-label`;
 const ANSWER_LABEL = `commands.${canonName}.answer-label`;
-// const TALLY_LABEL = `commands.${canonName}.tally-label`;
+const NOTE_LABEL = `commands.${canonName}.note-label`;
 const TALLY_TEMPLATE = `commands.${canonName}.tally-message`;
+const FINAL_SCORE = `commands.${canonName}.final-scoring`;
+const FINAL_SCORE_LINE = `commands.${canonName}.final-scoring-line`;
 const RES_CORRECT = `commands.${canonName}.response-correct`;
 const RES_INCORRECT = `commands.${canonName}.response-incorrect`;
 const RES_ALREADY_ANSWERED = `commands.${canonName}.response-already-answered`;
@@ -87,6 +89,15 @@ function shuffle(array) {
 }
 
 /**
+ * Randomly pick an item from an array
+ * @param {String[]} array
+ * @return {String}
+ */
+function randomPick(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+/**
  * @param {CommandContext|IContext} context
  * @return {ContextMenuCommandBuilder}
  */
@@ -126,11 +137,16 @@ function prepareQuiz(triviaData) {
     correctAnswer = randomizedChoices.indexOf(choices[correctAnswer]);
   }
 
-  return {
+  const quiz = {
     question: triviaData['question'],
     correctAnswer: correctAnswer,
     choices: randomizedChoices.map((ans, idx) => `${Emojis[idx]} ${ans}`),
   };
+
+  if (triviaData['answer-note']) {
+    quiz['answer-note'] = triviaData['answer-note'];
+  }
+  return quiz;
 }
 
 /**
@@ -147,8 +163,10 @@ export async function slashExecute(context) {
   const questionLabel = l10n.s(lang, QUESTION_LABEL);
   const choicesLabel = l10n.s(lang, CHOICES_LABEL);
   const answerLabel = l10n.s(lang, ANSWER_LABEL);
-  // const tallyTitle = l10n.s(lang, TALLY_LABEL);
+  const noteTitle = l10n.s(lang, NOTE_LABEL);
   const tallyMessage = l10n.s(lang, TALLY_TEMPLATE);
+  const finalScore = l10n.s(lang, FINAL_SCORE);
+  const finalScoreLine = l10n.s(lang, FINAL_SCORE_LINE);
 
   const resCorrect = l10n.s(lang, RES_CORRECT);
   const resIncorrect = l10n.s(lang, RES_INCORRECT);
@@ -179,6 +197,7 @@ export async function slashExecute(context) {
   let quizMessage;
   const currentRoundWinners = new Set();
   const currentRoundLosers = new Set();
+  const scores = new Map();
 
   const collectQuizAnswers = async (i) => {
     const buttonId = i.customId;
@@ -188,16 +207,16 @@ export async function slashExecute(context) {
     if (correctAnswer === userAnswer) {
       if (!currentRoundLosers.has(userId) && !currentRoundWinners.has(userId)) {
         currentRoundWinners.add(userId);
-        i.reply({content: resCorrect, ephemeral: true});
+        i.reply({content: randomPick(resCorrect), ephemeral: true});
       } else {
-        i.reply({content: resAlreadyAnswered, ephemeral: true});
+        i.reply({content: randomPick(resAlreadyAnswered), ephemeral: true});
       }
     } else {
       if (!currentRoundLosers.has(userId) && !currentRoundWinners.has(userId)) {
         currentRoundLosers.add(userId);
-        i.reply({content: resIncorrect, ephemeral: true});
+        i.reply({content: randomPick(resIncorrect), ephemeral: true});
       } else {
-        i.reply({content: resAlreadyAnswered, ephemeral: true});
+        i.reply({content: randomPick(resAlreadyAnswered), ephemeral: true});
       }
     }
   };
@@ -219,20 +238,47 @@ export async function slashExecute(context) {
             '{TOTAL}', allCount),
       },
     };
+    if (quiz['answer-note']) {
+      quizEmbed.fields.push(
+          {name: noteTitle, value: quiz['answer-note']},
+      );
+    }
 
     const quizContent = {embeds: [quizEmbed], components: []};
 
     quizMessage.edit(quizContent);
 
+    currentRoundWinners.forEach((userId) => {
+      scores.set(userId, (scores.get(userId)||0) + 1);
+    });
+
     qIndex++;
     if (qIndex < qCount) {
       currentRoundWinners.clear();
       currentRoundLosers.clear();
-      postQuizMessage();
+      postNextQuiz();
+    } else {
+      const winners = Array
+          .from(scores, ([k, v]) => ({userId: k, score: v}))
+          .sort((a, b) => {
+            if (a.score > b.score) return -1;
+            if (a.score < b.score) return 1;
+            return 0;
+          }).
+          slice(0, 5);
+      channel.send(
+          finalScore +
+          winners
+              .map((w) => l10n.r(
+                  finalScoreLine,
+                  '{USER ID}', w.userId,
+                  '{SCORE}', w.score))
+              .join('\n'),
+      );
     }
   };
 
-  const postQuizMessage = async () => {
+  const postNextQuiz = async () => {
     const quiz = quizzes[qIndex];
     const quizEmbed = {
       title: l10n.r(triviaTitle, '{NUMBER}', qIndex + 1, '{COUNT}', qCount),
@@ -261,6 +307,6 @@ export async function slashExecute(context) {
   };
 
   interaction.reply(startMessage);
-  postQuizMessage(0);
+  postNextQuiz(0);
   return true;
 }
