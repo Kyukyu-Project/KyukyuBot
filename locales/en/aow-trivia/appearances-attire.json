@@ -70,6 +70,18 @@
       "choices": ["Blue sleeves", "White plain belt", "Frost crown", "Blue shawl"],
       "correct-answer": 0,
       "order": "random"
+    },
+    {
+      "question": "Which of the following is not true of Jinn's Summer Joy skin? ",
+      "type": "multiple",
+      "choices": [
+        "The hat has white frangipani flowers",
+        "The float is a duck wearing sunglasses",
+        "Jinn has a clean-shaved face",
+        "The coconut has an umbrella decoration"
+      ],
+      "correct-answer": 2,
+      "order": "random"
     }
   ]
 }
