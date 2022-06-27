@@ -109,13 +109,6 @@ export function getSlashData(context) {
 
   const triviaLibrary = l10n.s(lang, 'trivia.library');
   const triviaSubjects = triviaLibrary.map((db) => [db.title, db.key]);
-  console.log(triviaSubjects);
-  console.log(cHint);
-  console.log(scStartHint);
-  console.log(scSetHint);
-  console.log(optChannelHint);
-  console.log(optSubjectHint);
-  console.log(optCountHint);
 
   return new SlashCommandBuilder()
       .setName(name)
