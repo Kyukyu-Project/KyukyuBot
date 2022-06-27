@@ -1,6 +1,6 @@
 {
   "__description": "Trivia questions related to hero skills",
-  "aow.trivia": [
+  "trivia.aow": [
     {
       "question": "Which hero has the ability to summon troops to the field? ",
       "type": "multiple",

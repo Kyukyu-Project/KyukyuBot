@@ -1,6 +1,6 @@
 {
   "__description": "Trivia questions related to equipment of hero and troops",
-  "aow.trivia": [
+  "trivia.aow": [
     {
       "question": "What weapon do brawlers weld? ",
       "type": "multiple",

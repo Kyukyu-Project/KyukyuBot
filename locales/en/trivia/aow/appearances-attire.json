@@ -1,6 +1,6 @@
 {
   "__description": "Trivia questions related to attire of hero and troops",
-  "aow.trivia": [
+  "trivia.aow": [
     {
       "question": "What is the emblem on Ivan’s cape?",
       "type": "multiple",

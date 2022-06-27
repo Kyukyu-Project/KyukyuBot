@@ -1,0 +1,43 @@
+{
+  "commands": {
+    "fun.trivia": {
+      "c-hint": "Trivia",
+
+      "sc-set-hint": "Set the trivia channel",
+      "opt-channel-hint": "Trivia channel",
+      "set-success": "Done! {CHANNEL} is now set as the trivia channel.",
+
+      "sc-start-hint": "Start a round of trivia",
+      "opt-subject-hint": "Trivia subject",
+      "opt-count-hint": "Number for questions for this round",
+
+      "opening-gif": "https://i.imgur.com/5aLHCto.gif",
+      "opening-message": "Let's do a round of trivia for **{SUBJECT}**, starting in 30 seconds!",
+
+      "trivia-title": "Trivia {NUMBER}/{COUNT}",
+      "question-label": "Question",
+      "choices-label": "Choices",
+      "answer-label": "Correct Answer",
+      "note-label": "Note",
+      "tally-message": "{CORRECT}/{TOTAL} people got this one correct.",
+
+      "response-correct": [
+        "✔️ Correct! Good job.",
+        "✔️ That is correct!",
+        "✔️ Right on!",
+        "✔️ That's correct. Superb!"
+      ],
+      "response-incorrect": [
+        "❌ Unfortunately that is incorrect.",
+        "❌ I'm sorry but that's not correct."
+      ],
+      "response-already-answered": [
+        "⚠️ You've already attempted an answer.",
+        "⚠️ Looks like you answered already.",
+        "⚠️ No second attempt!"
+      ],
+      "final-scoring": "The top scorers are:\n",
+      "final-scoring-line": "<@!{USER ID}> ({SCORE} pts)"
+    }
+  }
+}

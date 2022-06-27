@@ -1,6 +1,6 @@
 {
   "__description": "Trivia on rules",
-  "aow.trivia": [
+  "trivia.aow": [
     {
       "question": "Which of the following is not considered fair play?",
       "type": "multiple",

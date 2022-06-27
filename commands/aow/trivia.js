@@ -5,18 +5,19 @@
 
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+import {pause} from '../../utils/utils.js';
 
-export const canonName = 'aow.trivia';
+export const canonName = 'fun.trivia';
 export const name = 'trivia';
 export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.GENERAL;
 export const cooldown = 60;
 
-const optCountLabel   = 'questions';
 const defaultCount   = 7;
 const minimumCount   = 3;
 
-const START = `commands.${canonName}.response-start`;
+const OPENING_MSG = `commands.${canonName}.opening-message`;
+const OPENING_GIF = `commands.${canonName}.opening-gif`;
 const TRIVIA_TITLE = `commands.${canonName}.trivia-title`;
 const QUESTION_LABEL = `commands.${canonName}.question-label`;
 const CHOICES_LABEL = `commands.${canonName}.choices-label`;
@@ -28,6 +29,13 @@ const FINAL_SCORE_LINE = `commands.${canonName}.final-scoring-line`;
 const RES_CORRECT = `commands.${canonName}.response-correct`;
 const RES_INCORRECT = `commands.${canonName}.response-incorrect`;
 const RES_ALREADY_ANSWERED = `commands.${canonName}.response-already-answered`;
+
+const scSetLabel      = 'set';
+const optChannelLabel = 'channel';
+
+const scStartLabel    = 'start';
+const optSubjectLabel = 'subject';
+const optCountLabel   = 'questions';
 
 const Emojis = [
   '\uD83C\uDDE6',
@@ -41,11 +49,6 @@ const ButtonB = {type: 2, style: 2, emoji: Emojis[1], custom_id: `trivia.1`};
 const ButtonC = {type: 2, style: 2, emoji: Emojis[2], custom_id: `trivia.2`};
 const ButtonD = {type: 2, style: 2, emoji: Emojis[3], custom_id: `trivia.3`};
 const ButtonE = {type: 2, style: 2, emoji: Emojis[4], custom_id: `trivia.4`};
-// const ButtonADisabled = Object.assign({disabled: true}, ButtonA);
-// const ButtonBDisabled = Object.assign({disabled: true}, ButtonB);
-// const ButtonCDisabled = Object.assign({disabled: true}, ButtonC);
-// const ButtonDDisabled = Object.assign({disabled: true}, ButtonD);
-// const ButtonEDisabled = Object.assign({disabled: true}, ButtonE);
 const ActiveButtonSets = [
   undefined,
   [ButtonA, ButtonB],
@@ -53,14 +56,6 @@ const ActiveButtonSets = [
   [ButtonA, ButtonB, ButtonC, ButtonD],
   [ButtonA, ButtonB, ButtonC, ButtonD, ButtonE],
 ];
-// const DisabledButtonSets = [
-//   undefined,
-//   [ButtonADisabled, ButtonBDisabled],
-//   [ButtonADisabled, ButtonBDisabled, ButtonCDisabled],
-//   [ButtonADisabled, ButtonBDisabled, ButtonCDisabled, ButtonDDisabled],
-//   [ButtonADisabled, ButtonBDisabled, ButtonCDisabled, ButtonDDisabled,
-//     ButtonEDisabled],
-// ];
 
 /**
  * Shuffle an array
@@ -105,19 +100,51 @@ export function getSlashData(context) {
   const {client, lang} = context;
   const {l10n} = client;
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
+  const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
+  const optChannelHint = l10n.s(lang, `commands.${canonName}.opt-channel-hint`);
+
+  const scStartHint = l10n.s(lang, `commands.${canonName}.sc-start-hint`);
+  const optSubjectHint = l10n.s(lang, `commands.${canonName}.opt-subject-hint`);
   const optCountHint = l10n.s(lang, `commands.${canonName}.opt-count-hint`);
 
-  const triviaBase = l10n.s(lang, 'aow.trivia');
+  const triviaLibrary = l10n.s(lang, 'trivia.library');
+  const triviaSubjects = triviaLibrary.map((db) => [db.title, db.key]);
+  console.log(triviaSubjects);
+  console.log(cHint);
+  console.log(scStartHint);
+  console.log(scSetHint);
+  console.log(optChannelHint);
+  console.log(optSubjectHint);
+  console.log(optCountHint);
 
   return new SlashCommandBuilder()
       .setName(name)
       .setDescription(cHint)
-      .addNumberOption((option) => option
-          .setName(optCountLabel)
-          .setDescription(optCountHint)
-          .setRequired(false)
-          .setMinValue(minimumCount)
-          .setMaxValue(Math.floor(triviaBase.length * 0.5)),
+      .addSubcommand((c) => c
+          .setName(scSetLabel)
+          .setDescription(scSetHint)
+          .addChannelOption((option) => option
+              .setName(optChannelLabel)
+              .setDescription(optChannelHint)
+              .setRequired(true)
+              .addChannelType(ChannelType.GuildText),
+          ),
+      )
+      .addSubcommand((c) => c
+          .setName(scStartLabel)
+          .setDescription(scStartHint)
+          .addStringOption((option) => option
+              .setName(optSubjectLabel)
+              .setDescription(optSubjectHint)
+              .setRequired(true)
+              .addChoices(triviaSubjects),
+          )
+          .addNumberOption((option) => option
+              .setName(optCountLabel)
+              .setDescription(optCountHint)
+              .setRequired(false)
+              .setMinValue(minimumCount),
+          ),
       );
 }
 
@@ -157,7 +184,11 @@ export async function slashExecute(context) {
   const {client, lang, channel, interaction} = context;
   const {l10n} = client;
 
-  const startMessage = l10n.s(lang, START);
+  const subCommand = interaction.options.getSubcommand();
+  if (subCommand === scSetLabel) {
+    // Sub command not implemented yet
+    return true;
+  }
 
   const triviaTitle = l10n.s(lang, TRIVIA_TITLE);
   const questionLabel = l10n.s(lang, QUESTION_LABEL);
@@ -173,10 +204,19 @@ export async function slashExecute(context) {
   const resAlreadyAnswered = l10n.s(lang, RES_ALREADY_ANSWERED);
 
   const options = interaction.options;
-  let qCount = options?.getNumber(optCountLabel) || defaultCount;
-  qCount = Math.floor(qCount);
 
-  const triviaBase = l10n.s(lang, 'aow.trivia');
+  const subjectKey = options.getString(optSubjectLabel);
+  const subjectTitle = l10n
+      .s(lang, 'trivia.library')
+      .find((el) => el.key === subjectKey)
+      .title;
+  const triviaBase = l10n.s(lang, 'trivia.' + subjectKey);
+
+  let qCount = options?.getNumber(optCountLabel) || defaultCount;
+  qCount = Math.floor(Math.min(qCount, triviaBase.length * 0.3));
+
+  const openingGif = l10n.s(lang, OPENING_GIF);
+  const openingMsg = l10n.t(lang, OPENING_MSG, '{SUBJECT}', subjectTitle);
 
   // prepare a list of random trivia
   const picked = new Set();
@@ -306,7 +346,10 @@ export async function slashExecute(context) {
     quizCollector.on('end', tallyQuizAnswers);
   };
 
-  interaction.reply(startMessage);
+  await interaction.reply(openingGif);
+  await pause(1);
+  await channel.send(openingMsg);
+  await pause(30);
   postNextQuiz(0);
   return true;
 }

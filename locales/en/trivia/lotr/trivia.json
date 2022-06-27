@@ -1,0 +1,131 @@
+{
+  "__description": "LoTR trivia",
+  "trivia.lotr": [
+    {
+      "question": "The Lord of the Rings movies are based on a novel by what author?",
+      "type": "multiple",
+      "choices": ["J. M. Barrie", "H. G. Wells", "J. R. R. Tolkien", "J. K. Rowling"],
+      "correct-answer": 2,
+      "order": "random"
+    },
+    {
+      "question": "When Frodo and the other hobbits first meet Aragorn, he goes by what name?",
+      "choices": ["Arathorn", "Ranger", "Elessar", "Strider"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "To open the gate to Moria, Gandalf says the Elvish word for:",
+      "choices": ["Enter", "Dwarf", "Friend", "Open"],
+      "correct-answer": 2,
+      "order": "random"
+    },
+    {
+      "question": "At the beginning of \"The Fellowship of the Ring\", Bilbo is celebrating his birthday. How old is he?",
+      "choices": [77, 101, 111, 135],
+      "correct-answer": 2,
+      "order": "random"
+    },
+    {
+      "question": "In what country was \"The Lord of the Rings\" trilogy filmed?",
+      "choices": ["Australia", "New Zealand", "Norway", "England"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "Whose voice is the first we hear in \"The Lord of the Rings\"?",
+      "choices": ["Gandalf", "Galadriel", "Bilbo", "Sauron"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "Aragorn is the heir of which king of Gondor?",
+      "choices": ["Elendil", "Isildur", "Numendil", "Arathorn"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "How are Merry and Pippin related?",
+      "choices": ["Step brothers", "Brothers", "Not related", "First cousins"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "Who directed the film \"Return of the King\"?",
+      "choices": ["Guillermo Del Toro", "Ridley Scott", "Ron Howard", "Peter Jackson"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "Including the Witch King, how many Nazgûl are there?",
+      "choices": [9, 5, 8, 6],
+      "correct-answer": 0,
+      "order": "random"
+    }, 
+    {
+      "question": "What is the name of the volcano where the One Ring is forged and later destroyed?",
+      "choices": ["Mount Morgoth", "Mount Doom", "Mount Death", "Mount Mordor"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "Finish this quote: \"Po-ta-toes. Boil \"em. Mash \"em. Stick \"em in ____.\"",
+      "choices": ["a pie", "a pot", "the mouth", "a stew"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "While on the hunt for the orcs who captured Merry and Pippin, Aragorn discovers what clue?",
+      "choices": ["An Elven Brooch", "An Elven Knife", "A Shire Brooch", "A Lorien Silver Belt"],
+      "correct-answer": 0
+    },
+    {
+      "question": "What is Wormtongue’s real name?",
+      "choices": ["Lotho", "Grima", "Larma", "Dourif"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following is NOT one of Gandalf’s nicknames?",
+      "choices": ["Gandalf Greyhame", "Flame of Udun", "Mithrandir", "Gandalf Stormcrow"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "Name the giant spider who tried to eat Frodo.",
+      "choices": ["Ungoliant", "Balrog", "Morgoth", "Shelob"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "The shards of the sword Narsil are reforged into what new sword?",
+      "choices": ["Orcist", "Anduril", "Glamdring", "Narsil II"],
+      "correct-answer": 1,
+      "order": "random"
+    },
+    {
+      "question": "What year was \"The Two Towers\" released in theaters?",
+      "choices": ["1999", "2007", "2002", "2001"],
+      "correct-answer": 2,
+      "order": "random"
+    },
+    {
+      "question": "In the \"Two Towers\" (extended edition), Aragorn is revealed to be how old?",
+      "choices": [84, 95, 87, 200],
+      "correct-answer": 2,
+      "order": "random"
+    },
+    {
+      "question": "Who kills the Witch King?",
+      "choices": ["Gandalf", "Saruman", "Éomer", "Éowyn"],
+      "correct-answer": 3,
+      "order": "random"
+    },
+    {
+      "question": "Which of these characters does NOT look into the Palantir of Orthanc?",
+      "choices": ["Saruman", "Legolas", "Aragorn", "Gandalf"],
+      "correct-answer": 3,
+      "order": "random"
+    }
+  ]
+}

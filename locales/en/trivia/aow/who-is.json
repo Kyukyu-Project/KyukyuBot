@@ -1,6 +1,6 @@
 {
   "__description": "Trivia questions on names, races, and professions",
-  "aow.trivia": [
+  "trivia.aow": [
     {
       "question": "What is the correct pronunciation of Sakura Blade?",
       "type": "multiple",
