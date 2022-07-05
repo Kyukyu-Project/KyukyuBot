@@ -3,10 +3,13 @@
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
-import {COMMAND_PERM} from '../../src/typedef.js';
-import {SlashCommandBuilder} from '@discordjs/builders';
+
 import {statSync} from 'fs';
 
+import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {COMMAND_PERM} from '../../src/typedef.js';
+import {logger} from '../../src/logger.js';
 
 export const canonName = 'owner.log';
 export const name = 'log';
@@ -78,7 +81,7 @@ export async function slashExecute(context) {
     const guildId = interaction.options.getString(optGuildLabel);
     if (subCommand === scGetLabel) {
       const guild = client.guilds.cache.get(guildId);
-      const filePath = client.logManager.getLogPath(guildId);
+      const filePath = logger.getLogPath(guildId);
       const {size: fileSize} = statSync(filePath);
       if (fileSize) {
         interaction.reply({
@@ -95,13 +98,13 @@ export async function slashExecute(context) {
     } else if (subCommand === scClearLabel) {
       if (guildId !== 'all') {
         const guild = client.guilds.cache.get(guildId);
-        client.logManager.clearLog(guildId);
+        logger.clearLog(guildId);
         interaction.reply({
           content: l10n.t(lang, LOG_CLEARED, '{GUILD}', guild.name),
           ephemeral: true,
         });
       } else {
-        client.logManager.clearAllLog();
+        logger.clearAllLog();
         interaction.reply({
           content: l10n.s(lang, ALL_LOG_CLEARED),
           ephemeral: true,

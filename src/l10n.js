@@ -1,16 +1,24 @@
-/*
- * Localization helper class
- **/
+/** Localization helper */
 
-import 'core-js/es/index.js';
-import * as fs from 'fs';
+import {existsSync, readFileSync} from 'fs';
 import {resolve} from 'path';
+import {fileURLToPath} from 'url';
+
 import {Collection} from 'discord.js';
-import {createFlattenedCollectionFromFiles} from '../utils/utils.js';
 
-const HELP_DIR = resolve('help');
+import {
+  getFilesFromDir,
+  createFlattenedCollectionFromFiles} from '../utils/utils.js';
 
-/** Localization class */
+import {clientConfig} from './appConfig.js';
+
+/** File path of this module */
+const filePath = resolve(fileURLToPath(import.meta.url), './../');
+
+const localePath = resolve(filePath, './../locales/');
+const helpPath = resolve(filePath, './../help/');
+
+/** Localization helper class */
 class L10N extends Collection {
   /**
    * Constructor
@@ -18,12 +26,12 @@ class L10N extends Collection {
    * @param {string[]} filePaths -File paths (.json files)
    */
   constructor(entries) {
-    super(entries);
+    super();
     /**
      * Default (fallback) language
      * @type {string}
      */
-    this.defaultLang = '';
+    this.defaultLang = clientConfig['default-lang'];
 
     /**
      * Storage space for file paths of command files
@@ -33,6 +41,17 @@ class L10N extends Collection {
     this.sources = new Collection();
 
     this.s = this.getResource; // function short-hand
+
+    const directory = JSON.parse(
+        readFileSync(resolve(localePath, 'directory.json')),
+        'utf8');
+
+    for (const [lang, subDir] of Object.entries(directory)) {
+      this.loadLanguageFiles(
+          lang,
+          getFilesFromDir(resolve(localePath, subDir), ['.json'], 3),
+      );
+    }
   }
 
   /**
@@ -162,30 +181,31 @@ class L10N extends Collection {
   getCommandHelp(lang, cmdName) {
     let helpFilePath;
 
-    helpFilePath = resolve(HELP_DIR, lang, cmdName + '.md');
-    if (fs.existsSync(helpFilePath)) {
-      return fs.readFileSync(helpFilePath, 'utf8');
+    helpFilePath = resolve(helpPath, lang, cmdName + '.md');
+    if (existsSync(helpFilePath)) {
+      return readFileSync(helpFilePath, 'utf8');
     }
 
-    helpFilePath = resolve(HELP_DIR, lang, cmdName + '.txt');
-    if (fs.existsSync(helpFilePath)) {
-      return '```' + fs.readFileSync(helpFilePath, 'utf8') + '```';
+    helpFilePath = resolve(helpPath, lang, cmdName + '.txt');
+    if (existsSync(helpFilePath)) {
+      return '```' + readFileSync(helpFilePath, 'utf8') + '```';
     }
 
     if (lang == this.defaultLang) return undefined;
 
-    helpFilePath = resolve(HELP_DIR, this.defaultLang, cmdName + '.md');
-    if (fs.existsSync(helpFilePath)) {
-      return fs.readFileSync(helpFilePath, 'utf8');
+    helpFilePath = resolve(helpPath, this.defaultLang, cmdName + '.md');
+    if (existsSync(helpFilePath)) {
+      return readFileSync(helpFilePath, 'utf8');
     }
 
-    helpFilePath = resolve(HELP_DIR, this.defaultLang, cmdName + '.txt');
-    if (fs.existsSync(helpFilePath)) {
-      return '```' + fs.readFileSync(helpFilePath, 'utf8') + '```';
+    helpFilePath = resolve(helpPath, this.defaultLang, cmdName + '.txt');
+    if (existsSync(helpFilePath)) {
+      return '```' + readFileSync(helpFilePath, 'utf8') + '```';
     }
 
     return undefined;
   }
 }
 
-export default L10N;
+/** localization helper */
+export const l10n = new L10N();

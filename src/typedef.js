@@ -11,11 +11,12 @@
 /**
  * Client configuration
  * @typedef {Object} ClientConfig
- * @property {string} `default-prefix` - default command prefix
- * @property {string} `default-lang` - default language
- * @property {string} `owner-role-id` - Id of client developer's role
- * @property {string} `owner-guild-id` - Id of client developer's guild
- * @property {string} `client-data-path` - path for locally saved client data
+ * @property {string} `default-prefix` Default command prefix
+ * @property {string} `default-lang` Default language
+ * @property {string} `login-token` Client login token
+ * @property {string} `owner-role-id` Id of client developer's role
+ * @property {string} `owner-server-id` Id of client developer's guild
+ * @property {string} `client-data-path` Path for locally saved client data
  */
 
 /**

@@ -8,8 +8,10 @@
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
 */
 
-import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {COMMAND_PERM} from '../../src/typedef.js';
+import {logger} from '../../src/logger.js';
 
 export const canonName = 'owner.reload';
 export const name = 'reload';
@@ -63,7 +65,11 @@ export function getSlashData(context) {
       case COMMAND_PERM.MODERATOR:
       case COMMAND_PERM.ADMIN: adminChoices.push(choice); break;
       case COMMAND_PERM.GENERAL: generalChoices.push(choice); break;
-      default: client.errorLog(`"${cmd}" has undefined command permission`);
+      default:
+        logger.writeLog(
+            'error',
+            `"${cmd}" has undefined command permission`,
+        );
     }
   });
 
@@ -181,7 +187,13 @@ export async function slashExecute(context) {
         })
         .catch((error) => {
           interaction.editReply(l10n.s(lang, CMD_RELOADING_ERR));
-          client.errorLog(error);
+          logger.writeLog(
+              'error',
+              {
+                summary: `Error reloading command "${cmdCanonName}"`,
+                details: error.stack,
+              },
+          );
           client.pauseProcess = false;
           return false;
         });
@@ -260,7 +272,13 @@ export async function execute(context) {
             content: l10n.s(lang, CMD_RELOADING_ERR),
             reply: {messageReference: message.id},
           });
-          client.errorLog(error);
+          logger.writeLog(
+              'error',
+              {
+                summary: `Error reloading command "${cmdCanonName}"`,
+                details: error.stack,
+              },
+          );
           client.pauseProcess = false;
           return false;
         });

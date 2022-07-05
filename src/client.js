@@ -4,20 +4,19 @@
 
 /* eslint max-len: ["error", { "ignoreComments": true }] */
 
-import {
-  existsSync,
-  statSync,
-  mkdirSync} from 'fs';
+import {existsSync, statSync, mkdirSync} from 'fs';
 import {join} from 'path';
+
 import {
   Client as djsClient,
   Intents,
   Collection,
   Permissions} from 'discord.js';
 
-import L10N from './l10n.js';
-import CommandManager from './commands.js';
-import LogManager from './log-manager.js';
+import {clientConfig} from './appConfig.js';
+import {l10n} from './l10n.js';
+import {logger} from './logger.js';
+import {commands} from './commands.js';
 
 import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
   from '../utils/utils.js';
@@ -34,6 +33,7 @@ import {COMMAND_PERM} from './typedef.js';
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
  * @typedef {import('./typedef.js').UserSettings} UserSettings
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
+ * @typedef {import('./logger.js').LogEntry} LogEntry
  */
 
 /** Extending Discord Client */
@@ -61,7 +61,7 @@ class Client extends djsClient {
      * Owner guild id
      * @type {string}
      */
-    this.ownerGuildId = clientConfig['owner-guild-id'];
+    this.ownerGuildId = clientConfig['owner-server-id'];
 
     /**
      * Owner role id
@@ -69,18 +69,13 @@ class Client extends djsClient {
      */
     this.ownerRoleId = clientConfig['owner-role-id'];
 
-    /**
-     * Localization Manager
-     * @type {L10N}
-     */
-    this.l10n = new L10N();
-    this.l10n.defaultLang = clientConfig['default-lang'];
+    this.l10n = l10n;
 
     /**
      * Command Manager
      * @type {CommandManager}
      */
-    this.commands = new CommandManager(this);
+    this.commands = commands;
 
     /**
      * Cooldown Manager
@@ -102,16 +97,23 @@ class Client extends djsClient {
     if (this.clientDataPath) {
       if (existsSync(this.clientDataPath)) {
         if (!statSync(this.clientDataPath).isDirectory()) {
-          console.warn(
-              'Error accessing the client-data directory: ',
-              `${this.clientDataPath} is not a directory.`);
+          logger.writeLog(
+              'error',
+              {
+                summary: 'Error accessing the client-data directory: ',
+                details: `${this.clientDataPath} is not a directory.`,
+              },
+          );
           this.clientDataPath = '';
         }
       } else {
         try {
           mkdirSync(this.clientDataPath, {recursive: true});
         } catch (error) {
-          console.warn('Error creating the client-data directory');
+          logger.writeLog(
+              'error',
+              'Error creating the client-data directory',
+          );
           this.clientDataPath = '';
         }
       }
@@ -139,8 +141,6 @@ class Client extends djsClient {
        * @type {Discord.Collection}
        */
       this.userConfig = createCollectionFromFile(this.userConfigPath);
-
-      /** @type {LogManager} */ this.logManager = new LogManager(this);
     } else {
       this.guildConfigPath = '';
       this.guildConfig = new Collection();
@@ -223,34 +223,6 @@ class Client extends djsClient {
     if (this.userConfigPath) {
       saveCollectionToFile(this.userConfig, this.userConfigPath);
     }
-  }
-
-  /**
-   * Write command execution log
-   * @param {string} guildId - Guild Id
-   * @param {string} log - Entry text
-   * @param {Date} [time] - Entry time
-   */
-  commandLog(guildId, log, time) {
-    if (this.logManager) this.logManager.writeLog(guildId, log, time);
-  }
-
-  /**
-   * Write general log
-   * @param {string} log - Entry text
-   * @param {Date} [time] - Entry time
-   */
-  log(log, time) {
-    if (this.logManager) this.logManager.writeLog('log', log, time);
-  }
-
-  /**
-   * Write error log
-   * @param {string} log - Entry text
-   * @param {Date} [time] - Entry time
-   */
-  errorLog(log, time) {
-    if (this.logManager) this.logManager.writeLog('error', log, time);
   }
 
   /**
@@ -353,7 +325,10 @@ class Client extends djsClient {
 
     /** Translation error */
     if (!this.commands.has(cmdCanonName)) {
-      this.errorLog(`Cannot find command named "${cmdCanonName}"`);
+      logger.writeLog(
+          'error',
+          `Command handler for "${cmdAlias}" cannot be found`,
+      );
       return;
     }
 
@@ -426,28 +401,34 @@ class Client extends djsClient {
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
             if (guild) {
-              this.commandLog(
+              logger.writeLog(
                   guild.id,
-                  cmdCanonName,
-                  execTime,
+                  {
+                    summary: prefix + cmdCanonName,
+                    time: execTime,
+                  },
               );
             }
           } else {
-            this.errorLog(
-                `"${cmdCanonName}" does not return boolean result.`,
-                execTime,
+            logger.writeLog(
+                'error',
+                {
+                  summary: `"${cmdCanonName}" does not return boolean result.`,
+                  time: execTime,
+                },
             );
           }
         })
         .catch((error) => {
           if (guild) {
-            const errorMessage =
-                `Error executing "${msg.content}"\n` +
-                `"${error.message}"\n` +
-                '--------------------------------------------------\n' +
-                error;
-
-            this.errorLog(errorMessage, execTime);
+            logger.writeLog(
+                'error',
+                {
+                  summary: `Error executing "${msg.content}"`,
+                  details: error.stack,
+                  time: execTime,
+                },
+            );
           }
         });
   }
@@ -486,7 +467,10 @@ class Client extends djsClient {
     const cmd = this.commands.find((c) => c.name === slashName);
 
     if ((!cmd) || (!cmd.slashExecute)) {
-      this.errorLog(`Cannot execute "/${slashName}"`);
+      logger.writeLog(
+          'error',
+          `Command handler for "/${slashName}" cannot be found`,
+      );
       return;
     }
 
@@ -566,23 +550,33 @@ class Client extends djsClient {
               this.cooldowns.set(cooldownKey, expiration);
               setTimeout(() => this.cooldowns.delete(cooldownKey), cooldownMS);
             }
-            this.commandLog(
+
+            logger.writeLog(
                 guild.id,
-                fullCommand,
-                execTime,
+                {
+                  summary: fullCommand,
+                  time: execTime,
+                },
             );
           } else {
-            console.error(`"/${slashName}" does not return boolean result.`);
+            logger.writeLog(
+                'error',
+                {
+                  summary: `"/${slashName}" does not return boolean result.`,
+                  time: execTime,
+                },
+            );
           }
         })
         .catch((error) => {
-          const errorMessage =
-              `Error executing ${fullCommand}\n` +
-              `"${error.message}"\n` +
-              '--------------------------------------------------\n' +
-              error;
-
-          this.errorLog(errorMessage, execTime);
+          logger.writeLog(
+              'error',
+              {
+                summary: `Error executing ${fullCommand}`,
+                details: error.stack,
+                time: execTime,
+              },
+          );
         });
   }
 
@@ -646,14 +640,19 @@ class Client extends djsClient {
   }
 
   /**
-   * Register slash commands when joining a new server
+   * Event handler for joining a new server (register slash commands)
    * @param {Discord.Guild} guild
    */
   async onGuildCreate(guild) {
-    this.log(`Joined server "${guild.name}" <${guild.id}>`);
-    // Check bot permission
+    logger.writeLog(
+        'client',
+        `Joined server "${guild.name}" <${guild.id}>`,
+    );
+
     const client = this;
     const bot = await guild.members.fetch(client.user.id);
+
+    // Check bot permission
     const botPermissions = bot.permissions;
 
     const requiredPermissions = [
@@ -673,9 +672,12 @@ class Client extends djsClient {
     );
 
     if (missingPermissions.length > 0) {
-      this.errorLog(
-          'Error: bot is missing some required permissions: ' +
-          missingPermissions.join(', '),
+      logger.writeLog(
+          'error',
+          {
+            summary: `Bot is missing some required permissions`,
+            details: missingPermissions.join(', '),
+          },
       );
       return;
     }
@@ -684,14 +686,27 @@ class Client extends djsClient {
   }
 
   /**
-   * Get ready
+   * Event handler for leaving a server
+   * @param {Discord.Guild} guild
+   */
+  async onGuildLeave(guild) {
+    logger.writeLog(
+        'client',
+        `Left server "${guild.name}" <${guild.id}>`,
+    );
+  }
+
+  /**
+   * Register event handlers and get ready for logging in
    */
   ready() {
     this.on('messageCreate', (msg) => this.onMessageCreate(msg));
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
     this.on('guildCreate', (g) => this.onGuildCreate(g));
-    this.on('guildDelete', (g) => this.log(`Left server <${g.id}>`));
+    this.on('guildDelete', (g) => this.onGuildLeave(g));
     this.on('messageReactionAdd', (r, u) => this.onReactionAdd(r, u));
+    this.guilds.cache.forEach((g) => logger.openLogBook(g.id));
   }
 }
-export default Client;
+
+export const client = new Client(clientConfig);
