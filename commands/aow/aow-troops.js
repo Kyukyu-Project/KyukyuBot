@@ -2,8 +2,11 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  */
+
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 import {postNavigable} from '../../utils/navigable.js';
 
 export const canonName = 'aow.troops';
@@ -17,12 +20,11 @@ const optTagLabel     = 'tag-user';
 const optMessageLabel = 'tag-message';
 
 /**
- * @param {CommandContext} context
- * @return {object}
+ * @param {CommandContext|IContext} context
+ * @return {SlashCommandBuilder}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const optTroopsHint = l10n.s(lang, `commands.${canonName}.opt-troops-hint`);
@@ -64,8 +66,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   const troops = interaction.options.getString(optTroopsLabel);
   const info = l10n.s(lang, 'aow.troops')?.find((el) => el.name === troops);

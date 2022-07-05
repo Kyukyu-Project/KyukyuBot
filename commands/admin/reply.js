@@ -1,10 +1,13 @@
 /**
- * @typedef {import('../../src/l10n.js').L10N} L10N
+ * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  */
+
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 
 export const canonName = 'admin.reply';
 export const name = 'reply';
@@ -17,12 +20,11 @@ const optMessageIdLabel = 'message-id';
 const optChannelLabel = 'channel';
 
 /**
- * @param {CommandContext|IContext} context
+ * @param {DeploymentContext} context
  * @return {SlashCommandBuilder}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint =
       l10n.s(lang, `commands.${canonName}.c-hint`);
@@ -58,8 +60,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, channel, lang, interaction} = context;
-  const {l10n} = client;
+  const {channel, lang, interaction} = context;
 
   if (context.userIsMod || context.hasAdminPermission) {
     await interaction.deferReply({ephemeral: true});

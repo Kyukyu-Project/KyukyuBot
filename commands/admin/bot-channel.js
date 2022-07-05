@@ -1,4 +1,3 @@
-/* eslint max-len: ["error", { "ignoreComments": true }] */
 /**
  * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
@@ -10,6 +9,9 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import {ChannelType} from 'discord-api-types/v10';
 
+import {l10n} from '../../src/l10n.js';
+import {getChannelId} from '../../utils/utils.js';
+
 export const canonName = 'admin.bot-channel';
 export const name = 'bot-channel';
 export const requireArgs = false;
@@ -17,8 +19,6 @@ export const commandPerm = COMMAND_PERM.ADMIN;
 export const cooldown = 0;
 
 const settingKey = 'bot-channel';
-
-import {getChannelId} from '../../utils/utils.js';
 
 const INFO_DESC           = `commands.${canonName}.info-desc`;
 const INFO_ONE            = `commands.${canonName}.info-one`;
@@ -38,11 +38,10 @@ const fClear              = ['--clear', '-c'];
 
 /**
  * @param {DeploymentContext} context
- * @return {object}
+ * @return {SlashCommandBuilder}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scInfoHint = l10n.s(lang, `commands.${canonName}.sc-info-hint`);
@@ -73,8 +72,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   if (context.hasAdminPermission) {
     const subCommand = interaction.options.getSubcommand();

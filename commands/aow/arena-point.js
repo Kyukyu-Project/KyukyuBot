@@ -3,8 +3,11 @@
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
+
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 
 export const canonName = 'aow.arena-point';
 export const name = 'arena-point';
@@ -28,8 +31,7 @@ const optCurrentLabel  = 'current-points';
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
 
@@ -52,8 +54,8 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
+
   const options = interaction.options;
   const currPoints = Math.floor(options.getNumber(optCurrentLabel));
 

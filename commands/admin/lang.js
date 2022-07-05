@@ -1,5 +1,5 @@
-/* eslint max-len: ["error", { "ignoreComments": true }] */
 /**
+ * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
@@ -7,6 +7,8 @@
 
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 
 export const canonName = 'admin.lang';
 export const name = 'lang';
@@ -22,12 +24,11 @@ const optLangLabel        = 'language';
 const fSet                = ['--set', '-s'];
 
 /**
- * @param {CommandContext|IContext} context
- * @return {object}
+ * @param {DeploymentContext} context
+ * @return {SlashCommandBuilder}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
@@ -53,8 +54,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   if (context.hasAdminPermission) {
     const newLanguage = interaction.options.getString('language');
@@ -77,7 +77,6 @@ export async function slashExecute(context) {
  */
 function set(context, langCode) {
   const {client, guild, guildSettings} = context;
-  const {l10n} = client;
   const currLang = context.lang;
 
   if (l10n.has(langCode)) {

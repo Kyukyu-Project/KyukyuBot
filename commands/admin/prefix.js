@@ -1,10 +1,14 @@
 /**
+ * @typedef {import('../../src/typedef.js').DeploymentContext} DeploymentContext
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').InteractionContext} IContext
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
+
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 
 export const canonName = 'admin.prefix';
 export const name = 'prefix';
@@ -26,12 +30,11 @@ const fInfo  = ['--info', '-i'];
 const fSet   = ['--set', '-s'];
 
 /**
-  * @param {CommandContext|IContext} context
-  * @return {object}
-  */
+ * @param {DeploymentContext} context
+ * @return {SlashCommandBuilder}
+ */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scInfoHint = l10n.s(lang, `commands.${canonName}.sc-info-hint`);
@@ -60,8 +63,7 @@ export function getSlashData(context) {
   * @return {boolean} - true if command is executed
   */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   if (context.hasAdminPermission) {
     const subCommand = interaction.options.getSubcommand();
@@ -90,7 +92,7 @@ export async function slashExecute(context) {
  */
 function set(context, newPrefix) {
   const {client, lang, guild} = context;
-  const l10n = client.l10n;
+
   if (newPrefix) {
     client.updateGuildSettings(guild, settingKey, newPrefix);
     return {
@@ -111,7 +113,7 @@ function set(context, newPrefix) {
  */
 function view(context) {
   const {client, lang, guildSettings} = context;
-  const l10n = client.l10n;
+
   const currPrefix = guildSettings[settingKey] || null;
 
   return {
