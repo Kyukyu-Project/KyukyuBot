@@ -28,12 +28,8 @@
     },
     "admin.reply": {
       "c-hint": "Reply to a message through the bot",
-      "opt-response-hint": "Reply message that I should send",
-      "opt-message-id-hint": "Id of the message to reply to",
-      "opt-channel-hint": "Channel where the reply message should be sent",
-      "response-sent-elsewhere": "The response has been sent: {MESSAGE URL}",
-      "response-sent-here": "The response has been sent",
-      "response-error": "Error sending the response"
+      "modal-title": "Reply to the selected message",
+      "response-label": "Message"
     },
     "admin.prefix": {
       "c-hint": "View or set the bot-command prefix",
