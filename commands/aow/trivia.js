@@ -5,6 +5,8 @@
 
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+import {ChannelType} from 'discord-api-types/v10';
+
 import {pause} from '../../utils/utils.js';
 
 export const canonName = 'fun.trivia';
