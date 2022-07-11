@@ -5,7 +5,7 @@
 import {join as joinPath} from 'path';
 import {truncateSync, createWriteStream} from 'fs';
 
-import {clientConfig} from './appConfig.js';
+import {clientConfig} from './app-config.js';
 
 /**
  * Log entry

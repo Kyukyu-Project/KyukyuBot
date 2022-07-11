@@ -4,7 +4,7 @@
 
 import {join as joinPath} from 'path';
 
-import {clientConfig} from './appConfig.js';
+import {clientConfig} from './app-config.js';
 
 import {saveCollectionToFile, createCollectionFromFile}
   from '../utils/utils.js';

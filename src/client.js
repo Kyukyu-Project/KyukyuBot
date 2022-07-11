@@ -12,7 +12,7 @@ import {
   Collection,
   Permissions} from 'discord.js';
 
-import {clientConfig} from './appConfig.js';
+import {clientConfig} from './app-config.js';
 import {l10n} from './l10n.js';
 import {logger} from './logger.js';
 import {servers} from './servers.js';
