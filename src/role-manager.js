@@ -10,6 +10,7 @@
  * @typedef {import('./typedef.js').InteractionContext} IContext
  */
 
+import {servers} from '../src/servers.js';
 import {getRoleId} from '../utils/utils.js';
 
 import {SlashCommandBuilder} from '@discordjs/builders';
@@ -149,7 +150,7 @@ function addRoles(CTX, KEY, STR, what) {
   const currRoles = guildSettings[KEY] || [];
   const added = what.filter((id) => currRoles.indexOf(id) === -1);
   if (added.length) {
-    client.updateGuildSettings(guild, KEY, currRoles.concat(added));
+    servers.updateSettings(guild, KEY, currRoles.concat(added));
     client.commands.slowDeploy(guild);
     const response =
         (added.length > 1)?
@@ -175,7 +176,7 @@ function addOneRole(CTX, KEY, STR, what) {
   const currRoles = guildSettings[KEY] || [];
   if (currRoles.indexOf(what) === -1) {
     currRoles.push(what);
-    client.updateGuildSettings(guild, KEY, currRoles);
+    servers.updateSettings(guild, KEY, currRoles);
     client.commands.slowDeploy(guild);
     const response = STR['add-one'].replace('{ROLE}', `<@&${what}>`);
     return {success: true, response: response};
@@ -208,7 +209,7 @@ function removeManyRoles(CTX, KEY, STR, what) {
     }
   });
   if (removed.length) {
-    client.updateGuildSettings(guild, KEY, currRoles);
+    servers.updateSettings(guild, KEY, currRoles);
     client.commands.slowDeploy(guild);
     const response = (removed.length == 1)?
       STR['remove-one'].replace('{ROLE}', `<@&${removed[0]}>`):
@@ -235,7 +236,7 @@ function removeOneRole(CTX, KEY, STR, what) {
   const spliceAt = currRoles.indexOf(what);
   if (spliceAt !== -1) {
     currRoles.splice(spliceAt, 1);
-    client.updateGuildSettings(guild, KEY, currRoles);
+    servers.updateSettings(guild, KEY, currRoles);
     client.commands.slowDeploy(guild);
     const response = STR['remove-one'].replace('{ROLE}', `<@&${what}>`);
     return {success: true, response: response};
@@ -267,7 +268,7 @@ function clearRoles(CTX, KEY, STR) {
     } else {
       response = STR['clear-one'].replace('{ROLE}', `<@&${currRoles[0]}>`);
     }
-    client.updateGuildSettings(guild, KEY, []);
+    servers.updateSettings(guild, KEY, []);
     client.commands.slowDeploy(guild);
     return {success: true, response: response};
   } else {
@@ -289,7 +290,7 @@ function viewRoles(CTX, KEY, STR) {
   const validRoles = currRoles.filter((id) => guild.roles.cache.get(id));
 
   if (currRoles.length !== validRoles.length) {
-    client.updateGuildSettings(guild, KEY, validRoles);
+    servers.updateSettings(guild, KEY, validRoles);
     client.commands.slowDeploy(guild);
   }
 
@@ -325,7 +326,7 @@ export async function slashExecute(CTX, KEY, STR) {
         interaction.options.getRole('role').id);
       break;
     case 'remove': result = removeOneRole(CTX, KEY, STR,
-        interaction.options.getString('role').id);
+        interaction.options.getString('role'));
       break;
   }
   interaction.reply({content: result.response, ephemeral: true});

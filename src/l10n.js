@@ -70,10 +70,6 @@ class L10N extends Collection {
     } else {
       this.set(lang, data);
       this.sources.set(lang, filePaths.slice());
-
-      // If default language is not defined, then use the first
-      // loaded language as the default language
-      if (!this.defaultLang) this.defaultLang = lang;
     }
   }
 

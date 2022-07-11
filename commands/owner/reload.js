@@ -11,6 +11,7 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {COMMAND_PERM} from '../../src/typedef.js';
+import {clientConfig} from '../../src/appConfig.js';
 import {logger} from '../../src/logger.js';
 
 export const canonName = 'owner.reload';
@@ -146,7 +147,7 @@ export async function slashExecute(context) {
 
     const langCode =
         interaction.options.getString(optLangLabel) ||
-        l10n.defaultLang;
+        clientConfig['default-lang'];
 
     const reloadLangFunctions = [
       new Promise((resolve) => setTimeout(resolve, 3 * 1000, true)),
@@ -215,7 +216,7 @@ export async function execute(context) {
     client.pauseProcess = true;
     channel.send(l10n.s(lang, RELOADING_LANG));
 
-    const langCode = args?.[1] || l10n.defaultLang;
+    const langCode = args?.[1] || clientConfig['default-lang'];
 
     const reloadLangFunctions = [
       new Promise((resolve) => setTimeout(resolve, 3 * 1000)),

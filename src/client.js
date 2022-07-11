@@ -1,11 +1,10 @@
 /*
- * Main client class
+ * Main discord client
  **/
 
 /* eslint max-len: ["error", { "ignoreComments": true }] */
 
 import {existsSync, statSync, mkdirSync} from 'fs';
-import {join} from 'path';
 
 import {
   Client as djsClient,
@@ -16,10 +15,10 @@ import {
 import {clientConfig} from './appConfig.js';
 import {l10n} from './l10n.js';
 import {logger} from './logger.js';
+import {servers} from './servers.js';
 import {commands} from './commands.js';
 
-import {saveCollectionToFile, createCollectionFromFile, parseCommandArguments}
-  from '../utils/utils.js';
+import {parseCommandArguments} from '../utils/utils.js';
 
 import {COMMAND_PERM} from './typedef.js';
 
@@ -31,7 +30,6 @@ import {COMMAND_PERM} from './typedef.js';
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').InteractionContext} IContext
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
- * @typedef {import('./typedef.js').UserSettings} UserSettings
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
  * @typedef {import('./logger.js').LogEntry} LogEntry
  */
@@ -50,12 +48,6 @@ class Client extends djsClient {
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
       partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     });
-
-    /**
-     * Default command prefix
-     * @type {string}
-     */
-    this.defaultPrefix = clientConfig['default-prefix'];
 
     /**
      * Owner guild id
@@ -118,112 +110,7 @@ class Client extends djsClient {
         }
       }
     }
-
-    if (this.clientDataPath) {
-      /**
-       * File path for guild settings
-       * @type {string}
-       */
-      this.guildConfigPath = join(this.clientDataPath, 'guilds.json');
-      /**
-       * Guild settings
-       * @type {Discord.Collection}
-       */
-      this.guildConfig = createCollectionFromFile(this.guildConfigPath);
-
-      /**
-       * File path for user settings
-       * @type {string}
-       */
-      this.userConfigPath = join(this.clientDataPath, 'users.json');
-      /**
-       * User settings
-       * @type {Discord.Collection}
-       */
-      this.userConfig = createCollectionFromFile(this.userConfigPath);
-    } else {
-      this.guildConfigPath = '';
-      this.guildConfig = new Collection();
-      this.userConfigPath = '';
-      this.userConfig = new Collection();
-    }
   } // constructor
-
-  /**
-   * Get a copy of the guild settings
-   * @param {Discord.Guild} guild - Guild
-   * @return {GuildSettings}
-   */
-  getGuildSettings(guild) {
-    const settings = this.guildConfig.get(guild.id);
-    if (settings) {
-      return Object.assign({}, settings);
-    } else {
-      return {
-        'name': guild.name,
-        'lang': this.l10n.defaultLang,
-        'command-prefix': this.defaultPrefix,
-        'bot-channel': '',
-      };
-    }
-  }
-
-  /**
-   * Update guild settings
-   * @param {Discord.Guild} guild - Guild
-   * @param {string} key - Setting key
-   * @param {string|string[]} value - New value
-   */
-  updateGuildSettings(guild, key, value) {
-    const settings = this.getGuildSettings(guild);
-    settings[key] = value;
-    this.guildConfig.set(guild.id, settings);
-    this.saveGuildSettings();
-  }
-
-  /**
-   * Get a copy of the user settings
-   * @param {Discord.User} user
-   * @return {UserSettings}
-   */
-  getUserSettings(user) {
-    const settings = this.userConfig.get(user.id);
-    if (settings) {
-      return Object.assign({}, settings);
-    } else {
-      return {
-        'lang': this.l10n.defaultLang,
-      };
-    }
-  }
-
-  /**
-   * Update guild settings
-   * @param {Discord.User} user - User
-   * @param {UserSettings} settings - New settings
-   */
-  updateUserSettings(user, settings) {
-    this.userConfig.set(user.id, Object.assign({}, settings));
-    this.saveUserSettings();
-  }
-
-  /**
-   * Save guild settings
-   */
-  saveGuildSettings() {
-    if (this.guildConfigPath) {
-      saveCollectionToFile(this.guildConfig, this.guildConfigPath);
-    }
-  }
-
-  /**
-   * Save user settings
-   */
-  saveUserSettings() {
-    if (this.userConfigPath) {
-      saveCollectionToFile(this.userConfig, this.userConfigPath);
-    }
-  }
 
   /**
    * Get user permissions
@@ -294,21 +181,17 @@ class Client extends djsClient {
     const channel = msg.channel;
     const user = msg.author;
 
-    /** @type {GuildSettings|undefined} */
-    let guildSettings = undefined;
+    if (!guild) return;
 
-    let prefix;
-    let lang;
+    const guildSettings = servers.getSettings(guild);
 
-    // Load guild settings
-    if (guild) {
-      guildSettings = this.getGuildSettings(guild);
-      lang = guildSettings['lang']||this.l10n.defaultLang;
-      prefix = guildSettings['command-prefix']||this.defaultPrefix;
-    } else {
-      lang = this.getUserSettings(user).lang;
-      prefix = this.defaultPrefix;
-    }
+    const lang =
+        guildSettings['lang'] ||
+        clientConfig['default-lang'];
+
+    const prefix =
+        guildSettings['command-prefix'] ||
+        clientConfig['default-prefix'];
 
     const parsedArgs = parseCommandArguments(prefix, msg.content);
 
@@ -319,7 +202,7 @@ class Client extends djsClient {
 
     /** Canonical command name */
     const cmdCanonName =
-      this.l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
+          l10n.getCanonicalName(lang, 'aliases.commands', cmdAlias);
 
     if (!cmdCanonName) return;
 
@@ -354,7 +237,7 @@ class Client extends djsClient {
     } // switch (cmd.commandPerm)
 
     if ((cmd.requireArgs) && (parsedArgs.length == 0)) {
-      const helpTxt = this.l10n.getCommandHelp(lang, cmdCanonName);
+      const helpTxt = l10n.getCommandHelp(lang, cmdCanonName);
       if (helpTxt) {
         channel.send({
           content: helpTxt.replaceAll('?', prefix),
@@ -445,22 +328,10 @@ class Client extends djsClient {
 
     if (this.pauseProcess) return;
 
-    const guild = interaction.guild;
-    const channel = interaction.channel;
-    const user = interaction.user;
+    const {guild, channel, user} = interaction;
 
-    /** @type {GuildSettings|undefined} */
-    let guildSettings = undefined;
-
-    let lang;
-
-    // Load guild settings
-    if (guild) {
-      guildSettings = this.getGuildSettings(guild);
-      lang = guildSettings['lang']||this.l10n.defaultLang;
-    } else {
-      lang = this.getUserSettings(user).lang;
-    }
+    const guildSettings = servers.getSettings(guild);
+    const lang = guildSettings['lang'] || clientConfig['default-lang'];
 
     /** Slash command name */
     const slashName = interaction.commandName;
@@ -511,7 +382,7 @@ class Client extends djsClient {
       )
     ) {
       interaction.reply({
-        content: this.l10n.t(lang, 'messages.no-permission'),
+        content: l10n.t(lang, 'messages.no-permission'),
         ephemeral: true,
       });
       return;
@@ -600,15 +471,14 @@ class Client extends djsClient {
 
       if (reaction.emoji.name !== '🗑️') return;
 
-      const guildSettings = this.getGuildSettings(guild);
+      const guildSettings = servers.getSettings(guild);
 
       guild.members.fetch(user.id)
           .then((member) => {
             const mRoles = member.roles;
             const mPermissions = msg.member.permissions;
             const hasOwnerPermission =
-                (guild.id == this.ownerGuildId) &&
-                this.ownerRoleId?
+                ((guild.id == this.ownerGuildId) && (this.ownerRoleId))?
                 mRoles.cache.some((r)=>r.id = this.ownerRoleId):
                 mPermissions.has(Permissions.FLAGS.ADMINISTRATOR);
 

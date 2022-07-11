@@ -9,6 +9,7 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from '../../src/l10n.js';
+import {servers} from '../../src/servers.js';
 
 export const canonName = 'admin.lang';
 export const name = 'lang';
@@ -81,7 +82,7 @@ function set(context, langCode) {
 
   if (l10n.has(langCode)) {
     if (guildSettings.lang !== langCode) {
-      client.updateGuildSettings(guild, settingKey, langCode);
+      servers.updateSettings(guild, settingKey, langCode);
       client.commands.slowDeploy(guild);
     }
     const langDisplay = l10n.s(langCode, `languages.${langCode}`);

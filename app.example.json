@@ -17,11 +17,11 @@
     "value": ""
   },
   "owner-role-id": {
-    "description": "Id of the guild role that has permission to use owner-only commands",
+    "description": "Id of the member role that has permission to use owner-only commands",
     "value": ""
   },
-  "owner-guild-id": {
-    "description": "Id of the guild where owner-only commands can be used",
+  "owner-server-id": {
+    "description": "Id of the server where owner-only commands can be used",
     "value": ""
   },
   "client-data-path": {

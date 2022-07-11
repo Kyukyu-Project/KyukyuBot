@@ -184,7 +184,11 @@ export function createFlattenedCollectionFromFiles(filePaths) {
 */
 export function saveCollectionToFile(sourceCollection, filePath) {
   try {
-    const destText = JSON.stringify(Object.fromEntries(sourceCollection));
+    const destText = JSON.stringify(
+        Object.fromEntries(sourceCollection),
+        null,
+        2, // prettify
+    );
     writeFileSync(filePath, destText);
   } catch (error) {
     console.error(`Error writing to ${filePath}`);
@@ -375,3 +379,6 @@ export function formatDate(d, locale) {
   }
   return d.toLocaleString(locale, {dateStyle: 'medium'});
 }
+
+/** Null arrow function */
+export const noop = ()=> {};

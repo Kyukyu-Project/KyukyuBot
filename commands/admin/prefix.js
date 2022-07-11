@@ -8,7 +8,9 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+import {clientConfig} from './appConfig.js';
 import {l10n} from '../../src/l10n.js';
+import {servers} from '../../src/servers.js';
 
 export const canonName = 'admin.prefix';
 export const name = 'prefix';
@@ -91,10 +93,10 @@ export async function slashExecute(context) {
  * @return {ActionResult}
  */
 function set(context, newPrefix) {
-  const {client, lang, guild} = context;
+  const {lang, guild} = context;
 
   if (newPrefix) {
-    client.updateGuildSettings(guild, settingKey, newPrefix);
+    servers.updateSettings(guild, settingKey, newPrefix);
     return {
       response: l10n.t(lang, SET_SUCCESS, '{PREFIX}', newPrefix),
       success: true,
@@ -112,15 +114,16 @@ function set(context, newPrefix) {
  * @return {ActionResult}
  */
 function view(context) {
-  const {client, lang, guildSettings} = context;
+  const {lang, guildSettings} = context;
 
   const currPrefix = guildSettings[settingKey] || null;
+  const defaultPrefix = clientConfig['default-prefix'];
 
   return {
     response:
         (currPrefix)?
         l10n.t(lang, INFO_PREFIX, '{PREFIX}', currPrefix):
-        l10n.t(lang, INFO_DEFAULT, '{PREFIX}', client.defaultPrefix),
+        l10n.t(lang, INFO_DEFAULT, '{PREFIX}', defaultPrefix),
     success: true,
   };
 }

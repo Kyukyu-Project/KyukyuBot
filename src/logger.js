@@ -21,6 +21,8 @@ class Logger {
   constructor() {
     this.fileStreams = new Map();
     this.dataPath = clientConfig['client-data-path'];
+    this.openLogBook('client'); // general log
+    this.openLogBook('error'); // error log
   }
 
   /**
@@ -62,6 +64,7 @@ class Logger {
   writeLog(logId, entry) {
     if (typeof entry === 'string') {
       const timeStamp =(new Date()).toISOString();
+      if (!entry.endsWith('\n')) entry = entry + '\n';
       const formattedLog = timeStamp + '\t' + entry;
       this.getLogStream(logId).write(formattedLog);
     } else {

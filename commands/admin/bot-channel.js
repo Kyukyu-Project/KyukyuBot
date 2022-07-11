@@ -10,6 +10,7 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 import {ChannelType} from 'discord-api-types/v10';
 
 import {l10n} from '../../src/l10n.js';
+import {servers} from '../../src/servers.js';
 import {getChannelId} from '../../utils/utils.js';
 
 export const canonName = 'admin.bot-channel';
@@ -113,7 +114,7 @@ function set(context, newId) {
         success: false,
       };
     } else if (guild.channels.cache.get(newId)?.isText()) { // set
-      client.updateGuildSettings(guild, settingKey, newId);
+      servers.updateSettings(guild, settingKey, newId);
       client.commands.slowDeploy(guild);
       return {
         response: l10n.t(lang, SET_SUCCESS, '{CHANNEL}', `<#${newId}>`),
@@ -138,7 +139,7 @@ function clear(context) {
   const currId = guildSettings['bot-channel'] || null;
 
   if (typeof currId === 'string') {
-    client.updateGuildSettings(guild, settingKey, '');
+    servers.updateSettings(guild, settingKey, '');
     client.commands.slowDeploy(guild);
     return {
       response: l10n.t(lang, CLEAR_SUCCESS, '{CHANNEL}', `<#${currId}>`),

@@ -12,8 +12,9 @@ import {Routes} from 'discord-api-types/v9';
 import {COMMAND_PERM} from './typedef.js';
 
 import {logger} from './logger.js';
+import {servers} from './servers.js';
 
-import {getFilesFromDir} from '../utils/utils.js';
+import {noop, getFilesFromDir} from '../utils/utils.js';
 
 /** File path of this module */
 const filePath = resolve(fileURLToPath(import.meta.url), './../');
@@ -122,6 +123,10 @@ class CommandManager extends Collection {
 
     const timer = setTimeout(timerFn, timerDelay, guild);
     Timers.set(guildId, timer);
+    logger.writeLog(
+        'client',
+        `Command deployment for "${guild.name}" scheduled.`,
+    );
   }
 
   /**
@@ -131,7 +136,7 @@ class CommandManager extends Collection {
   async fastDeploy(guild) {
     const client = this.client;
     const guildId = guild.id;
-    const guildSettings = client.getGuildSettings(guild);
+    const guildSettings = servers.getSettings(guild);
 
     const Timers = this.deploymentTimers;
     if (Timers.has(guildId)) {
@@ -211,6 +216,7 @@ class CommandManager extends Collection {
             }
             return data;
           } catch (e) {
+            console.error(e);
             throw new Error(`Error getting application data for "${c.name}"`);
           }
         });
@@ -257,7 +263,12 @@ class CommandManager extends Collection {
 
     guild.commands.permissions
         .set({fullPermissions: fullPermissions})
-        .then(()=>{}).catch(()=>{}); // Silence 405 error
+        .then(noop).catch(noop); // Silence 405 error
+
+    logger.writeLog(
+        'client',
+        `Command deployment for "${guild.name}" executed.`,
+    );
   }
 }
 

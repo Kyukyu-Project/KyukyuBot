@@ -31,12 +31,6 @@
  */
 
 /**
- * User settings
- * @typedef {Object} UserSettings
- * @property {string} name - Cached name of the user
- * @property {string} lang - Language
- */
-/**
  * User permissions
  * @typedef {Object} UserPermissions
  * @property {boolean} hasOwnerPermission - Can the user execute owner-only commands?
