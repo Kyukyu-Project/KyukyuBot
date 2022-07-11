@@ -10,10 +10,13 @@
  * @typedef {import('./typedef.js').InteractionContext} IContext
  */
 
-import {servers} from '../src/servers.js';
+import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from './l10n.js';
+import {servers} from './servers.js';
 import {getRoleId} from '../utils/utils.js';
 
-import {SlashCommandBuilder} from '@discordjs/builders';
+
 const fInfo   = ['--info', '-i'];
 const fAdd    = ['--add', '-a', '+'];
 const fRemove = ['--remove', '-r', '-'];
@@ -54,13 +57,12 @@ const fClear  = ['--clear', '-c'];
 
 /**
   * Get translation strings
-  * @param {object} l10n
   * @param {string} lang - language
   * @param {string} name - command name
   * @param {string} canonName - command canonical name
   * @return {RoleCommandStrings}
   */
-export function getStrings(l10n, lang, name, canonName) {
+export function getStrings(lang, name, canonName) {
   const strings = {
     'command-name': name,
     'delimiter': l10n.s(lang, 'delimiter'),

@@ -2,7 +2,7 @@
 import 'core-js/es/index.js';
 
 // Get application configuration
-import {clientToken} from './src/appConfig.js';
+import {clientToken} from './src/app-config.js';
 
 // Load logger
 import './src/logger.js';

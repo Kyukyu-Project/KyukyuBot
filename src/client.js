@@ -461,13 +461,15 @@ class Client extends djsClient {
     const {client, message} = reaction;
 
     message.fetch().then((msg) => {
-      const {guild} = msg;
-
-      if (!guild) return;
-
       const authorId = msg?.author?.id || undefined;
-
       if (authorId !== client.user.id) return;
+
+      const {guild, channel} = msg;
+
+      if (!guild) {
+        msg.delete();
+        return;
+      }
 
       if (reaction.emoji.name !== '🗑️') return;
 
@@ -475,33 +477,12 @@ class Client extends djsClient {
 
       guild.members.fetch(user.id)
           .then((member) => {
-            const mRoles = member.roles;
-            const mPermissions = msg.member.permissions;
-            const hasOwnerPermission =
-                ((guild.id == this.ownerGuildId) && (this.ownerRoleId))?
-                mRoles.cache.some((r)=>r.id = this.ownerRoleId):
-                mPermissions.has(Permissions.FLAGS.ADMINISTRATOR);
-
-            const adminRoles = guildSettings['admin-roles'] || [];
-            const hasAdminPermission =
-                (
-                  (adminRoles.length) &&
-                  (mRoles.cache.some((r)=> adminRoles.includes(r.id)))
-                ) ||
-                mPermissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
-                mPermissions.has(Permissions.FLAGS.MANAGE_GUILD);
-
-            const modRoles = guildSettings['mod-roles'] || [];
-            const userIsMod = (modRoles.length)?
-                mRoles.cache.some((r)=>modRoles.includes(r.id)):false;
-
-            const helperRoles = guildSettings['helper-roles'] || [];
-            const userIsHelper = (helperRoles.length)?
-              mRoles.cache.some((r)=>helperRoles.includes(r.id)):false;
+            const p =
+                this.getUserPermissions(guild, guildSettings, channel, member);
 
             if (
-              hasOwnerPermission || hasAdminPermission ||
-              userIsMod || userIsHelper
+              p.hasOwnerPermission || p.hasAdminPermission ||
+              p.userIsMod || p.userIsHelper
             ) {
               msg.delete();
             }

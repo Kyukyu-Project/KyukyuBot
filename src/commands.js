@@ -191,7 +191,7 @@ class CommandManager extends Collection {
              ((!c.guilds) || (c.guilds.includes(guildId)));
 
     /** @type object[] */
-    const pendingData = client.commands
+    const pendingData = this
         .filter(commandFilter)
         .map((c) => {
           try {

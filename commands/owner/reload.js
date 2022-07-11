@@ -11,7 +11,7 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {COMMAND_PERM} from '../../src/typedef.js';
-import {clientConfig} from '../../src/appConfig.js';
+import {clientConfig} from '../../src/app-config.js';
 import {logger} from '../../src/logger.js';
 
 export const canonName = 'owner.reload';

@@ -10,7 +10,7 @@ import {
   getFilesFromDir,
   createFlattenedCollectionFromFiles} from '../utils/utils.js';
 
-import {clientConfig} from './appConfig.js';
+import {clientConfig} from './app-config.js';
 
 /** File path of this module */
 const filePath = resolve(fileURLToPath(import.meta.url), './../');

@@ -1,7 +1,5 @@
 // Get application configuration
-import {getClientConfig} from './utils/load-config.js';
-const __dirname = resolve(); ;
-const [clientConfig] = getClientConfig(__dirname);
+import {clientConfig} from './src/app-config.js';
 
 // Start application using process manager
 

@@ -8,7 +8,7 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
-import {clientConfig} from './appConfig.js';
+import {clientConfig} from '../../src/app-config.js';
 import {l10n} from '../../src/l10n.js';
 import {servers} from '../../src/servers.js';
 

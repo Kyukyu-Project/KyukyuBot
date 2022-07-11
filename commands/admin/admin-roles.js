@@ -21,10 +21,9 @@ const settingKey = 'admin-roles';
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
+  const {lang} = context;
   return RoleManager.getSlashData(
-      context, settingKey,
-      RoleManager.getStrings(client.l10n, lang, name, canonName));
+      context, settingKey, RoleManager.getStrings(lang, name, canonName));
 }
 
 /**
@@ -32,10 +31,9 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang} = context;
+  const {lang} = context;
   return RoleManager.slashExecute(
-      context, settingKey,
-      RoleManager.getStrings(client.l10n, lang, name, canonName));
+      context, settingKey, RoleManager.getStrings(lang, name, canonName));
 }
 
 /**
@@ -43,8 +41,7 @@ export async function slashExecute(context) {
  * @return {boolean} - true if command is executed
  */
 export async function execute(context) {
-  const {client, lang} = context;
+  const {lang} = context;
   return RoleManager.execute(
-      context, settingKey,
-      RoleManager.getStrings(client.l10n, lang, name, canonName));
+      context, settingKey, RoleManager.getStrings(lang, name, canonName));
 }
