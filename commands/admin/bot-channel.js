@@ -12,6 +12,7 @@ import {ChannelType} from 'discord-api-types/v10';
 import {l10n} from '../../src/l10n.js';
 import {servers} from '../../src/servers.js';
 import {getChannelId} from '../../utils/utils.js';
+import {slowDeploy} from '../../src/deployment.js';
 
 export const canonName = 'admin.bot-channel';
 export const name = 'bot-channel';
@@ -104,8 +105,7 @@ export async function slashExecute(context) {
  * @return {ActionResult}
  */
 function set(context, newId) {
-  const {client, lang, guild, guildSettings} = context;
-  const l10n = client.l10n;
+  const {lang, guild, guildSettings} = context;
   const prevId = guildSettings['bot-channel'] || null;
   if (newId) {
     if (prevId == newId) { // already the bot channel
@@ -115,7 +115,7 @@ function set(context, newId) {
       };
     } else if (guild.channels.cache.get(newId)?.isText()) { // set
       servers.updateSettings(guild, settingKey, newId);
-      client.commands.slowDeploy(guild);
+      slowDeploy(guild);
       return {
         response: l10n.t(lang, SET_SUCCESS, '{CHANNEL}', `<#${newId}>`),
         success: true,
@@ -134,13 +134,12 @@ function set(context, newId) {
  * @return {ActionResult}
  */
 function clear(context) {
-  const {client, lang, guild, guildSettings} = context;
-  const l10n = client.l10n;
+  const {lang, guild, guildSettings} = context;
   const currId = guildSettings['bot-channel'] || null;
 
   if (typeof currId === 'string') {
     servers.updateSettings(guild, settingKey, '');
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
     return {
       response: l10n.t(lang, CLEAR_SUCCESS, '{CHANNEL}', `<#${currId}>`),
       success: true,
@@ -158,8 +157,7 @@ function clear(context) {
  * @return {ActionResult}
  */
 function view(context) {
-  const {client, lang, guildSettings} = context;
-  const l10n = client.l10n;
+  const {lang, guildSettings} = context;
   const currId = guildSettings[settingKey] || null;
 
   const response =

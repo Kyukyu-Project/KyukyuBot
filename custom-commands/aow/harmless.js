@@ -7,12 +7,15 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+const AOW_SERVER_ID = '658594298983350293';
+const OWNER_SERVER_ID = '762562773333835787';
+
 export const canonName = 'fun.harmless';
 export const name = 'harmless';
 export const requireArgs = false;
 export const commandPerm = COMMAND_PERM.MODERATOR;
 export const cooldown = 3;
-export const guilds = ['658594298983350293'];
+export const guilds = [AOW_SERVER_ID];
 
 let joking = false;
 let eventHandlerAttached = false;

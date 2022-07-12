@@ -10,6 +10,7 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from '../../src/l10n.js';
 import {servers} from '../../src/servers.js';
+import {slowDeploy} from '../../src/deployment.js';
 
 export const canonName = 'admin.lang';
 export const name = 'lang';
@@ -77,13 +78,13 @@ export async function slashExecute(context) {
  * @return {ActionResult}
  */
 function set(context, langCode) {
-  const {client, guild, guildSettings} = context;
+  const {guild, guildSettings} = context;
   const currLang = context.lang;
 
   if (l10n.has(langCode)) {
     if (guildSettings.lang !== langCode) {
       servers.updateSettings(guild, settingKey, langCode);
-      client.commands.slowDeploy(guild);
+      slowDeploy(guild);
     }
     const langDisplay = l10n.s(langCode, `languages.${langCode}`);
     return {

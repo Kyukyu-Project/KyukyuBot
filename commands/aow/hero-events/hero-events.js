@@ -6,6 +6,8 @@
 
 import {readFileSync, writeFileSync} from 'fs';
 import {formatDate} from '../../../utils/utils.js';
+import {l10n} from '../../../src/l10n.js';
+
 import heroBase from '../../../data/heroes.js';
 
 /* **************** Event Management **************** */
@@ -447,8 +449,7 @@ export async function slashExecute(context) {
  * @return {ActionResult}
  */
 function view(context) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
+  const {lang} = context;
   const EVENT_DURATION = (7 * 24 * 60 - 1) * 60 * 1000;
 
   const getHeroDisplayNames = (event) => {
@@ -591,9 +592,7 @@ function view(context) {
  * @return {ActionResult}
  */
 function stats(context) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
-
+  const {lang} = context;
   const getHeroList = (heroes) => l10n.join(
       lang, heroes.map((h) => l10n.s(lang, `hero-display-names.${h}`)),
   );
@@ -650,8 +649,7 @@ function stats(context) {
  * @return {ActionResult}
  */
 function listAllRecent(context) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
+  const {lang} = context;
 
   const eventList =
     context.hasOwnerPermission?recentEventList12:recentEventList6;
@@ -709,8 +707,7 @@ function listAllRecent(context) {
  * @return {ActionResult}
  */
 function listRecent(context, hero) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
+  const {lang} = context;
 
   const eventList =
     (context.hasOwnerPermission|context.hasAdminPermission)?
@@ -760,9 +757,7 @@ function listRecent(context, hero) {
  * @return {ActionResult}
  */
 function getEventInfo(context, hero) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
-
+  const {lang} = context;
   const eventList =
     (hero === 'athena')?[]:events.filter((evt) => evt.heroes.includes(hero));
 
@@ -833,8 +828,7 @@ function getEventInfo(context, hero) {
  * @return {ActionResult}
  */
 function add(context, ...heroes) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
+  const {lang} = context;
 
   const result = addEvent(heroes);
   if (result.heroes.length) {
@@ -866,8 +860,7 @@ function add(context, ...heroes) {
  * @return {ActionResult}
  */
 function remove(context) {
-  const {client, lang} = context;
-  const l10n = client.l10n;
+  const {lang} = context;
 
   const result = removeEvent();
   if (result.heroes.length) {

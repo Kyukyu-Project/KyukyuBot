@@ -1,4 +1,4 @@
-import {existsSync, readFileSync} from 'fs';
+import {statSync, existsSync, readFileSync} from 'fs';
 import {resolve} from 'path';
 
 /**
@@ -49,10 +49,28 @@ Object.keys(DEFAULT_CONFIG).forEach((property) => {
 
 // Resolve `client-data-path` relative to parent directory of
 // config file ('app.json')
-clientConfig['client-data-path'] = resolve(
+const clientDataPath = resolve(
     resolve(configFileName, './../'),
     clientConfig['client-data-path'],
 );
+
+clientConfig['client-data-path'] = clientDataPath;
+
+if (existsSync(clientDataPath)) {
+  if (!statSync(clientDataPath).isDirectory()) {
+    throw new Error(
+        `Error accessing client-data directory (${clientDataPath})`,
+    );
+  }
+} else {
+  try {
+    mkdirSync(clientDataPath, {recursive: true});
+  } catch (error) {
+    throw new Error(
+        `Error creating client-data directory (${clientDataPath})`,
+    );
+  }
+}
 
 /**
  * @type {string}

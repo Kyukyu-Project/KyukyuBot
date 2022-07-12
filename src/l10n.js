@@ -41,15 +41,18 @@ class L10N extends Collection {
     this.sources = new Collection();
 
     this.s = this.getResource; // function short-hand
+  }
 
-    const directory = JSON.parse(
-        readFileSync(resolve(localePath, 'directory.json')),
-        'utf8');
+  /**
+   * Initialization - load all localization resources
+   */
+  load() {
+    const dirFilePath = resolve(localePath, 'directory.json');
+    const directory = JSON.parse(readFileSync(dirFilePath), 'utf8');
 
     for (const [lang, subDir] of Object.entries(directory)) {
-      this.loadLanguageFiles(
-          lang,
-          getFilesFromDir(resolve(localePath, subDir), ['.json'], 3),
+      const resPath = resolve(localePath, subDir);
+      this.loadLanguageFiles(lang, getFilesFromDir(resPath, ['.json'], 3),
       );
     }
   }

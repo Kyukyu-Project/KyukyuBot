@@ -4,8 +4,6 @@
 
 /* eslint max-len: ["error", { "ignoreComments": true }] */
 
-import {existsSync, statSync, mkdirSync} from 'fs';
-
 import {
   Client as djsClient,
   Intents,
@@ -17,6 +15,7 @@ import {l10n} from './l10n.js';
 import {logger} from './logger.js';
 import {servers} from './servers.js';
 import {commands} from './commands.js';
+import {fastDeploy} from './deployment.js';
 
 import {parseCommandArguments} from '../utils/utils.js';
 
@@ -80,36 +79,6 @@ class Client extends djsClient {
      * @type {boolean}
      */
     this.pauseProcess = false;
-
-    /**
-     * Directory path for locally saved client data
-     * @type {string}
-     */
-    this.clientDataPath = clientConfig['client-data-path'] || '';
-    if (this.clientDataPath) {
-      if (existsSync(this.clientDataPath)) {
-        if (!statSync(this.clientDataPath).isDirectory()) {
-          logger.writeLog(
-              'error',
-              {
-                summary: 'Error accessing the client-data directory: ',
-                details: `${this.clientDataPath} is not a directory.`,
-              },
-          );
-          this.clientDataPath = '';
-        }
-      } else {
-        try {
-          mkdirSync(this.clientDataPath, {recursive: true});
-        } catch (error) {
-          logger.writeLog(
-              'error',
-              'Error creating the client-data directory',
-          );
-          this.clientDataPath = '';
-        }
-      }
-    }
   } // constructor
 
   /**
@@ -207,7 +176,7 @@ class Client extends djsClient {
     if (!cmdCanonName) return;
 
     /** Translation error */
-    if (!this.commands.has(cmdCanonName)) {
+    if (!commands.has(cmdCanonName)) {
       logger.writeLog(
           'error',
           `Command handler for "${cmdAlias}" cannot be found`,
@@ -215,7 +184,7 @@ class Client extends djsClient {
       return;
     }
 
-    const cmd = this.commands.get(cmdCanonName);
+    const cmd = commands.get(cmdCanonName);
 
     if (!cmd.execute) return; // Application (/) command only
 
@@ -335,7 +304,7 @@ class Client extends djsClient {
 
     /** Slash command name */
     const slashName = interaction.commandName;
-    const cmd = this.commands.find((c) => c.name === slashName);
+    const cmd = commands.find((c) => c.name === slashName);
 
     if ((!cmd) || (!cmd.slashExecute)) {
       logger.writeLog(
@@ -533,7 +502,7 @@ class Client extends djsClient {
       return;
     }
 
-    this.commands.fastDeploy(guild);
+    fastDeploy(guild);
   }
 
   /**

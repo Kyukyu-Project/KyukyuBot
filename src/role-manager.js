@@ -14,8 +14,9 @@ import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from './l10n.js';
 import {servers} from './servers.js';
-import {getRoleId} from '../utils/utils.js';
+import {slowDeploy} from './deployment.js';
 
+import {getRoleId} from '../utils/utils.js';
 
 const fInfo   = ['--info', '-i'];
 const fAdd    = ['--add', '-a', '+'];
@@ -147,13 +148,12 @@ export function getSlashData(CTX, KEY, STR) {
  * @return {RoleActionResult}
  */
 function addRoles(CTX, KEY, STR, what) {
-  const {client, guild, guildSettings} = CTX;
-  const {l10n} = client;
+  const {guild, guildSettings} = CTX;
   const currRoles = guildSettings[KEY] || [];
   const added = what.filter((id) => currRoles.indexOf(id) === -1);
   if (added.length) {
     servers.updateSettings(guild, KEY, currRoles.concat(added));
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
     const response =
         (added.length > 1)?
         l10n.r(STR['add-many'],
@@ -174,12 +174,12 @@ function addRoles(CTX, KEY, STR, what) {
  * @return {object}
  */
 function addOneRole(CTX, KEY, STR, what) {
-  const {client, guild, guildSettings} = CTX;
+  const {guild, guildSettings} = CTX;
   const currRoles = guildSettings[KEY] || [];
   if (currRoles.indexOf(what) === -1) {
     currRoles.push(what);
     servers.updateSettings(guild, KEY, currRoles);
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
     const response = STR['add-one'].replace('{ROLE}', `<@&${what}>`);
     return {success: true, response: response};
   } else {
@@ -196,8 +196,7 @@ function addOneRole(CTX, KEY, STR, what) {
  * @return {object}
  */
 function removeManyRoles(CTX, KEY, STR, what) {
-  const {client, guild, guildSettings} = CTX;
-  const {l10n} = client;
+  const {guild, guildSettings} = CTX;
   const currRoles = guildSettings[KEY];
   if ((!Array.isArray(currRoles)) || (!currRoles.length)) {
     return {success: false, response: STR['error-empty-list']};
@@ -212,7 +211,7 @@ function removeManyRoles(CTX, KEY, STR, what) {
   });
   if (removed.length) {
     servers.updateSettings(guild, KEY, currRoles);
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
     const response = (removed.length == 1)?
       STR['remove-one'].replace('{ROLE}', `<@&${removed[0]}>`):
       l10n.r(
@@ -233,13 +232,13 @@ function removeManyRoles(CTX, KEY, STR, what) {
  * @return {object}
  */
 function removeOneRole(CTX, KEY, STR, what) {
-  const {client, guild, guildSettings} = CTX;
+  const {guild, guildSettings} = CTX;
   const currRoles = guildSettings[KEY] || [];
   const spliceAt = currRoles.indexOf(what);
   if (spliceAt !== -1) {
     currRoles.splice(spliceAt, 1);
     servers.updateSettings(guild, KEY, currRoles);
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
     const response = STR['remove-one'].replace('{ROLE}', `<@&${what}>`);
     return {success: true, response: response};
   } else {
@@ -271,7 +270,7 @@ function clearRoles(CTX, KEY, STR) {
       response = STR['clear-one'].replace('{ROLE}', `<@&${currRoles[0]}>`);
     }
     servers.updateSettings(guild, KEY, []);
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
     return {success: true, response: response};
   } else {
     return {success: false, response: STR['error-empty-list']};
@@ -293,7 +292,7 @@ function viewRoles(CTX, KEY, STR) {
 
   if (currRoles.length !== validRoles.length) {
     servers.updateSettings(guild, KEY, validRoles);
-    client.commands.slowDeploy(guild);
+    slowDeploy(guild);
   }
 
   let response = STR['info-desc'];
