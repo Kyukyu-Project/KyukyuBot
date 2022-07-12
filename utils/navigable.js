@@ -35,6 +35,14 @@ export async function postNavigable(context, content, embeds, users) {
       placeholder: l10n.s(lang, 'select-placeholder'),
       options: tabOptions,
     }],
+  },
+  {
+    type: 1,
+    components: [{
+      type: 2 /* button */, style: 2 /* gray */,
+      label: l10n.s(lang, 'dm-me'),
+      custom_id: 'dm',
+    }],
   }];
 
   let currentEmbed = embeds[0];
@@ -46,13 +54,21 @@ export async function postNavigable(context, content, embeds, users) {
   });
 
   const collector = response.createMessageComponentCollector({
-    componentType: 'SELECT_MENU',
+    // componentType: 'SELECT_MENU',
     time: 10 * 60 * 1000,
     idle: 5 * 60 * 1000,
   });
 
   collector.on('collect',
       async (i) => {
+        if ((i.customId) && (i.customId === 'dm')) {
+          i.user.send({
+            // content: content,
+            embeds: [currentEmbed],
+          });
+          i.deferUpdate();
+          return;
+        }
         if (users.includes(i.user.id)) {
           currentEmbed = embeds[parseInt(i.values[0])];
           i.message.edit({
