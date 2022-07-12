@@ -1,5 +1,27 @@
 [
   {
+    "ts": 1657584000000,
+    "date": "2022-07-12",
+    "type": "cm",
+    "heroes": [
+      "charon",
+      "drake",
+      "poseidon",
+      "nezha",
+      "wukong",
+      "harrison"
+    ]
+  },
+  {
+    "ts": 1656979200000,
+    "date": "2022-07-05",
+    "type": "wof",
+    "heroes": [
+      "chione",
+      "kriss"
+    ]
+  },
+  {
     "ts": 1656374400000,
     "date": "2022-06-28",
     "type": "cm",
