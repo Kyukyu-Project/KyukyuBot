@@ -9,6 +9,8 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import {exec} from 'child_process';
 
+import {l10n} from '../../src/l10n.js';
+
 export const canonName = 'owner.git-pull';
 export const name = 'git-pull';
 export const requireArgs = false;
@@ -23,8 +25,7 @@ const COMMAND_ERROR       = `commands.${canonName}.error`;
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   return new SlashCommandBuilder()
@@ -37,8 +38,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
   return new Promise((resolve, reject) => {
     exec('git pull', (error, stdout, stderr) => {
       if (error) {
@@ -61,8 +61,7 @@ export async function slashExecute(context) {
  * @return {Promise<boolean>}
  */
 export async function execute(context) {
-  const {client, lang, channel} = context;
-  const {l10n} = client;
+  const {lang, channel} = context;
   return new Promise((resolve, reject) => {
     exec('git pull', (error, stdout, stderr) => {
       if (error) {

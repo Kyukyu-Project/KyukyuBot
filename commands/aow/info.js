@@ -4,6 +4,8 @@
  */
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 import {postNavigable} from '../../utils/navigable.js';
 
 export const canonName = 'aow.info';
@@ -21,8 +23,7 @@ const optMessageLabel  = 'tag-message';
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const optSubjectHint = l10n.s(lang, `commands.${canonName}.opt-subject-hint`);
@@ -83,8 +84,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   const subject = interaction.options.getString(optSubjectLabel);
   const info = l10n.s(lang, 'aow.info')?.find((el) => el.name === subject);

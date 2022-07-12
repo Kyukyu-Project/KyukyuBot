@@ -254,8 +254,7 @@ function removeOneRole(CTX, KEY, STR, what) {
  * @return {object}
  */
 function clearRoles(CTX, KEY, STR) {
-  const {client, guild, guildSettings} = CTX;
-  const l10n = client.l10n;
+  const {guild, guildSettings} = CTX;
   const currRoles = guildSettings[KEY] || [];
 
   if (currRoles.length) {
@@ -284,8 +283,7 @@ function clearRoles(CTX, KEY, STR) {
  * @return {object}
  */
 function viewRoles(CTX, KEY, STR) {
-  const {client, guild, guildSettings} = CTX;
-  const l10n = client.l10n;
+  const {guild, guildSettings} = CTX;
 
   const currRoles = guildSettings[KEY] || [];
   const validRoles = currRoles.filter((id) => guild.roles.cache.get(id));

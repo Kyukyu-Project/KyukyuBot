@@ -60,14 +60,6 @@ class Client extends djsClient {
      */
     this.ownerRoleId = clientConfig['owner-role-id'];
 
-    this.l10n = l10n;
-
-    /**
-     * Command Manager
-     * @type {CommandManager}
-     */
-    this.commands = commands;
-
     /**
      * Cooldown Manager
      * @type {Discord.Collection}

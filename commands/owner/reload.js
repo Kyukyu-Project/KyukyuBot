@@ -11,8 +11,11 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {COMMAND_PERM} from '../../src/typedef.js';
+
 import {clientConfig} from '../../src/app-config.js';
 import {logger} from '../../src/logger.js';
+import {l10n} from '../../src/l10n.js';
+import {commands} from '../../src/commands.js';
 
 export const canonName = 'owner.reload';
 export const name = 'reload';
@@ -45,8 +48,8 @@ const fCommand = ['--command', '--cmd', '-c'];
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
+
   // if (guild.id !== client.ownerGuildId) return null;
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scGeneralHint = l10n.s(lang, `commands.${canonName}.sc-general-hint`);
@@ -59,7 +62,7 @@ export function getSlashData(context) {
   const adminChoices = [];
   const ownerChoices = [];
 
-  client.commands.forEach((cmd) => {
+  commands.forEach((cmd) => {
     const choice = [cmd.name, cmd.canonName];
     switch (cmd.commandPerm) {
       case COMMAND_PERM.OWNER: ownerChoices.push(choice); break;
@@ -128,7 +131,6 @@ export function getSlashData(context) {
  */
 export async function slashExecute(context) {
   const {client, lang, interaction} = context;
-  const {l10n} = client;
 
   if (!context.hasOwnerPermission) {
     const response = l10n.s(lang, 'messages.no-permission');
@@ -172,7 +174,7 @@ export async function slashExecute(context) {
 
     const reloadCmdFunctions = [
       new Promise((resolve) => setTimeout(resolve, 3 * 1000)),
-      new Promise((resolve, reject) => client.commands
+      new Promise((resolve, reject) => commands
           .reloadCommand(cmdCanonName)
           .then(()=> resolve(true))
           .catch((err) => reject(err)),
@@ -201,14 +203,12 @@ export async function slashExecute(context) {
   }
 }
 
-
 /**
  * @param {CommandContext} context
  * @return {Promise<boolean>}
  */
 export async function execute(context) {
   const {client, lang, channel, message, args} = context;
-  const l10n = client.l10n;
 
   const firstArg = args[0].toLowerCase();
 
@@ -251,7 +251,7 @@ export async function execute(context) {
 
     const reloadCmdFunctions = [
       new Promise((resolve) => setTimeout(resolve, 3 * 1000)),
-      new Promise((resolve, reject) => client.commands
+      new Promise((resolve, reject) => commands
           .reloadCommand(cmdCanonName)
           .then(()=> resolve(true))
           .catch((err) => reject(err)),

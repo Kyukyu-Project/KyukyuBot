@@ -5,6 +5,9 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+import {l10n} from '../../src/l10n.js';
+import {commands} from '../../src/commands.js';
+
 export const canonName = 'general.help';
 export const name = 'help';
 export const requireArgs = false;
@@ -22,7 +25,6 @@ const NO_INFO             = `commands.${canonName}.no-info`;
  */
 export function getSlashData(context) {
   const {client, lang, guild} = context;
-  const {l10n} = client;
 
   const hint = l10n.s(lang, `commands.${canonName}.command-hint`);
   const generalHint = l10n.s(lang, `commands.${canonName}.general-hint`);
@@ -35,7 +37,7 @@ export function getSlashData(context) {
   const ownerChoices = [];
   const ownerGuild = (guild.id == client.ownerGuildId);
 
-  client.commands.forEach((cmd) => {
+  commands.forEach((cmd) => {
     const choice = [cmd.name, cmd.canonName];
     switch (cmd.commandPerm) {
       case COMMAND_PERM.GENERAL:
@@ -93,8 +95,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, guildSettings, interaction} = context;
-  const {l10n} = client;
+  const {lang, guildSettings, interaction} = context;
 
   const subCommand = interaction.options.getSubcommand();
   if (
@@ -124,12 +125,11 @@ export async function slashExecute(context) {
  * @return {boolean}
  */
 function listOwner(context) {
-  const {client, lang, channel, message} = context;
-  const l10n = client.l10n;
+  const {lang, channel, message} = context;
 
   if (!context.hasOwnerPermission) return false;
 
-  const commandList = client.commands
+  const commandList = commands
       .filter((cmd)=>cmd.commandPerm==COMMAND_PERM.OWNER)
       .map((cmd)=>cmd.name)
       .join(l10n.s(lang, 'delimiter'));
@@ -148,12 +148,11 @@ function listOwner(context) {
  * @return {boolean}
  */
 function listAdmin(context) {
-  const {client, lang, channel, message} = context;
-  const l10n = client.l10n;
+  const {lang, channel, message} = context;
 
   if (!context.hasAdminPermission) return false;
 
-  const commandList = client.commands
+  const commandList = commands
       .filter((cmd)=>cmd.commandPerm==COMMAND_PERM.ADMIN)
       .map((cmd)=>cmd.name)
       .join(l10n.s(lang, 'delimiter'));
@@ -171,10 +170,9 @@ function listAdmin(context) {
  * @return {boolean}
  */
 function listGeneral(context) {
-  const {client, lang, channel, message} = context;
-  const l10n = client.l10n;
+  const {lang, channel, message} = context;
 
-  const commandList = client.commands
+  const commandList = commands
       .filter((cmd)=>cmd.commandPerm==COMMAND_PERM.GENERAL)
       .map((cmd)=>cmd.name)
       .join(l10n.s(lang, 'delimiter'));
@@ -191,8 +189,7 @@ function listGeneral(context) {
  * @return {Promise<Discord.Message>}
  */
 export async function execute(context) {
-  const {client, channel, message, lang, commandPrefix, args} = context;
-  const l10n = client.l10n;
+  const {channel, message, lang, commandPrefix, args} = context;
 
   if (args.length == 0) return listGeneral(context);
 
@@ -215,7 +212,7 @@ export async function execute(context) {
 
   if (!__cmdCanonName) return false;
 
-  const __cmd = client.commands.get(__cmdCanonName);
+  const __cmd = commands.get(__cmdCanonName);
 
   switch (__cmd.commandPerm) {
     case COMMAND_PERM.OWNER:

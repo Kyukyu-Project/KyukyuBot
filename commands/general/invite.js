@@ -5,6 +5,8 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+import {l10n} from '../../src/l10n.js';
+
 export const canonName = 'general.invite';
 export const name = 'invite';
 export const requireArgs = false;
@@ -16,8 +18,7 @@ export const cooldown = 0;
  * @return {ContextMenuCommandBuilder}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
 
@@ -32,7 +33,6 @@ export function getSlashData(context) {
  */
 export async function slashExecute(context) {
   const {client, lang, interaction} = context;
-  const {l10n} = client;
 
   const inviteLink =
       'https://discord.com/api/oauth2/authorize?client_id=' +

@@ -4,6 +4,8 @@
  * @typedef {import('discord.js').Message} Message
  */
 
+import {l10n} from '../src/l10n.js';
+
 /**
  * Post a message with select menu for navigation
  * @param {IContext|CommandContext} context - command context
@@ -13,8 +15,7 @@
  * @return {Message}
  */
 export async function postNavigable(context, content, embeds, users) {
-  const {client, lang, channel} = context;
-  const {l10n} = client;
+  const {lang, channel} = context;
 
   const tabOptions = embeds.map((mbd, idx) =>
         (mbd.description && mbd.description.length < 80)?

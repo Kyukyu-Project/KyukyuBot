@@ -8,6 +8,8 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+import {l10n} from '../../src/l10n.js';
+
 export const canonName = 'owner.shut-down';
 export const name = 'shut-down';
 export const requireArgs = false;
@@ -23,8 +25,7 @@ const SHUTTING_DOWN       = `commands.${canonName}.shutting-down`;
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   return new SlashCommandBuilder()
@@ -37,7 +38,6 @@ export function getSlashData(context) {
  */
 export async function slashExecute(context) {
   const {client, lang, interaction} = context;
-  const {l10n} = client;
 
   if (!context.hasOwnerPermission) {
     const response = l10n.s(lang, 'messages.no-permission');
@@ -57,7 +57,6 @@ export async function slashExecute(context) {
  */
 export async function execute(context) {
   const {client, lang, channel, message} = context;
-  const {l10n} = client;
   if (!context.hasOwnerPermission) return false;
   client.pauseProcess = true;
   channel.send({

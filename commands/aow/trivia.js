@@ -7,6 +7,7 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 import {ChannelType} from 'discord-api-types/v10';
 
+import {l10n} from '../../src/l10n.js';
 import {pause} from '../../utils/utils.js';
 
 export const canonName = 'fun.trivia';
@@ -99,8 +100,7 @@ function randomPick(array) {
  * @return {ContextMenuCommandBuilder}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
   const optChannelHint = l10n.s(lang, `commands.${canonName}.opt-channel-hint`);
@@ -176,8 +176,7 @@ function prepareQuiz(triviaData) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, channel, interaction} = context;
-  const {l10n} = client;
+  const {lang, channel, interaction} = context;
 
   const subCommand = interaction.options.getSubcommand();
   if (subCommand === scSetLabel) {

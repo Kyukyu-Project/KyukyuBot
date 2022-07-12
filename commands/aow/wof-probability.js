@@ -7,6 +7,7 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+import {l10n} from '../../src/l10n.js';
 import {formatNumber} from '../../utils/utils.js';
 
 import {Statistics} from 'statistics.js';
@@ -123,8 +124,7 @@ function getProbability(N, K, probA, qtyA, probB, qtyB) {
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, 'commands.aow.wof.c-hint');
 
@@ -262,8 +262,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   const options = interaction.options;
   const subcommandGroup = options.getSubcommandGroup();

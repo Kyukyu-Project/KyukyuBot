@@ -196,7 +196,6 @@ const optHeroLabel     = 'hero';
  */
 export function getSlashData(context) {
   const {client, lang, guild} = context;
-  const {l10n} = client;
 
   const findChoices =
     pastEventLegendaryHeroes
@@ -357,7 +356,6 @@ export function getSlashData(context) {
  */
 export async function slashExecute(context) {
   const {client, lang, interaction} = context;
-  const {l10n} = client;
 
   /** @type {ActionResult} */ let actionResult;
 
@@ -892,8 +890,7 @@ function remove(context) {
  * @return {Buffer}
  */
 function download(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const dateLocale = l10n.s(lang, 'date-locale');
 

@@ -6,6 +6,8 @@
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
+import {l10n} from '../../src/l10n.js';
+
 export const canonName = 'aow.tips';
 export const name = 'tips';
 export const requireArgs = false;
@@ -17,8 +19,7 @@ export const cooldown = 5;
  * @return {object}
  */
 export function getSlashData(context) {
-  const {client, lang} = context;
-  const {l10n} = client;
+  const {lang} = context;
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
 
@@ -32,8 +33,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
-  const {l10n} = client;
+  const {lang, interaction} = context;
 
   const tips = l10n.s(lang, 'aow.tips');
   let tipIndex = Math.floor(Math.random() * tips.length);
@@ -99,8 +99,7 @@ export async function slashExecute(context) {
  * @return {Promise<Discord.Message>}
  */
 export async function execute(context) {
-  const {client, lang, channel, message} = context;
-  const {l10n} = client;
+  const {lang, channel, message} = context;
 
   const tips = l10n.s(lang, 'aow.tips');
   const tipIndex = Math.floor(Math.random() * tips.length);

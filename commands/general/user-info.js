@@ -6,6 +6,8 @@
 import Discord from 'discord.js';
 import {COMMAND_PERM} from '../../src/typedef.js';
 import {ContextMenuCommandBuilder} from '@discordjs/builders';
+
+import {l10n} from '../../src/l10n.js';
 import {formatDate} from '../../utils/utils.js';
 
 export const canonName = 'general.user-info';
@@ -29,8 +31,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, guild, lang, interaction} = context;
-  const {l10n} = client;
+  const {guild, lang, interaction} = context;
   const {targetId} = interaction;
 
   const member = guild.members.cache.get(targetId);
