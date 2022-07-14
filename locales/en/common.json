@@ -20,6 +20,6 @@
     "tag-user-with-message": "<@!{USER ID}> tagged <@!{TAGGED ID}>, \"{MESSAGE}\".",
     "info-sent": "The requested info has been posted."
   },
-  "dm-me": "DM me",
+  "dm-me": "DM me this",
   "select-placeholder": "select a different section"  
 }

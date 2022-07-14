@@ -63,7 +63,6 @@ export async function postNavigable(context, content, embeds, users) {
       async (i) => {
         if ((i.customId) && (i.customId === 'dm')) {
           i.user.send({
-            // content: content,
             embeds: [currentEmbed],
           });
           i.deferUpdate();
@@ -90,6 +89,54 @@ export async function postNavigable(context, content, embeds, users) {
     response.edit({
       content: content, embeds: [currentEmbed], components: [],
     });
+  });
+
+  return response;
+}
+
+
+/**
+ * Post an embed with a 'dm-me' button
+ * @param {IContext|CommandContext} context - command context
+ * @param {string} content - text content
+ * @param {object[]} embed - the embed
+ * @return {Message}
+ */
+export async function postEmbed(context, content, embed) {
+  const {lang, channel} = context;
+
+  const components = [{
+    type: 1,
+    components: [{
+      type: 2 /* button */, style: 2 /* gray */,
+      label: l10n.s(lang, 'dm-me'),
+      custom_id: 'dm',
+    }],
+  }];
+
+  const response = await channel.send({
+    content: content,
+    embeds: [embed],
+    components: components,
+  });
+
+  const collector = response.createMessageComponentCollector({
+    time: 10 * 60 * 1000,
+    idle: 5 * 60 * 1000,
+  });
+
+  collector.on('collect',
+      async (i) => {
+        if ((i.customId) && (i.customId === 'dm')) {
+          i.user.send({embeds: [embed]});
+          i.deferUpdate();
+          return;
+        }
+      },
+  );
+
+  collector.on('end', (collected) => {
+    response.edit({content: content, embeds: [embed], components: []});
   });
 
   return response;

@@ -6,7 +6,7 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from '../../src/l10n.js';
-import {postNavigable} from '../../utils/navigable.js';
+import {postNavigable, postEmbed} from '../../utils/navigable.js';
 
 export const canonName = 'aow.info';
 export const name = 'info';
@@ -119,23 +119,14 @@ export async function slashExecute(context) {
 
     if (info.embeds) { // tabbed
       postNavigable(context, content, info.embeds, users);
-
-      interaction.reply({
-        content: l10n.s(lang, 'messages.info-sent'),
-        ephemeral: true,
-      });
     } else { // non-tabbed
-      // cannot send Embed using interaction.reply due to Discord API bug #2612
-      interaction.channel.send({
-        content: content,
-        embeds: [info.embed],
-      }).then((response) => {
-        interaction.reply({
-          content: l10n.s(lang, 'messages.info-sent'),
-          ephemeral: true,
-        });
-      });
+      postEmbed(context, content, info.embed);
     }
+
+    interaction.reply({
+      content: l10n.s(lang, 'messages.info-sent'),
+      ephemeral: true,
+    });
 
     return true;
   } else {

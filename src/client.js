@@ -17,6 +17,8 @@ import {servers} from './servers.js';
 import {commands} from './commands.js';
 import {fastDeploy} from './deployment.js';
 
+import {noop} from '../utils/utils.js';
+
 import {parseCommandArguments} from '../utils/utils.js';
 
 import {COMMAND_PERM} from './typedef.js';
@@ -44,6 +46,7 @@ class Client extends djsClient {
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
       partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     });
@@ -419,11 +422,11 @@ class Client extends djsClient {
    */
   async onReactionAdd(reaction, user) {
     if (this.pauseProcess) return;
-    const {client, message} = reaction;
+    const {message} = reaction;
 
     message.fetch().then((msg) => {
       const authorId = msg?.author?.id || undefined;
-      if (authorId !== client.user.id) return;
+      if (authorId !== this.user.id) return;
 
       const {guild, channel} = msg;
 
@@ -448,7 +451,7 @@ class Client extends djsClient {
               msg.delete();
             }
           });
-    });
+    }).catch(noop); // message deleted
   }
 
   /**
