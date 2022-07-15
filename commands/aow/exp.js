@@ -7,6 +7,7 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from '../../src/l10n.js';
+import {reply} from '../../utils/reply.js';
 import {formatNumber} from '../../utils/utils.js';
 
 export const canonName = 'aow.exp';
@@ -81,11 +82,15 @@ export async function slashExecute(context) {
   const maxPoints = EXP_POINTS[maxLevel-1];
 
   if (currPoints >= maxPoints) {
-    interaction.reply(l10n.t(
-        lang,
-        `commands.${canonName}.response-target-reached`,
-        '{NEXT LEVEL}', maxLevel,
-    ));
+    reply({
+      'interaction': interaction,
+      'lang': lang,
+      'text': l10n.t(
+          lang,
+          `commands.${canonName}.response-target-reached`,
+          '{NEXT LEVEL}', maxLevel,
+      ),
+    });
     return true;
   }
 
@@ -95,11 +100,15 @@ export async function slashExecute(context) {
   if (targetLevel == 0) {
     targetLevel = currLevel + 1;
   } else if (targetLevel <= currLevel) {
-    interaction.reply(l10n.t(
-        lang,
-        `commands.${canonName}.response-target-reached`,
-        '{NEXT LEVEL}', targetLevel,
-    ));
+    reply({
+      'interaction': interaction,
+      'lang': lang,
+      'text': l10n.t(
+          lang,
+          `commands.${canonName}.response-target-reached`,
+          '{NEXT LEVEL}', targetLevel,
+      ),
+    });
     return true;
   }
 
@@ -114,19 +123,27 @@ export async function slashExecute(context) {
     const expFormatted = formatNumber(
         currPoints, numberLocale, {maximumFractionDigits: 0},
     );
-    interaction.reply(l10n.t(
-        lang, `commands.${canonName}.response-next`,
-        '{EXP POINT}', expFormatted,
-        '{CURR LEVEL}', currLevel,
-        '{NEXT LEVEL}', targetLevel,
-        '{GOLD AMOUNT}', goldFormatted,
-    ));
+    reply({
+      'interaction': interaction,
+      'lang': lang,
+      'text': l10n.t(
+          lang, `commands.${canonName}.response-next`,
+          '{EXP POINT}', expFormatted,
+          '{CURR LEVEL}', currLevel,
+          '{NEXT LEVEL}', targetLevel,
+          '{GOLD AMOUNT}', goldFormatted,
+      ),
+    });
   } else {
-    interaction.reply(l10n.t(
-        lang, `commands.${canonName}.response-you-are-close`,
-        '{CURR LEVEL}', currLevel,
-        '{NEXT LEVEL}', targetLevel,
-    ));
+    reply({
+      'interaction': interaction,
+      'lang': lang,
+      'text': l10n.t(
+          lang, `commands.${canonName}.response-you-are-close`,
+          '{CURR LEVEL}', currLevel,
+          '{NEXT LEVEL}', targetLevel,
+      ),
+    });
   }
   return true;
 }
