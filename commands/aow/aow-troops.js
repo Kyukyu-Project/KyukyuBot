@@ -7,7 +7,7 @@ import {COMMAND_PERM} from '../../src/typedef.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from '../../src/l10n.js';
-import {postNavigable} from '../../utils/navigable.js';
+import {reply} from '../../utils/reply.js';
 
 export const canonName = 'aow.troops';
 export const name = 'troops';
@@ -17,7 +17,6 @@ export const cooldown = 5;
 
 const optTroopsLabel  = 'troops';
 const optTagLabel     = 'tag-user';
-const optMessageLabel = 'tag-message';
 
 /**
  * @param {CommandContext|IContext} context
@@ -29,7 +28,6 @@ export function getSlashData(context) {
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const optTroopsHint = l10n.s(lang, `commands.${canonName}.opt-troops-hint`);
   const optTagHint = l10n.s(lang, `commands.${canonName}.opt-tag-hint`);
-  const optMessageHint = l10n.s(lang, `commands.${canonName}.opt-message-hint`);
 
   const troopsInfo = l10n.s(lang, 'aow.troops');
 
@@ -51,11 +49,6 @@ export function getSlashData(context) {
           .setName(optTagLabel)
           .setDescription(optTagHint)
           .setRequired(false),
-      )
-      .addStringOption((option) => option
-          .setName(optMessageLabel)
-          .setDescription(optMessageHint)
-          .setRequired(false),
       );
 
   return data;
@@ -72,50 +65,21 @@ export async function slashExecute(context) {
   const info = l10n.s(lang, 'aow.troops')?.find((el) => el.name === troops);
 
   if (info) {
-    const userId = interaction.user.id;
     const taggedId = interaction.options.getUser(optTagLabel)?.id || null;
-    const users = taggedId?[userId, taggedId]:[userId];
-
-    const message = interaction.options.getString(optMessageLabel) || null;
-
-    let content = l10n.t(
-        lang, 'messages.use-command',
-        '{PREFIX}', '/',
-        '{COMMAND}', name,
-        '{USER ID}', userId);
-
-    if (taggedId) {
-      if (message) {
-        content += '\n' + l10n.t(
-            lang, 'messages.tag-user-with-message',
-            '{USER ID}', userId,
-            '{TAGGED ID}', taggedId,
-            '{MESSAGE}', message);
-      } else {
-        content += '\n' + l10n.t(
-            lang, 'messages.tag-user',
-            '{USER ID}', userId,
-            '{TAGGED ID}', taggedId);
-      }
-    }
 
     if (info.embeds) { // tabbed
-      postNavigable(context, content, info.embeds, users);
-
-      interaction.reply({
-        content: l10n.s(lang, 'messages.info-sent'),
-        ephemeral: true,
+      reply({
+        'interaction': interaction,
+        'lang': lang,
+        'embeds': info.embeds,
+        'tagged-user-id': taggedId,
       });
     } else { // non-tabbed
-      // cannot send Embed using interaction.reply due to Discord API bug #2612
-      interaction.channel.send({
-        content: content,
-        embeds: [info.embed],
-      }).then((response) => {
-        interaction.reply({
-          content: l10n.s(lang, 'messages.info-sent'),
-          ephemeral: true,
-        });
+      reply({
+        'interaction': interaction,
+        'lang': lang,
+        'embed': info.embed,
+        'tagged-user-id': taggedId,
       });
     }
     return true;

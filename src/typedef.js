@@ -5,6 +5,7 @@
 * @typedef {import('discord.js').Channel} Channel
 * @typedef {import('discord.js').Message} Message
 * @typedef {import('discord.js').Interaction} Interaction
+* @typedef {import('discord.js').CommandInteraction} CommandInteraction
 * @typedef {import('discord.js').User} User
 */
 
@@ -59,7 +60,7 @@
  * @property {Client} client - bot client
  * @property {Guild} [guild] - guild where the command was executed
  * @property {Channel} channel - channel where the command was executed
- * @property {Interaction} interaction - message that initiated the command
+ * @property {Interaction} interaction - interaction that initiated the command
  * @property {User} user - User who initiated the command
  * @property {string} lang - Language
  */
@@ -71,6 +72,17 @@
  * @property {Guild} guild - the target guild
  * @property {GuildSettings} guildSettings - settings of the target guild
  * @property {string} lang - language of the target guild
+ */
+
+/**
+ * Context object for interaction reply
+ * @typedef {Object} ReplyContext
+ * @property {CommandInteraction} interaction - interaction that initiated the command
+ * @property {string} lang - language of the target guild
+ * @property {string} [text] - text content
+ * @property {Object} [embed] - embed content
+ * @property {Object[]} [embeds] - array of embed content
+ * @property {string} [`tagged-user-id`] - id of the tagged user
  */
 
 /**

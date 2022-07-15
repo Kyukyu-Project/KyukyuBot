@@ -12,14 +12,18 @@
   "date-locale": "ISO",
   "disclaimer": "Information contributed by AoW players.",
   "messages": {
-    "no-interaction-permission": "You cannot use this!",
-    "no-permission": "Error executing command: no permission.",
-    "invalid-command": "Error executing command: invalid command.",
-    "use-command": "<@!{USER ID}> used the `{PREFIX}{COMMAND}` command.",
     "tag-user": "<@!{USER ID}> tagged <@!{TAGGED ID}>.",
     "tag-user-with-message": "<@!{USER ID}> tagged <@!{TAGGED ID}>, \"{MESSAGE}\".",
-    "info-sent": "The requested info has been posted."
-  },
-  "dm-me": "DM me this",
-  "select-placeholder": "select a different section"  
+    "no-permission": "Error executing command: no permission.",
+    "invalid-command": "Error executing command: invalid command.",
+    "use-command": "<@!{USER ID}> used the `/{COMMAND}` command.",
+    "no-interaction-permission": "Sorry, only the user who invoked the command or the user tagged can use this.",
+    "reply-message": "<@!{USER ID}>, here is the information requested.",
+    "reply-message-tagged": "<@!{TAGGED ID}>, here is the information <@!{USER ID}> requested on your behalf.",
+    "info-sent": "The requested info has been posted.",
+    "dm-me": "DM me this",
+    "dm-sent": "Sent by direct message.",
+    "dm-error": "Oof. There was a problem sending the information by direct message.",
+    "select-placeholder": "select a different section"  
+  }
 }
