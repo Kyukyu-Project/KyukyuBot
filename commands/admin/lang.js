@@ -35,8 +35,10 @@ export function getSlashData(context) {
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scSetHint = l10n.s(lang, `commands.${canonName}.sc-set-hint`);
   const optLangHint = l10n.s(lang, `commands.${canonName}.opt-lang-hint`);
-  const choices = Array.from(l10n.keys()).map((langCode) =>
-    [l10n.s(lang, `languages.${langCode}`), langCode]);
+  const choices = Array.from(l10n.keys()).map((langCode) => ({
+    name: l10n.s(lang, `languages.${langCode}`),
+    value: langCode,
+  }));
 
   return new SlashCommandBuilder()
       .setName(name)
@@ -46,7 +48,7 @@ export function getSlashData(context) {
               .setName(optLangLabel)
               .setDescription(optLangHint)
               .setRequired(true)
-              .addChoices(choices),
+              .addChoices(...choices),
           ),
       );
 }

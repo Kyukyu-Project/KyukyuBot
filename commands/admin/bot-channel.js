@@ -60,7 +60,7 @@ export function getSlashData(context) {
               .setName(optChannelLabel)
               .setDescription(optChannelHint)
               .setRequired(true)
-              .addChannelType(ChannelType.GuildText),
+              .addChannelTypes(ChannelType.GuildText),
           ),
       )
       .addSubcommand((c) => c

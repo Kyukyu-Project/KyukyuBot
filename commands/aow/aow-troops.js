@@ -34,7 +34,7 @@ export function getSlashData(context) {
   const troopsList = troopsInfo
       .map((troops) => (troops.name))
       .sort((a, b) => (a.localeCompare(b, lang)))
-      .map((troops) => ([troops, troops]));
+      .map((troops) => ({name: troops, value: troops}));
 
   const data = new SlashCommandBuilder()
       .setName(name)
@@ -43,7 +43,7 @@ export function getSlashData(context) {
           .setName(optTroopsLabel)
           .setDescription(optTroopsHint)
           .setRequired(true)
-          .addChoices(troopsList),
+          .addChoices(...troopsList),
       )
       .addUserOption((option) => option
           .setName(optTagLabel)

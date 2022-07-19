@@ -40,8 +40,14 @@ export function getSlashData(context) {
   const optGuildHint = l10n.s(lang, `commands.${canonName}.opt-guild-hint`);
   const choiceAllLabel = l10n.s(lang, `commands.${canonName}.choice-all-label`);
 
-  const guildChoices = client.guilds.cache.map((g) => [g.name, g.id]);
-  const guildChoicesAll = guildChoices.concat([[choiceAllLabel, 'all']]);
+  const guildChoices = client.guilds.cache.map((g) => ({
+    name: g.name,
+    value: g.id,
+  }));
+  const guildChoicesAll = guildChoices.concat([{
+    name: choiceAllLabel,
+    value: 'all',
+  }]);
 
   return new SlashCommandBuilder()
       .setName(name)
@@ -52,7 +58,7 @@ export function getSlashData(context) {
           .addStringOption((option) => option
               .setName(optGuildLabel)
               .setDescription(optGuildHint)
-              .setChoices(guildChoices)
+              .addChoices(...guildChoices)
               .setRequired(true),
           ),
       )
@@ -62,7 +68,7 @@ export function getSlashData(context) {
           .addStringOption((option) => option
               .setName(optGuildLabel)
               .setDescription(optGuildHint)
-              .setChoices(guildChoicesAll)
+              .addChoices(...guildChoicesAll)
               .setRequired(true),
           ),
       );

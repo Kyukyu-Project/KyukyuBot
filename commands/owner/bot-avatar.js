@@ -2,7 +2,7 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 import {COMMAND_PERM} from '../../src/typedef.js';
-// import {SlashCommandBuilder} from '@discordjs/builders';
+import {SlashCommandBuilder} from '@discordjs/builders';
 
 import {l10n} from '../../src/l10n.js';
 
@@ -18,43 +18,43 @@ const IMG_CONTENT_TYPES = ['image/jpeg', 'image/gif', 'image/png'];
  * @param {CommandContext} context
  * @return {object}
  */
-// export function getSlashData(context) {
-//   const {client, lang} = context;
-//   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
+export function getSlashData(context) {
+  const {lang} = context;
+  const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
 
-//   return new SlashCommandBuilder()
-//       .setName(name)
-//       .setDescription('set bot avatar')
-//       .addAttachmentOption((option) => option
-//           .setName('attachment')
-//           .setDescription('Attach something'));
-// }
+  return new SlashCommandBuilder()
+      .setName(name)
+      .setDescription(cHint)
+      .addAttachmentOption((option) => option
+          .setName('image')
+          .setDescription('new avatar image'));
+}
 
 /**
  * @param {IContext} context
  * @return {boolean} - true if command is executed
  */
-// export async function slashExecute(context) {
-//   const {client, lang, interaction} = context;
+export async function slashExecute(context) {
+  const {lang, interaction} = context;
 
-//   const updateSuccess = l10n.s(lang, `commands.${canonName}.success`);
-//   const updateError = l10n.s(lang, `commands.${canonName}.error`);
-//   const attachments = interaction.options.getAttachment('attachment');
+  const updateSuccess = l10n.s(lang, `commands.${canonName}.success`);
+  const updateError = l10n.s(lang, `commands.${canonName}.error`);
+  const attachments = interaction.options.getAttachment('attachment');
 
-//   if (IMG_CONTENT_TYPES.indexOf(attachments.contentType.toLowerCase()) !== -1) {
-//     try {
-//       await context.client.user.setAvatar(attachments.url);
-//       interaction.reply({content: updateSuccess, ephemeral: true});
-//       return true;
-//     } catch (error) {
-//       interaction.reply({content: updateError, ephemeral: true});
-//       throw error;
-//     }
-//   } else {
-//     interaction.reply({content: updateError, ephemeral: true});
-//     throw new Error('Attachment is not an image');
-//   }
-// }
+  if (IMG_CONTENT_TYPES.indexOf(attachments.contentType.toLowerCase()) !== -1) {
+    try {
+      await context.client.user.setAvatar(attachments.url);
+      interaction.reply({content: updateSuccess, ephemeral: true});
+      return true;
+    } catch (error) {
+      interaction.reply({content: updateError, ephemeral: true});
+      throw error;
+    }
+  } else {
+    interaction.reply({content: updateError, ephemeral: true});
+    throw new Error('Attachment is not an image');
+  }
+}
 
 /**
  * @param {CommandContext} context

@@ -56,10 +56,10 @@ export function getSlashData(context) {
             .setDescription(optSubjectHint)
             .setRequired(true)
             .addChoices(
-                Array
+                ...Array
                     .from(value.subjects)
                     .sort((a, b) => a[0].localeCompare(b[0], lang))
-                    .map((subject) => [subject, subject]),
+                    .map((subject) => ({name: subject, value: subject})),
             ),
         )
         .addUserOption((option) => option

@@ -110,7 +110,10 @@ export function getSlashData(context) {
   const optCountHint = l10n.s(lang, `commands.${canonName}.opt-count-hint`);
 
   const triviaLibrary = l10n.s(lang, 'trivia.library');
-  const triviaSubjects = triviaLibrary.map((db) => [db.title, db.key]);
+  const triviaSubjects = triviaLibrary.map((db) => ({
+    name: db.title,
+    value: db.key,
+  }));
 
   return new SlashCommandBuilder()
       .setName(name)
@@ -122,7 +125,7 @@ export function getSlashData(context) {
               .setName(optChannelLabel)
               .setDescription(optChannelHint)
               .setRequired(true)
-              .addChannelType(ChannelType.GuildText),
+              .addChannelTypes(ChannelType.GuildText),
           ),
       )
       .addSubcommand((c) => c
@@ -132,7 +135,7 @@ export function getSlashData(context) {
               .setName(optSubjectLabel)
               .setDescription(optSubjectHint)
               .setRequired(true)
-              .addChoices(triviaSubjects),
+              .addChoices(...triviaSubjects),
           )
           .addNumberOption((option) => option
               .setName(optCountLabel)

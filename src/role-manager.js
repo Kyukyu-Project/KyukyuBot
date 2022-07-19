@@ -101,7 +101,7 @@ export function getSlashData(CTX, KEY, STR) {
   const currRoles = guildSettings[KEY] || [];
   currRoles.forEach((id) => {
     const role = guild.roles.cache.get(id);
-    if (role) roleList.push([role.name, id]);
+    if (role) roleList.push({name: role.name, value: id,});
   });
 
   const data = new SlashCommandBuilder()
@@ -127,7 +127,7 @@ export function getSlashData(CTX, KEY, STR) {
             .setDescription(STR['remove-hint'])
             .addStringOption((o) => o
                 .setName('role')
-                .setChoices(roleList)
+                .addChoices(...roleList)
                 .setDescription(STR['role-to-remove-hint'])
                 .setRequired(true),
             ),

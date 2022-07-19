@@ -38,7 +38,7 @@ export function getSlashData(context) {
   const ownerGuild = (guild.id == client.ownerGuildId);
 
   commands.forEach((cmd) => {
-    const choice = [cmd.name, cmd.canonName];
+    const choice = {name: cmd.name, value: cmd.canonName};
     switch (cmd.commandPerm) {
       case COMMAND_PERM.GENERAL:
         generalChoices.push(choice);
@@ -62,7 +62,7 @@ export function getSlashData(context) {
               .setName('command-name')
               .setDescription(commandHint)
               .setRequired(true)
-              .addChoices(generalChoices),
+              .addChoices(...generalChoices),
           ),
       )
       .addSubcommand((command) => command
@@ -72,7 +72,7 @@ export function getSlashData(context) {
               .setName('command-name')
               .setDescription(commandHint)
               .setRequired(true)
-              .addChoices(adminChoices),
+              .addChoices(...adminChoices),
           ),
       );
   if (ownerGuild) {
@@ -83,7 +83,7 @@ export function getSlashData(context) {
             .setName('command-name')
             .setDescription(commandHint)
             .setRequired(true)
-            .addChoices(ownerChoices),
+            .addChoices(...ownerChoices),
         ),
     );
   }

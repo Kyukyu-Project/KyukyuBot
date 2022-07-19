@@ -1,6 +1,7 @@
 {
   "commands": {
     "owner.bot-avatar": {
+      "c-hint": "Set bot avatar",
       "success": "Bot avatar updated",
       "error": "Error updating bot avatar"
     },

@@ -63,7 +63,7 @@ export function getSlashData(context) {
   const ownerChoices = [];
 
   commands.forEach((cmd) => {
-    const choice = [cmd.name, cmd.canonName];
+    const choice = {name: cmd.name, value: cmd.canonName};
     switch (cmd.commandPerm) {
       case COMMAND_PERM.OWNER: ownerChoices.push(choice); break;
       case COMMAND_PERM.MODERATOR:
@@ -77,8 +77,10 @@ export function getSlashData(context) {
     }
   });
 
-  const langChoices = Array.from(l10n.keys()).map((langCode) =>
-    [l10n.s(lang, `languages.${langCode}`), langCode]);
+  const langChoices = Array.from(l10n.keys()).map((langCode) => ({
+    name: l10n.s(lang, `languages.${langCode}`),
+    value: langCode,
+  }));
 
   return new SlashCommandBuilder()
       .setName(name)
@@ -90,7 +92,7 @@ export function getSlashData(context) {
               .setName(optCommandLabel)
               .setDescription(optCommandHint)
               .setRequired(true)
-              .addChoices(generalChoices),
+              .addChoices(...generalChoices),
           ),
       )
       .addSubcommand((command) => command
@@ -100,7 +102,7 @@ export function getSlashData(context) {
               .setName(optCommandLabel)
               .setDescription(optCommandHint)
               .setRequired(true)
-              .addChoices(adminChoices),
+              .addChoices(...adminChoices),
           ),
       )
       .addSubcommand((command) => command
@@ -110,7 +112,7 @@ export function getSlashData(context) {
               .setName(optCommandLabel)
               .setDescription(optCommandHint)
               .setRequired(true)
-              .addChoices(ownerChoices),
+              .addChoices(...ownerChoices),
           ),
       )
       .addSubcommand((command) => command
@@ -120,7 +122,7 @@ export function getSlashData(context) {
               .setName(optLangLabel)
               .setDescription(optLangHint)
               .setRequired(true)
-              .addChoices(langChoices),
+              .addChoices(...langChoices),
           ),
       );
 }

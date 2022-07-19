@@ -199,13 +199,19 @@ export function getSlashData(context) {
 
   const findChoices =
     pastEventLegendaryHeroes
-        .map((hero)=> [l10n.s(lang, `hero-display-names.${hero}`), hero])
-        .sort((a, b) => a[0].localeCompare(b[0], lang));
+        .map((hero)=> ({
+          name: l10n.s(lang, `hero-display-names.${hero}`),
+          value: hero,
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name, lang));
 
   const find2Choices =
     pastEventEpicHeroes
-        .map((hero)=> [l10n.s(lang, `hero-display-names.${hero}`), hero])
-        .sort((a, b) => a[0].localeCompare(b[0], lang));
+        .map((hero)=> ({
+          name: l10n.s(lang, `hero-display-names.${hero}`),
+          value: hero,
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name, lang));
 
   const addChoices = heroBase
       .filter((data) =>
@@ -213,19 +219,19 @@ export function getSlashData(context) {
         (data.released === true || data.released === undefined) &&
         (data.exclusive === false || data.exclusive === undefined),
       )
-      .map((data)=> [
-        l10n.s(lang, `hero-display-names.${data.name}`),
-        data.name,
-      ])
-      .sort((a, b) => a[0].localeCompare(b[0], lang));
+      .map((data)=> ({
+        name: l10n.s(lang, `hero-display-names.${data.name}`),
+        value: data.name,
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, lang));
 
   const addChoices2 = heroBase
       .filter((data) => data.rarity ==='epic')
-      .map((data)=> [
-        l10n.s(lang, `hero-display-names.${data.name}`),
-        data.name,
-      ])
-      .sort((a, b) => a[0].localeCompare(b[0], lang));
+      .map((data)=> ({
+        name: l10n.s(lang, `hero-display-names.${data.name}`),
+        value: data.name,
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, lang));
 
   const cHint = l10n.s(lang, `commands.${canonName}.c-hint`);
   const scInfoHint = l10n.s(lang, `commands.${canonName}.sc-info-hint`);
@@ -265,7 +271,7 @@ export function getSlashData(context) {
               .setName(optHeroLabel)
               .setDescription(optHeroHint)
               .setRequired(true)
-              .addChoices(findChoices),
+              .addChoices(...findChoices),
           ),
       )
       .addSubcommand((command) => command
@@ -275,7 +281,7 @@ export function getSlashData(context) {
               .setName(optHeroLabel)
               .setDescription(optHeroHint)
               .setRequired(true)
-              .addChoices(find2Choices),
+              .addChoices(...find2Choices),
           ),
       )
       .addSubcommand((command) => command
@@ -292,37 +298,37 @@ export function getSlashData(context) {
                 .setName('hero1')
                 .setDescription('hero1')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             )
             .addStringOption((option) => option
                 .setName('hero2')
                 .setDescription('hero2')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             )
             .addStringOption((option) => option
                 .setName('hero3')
                 .setDescription('hero3')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             )
             .addStringOption((option) => option
                 .setName('hero4')
                 .setDescription('hero4')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             )
             .addStringOption((option) => option
                 .setName('hero5')
                 .setDescription('hero5')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             )
             .addStringOption((option) => option
                 .setName('hero6')
                 .setDescription('hero6')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             ),
         )
         .addSubcommand((command) => command
@@ -332,13 +338,13 @@ export function getSlashData(context) {
                 .setName('hero1')
                 .setDescription('hero1')
                 .setRequired(true)
-                .addChoices(addChoices),
+                .addChoices(...addChoices),
             )
             .addStringOption((option) => option
                 .setName('hero2')
                 .setDescription('hero2')
                 .setRequired(true)
-                .addChoices(addChoices2),
+                .addChoices(...addChoices2),
             ),
         )
         .addSubcommand((command) => command
@@ -355,7 +361,7 @@ export function getSlashData(context) {
  * @return {boolean} - true if command is executed
  */
 export async function slashExecute(context) {
-  const {client, lang, interaction} = context;
+  const {lang, interaction} = context;
 
   /** @type {ActionResult} */ let actionResult;
 
