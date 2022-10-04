@@ -1,0 +1,97 @@
+{
+  "cmd": {
+    "hero-events": {
+      "name": "hero-events",
+      "desc": "Information on hero events",
+      "current": {
+        "name": "current",
+        "desc": "Information on the current hero event"
+      },
+      "stats": {
+        "name": "stats",
+        "desc": "Get stats of recent hero events"
+      },
+      "list": {
+        "name": "list",
+        "desc": "Get a list of recent hero events"
+      },
+      "find": {
+        "name": "find",
+        "desc": "Find recent events of a hero",
+        "hero": {
+          "name": "hero",
+          "desc": "Hero to find"
+        }
+      },
+      "download": {
+        "name": "download",
+        "desc": "Download the database"
+      },
+      "current-result": {
+        "not-found": "No information found for current event",
+        "current-cm": "Heroes in this Card Master event: {HEROES}\n",
+        "current-wof": "Heroes in this Wheel of Fortune event: {HERO} ({HERO2})\n",
+        "next-cm": "\nThe next Card Master event will have: {HEROES}\n",
+        "next-wof": "\nThe next Wheel of Fortune event will have: {HERO} ({HERO2})\n",
+        "count-down": "This event will end in {DAY}d {HOUR}h {MINUTE}m.\n"
+      },      
+      "stats-result": {
+        ".": "Hero appearances in recent events:",
+        "1x": "\n1×: {HEROES}",
+        "2x": "\n2×: {HEROES}",
+        "3x": "\n3×: {HEROES}",
+        "4x": "\n4×: {HEROES}",
+        "5x": "\n5×: {HEROES}",
+        "6x": "\n≥6×: {HEROES}"
+      },
+      "list-result": {
+        ".": "Recent hero events:",
+        "cm":  "<:eventcard:909986289535832104> {DATE}: {HEROES}",
+        "wof": "<:eventwheel:909986289552617502> {DATE}: {HERO} ({HERO2})"
+      },
+      "find-result": {
+        "<text>": [
+          "Information of **{HERO}** in hero events\n",
+          "- First appearance: {FIRST DATE} ({FIRST TYPE})",
+          "- Total appearances in Card Master: {CM COUNT}",
+          "- Total appearances in Wheel of Fortune: {WOF COUNT}",
+          "- Recent appearances:"
+        ],
+        "recent-cm":  "\n-- <:eventcard:909986289535832104> {DATE}",
+        "recent-wof": "\n-- <:eventwheel:909986289552617502> {DATE}",
+        "not-found": "No information found for {HERO}"
+      }
+    }
+  },
+  "cmd-help": [
+    {
+      "id": "hero-event",
+      "title": "Get information on past and current hero events",
+      "content": {
+        "<text>": [
+          "**Getting information on past and current hero events**",
+          "",
+          "`/hero-events current`",
+          "- Get information on the current (and upcoming) hero event.",
+          "",
+          "`/hero-events stats`",
+          "- Get stats of recent hero events.",
+          "",
+          "`/hero-events list`",
+          "- Get a list of recent hero events.",
+          "",
+          "`/hero-events find hero:<hero>`",
+          "- Get information about past hero events of a hero."
+        ]
+      },
+      "keyword-sets": [
+        ["appearance", "appear"],
+        ["hero"],
+        ["event"],
+        ["wheel", "fortune", "wof", "luck"],
+        ["card master", "cm"],
+        ["next week"]
+      ]
+    }
+  ]
+}

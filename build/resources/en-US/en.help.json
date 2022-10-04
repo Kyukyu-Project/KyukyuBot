@@ -1,0 +1,12 @@
+{
+  "cmd": {
+    "help": {
+      "name": "help",
+      "desc": "Help on bot command",
+      "query": {
+        "name": "query",
+        "desc": "what do you want to know?"
+      }
+    }
+  }
+}

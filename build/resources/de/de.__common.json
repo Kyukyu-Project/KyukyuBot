@@ -1,0 +1,15 @@
+{
+  "number-locale": "SI",
+  "date-locale": "de-DE",
+  "$disclaimer": "Information contributed by community members.",
+  "$messages": {
+    "command-error": {
+      "general": "Error executing command",
+      "invalid": "Error executing command: invalid command.",
+      "no-user-permission": "Error executing command: no user permission.",
+      "no-app-permission": "Error executing command: no application permission."
+    }
+  },
+  "card-master": "Kartenmeister-Event",
+  "wheel-of-fortune": "Glücksrad-Event"
+}

@@ -1,0 +1,56 @@
+{
+  "cmd": {
+    "manage-events": {
+      "name": "manage-events",
+      "desc": "Manage the database for hero events",
+      "add-cm": {
+        "name": "add-cm",
+        "desc": "Add a new Card Master event",
+        "hero1": {
+          "name": "hero1",
+          "desc": "Hero to add"
+        },
+        "hero2": {
+          "name": "hero2",
+          "desc": "Hero to add"
+        },
+        "hero3": {
+          "name": "hero3",
+          "desc": "Hero to add"
+        },
+        "hero4": {
+          "name": "hero4",
+          "desc": "Hero to add"
+        },
+        "hero5": {
+          "name": "hero5",
+          "desc": "Hero to add"
+        },
+        "hero6": {
+          "name": "hero6",
+          "desc": "Hero to add"
+        }
+      },
+      "add-wof": {
+        "name": "add-wof",
+        "desc": "Add a new Wheel of Fortune event",
+        "hero1": {
+          "name": "hero1",
+          "desc": "Hero to add"
+        },
+        "hero2": {
+          "name": "hero2",
+          "desc": "Hero to add"
+        }
+      },
+      "remove": {
+        "name": "remove",
+        "desc": "Remove an event"
+      },
+      "add-result": "Event starting at {DATE} added: {HEROES}",
+      "add-error": "Error adding a new event",
+      "remove-result": "Event starting at {DATE} removed: {HEROES}",
+      "remove-error": "Error removing hero event"
+    }
+  }
+}

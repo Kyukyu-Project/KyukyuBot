@@ -1,0 +1,26 @@
+{
+  "cmd": {
+    "arena-points": {
+      "name": "arena-points",
+      "desc": "Estimate point gain / loss from arena matches",
+      "current": {
+        "name": "current",
+        "desc": "Your current arena points"
+      },
+      "current-result": {
+        "<text>": [
+          "Your current arena point: **{YOUR SCORE}**",
+          "",
+          "Estimates of point gain/loss from next arena match:",
+          "```",
+          "Opponent's",
+          "arena point    Win   Loss"
+        ],
+        "separator":
+          "--------------------------",
+        "row":
+          "{FLOOR} - {CEILING}    {GAIN}   {LOSS}"
+      }
+    }
+  }
+}

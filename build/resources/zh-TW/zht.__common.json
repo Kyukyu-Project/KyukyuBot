@@ -1,0 +1,16 @@
+{
+  "number-locale": "zh-TW",
+  "date-locale": "zh-TW",
+  "disclaimer": "Information contributed by community members.",
+  "messages": {
+    "command-error": {
+      "general": "執行指令時出現錯誤",
+      "invalid": "執行指令時出現錯誤：指令無效。",
+      "no-user-permission": "執行指令時出現錯誤：用戶沒有權限。",
+      "no-app-permission": "執行指令時出現錯誤：程式沒有權限。."
+    }
+  },
+  
+  "card-master": "卡牌大師",
+  "wheel-of-fortune": "幸運轉盤"
+}

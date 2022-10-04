@@ -1,0 +1,66 @@
+{
+  "cmd": {
+    "hero-events": {
+      "name": "英雄活動",
+      "desc": "關於英雄活動的資訊",
+      "current": {
+        "name": "目前",
+        "desc": "關於目前英雄活動的資訊"
+      },
+      "stats": {
+        "name": "統計",
+        "desc": "關於近期英雄活動的統計資訊"
+      },
+      "list": {
+        "name": "列表",
+        "desc": "近期英雄活動的列表"
+      },
+      "find": {
+        "name": "搜尋英雄",
+        "desc": "搜尋某個英雄的近期活動",
+        "英雄": {
+          "name": "英雄",
+          "desc": "要搜尋的英雄"
+        }
+      },
+      "download": {
+        "name": "下載",
+        "desc": "下載資料庫"
+      },
+      "current-result": {
+        "$not-found": "查無近期活動的資料。",
+        "current-cm": "本次卡牌大師活動裡的英雄：{HEROES}\n",
+        "current-wof": "本次幸運轉盤活動裡的英雄：{HERO}（{HERO2}）",
+        "next-cm": "\n下次卡牌大師活動將會有：{HEROES}\n",
+        "next-wof": "\n下次幸運轉盤活動將會有：{HERO}（{HERO2}）\n",
+        "count-down": "本次活動會在{DAY}天{HOUR}小時{MINUTE}分鐘結束。\n"
+      },      
+      "stats-result": {
+        ".": "近期活動的英雄出場次數：",
+        "1x": "\n1次：{HEROES}",
+        "2x": "\n2次：{HEROES}",
+        "3x": "\n3次：{HEROES}",
+        "4x": "\n4次：{HEROES}",
+        "5x": "\n5次：{HEROES}",
+        "6x": "\n≥6次：{HEROES}"
+      },
+      "list-result": {
+        ".": "近期的英雄活動：",
+        "cm":  "<:eventcard:909986289535832104> {DATE}：{HEROES}",
+        "wof": "<:eventwheel:909986289552617502> {DATE}：{HERO} ({HERO2})"
+      },
+      "find-result": {
+        "<text>": [
+          "關於**{HERO}**的英雄活動\n",
+          "- 首次活動：{FIRST DATE} ({FIRST TYPE})",
+          "- 在卡牌大師的出場數：{CM COUNT}",
+          "- 在幸運轉盤的出場數：{WOF COUNT}",
+          "- 近期活動："
+        ],
+        "recent-cm":  "\n-- <:eventcard:909986289535832104> {DATE}",
+        "recent-wof": "\n-- <:eventwheel:909986289552617502> {DATE}",
+        "not-found": "查無{HERO}的相關資料。"
+      }
+    }
+  }
+}

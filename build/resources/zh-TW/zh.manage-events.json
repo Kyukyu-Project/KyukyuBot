@@ -1,0 +1,56 @@
+{
+  "cmd": {
+    "manage-events": {
+      "name": "活動管理",
+      "desc": "管理英雄活動的資料庫",
+      "add-cm": {
+        "name": "新增卡牌大師",
+        "desc": "新增新的卡牌大師活動",
+        "hero1": {
+          "name": "英雄1",
+          "desc": "要加入的英雄"
+        },
+        "hero2": {
+          "name": "英雄2",
+          "desc": "要加入的英雄"
+        },
+        "hero3": {
+          "name": "英雄3",
+          "desc": "要加入的英雄"
+        },
+        "hero4": {
+          "name": "英雄4",
+          "desc": "要加入的英雄"
+        },
+        "hero5": {
+          "name": "英雄5",
+          "desc": "要加入的英雄"
+        },
+        "hero6": {
+          "name": "英雄6",
+          "desc": "要加入的英雄"
+        }
+      },
+      "add-wof": {
+        "name": "新增幸運轉盤",
+        "desc": "新增新的幸運轉盤活動",
+        "hero1": {
+          "name": "英雄1",
+          "desc": "要加入的英雄"
+        },
+        "hero2": {
+          "name": "英雄2",
+          "desc": "要加入的英雄"
+        }
+      },
+      "remove": {
+        "name": "移除",
+        "desc": "移除英雄活動"
+      },
+      "add-result": "新增{DATE}開始的活動：{HEROES}",
+      "add-error": "增加活動時出現錯誤",
+      "remove-result": "移除{DATE}開始的活動：{HEROES}",
+      "remove-error": "移除活動時出現錯誤"
+    }
+  }
+}

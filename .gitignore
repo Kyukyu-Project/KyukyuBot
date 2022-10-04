@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Built resources
+resources/*.json
+
+# Client data
+client-data/*.*
+
+# Configuration
+/*.json
+!/*.example.json
+!/package*.json
+!/cspell.json

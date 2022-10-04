@@ -1,0 +1,61 @@
+{
+  "commandName": "hero-event",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.hero-events.name%%",
+    "name_localizations": "%%cmd.hero-events.name%%",
+    "description": "%%cmd.hero-events.desc%%",
+    "description_localizations": "%%cmd.hero-events.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true,
+    "options": [
+      { "$comment": "/hero-event current",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.hero-events.current.name%%",
+        "name_localizations": "%%cmd.hero-events.current.name%%",
+        "description": "%%cmd.hero-events.current.desc%%",
+        "description_localizations": "%%cmd.hero-events.current.desc%%"
+      },
+      { "$comment": "/hero-event stats",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.hero-events.stats.name%%",
+        "name_localizations": "%%cmd.hero-events.stats.name%%",
+        "description": "%%cmd.hero-events.stats.desc%%",
+        "description_localizations": "%%cmd.hero-events.stats.desc%%"
+      },
+      { "$comment": "/hero-event list",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.hero-events.list.name%%",
+        "name_localizations": "%%cmd.hero-events.list.name%%",
+        "description": "%%cmd.hero-events.list.desc%%",
+        "description_localizations": "%%cmd.hero-events.list.desc%%"
+      },
+      { "$comment": "/hero-event find",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.hero-events.find.name%%",
+        "name_localizations": "%%cmd.hero-events.find.name%%",
+        "description": "%%cmd.hero-events.find.desc%%",
+        "description_localizations": "%%cmd.hero-events.find.desc%%",
+        "options": [
+          { "$comment": "/hero-event find hero",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.hero-events.find.hero.name%%",
+            "name_localizations": "%%cmd.hero-events.find.hero.name%%",
+            "description": "%%cmd.hero-events.find.hero.desc%%",
+            "description_localizations": "%%cmd.hero-events.find.hero.desc%%",
+            "autocomplete": true,
+            "required": true
+          }
+        ]
+      },
+      { "$comment": "/hero-event download",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.hero-events.download.name%%",
+        "name_localizations": "%%cmd.hero-events.download.name%%",
+        "description": "%%cmd.hero-events.download.desc%%",
+        "description_localizations": "%%cmd.hero-events.download.desc%%"
+      }
+    ]
+  }
+}

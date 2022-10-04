@@ -1,0 +1,54 @@
+{
+  "cmd": {
+    "admin": {
+      "helper-roles": {
+        "name": "helper-roles",
+        "desc": "Change or view helper roles",
+        "info": {
+          "name": "info",
+          "desc": "Show information about helper roles"
+        },
+        "add": {
+          "name": "add",
+          "desc": "Add up to 5 roles to the list of helper roles",
+          "role1": { "name": "role1", "desc": "Role to add" },
+          "role2": { "name": "role2", "desc": "Role to add" },
+          "role3": { "name": "role3", "desc": "Role to add" },
+          "role4": { "name": "role4", "desc": "Role to add" },
+          "role5": { "name": "role5", "desc": "Role to add" }
+        },
+        "remove": {
+          "name": "remove",
+          "desc": "Remove a role from the list of helper roles",
+          "role": {
+            "name": "role",
+            "desc": "Role to remove"
+          }
+        },
+        "clear": {
+          "name": "clear",
+          "desc": "Clear (reset) the list of helper roles"
+        },
+        "add-result-many": "{ROLES} are now helper roles",
+        "add-result-one": "{ROLE} is now a helper role",
+        "add-error": "Error executing command: no new role is added",
+        "remove-result": "{ROLE} is no longer a helper role",
+        "remove-error": "Error executing command: no role is removed",
+        "clear-result": "Helper role(s) unset",
+        "clear-error": "Error executing command: nothing to clear",
+        "info-result": {
+          "<text>": [
+            "Users with helper roles can use bot commands without any cooldown.",
+            "Helper role(s): {ROLES}."
+          ] 
+        },
+        "info-result-none": {
+          "<text>": [
+            "Users with helper roles can use bot commands without any cooldown.",
+            "Helper role(s): not set."
+          ] 
+        }
+      }
+    }
+  }
+}

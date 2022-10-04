@@ -1,0 +1,150 @@
+{
+  "commandName": "admin",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.admin.name%%",
+    "name_localizations": "%%cmd.admin.name%%",
+    "description": "%%cmd.admin.desc%%",
+    "description_localizations": "%%cmd.admin.desc%%",
+    "default_member_permissions": ["ManageGuild", "Administrator"],
+    "dm_permission": true,
+    "options": [
+      { "$comment": "/admin bot-channel",
+        "type": "CommandOptionType.SubcommandGroup",
+        "name": "%%cmd.admin.bot-channel.name%%",
+        "name_localizations": "%%cmd.admin.bot-channel.name%%",
+        "description": "%%cmd.admin.bot-channel.desc%%",
+        "description_localizations": "%%cmd.admin.bot-channel.desc%%",
+        "options": [
+          { "$comment": "/admin bot-channel info",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.bot-channel.info.name%%",
+            "name_localizations": "%%cmd.admin.bot-channel.info.name%%",
+            "description": "%%cmd.admin.bot-channel.info.desc%%",
+            "description_localizations": "%%cmd.admin.bot-channel.info.desc%%"
+          },
+          { "$comment": "/admin bot-channel set",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.bot-channel.set.name%%",
+            "name_localizations": "%%cmd.admin.bot-channel.set.name%%",
+            "description": "%%cmd.admin.bot-channel.set.desc%%",
+            "description_localizations": "%%cmd.admin.bot-channel.set.desc%%",
+            "options": [
+              { "$comment": "/admin bot-channel set channel",
+                "type": "CommandOptionType.Channel",
+                "name": "%%cmd.admin.bot-channel.set.channel.name%%",
+                "name_localizations": "%%cmd.admin.bot-channel.set.channel.name%%",
+                "description": "%%cmd.admin.bot-channel.set.channel.desc%%",
+                "description_localizations": "%%cmd.admin.bot-channel.set.channel.desc%%",
+                "required": true,
+                "channel_types": [
+                  "Guild Text",
+                  "Guild Public Thread",
+                  "Guild Private Thread"
+                ]
+              }
+            ]
+          },
+          { "$comment": "/admin bot-channel clear",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.bot-channel.clear.name%%",
+            "name_localizations": "%%cmd.admin.bot-channel.clear.name%%",
+            "description": "%%cmd.admin.bot-channel.clear.desc%%",
+            "description_localizations": "%%cmd.admin.bot-channel.clear.desc%%"
+          }
+        ]
+      },      
+      { "$comment": "/admin helper-roles",
+        "type": "CommandOptionType.SubcommandGroup",
+        "name": "%%cmd.admin.helper-roles.name%%",
+        "name_localizations": "%%cmd.admin.helper-roles.name%%",
+        "description": "%%cmd.admin.helper-roles.desc%%",
+        "description_localizations": "%%cmd.admin.helper-roles.desc%%",
+        "options": [
+          { "$comment": "/admin helper-roles info",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.helper-roles.info.name%%",
+            "name_localizations": "%%cmd.admin.helper-roles.info.name%%",
+            "description": "%%cmd.admin.helper-roles.info.desc%%",
+            "description_localizations": "%%cmd.admin.helper-roles.info.desc%%"
+          },
+          { "$comment": "/admin helper-roles add",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.helper-roles.add.name%%",
+            "name_localizations": "%%cmd.admin.helper-roles.add.name%%",
+            "description": "%%cmd.admin.helper-roles.add.desc%%",
+            "description_localizations": "%%cmd.admin.helper-roles.add.desc%%",
+            "options": [
+              {
+                "type": "CommandOptionType.Role",
+                "name": "%%cmd.admin.helper-roles.add.role1.name%%",
+                "name_localizations": "%%cmd.admin.helper-roles.add.role1.name%%",
+                "description": "%%cmd.admin.helper-roles.add.role1.desc%%",
+                "description_localizations": "%%cmd.admin.helper-roles.add.role1.desc%%",
+                "required": true
+              },
+              {
+                "type": "CommandOptionType.Role",
+                "name": "%%cmd.admin.helper-roles.add.role2.name%%",
+                "name_localizations": "%%cmd.admin.helper-roles.add.role2.name%%",
+                "description": "%%cmd.admin.helper-roles.add.role2.desc%%",
+                "description_localizations": "%%cmd.admin.helper-roles.add.role2.desc%%",
+                "required": false
+              },
+              {
+                "type": "CommandOptionType.Role",
+                "name": "%%cmd.admin.helper-roles.add.role3.name%%",
+                "name_localizations": "%%cmd.admin.helper-roles.add.role3.name%%",
+                "description": "%%cmd.admin.helper-roles.add.role3.desc%%",
+                "description_localizations": "%%cmd.admin.helper-roles.add.role3.desc%%",
+                "required": false
+              },
+              {
+                "type": "CommandOptionType.Role",
+                "name": "%%cmd.admin.helper-roles.add.role4.name%%",
+                "name_localizations": "%%cmd.admin.helper-roles.add.role4.name%%",
+                "description": "%%cmd.admin.helper-roles.add.role4.desc%%",
+                "description_localizations": "%%cmd.admin.helper-roles.add.role4.desc%%",
+                "required": false
+              },
+              {
+                "type": "CommandOptionType.Role",
+                "name": "%%cmd.admin.helper-roles.add.role5.name%%",
+                "name_localizations": "%%cmd.admin.helper-roles.add.role5.name%%",
+                "description": "%%cmd.admin.helper-roles.add.role5.desc%%",
+                "description_localizations": "%%cmd.admin.helper-roles.add.role5.desc%%",
+                "required": false
+              }
+            ]
+          },
+          { "$comment": "/admin helper-roles remove",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.helper-roles.remove.name%%",
+            "name_localizations": "%%cmd.admin.helper-roles.remove.name%%",
+            "description": "%%cmd.admin.helper-roles.remove.desc%%",
+            "description_localizations": "%%cmd.admin.helper-roles.remove.desc%%",
+            "options": [
+              { "$comment": "/admin helper-roles remove role",
+                "type": "CommandOptionType.String",
+                "name": "%%cmd.admin.helper-roles.remove.role.name%%",
+                "name_localizations": "%%cmd.admin.helper-roles.remove.role.name%%",
+                "description": "%%cmd.admin.helper-roles.remove.role.desc%%",
+                "description_localizations": "%%cmd.admin.helper-roles.remove.role.desc%%",
+                "autocomplete": true,
+                "required": true
+              }
+            ]
+          },
+          { "$comment": "/admin helper-roles clear",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.admin.helper-roles.clear.name%%",
+            "name_localizations": "%%cmd.admin.helper-roles.clear.name%%",
+            "description": "%%cmd.admin.helper-roles.clear.desc%%",
+            "description_localizations": "%%cmd.admin.helper-roles.clear.desc%%"
+          }
+        ]
+      }
+    ]
+  }
+}

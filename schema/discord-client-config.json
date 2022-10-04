@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$comment": { },
+    "$schema": { },
+    "process-name": {
+      "description": "Name of the client process used by process monitor",
+      "type": "CommandOptionType.String",
+      "minLength": 1,
+      "examples": ["KyukyuBot"]
+    },
+    "default-locale": {
+      "description": "The default fallback locale\n默認的後備語言環境\nDas standardmäßige Fallback-Gebietsschema\nデフォルトのフォールバック ロケール",
+      "$ref": "./discord-locales.json"
+    },
+    "client-id": {
+      "description": "The client id of your bot. Find the information at link below.\n您的機器人的客戶端ID。 在下面的鏈接中找到信息。\nDie Client-ID Ihres Bots. Finden Sie die Informationen unter dem Link unten.\nボットのクライアント ID。以下のリンクで情報を見つけてください。\nhttps://discord.com/developers/applications",
+      "type": "CommandOptionType.String",
+      "pattern": "\\d+",
+      "examples": ["123456789123456789"]
+    },
+    "login-token": {
+      "description": "The login token of your bot (keep as secret at all time!). Find the information at link below.\n您的機器人的登錄令牌（始終保密！）。 在下面的鏈接中找到信息。\nDas Login-Token Ihres Bots (immer geheim halten!). Finden Sie die Informationen unter dem Link unten.\nボットのログイン トークン (常に秘密にしておいてください!)。 以下のリンクで情報を見つけてください。\nhttps://discord.com/developers/applications",
+      "type": "CommandOptionType.String",
+      "pattern": "[\\w-]{24}\\.[\\w-]{6}\\.[\\w-]{27}",
+      "examples": ["QDkDmGqV7-WT9TJ0LZurWAK0.I9eZbc.uJfwrLY0X-7vRS95CgYs8XQpGHB"]
+    },
+    "owner-server-id": {
+      "description": "Id of the server where owner-only commands can be used\n可以使用僅所有者命令的伺服器的 ID\nID des Servers, auf dem Nur-Eigentümer-Befehle verwendet werden können\n所有者専用コマンドを使用できるサーバーの ID",
+      "type": "CommandOptionType.String",
+      "pattern": "\\d+",
+      "examples": ["123456789123456789"]
+    },
+    "client-data-dir": {
+      "description": "Relative path for locally saved client data\n本地保存的客戶端數據的相對路徑\nRelativer Pfad für lokal gespeicherte Clientdaten\nローカルに保存されたクライアント データの相対パス",
+      "type": "CommandOptionType.String",
+      "minLength": 1,
+      "examples": ["./client-data/"]
+    }
+   },
+  "required": ["client-id", "login-token"],
+  "title": "Discord bot configuration file",
+  "type": "object"
+}

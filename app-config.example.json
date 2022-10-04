@@ -1,0 +1,15 @@
+{
+  "$schema": "./schema/discord-client-config.json",
+  "$comment": [
+    "Discord client settings. Copy this file as 'app-config.json' and fill in the fields.",
+    "Discord客戶端設置。 將此文件複製為“app-config.json”並填寫字段。",
+    "Discord-Client-Einstellungen. Kopieren Sie diese Datei als „app-config.json“ und füllen Sie die Felder aus.",
+    "Discordクライアント設定。 このファイルを「app-config.json」としてコピーし、フィールドに入力します。"
+  ],
+  "process-name": "KyukyuBot",
+  "default-locale": "en-US",
+  "client-id": "",
+  "login-token": "",
+  "owner-server-id": "",
+  "client-data-dir": "./client-data/"
+}

@@ -1,0 +1,17 @@
+{
+  "commandName": "art-of-love",
+  "global": false,
+  "ownerOnly": false,
+  "servers": [
+    { "$comment": "Official", ".": "658594298983350293"},
+    { "$comment": "Chinese",  ".": "807945706157506571"},
+    { "$comment": "Premium",  ".": "720580180007059487"}
+  ],
+  "commandData": {
+    "name": "%%cmd.art-of-love.name%%",
+    "name_localizations": "%%cmd.art-of-love.name%%",
+    "type": "CommandType.Message",
+    "default_member_permissions": ["AddReactions"],
+    "dm_permission": false
+  }
+}

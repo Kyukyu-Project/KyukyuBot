@@ -1,0 +1,59 @@
+{
+  "cmd": {
+    "admin": {
+      "bot-channel": {
+        "name": "bot-channel",
+        "desc": "Change or view bot-command channel settings",
+        "info": {
+          "name": "info",
+          "desc": "Show information about bot-command channel"
+        },
+        "set": {
+          "name": "set",
+          "desc": "Set bot-command channel settings",
+          "channel": {
+            "name": "channel",
+            "desc": "Channel to set"
+          }
+        },
+        "clear": {
+          "name": "clear",
+          "desc": "Clear (reset) bot-command channel setting"
+        },
+        "set-result": "Bot-command channel set: {CHANNEL}",
+        "set-error": "Error executing command: already the bot-command channel",
+        "clear-result": "Bot-command channel unset",
+        "clear-error": "Error executing command: nothing to clear",
+        "info-result": "In the bot-command channel, anyone can use bot commands without cool-down.\nChannel: {CHANNEL}",
+        "info-result-none": "In the bot-command channel, anyone can use bot commands without cool-down.\nChannel: not set"
+      }
+    }
+  },
+  "cmd-help": [
+    {
+      "id": "admin.bot-channel",
+      "title": "[Admin] Managing bot-command channel",
+      "content": {
+        "<text>": [
+          "**Admin: managing bot-command channel**",
+          "",
+          "In the bot-command channel, anyone can use bot commands without cool-down.",
+          "",
+          "`/admin bot-channel info`",
+          "- Show information about the bot-command channel.",
+          "",
+          "`/admin bot-channel set channel:<channel>`",
+          "- Set bot-command channel settings.\n",
+          "",
+          "`/admin bot-channel clear`",
+          "- Clear (reset) bot-command channel setting."
+        ]
+      },
+      "keyword-sets": [
+        ["/admin", "admin"],
+        ["cooldown", "cool-down", "cool down"],
+        ["bot-command channel", "bot command channel", "bot-channel", "bot channel"]
+      ]
+    }
+  ]
+}

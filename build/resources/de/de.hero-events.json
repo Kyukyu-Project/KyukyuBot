@@ -1,0 +1,66 @@
+{
+  "cmd": {
+    "hero-events": {
+      "name": "helden-event",
+      "desc": "Informationen zum Helden-Event",
+      "current": {
+        "name": "aktuellen",
+        "desc": "Informationen zum aktuellen Helden-Event"
+      },
+      "stats": {
+        "name": "statistiken",
+        "desc": "Statistiken der letzten Helden-Events abrufen"
+      },
+      "list": {
+        "name": "liste",
+        "desc": "Liste der letzten Helden-Events"
+      },
+      "find": {
+        "name": "finden",
+        "desc": "Finde die letzten Events eines Helden",
+        "hero": {
+          "name": "held",
+          "desc": "Held zu finden"
+        }
+      },
+      "$download": {
+        "$name": "download",
+        "$desc": "Download the database"
+      },
+      "current-result": {
+        "$not-found": "No information found for current event",
+        "current-cm": "Helden in diesem Kartenmeister-Event: {HEROES}\n",
+        "current-wof": "Helden in diesem Glücksrad-Event: {HERO} ({HERO2})\n",
+        "next-cm": "\nIm nächsten Kartenmeister-Event kommt: {HEROES}\n",
+        "next-wof": "\nIm nächsten Glücksrad-Event kommt: {HERO} ({HERO2})\n",
+        "count-down": "Dieses Event endet in {DAY}d {HOUR}h {MINUTE}m.\n"
+      },      
+      "stats-result": {
+        ".": "Heldenauftritte in den letzten Events:",
+        "1x": "\n1×: {HEROES}",
+        "2x": "\n2×: {HEROES}",
+        "3x": "\n3×: {HEROES}",
+        "4x": "\n4×: {HEROES}",
+        "5x": "\n5×: {HEROES}",
+        "6x": "\n≥6×: {HEROES}"
+      },
+      "list-result": {
+        ".": "Letzte Helden-Events:",
+        "cm":  "<:eventcard:909986289535832104> {DATE}: {HEROES}",
+        "wof": "<:eventwheel:909986289552617502> {DATE}: {HERO} ({HERO2})"
+      },
+      "find-result": {
+        "<text>": [
+          "Letzte Events für {HERO}:\n",
+          "- Erster Auftritt: {FIRST DATE} ({FIRST TYPE})",
+          "- Gesamtauftritte in Kartenmeister-Event: {CM COUNT}",
+          "- Gesamtauftritte in Glücksrad-Event: {WOF COUNT}",
+          "- Aktuelle Auftritte"
+        ],
+        "recent-cm":  "\n-- <:eventcard:909986289535832104> {DATE}",
+        "recent-wof": "\n-- <:eventwheel:909986289552617502> {DATE}",
+        "not-found": "Keine Informationen über die letzten Events für {HERO}"
+      }
+    }
+  }
+}

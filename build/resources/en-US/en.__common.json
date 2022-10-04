@@ -1,0 +1,30 @@
+{
+  "languages": {
+    "de": "Deutsch",
+    "en-US": "English",
+    "es-ES": "Español",
+    "fr": "français",
+    "zh-TW": "正體中文"
+  },
+  "number-locale": "SI",
+  "date-locale": "ISO",
+  "disclaimer": "Information contributed by community members.",
+  "messages": {
+    "command-error": {
+      "general": "Error executing command",
+      "invalid": "Error executing command: invalid command.",
+      "no-user-permission": "Error executing command: no user permission.",
+      "no-app-permission": "Error executing command: no application permission."
+    },
+    "no-interaction-permission": "Sorry, only the user who invoked the command or the user tagged can use this.",
+    "reply-message": "<@!{USER ID}>, here is the information requested.",
+    "reply-message-tagged": "<@!{TAGGED ID}>, here is the information <@!{USER ID}> requested on your behalf.",
+    "info-sent": "The requested info has been posted.",
+    "dm-me": "DM me this",
+    "dm-sent": "Sent by direct message.",
+    "dm-error": "Oof. There was a problem sending the information by direct message.",
+    "select-placeholder": "select a different section"
+  },
+  "card-master": "Card Master",
+  "wheel-of-fortune": "Wheel of Fortune"
+}

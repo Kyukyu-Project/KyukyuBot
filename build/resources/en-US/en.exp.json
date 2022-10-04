@@ -1,0 +1,51 @@
+{
+  "cmd": {
+    "exp": {
+      "name": "exp",
+      "desc": "Estimate the gold needed for Exp levelling",
+      "current": {
+        "name": "exp-points",
+        "desc": "your current Exp points"
+      },
+      "level": {
+        "name": "level",
+        "desc": "your target Exp level"
+      },
+      "result": {
+        "dm-only": "To reduce spam message, you can only run this command in DM",
+        "bot-channel-only": "To reduce spam message, you can only run this command in {CHANNEL} or DM",
+        "next": {
+          ".<text>": [
+            "With {EXP POINT} Exp points, you are at level __{CURR LEVEL}__.",
+            "Yu need about **{GOLD AMOUNT}M** gold to level up to __{NEXT LEVEL}__.",
+            "",
+            "Note: this assumes that you get Exp points from 4-star troops packs only. In reality, you'd also get Exp points by other means."
+          ]
+        },
+        "you-are-close": "You are at level {CURR LEVEL}, and you are very close to level {NEXT LEVEL}!",
+        "target-reached": "You have already reached level {NEXT LEVEL}. Congratulation!"
+      }
+    }
+  },
+  "cmd-help": [
+    {
+      "id": "exp",
+      "title": "Estimate the gold needed for Exp levelling",
+      "content": {
+        "<text>": [
+          "**Estimating the gold needed for Exp levelling**",
+          "",
+          "`/exp exp-points:<points>`",
+          "- Estimate the amount of gold needed to reach the next Exp level.",
+          "",
+          "`/exp exp-points:<points> level:<target-level>`",
+          "- Estimate the amount of gold needed to reach a target Exp level."
+        ]
+      },
+      "keyword-sets": [
+        ["calculate", "estimate"],
+        ["exp-level", "exp level", "exp"]
+      ]
+    }
+  ]
+}

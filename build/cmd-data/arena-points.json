@@ -1,0 +1,25 @@
+{
+  "commandName": "arena-points",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.arena-points.name%%",
+    "name_localizations": "%%cmd.arena-points.name%%",
+    "description": "%%cmd.arena-points.desc%%",
+    "description_localizations": "%%cmd.arena-points.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true,
+    "options": [
+      { "$comment": "/arena-points current",
+        "type": "CommandOptionType.Integer",
+        "name": "%%cmd.arena-points.current.name%%",
+        "name_localizations": "%%cmd.arena-points.current.name%%",
+        "description": "%%cmd.arena-points.current.desc%%",
+        "description_localizations": "%%cmd.arena-points.current.desc%%",
+        "max_value": 9000,
+        "min_value": 2500,
+        "required": true
+      }
+    ]
+  }
+}

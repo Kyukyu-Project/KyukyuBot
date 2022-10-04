@@ -1,0 +1,30 @@
+{
+  "cmd": {
+    "exp": {
+      "name": "exp",
+      "desc": "Schätzung des Goldes, das für das Leveln von Exp benötigt wird",
+      "current": {
+        "name": "punkte",
+        "desc": "Deine aktuellen Exp-Punkte"
+      },
+      "level": {
+        "name": "level",
+        "desc": "Dein angestrebtes Exp-Level"
+      },
+      "$result": {
+        "dm-only": "To reduce spam message, you can only run this command in DM",
+        "bot-channel-only": "To reduce spam message, you can only run this command in {CHANNEL} or DM",
+        "next": {
+          ".<text>": [
+            "With {EXP POINT} Exp points, you are at level __{CURR LEVEL}__.",
+            "Yu need about **{GOLD AMOUNT}M** gold to level up to __{NEXT LEVEL}__.",
+            "",
+            "Note: this assumes that you get Exp points from 4-star troops packs only. In reality, you'd also get Exp points by other means."
+          ]
+        },
+        "you-are-close": "You are at level {CURR LEVEL}, and you are very close to level {NEXT LEVEL}!",
+        "target-reached": "You have already reached level {NEXT LEVEL}. Congratulation!"
+      }
+    }
+  }
+}

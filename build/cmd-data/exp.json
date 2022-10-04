@@ -1,0 +1,34 @@
+{
+  "commandName": "exp",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.exp.name%%",
+    "name_localizations": "%%cmd.exp.name%%",
+    "description": "%%cmd.exp.desc%%",
+    "description_localizations": "%%cmd.exp.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true,
+    "options": [
+      { "$comment": "/exp current",
+        "type": "CommandOptionType.Integer",
+        "name": "%%cmd.exp.current.name%%",
+        "name_localizations": "%%cmd.exp.current.name%%",
+        "description": "%%cmd.exp.current.desc%%",
+        "description_localizations": "%%cmd.exp.current.desc%%",
+        "min_value": 8550,
+        "required": true
+      },
+      { "$comment": "/exp level",
+        "type": "CommandOptionType.Integer",
+        "name": "%%cmd.exp.level.name%%",
+        "name_localizations": "%%cmd.exp.level.name%%",
+        "description": "%%cmd.exp.level.desc%%",
+        "description_localizations": "%%cmd.exp.level.desc%%",
+        "max_value": 100,
+        "min_value": 10,
+        "required": false
+      }
+    ]
+  }
+}
