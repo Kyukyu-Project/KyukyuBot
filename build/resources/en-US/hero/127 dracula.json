@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "dracula",
+        "title": "Dracula",
+        "matches": ["dracula"]
+      },
+      { "id": "dracula",
+        "title": "Dracula (Vampyre Earl)",
+        "matches": ["vampyre earl", "vampire earl"]
+      },
+      { "id": "dracula",
+        "title": "Dracula (Scarlet Duke)",
+        "matches": ["scarlet duke"]
+      }
+    ],
+    "content": {
+      "dracula": {
+        "<object>": {
+          "id": "dracula",
+          "display-name": "Dracula",
+          "titles": ["Vampyre Earl", "Scarlet Duke"]
+        }
+      }
+    }
+  }
+}

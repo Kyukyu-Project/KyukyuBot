@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "harrison",
+        "title": "Harrison",
+        "matches": ["harrison"]
+      },
+      { "id": "harrison",
+        "title": "Harrison (Clockman)",
+        "matches": ["clockman"]
+      }
+    ],
+    "content": {
+      "harrison": {
+        "<object>": {
+          "id": "harrison",
+          "display-name": "Harrison",
+          "titles": ["Clockman"]
+        }
+      }
+    }
+  }
+}

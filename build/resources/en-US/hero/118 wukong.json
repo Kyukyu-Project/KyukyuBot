@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "wukong",
+        "title": "Wukong",
+        "matches": ["wukong"]
+      },
+      { "id": "wukong",
+        "title": "Wukong (The Monkey King)",
+        "matches": ["the monkey king"]
+      }
+    ],
+    "content": {
+      "wukong": {
+        "<object>": {
+          "id": "wukong",
+          "display-name": "Wukong",
+          "titles": ["The Monkey King"]
+        }
+      }
+    }
+  }
+}

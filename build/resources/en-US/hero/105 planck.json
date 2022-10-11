@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "planck",
+        "title": "Planck",
+        "matches": ["planck"]
+      },
+      { "id": "planck",
+        "title": "Planck (Engineer)",
+        "matches": ["engineer"]
+      }
+    ],
+    "content": {
+      "planck": {
+        "<object>": {
+          "id": "planck",
+          "display-name": "Planck",
+          "titles": ["Engineer"]
+        }
+      }
+    }
+  }
+}

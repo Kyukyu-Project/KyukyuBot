@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "mephisto",
+        "title": "Mephisto",
+        "matches": ["mephisto"]
+      },
+      { "id": "mephisto",
+        "title": "Mephisto (Lord of Hatred)",
+        "matches": ["lord of hatred"]
+      }
+    ],
+    "content": {
+      "mephisto": {
+        "<object>": {
+          "id": "mephisto",
+          "display-name": "Mephisto",
+          "titles": ["Lord of Hatred"]
+        }
+      }
+    }
+  }
+}

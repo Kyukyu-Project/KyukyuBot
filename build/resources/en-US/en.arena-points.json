@@ -2,7 +2,7 @@
   "cmd": {
     "arena-points": {
       "name": "arena-points",
-      "desc": "Estimate point gain / loss from arena matches",
+      "desc": "Estimate point gain/loss from arena matches",
       "current": {
         "name": "current",
         "desc": "Your current arena points"

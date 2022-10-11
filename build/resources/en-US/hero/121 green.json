@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "green",
+        "title": "Green",
+        "matches": ["green"]
+      },
+      { "id": "green",
+        "title": "Green (Tree of Life)",
+        "matches": ["tree of life"]
+      }
+    ],
+    "content": {
+      "green": {
+        "<object>": {
+          "id": "green",
+          "display-name": "Green",
+          "titles": ["Tree of Life"]
+        }
+      }
+    }
+  }
+}

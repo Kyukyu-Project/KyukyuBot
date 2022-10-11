@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "diana",
+        "title": "Diana",
+        "matches": ["diana"]
+      },
+      { "id": "diana",
+        "title": "Diana (Jungle Hunter)",
+        "matches": ["jungle hunter"]
+      }
+    ],
+    "content": {
+      "diana": {
+        "<object>": {
+          "id": "diana",
+          "display-name": "Diana",
+          "titles": ["Jungle Hunter"]
+        }
+      }
+    }
+  }
+}

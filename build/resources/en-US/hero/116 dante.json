@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "dante",
+        "title": "Dante",
+        "matches": ["dante"]
+      },
+      { "id": "dante",
+        "title": "Dante (Minstrel)",
+        "matches": ["minstrel"]
+      }
+    ],
+    "content": {
+      "dante": {
+        "<object>": {
+          "id": "dante",
+          "display-name": "Dante",
+          "titles": ["Minstrel"]
+        }
+      }
+    }
+  }
+}

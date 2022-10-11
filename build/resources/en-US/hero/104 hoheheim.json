@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "Hohenheim",
+        "title": "Hohenheim",
+        "matches": ["hohenheim"]
+      },
+      { "id": "Hohenheim",
+        "title": "Hohenheim (Alchemist)",
+        "matches": ["alchemist"]
+      },
+      { "id": "Hohenheim",
+        "title": "Hohenheim (Mad Alchemist)",
+        "matches": ["mad alchemist"]
+      }
+    ],
+    "content": {
+      "hohenheim": {
+        "<object>": {
+          "id": "hohenheim",
+          "display-name": "Hohenheim",
+          "titles": ["Alchemist", "Mad Alchemist"]
+        }
+      }
+    }
+  }
+}

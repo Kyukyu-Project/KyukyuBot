@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "athena",
+        "title": "Athena",
+        "matches": ["athena"]
+      },
+      { "id": "athena",
+        "title": "Athena (Goddess of War)",
+        "matches": ["goddess of war", "war goddess"]
+      }
+    ],
+    "content": {
+      "athena": {
+        "<object>": {
+          "id": "athena",
+          "display-name": "Athena",
+          "titles": ["Goddess of War"]
+        }
+      }
+    }
+  }
+}

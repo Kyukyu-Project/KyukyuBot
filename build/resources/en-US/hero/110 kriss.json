@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "kriss",
+        "title": "Kriss",
+        "matches": ["kriss"]
+      },
+      { "id": "kriss",
+        "title": "Kriss (Santa Giant)",
+        "matches": ["santa giant", "santa claus"]
+      },
+      { "id": "kriss",
+        "title": "Kriss (Christmas Guardian)",
+        "matches": ["christmas guardian", "xmas guardian"]
+      }
+    ],
+    "content": {
+      "kriss": {
+        "<object>": {
+          "id": "kriss",
+          "display-name": "Kriss",
+          "titles": ["Santa Giant", "Christmas Guardian"]
+        }
+      }
+    }
+  }
+}

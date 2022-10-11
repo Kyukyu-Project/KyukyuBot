@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "azrael",
+        "title": "Azrael",
+        "matches": ["azrael"]
+      },
+      { "id": "azrael",
+        "title": "Azrael (Grim Reaper)",
+        "matches": ["grim reaper"]
+      }
+    ],
+    "content": {
+      "azrael": {
+        "<object>": {
+          "id": "azrael",
+          "display-name": "Azrael",
+          "titles": ["Grim Reaper"]
+        }
+      }
+    }
+  }
+}

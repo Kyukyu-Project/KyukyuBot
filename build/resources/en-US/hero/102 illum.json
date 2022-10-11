@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "illum",
+        "title": "illum",
+        "matches": ["Illum"]
+      },
+      { "id": "illum",
+        "title": "Illum (Elemental Sorcerer)",
+        "matches": ["elemental sorcerer"]
+      }
+    ],
+    "content": {
+      "illum": {
+        "<object>": {
+          "id": "illum",
+          "display-name": "Illum",
+          "titles": ["Elemental Sorcerer"]
+        }
+      }
+    }
+  }
+}

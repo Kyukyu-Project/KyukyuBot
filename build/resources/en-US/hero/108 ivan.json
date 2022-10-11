@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "ivan",
+        "title": "Ivan",
+        "matches": ["ivan"]
+      },
+      { "id": "ivan",
+        "title": "Ivan (Thunder King)",
+        "matches": ["thunder king"]
+      }
+    ],
+    "content": {
+      "ivan": {
+        "<object>": {
+          "id": "ivan",
+          "display-name": "Ivan",
+          "titles": ["Thunder King"]
+        }
+      }
+    }
+  }
+}

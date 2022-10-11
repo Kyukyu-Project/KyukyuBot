@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "horus",
+        "title": "Horus",
+        "matches": ["horus"]
+      },
+      { "id": "horus",
+        "title": "Horus (Horus the Elder)",
+        "matches": ["horus the elder"]
+      }
+    ],
+    "content": {
+      "horus": {
+        "<object>": {
+          "id": "horus",
+          "display-name": "Horus",
+          "titles": ["Horus the Elder"]
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "cmd": {
     "exp": {
       "name": "exp",
-      "desc": "Estimate the gold needed for Exp levelling",
+      "desc": "Estimate the gold needed for Exp leveling",
       "current": {
         "name": "exp-points",
         "desc": "your current Exp points"
@@ -27,13 +27,25 @@
       }
     }
   },
-  "cmd-help": [
-    {
-      "id": "exp",
-      "title": "Estimate the gold needed for Exp levelling",
-      "content": {
-        "<text>": [
-          "**Estimating the gold needed for Exp levelling**",
+  "cmd-help": {
+    "search": [
+      { "id": "exp",
+        "title": "/exp",
+        "keyword-sets": [ ["/exp"] ] },
+      { "id": "exp",
+        "title": "Estimate the gold needed for Exp leveling",
+        "keyword-sets": [
+          ["calculate", "estimate"],
+          ["how much gold"],
+          ["exp-level", "exp level", "exp", "leveling", "levelling"]
+        ]
+      }
+    ],
+    "content": {
+      "exp<object>": {
+        "title": "/exp",
+        "text<text>": [
+          "**Estimating the gold needed for Exp leveling**",
           "",
           "`/exp exp-points:<points>`",
           "- Estimate the amount of gold needed to reach the next Exp level.",
@@ -41,11 +53,7 @@
           "`/exp exp-points:<points> level:<target-level>`",
           "- Estimate the amount of gold needed to reach a target Exp level."
         ]
-      },
-      "keyword-sets": [
-        ["calculate", "estimate"],
-        ["exp-level", "exp level", "exp"]
-      ]
+      }
     }
-  ]
+  }
 }

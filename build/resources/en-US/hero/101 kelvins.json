@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "search": [
+      { "id": "kelvins",
+        "title": "Kelvins",
+        "matches": ["kelvins"]
+      },
+      { "id": "kelvins",
+        "title": "Kelvins (Frost Baron)",
+        "matches": ["frost baron"]
+      },
+      { "id": "kelvins",
+        "title": "Kelvins (Immortal Knight)",
+        "matches": ["immortal knight"]
+      }
+    ],
+    "content": {
+      "kelvins": {
+        "$comment": "Using <object> tag to escape object flattening.",
+        "<object>": {
+          "id": "kelvins",
+          "display-name": "Kelvins",
+          "titles": ["Frost Baron", "Immortal Knight"]
+        }
+      }
+    }
+  }
+}

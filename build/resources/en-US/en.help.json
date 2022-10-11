@@ -8,5 +8,13 @@
         "desc": "what do you want to know?"
       }
     }
+  },
+  "cmd-help": {
+    "$comment": "default list of help topics",
+    "default-list": [
+      "hero-event",
+      "exp",
+      "arena-points"
+    ]
   }
 }

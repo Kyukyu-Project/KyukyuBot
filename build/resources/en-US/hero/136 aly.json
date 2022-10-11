@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "aly",
+        "title": "Aly",
+        "matches": ["aly"]
+      },
+      { "id": "aly",
+        "title": "Aly (The Nine-Tailed Fox)",
+        "matches": ["the nine-tailed fox", "the 9-tailed fox"]
+      },
+      { "id": "aly",
+        "title": "Aly (Ascension Flame)",
+        "matches": ["ascension flame"]
+      }
+    ],
+    "content": {
+      "aly": {
+        "<object>": {
+          "id": "aly",
+          "display-name": "Aly",
+          "titles": ["The Nine-Tailed Fox", "Ascension Flame"]
+        }
+      }
+    }
+  }
+}

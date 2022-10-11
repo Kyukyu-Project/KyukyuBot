@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "kraken",
+        "title": "Kraken",
+        "matches": ["kraken"]
+      },
+      { "id": "kraken",
+        "title": "Kraken (Tentacles of the Deep)",
+        "matches": ["tentacles of the deep"]
+      }
+    ],
+    "content": {
+      "kraken": {
+        "<object>": {
+          "id": "kraken",
+          "display-name": "Kraken",
+          "titles": ["Tentacles of the Deep"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "h-id",
+        "title": "h-name",
+        "matches": ["h-id"]
+      },
+      { "id": "h-id",
+        "title": "h-name (h-title)",
+        "matches": [""]
+      },
+      { "id": "h-id",
+        "title": "h-name ()",
+        "matches": [""]
+      }
+    ],
+    "content": {
+      "h-id": {
+        "<object>": {
+          "id": "h-id",
+          "display-name": "h-name",
+          "titles": ["h-title"]
+        }
+      }
+    }
+  }
+}

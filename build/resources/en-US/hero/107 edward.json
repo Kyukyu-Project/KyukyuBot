@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "edward",
+        "title": "Edward",
+        "matches": ["edward"]
+      },
+      { "id": "edward",
+        "title": "Edward (Black Beard)",
+        "matches": ["black beard"]
+      },
+      { "id": "edward",
+        "title": "Edward (Pirate)",
+        "matches": ["pirate"]
+      }
+    ],
+    "content": {
+      "edward": {
+        "<object>": {
+          "id": "edward",
+          "display-name": "Edward",
+          "titles": ["Black Beard"]
+        }
+      }
+    }
+  }
+}

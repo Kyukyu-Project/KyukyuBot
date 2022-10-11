@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "charon",
+        "title": "Charon",
+        "matches": ["charon"]
+      },
+      { "id": "charon",
+        "title": "Charon (The Soul Ferryman)",
+        "matches": ["soul ferryman"]
+      }
+    ],
+    "content": {
+      "charon": {
+        "<object>": {
+          "id": "charon",
+          "display-name": "Charon",
+          "titles": ["The Soul Ferryman"]
+        }
+      }
+    }
+  }
+}

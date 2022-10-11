@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "search": [
+      { "id": "chione",
+        "title": "Chione",
+        "matches": ["chione"]
+      },
+      { "id": "chione",
+        "title": "Chione (Queen of Frozen Land)",
+        "matches": ["queen of frozen land"]
+      },
+      { "id": "chione",
+        "title": "Chione (Royal Christmas Ball)",
+        "matches": ["royal christmas ball", "royal xmas ball"]
+      },
+      { "id": "chione",
+        "title": "Chione (Snow Goddess)",
+        "matches": ["snow goddess"]
+      }
+    ],
+    "content": {
+      "chione": {
+        "<object>": {
+          "id": "chione",
+          "display-name": "Chione",
+          "titles": ["Queen of Frozen Land", "Royal Christmas Ball"]
+        }
+      }
+    }
+  }
+}

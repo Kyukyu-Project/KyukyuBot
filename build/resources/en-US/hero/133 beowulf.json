@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "beowulf",
+        "title": "Beowulf",
+        "matches": ["beowulf"]
+      },
+      { "id": "beowulf",
+        "title": "Beowulf (Intrepid King)",
+        "matches": ["intrepid king"]
+      }
+    ],
+    "content": {
+      "beowulf": {
+        "<object>": {
+          "id": "beowulf",
+          "display-name": "Beowulf",
+          "titles": ["Intrepid King"]
+        }
+      }
+    }
+  }
+}

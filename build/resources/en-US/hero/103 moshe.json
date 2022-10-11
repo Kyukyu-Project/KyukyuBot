@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "moshe",
+        "title": "Moshe",
+        "matches": ["moshe", "moses"]
+      },
+      { "id": "moshe",
+        "title": "Moshe (Archon)",
+        "matches": ["archon"]
+      }
+    ],
+    "content": {
+      "moshe": {
+        "<object>": {
+          "id": "moshe",
+          "display-name": "Moshe",
+          "titles": ["Archon"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "selene",
+        "title": "Selene",
+        "matches": ["selene"]
+      },
+      { "id": "selene",
+        "title": "Selene (Moon Goddess)",
+        "matches": ["moon goddess"]
+      },
+      { "id": "selene",
+        "title": "Selene (Scythe of Darkmoon)",
+        "matches": ["scythe of darkmoon"]
+      }
+    ],
+    "content": {
+      "selene": {
+        "<object>": {
+          "id": "selene",
+          "display-name": "Selene",
+          "titles": ["Moon Goddess", "Scythe of Darkmoon"]
+        }
+      }
+    }
+  }
+}

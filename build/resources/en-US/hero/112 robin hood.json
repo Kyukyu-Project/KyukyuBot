@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "robin_hood",
+        "title": "Robin Hood",
+        "matches": ["robin hood"]
+      },
+      { "id": "robin_hood",
+        "title": "Robin Hood (Prince of Thieves)",
+        "matches": ["prince of thieves"]
+      }
+    ],
+    "content": {
+      "robin_hood": {
+        "<object>": {
+          "id": "robin_hood",
+          "display-name": "Robin Hood",
+          "titles": ["Prince of Thieves"]
+        }
+      }
+    }
+  }
+}

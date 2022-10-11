@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "apollo",
+        "title": "Apollo",
+        "matches": ["apollo"]
+      },
+      { "id": "apollo",
+        "title": "Apollo (Shining Aureole)",
+        "matches": ["shining aureole"]
+      },
+      { "id": "apollo",
+        "title": "Apollo (Sun God)",
+        "matches": ["sun god"]
+      }
+    ],
+    "content": {
+      "apollo": {
+        "<object>": {
+          "id": "apollo",
+          "display-name": "Apollo",
+          "titles": ["Shining Aureole"]
+        }
+      }
+    }
+  }
+}

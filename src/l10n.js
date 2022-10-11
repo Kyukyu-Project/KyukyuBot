@@ -1,11 +1,13 @@
 /** Localization helper */
 
 import {readFile} from 'fs';
+
 import {resolve} from 'path';
 import {fileURLToPath} from 'url';
 
 import {objectToMap} from './utils.js';
 import {clientConfig} from './app-config.js';
+import {Autocomplete} from './autocomplete.js';
 
 const thisFilePath = fileURLToPath(import.meta.url);
 const resourceFilePath = resolve(
@@ -14,7 +16,7 @@ const resourceFilePath = resolve(
 );
 
 /** Localization helper class */
-class L10N {
+export class L10N {
   /** Constructor */
   constructor() {
     /**
@@ -42,6 +44,12 @@ class L10N {
     this.version = '';
 
     this.s = this.getResource; // function short-hand
+
+    /**
+     * Autocomplete helper
+     * @type {Autocomplete}
+     */
+    this.autocomplete = new Autocomplete(this);
   }
 
   /**
@@ -321,163 +329,6 @@ class L10N {
       if (h) return h;
     }
     return undefined;
-  }
-
-  /**
-   * Result from keyword search
-   * @typedef {Object} KeywordMatch
-   * @property {string} id - Id of the matched item
-   * @property {string} title - Title of the matched item
-   * @property {string} locale - Locale of the matched item
-   * @property {number} score - Matching score
-   */
-
-  /**
-   * Result from autocomplete
-   * @typedef {Object} AutocompleteMatch
-   * @property {string} id - Id of the matched item
-   * @property {string} title - Title of the matched item
-   */
-
-  /**
-   * Find content by keywords
-   * @param {string} locale - Locale
-   * @param {string} resourceKey - Resource key of the content to be searched
-   * @param {string} query - Search string
-   * @return {KeywordMatch[]} - Matching content
-   */
-  findByKeywords(locale, resourceKey, query) {
-    const data = this.data;
-    const resultLimit = 10;
-    query = query.toLowerCase().trim();
-
-    /**
-     * Find matching entries of a locale
-     * @param {string} locale - Locale
-     * @return {KeywordMatch[]} - All matching entries
-     */
-    function __find(locale) {
-      /** @type {Object[]} */
-      const lookup = data?.get(locale)?.get(resourceKey);
-      /** @type {KeywordMatch[]} */
-      const matches = [];
-
-      if (Array.isArray(lookup)) {
-        lookup.forEach((candidate) => {
-          /** @type {string[]} - Keywords */
-          const keywordSets = candidate['keyword-sets'];
-          if ((keywordSets) && (Array.isArray(keywordSets))) {
-            /** Number of keywords contained in the query string */
-            const score = keywordSets.reduce(
-                (matchCount, keywords) => (
-                  (keywords.findIndex((k) => query.includes(k)) !== -1)?
-                  (matchCount+1):
-                  (matchCount)
-                ),
-                0,
-            );
-
-            if (score > 0) {
-              matches.push({
-                id: candidate.id,
-                title: candidate.title,
-                locale: locale,
-                score: score,
-              });
-            }
-          }
-        });
-      }
-
-      return matches;
-    }
-
-    /**
-     * Get the relative order of two matched items within the results
-     * @param {KeywordMatch} a - Item A
-     * @param {KeywordMatch} b - Item B
-     * @return {number} - Negative if A is before B
-     */
-    function __compare(a, b) {
-      return (b.score === a.score)?
-        ((a.locale === locale)?-1:1):
-        (b.score - a.score);
-    }
-
-    const results = __find(locale);
-
-    // Extending search results
-    if ((locale !== this.defaultLocale) && (results.length < resultLimit)) {
-      const xResults = __find(this.defaultLocale);
-      xResults.forEach((x) => {
-        if (results.findIndex((r) => (r.id === x.id)) === -1) {
-          results.push(x);
-        }
-      });
-    }
-
-    return results
-        .sort(__compare)
-        .slice(0, resultLimit)
-        .map((r)=>({name: r.title, value: `${r.locale}:${r.id}`}));
-  }
-
-  /**
-   * Autocomplete (suggest as you type)
-   * @param {string} locale - Locale
-   * @param {string} resourceKey - Resource key of the content to be searched
-   * @param {string} query - Search string
-   * @return {AutocompleteMatch[]} - Matching content
-   */
-  autocomplete(locale, resourceKey, query) {
-    const data = this.data;
-    const resultLimit = 10;
-    query = query.toLowerCase().trim();
-
-    /**
-     * Find matching entries of a locale
-     * @param {string} locale - Locale
-     * @return {KeywordMatch[]} - All matching entries
-     */
-    function __find(locale) {
-      /** @type {Object[]} */
-      const lookup = data?.get(locale)?.get(resourceKey);
-
-      /** @type {KeywordMatch[]} */
-      const matches = [];
-
-      if (Array.isArray(lookup)) {
-        lookup.forEach((candidate) => {
-          if (
-            (candidate.pattern.includes(query)) &&
-            ((matches.findIndex((el) => el.id === candidate.id)) === -1)
-          ) {
-            matches.push({
-              id: candidate.id,
-              title: candidate.title,
-              locale: locale,
-            });
-          }
-        });
-      }
-      return matches;
-    }
-
-    const results = __find(locale);
-
-    // Extending search results
-    if ((locale !== this.defaultLocale) && (results.length < resultLimit)) {
-      const xResults = __find(this.defaultLocale);
-      xResults.forEach((x) => {
-        if (results.findIndex((r) => (r.id === x.id)) === -1) {
-          results.push(x);
-        }
-      });
-    }
-
-    return results
-        .slice(0, resultLimit)
-        .map((r)=>({name: r.title, value: `${r.locale}:${r.id}`}));
   }
 }
 

@@ -327,7 +327,7 @@
     "rarity": "legendary",
     "released": true,
     "exclusive": false,
-    "icon": ""
+    "icon": "https://cdn.discordapp.com/attachments/833978786395586600/1029229707499143168/140_charon.png"
   },
   {
     "name": "freyja",
@@ -336,6 +336,6 @@
     "rarity": "legendary",
     "released": true,
     "exclusive": false,
-    "icon": ""
+    "icon": "https://cdn.discordapp.com/attachments/833978786395586600/1029229707855671407/141_freyja.png"
   }
 ]

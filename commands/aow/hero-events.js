@@ -49,8 +49,13 @@ export function autocomplete(context) {
   const {interaction} = context;
   const {locale, options} = interaction;
   const focused = options.getFocused();
-  const searchResult = l10n.autocomplete(locale, 'autocomplete.hero', focused);
-  interaction.respond(searchResult);
+  const suggestions = l10n.autocomplete.suggestContent(
+      locale,
+      focused,
+      'autocomplete.hero',
+      'part-of',
+  );
+  interaction.respond(suggestions);
 }
 
 /**

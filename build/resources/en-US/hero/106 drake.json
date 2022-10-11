@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "drake",
+        "title": "Drake",
+        "matches": ["drake"]
+      },
+      { "id": "drake",
+        "title": "Drake (Admiral of the New Route)",
+        "matches": ["admiral of the new route"]
+      },
+      { "id": "drake",
+        "title": "Drake (Navy Admiral)",
+        "matches": ["navy admiral"]
+      }
+    ],
+    "content": {
+      "drake": {
+        "<object>": {
+          "id": "drake",
+          "display-name": "Drake",
+          "titles": ["Admiral of the New Route"]
+        }
+      }
+    }
+  }
+}

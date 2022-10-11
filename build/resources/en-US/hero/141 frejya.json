@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "freyja",
+        "title": "Freyja",
+        "matches": ["freyja"]
+      },
+      { "id": "freyja",
+        "title": "Freyja (The Heart of Forest)",
+        "matches": ["the heart of forest"]
+      }
+    ],
+    "content": {
+      "freyja": {
+        "<object>": {
+          "id": "freyja",
+          "display-name": "Freyja",
+          "titles": ["The Heart of Forest"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "zeus",
+        "title": "Zeus",
+        "matches": ["zeus"]
+      },
+      { "id": "zeus",
+        "title": "Zeus (King of the Gods)",
+        "matches": ["king of the gods"]
+      },
+      { "id": "zeus",
+        "title": "Zeus (God of Lightning)",
+        "matches": ["god of lightning"]
+      }
+    ],
+    "content": {
+      "zeus": {
+        "<object>": {
+          "id": "zeus",
+          "display-name": "Zeus",
+          "titles": ["King of the Gods"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "nezha",
+        "title": "Nezha",
+        "matches": ["nezha"]
+      },
+      { "id": "nezha",
+        "title": "Nezha (Burning Spear)",
+        "matches": ["burning spear"]
+      }
+    ],
+    "content": {
+      "nezha": {
+        "<object>": {
+          "id": "nezha",
+          "display-name": "Nezha",
+          "titles": ["Burning Spear"]
+        }
+      }
+    }
+  }
+}

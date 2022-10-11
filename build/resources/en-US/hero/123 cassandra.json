@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "cassandra",
+        "title": "Cassandra",
+        "matches": ["cassandra", "kassandra", "cassy"]
+      },
+      { "id": "cassandra",
+        "title": "Cassandra (Tarot Master)",
+        "matches": ["tarot master", "tarot card master"]
+      }
+    ],
+    "content": {
+      "cassandra": {
+        "<object>": {
+          "id": "cassandra",
+          "display-name": "Cassandra",
+          "titles": ["Tarot Master"]
+        }
+      }
+    }
+  }
+}

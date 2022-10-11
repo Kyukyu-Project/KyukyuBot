@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "search": [
+      { "id": "poseidon",
+        "title": "Poseidon",
+        "matches": ["poseidon"]
+      },
+      { "id": "poseidon",
+        "title": "Poseidon (Ocean King)",
+        "matches": ["ocean king"]
+      },
+      { "id": "poseidon",
+        "title": "Poseidon (Guardian of Emerald Ocean)",
+        "matches": ["guardian of emerald ocean"]
+      },
+      { "id": "poseidon",
+        "title": "Poseidon (Ocean God)",
+        "matches": ["ocean god"]
+      }
+    ],
+    "content": {
+      "poseidon": {
+        "<object>": {
+          "id": "poseidon",
+          "display-name": "Poseidon",
+          "titles": ["Ocean King", "Guardian of Emerald Ocean"]
+        }
+      }
+    }
+  }
+}

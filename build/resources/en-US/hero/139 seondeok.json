@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "seondeok",
+        "title": "Seondeok",
+        "matches": ["seondeok", "queen seondeok"]
+      },
+      { "id": "seondeok",
+        "title": "Seondeok (The Queen of Silla)",
+        "matches": ["the queen of silla"]
+      }
+    ],
+    "content": {
+      "seondeok": {
+        "<object>": {
+          "id": "seondeok",
+          "display-name": "Seondeok",
+          "titles": ["The Queen of Silla"]
+        }
+      }
+    }
+  }
+}

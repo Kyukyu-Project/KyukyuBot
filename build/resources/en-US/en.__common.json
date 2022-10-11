@@ -14,7 +14,8 @@
       "general": "Error executing command",
       "invalid": "Error executing command: invalid command.",
       "no-user-permission": "Error executing command: no user permission.",
-      "no-app-permission": "Error executing command: no application permission."
+      "no-app-permission": "Error executing command: no application permission.",
+      "not-found": "Error executing command: no information found."
     },
     "no-interaction-permission": "Sorry, only the user who invoked the command or the user tagged can use this.",
     "reply-message": "<@!{USER ID}>, here is the information requested.",

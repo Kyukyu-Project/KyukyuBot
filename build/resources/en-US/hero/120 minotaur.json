@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "minotaur",
+        "title": "Minotaur",
+        "matches": ["minotaur"]
+      },
+      { "id": "minotaur",
+        "title": "Minotaur (Bull Demon King)",
+        "matches": ["bull demon king"]
+      },
+      { "id": "minotaur",
+        "title": "Minotaur (Ox King)",
+        "matches": ["ox king"]
+      }
+    ],
+    "content": {
+      "minotaur": {
+        "<object>": {
+          "id": "minotaur",
+          "display-name": "Minotaur",
+          "titles": ["Bull Demon King"]
+        }
+      }
+    }
+  }
+}

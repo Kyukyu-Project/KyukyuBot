@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "miller",
+        "title": "Miller",
+        "matches": ["miller"]
+      },
+      { "id": "miller",
+        "title": "Miller (Bloody Werewolf)",
+        "matches": ["bloody werewolf"]
+      }
+    ],
+    "content": {
+      "miller": {
+        "<object>": {
+          "id": "miller",
+          "display-name": "Miller",
+          "titles": ["Bloody Werewolf"]
+        }
+      }
+    }
+  }
+}

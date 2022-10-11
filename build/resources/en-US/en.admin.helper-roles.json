@@ -50,5 +50,45 @@
         }
       }
     }
+  },
+  "cmd-help": {
+    "search": [
+      { "id": "admin.helper-roles",
+        "title": "/admin helper-roles",
+        "keyword-sets": [ ["/admin"], ["helper-role"] ] },
+      { "id": "admin.helper-roles",
+        "title": "[Admin] Helper roles",
+        "keyword-sets": [
+          ["admin", "administrator"],
+          ["cooldown", "cool-down", "cool down"],
+          ["bot spam", "bot-spam"],
+          ["bot-command", "bot command", "bot cmd", "bot-cmd", "bot-channel", "bot channel"],
+          ["helper role", "helper", "helpers"]
+        ] }
+    ],
+    "content": {
+      "admin.helper-roles<object>": {
+        "title": "/admin helper-roles",
+        "content<text>": [
+          "'/admin helper-roles'",
+          "",
+          "To reduce unnecessary bot messages in chat channels, some bot commands have cool-down or are blocked when used outside of the bot-command channel.",
+          "",
+          "Users with helper roles are not subject to such restrictions.",
+          "",
+          "`/admin helper-roles info`",
+          "- Show information about helper roles.",
+          "",
+          "`/admin helper-roles add role1:<role> [role2:<role>...]`",
+          "- Add up to 5 roles to the list of helper roles",
+          "",
+          "`/admin helper-roles remove role:<role>`",
+          "- Remove a role from the list of helper roles",
+          "",
+          "`/admin helper-roles clear`",
+          "- Clear (reset) the list of helper roles."
+        ]
+      }
+    }
   }
 }

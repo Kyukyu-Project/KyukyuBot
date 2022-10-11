@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "ainz",
+        "title": "Ainz",
+        "matches": ["ainz"]
+      },
+      { "id": "ainz",
+        "title": "Ainz (Winter Lord)",
+        "matches": ["winter lord"]
+      }
+    ],
+    "content": {
+      "ainz": {
+        "<object>": {
+          "id": "ainz",
+          "display-name": "Ainz",
+          "titles": ["Winter Lord"]
+        }
+      }
+    }
+  }
+}

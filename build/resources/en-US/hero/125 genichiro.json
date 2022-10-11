@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "genichiro",
+        "title": "Genichiro",
+        "matches": ["genichiro"]
+      },
+      { "id": "genichiro",
+        "title": "Genichiro (Sakura Blade)",
+        "matches": ["sakura blade"]
+      }
+    ],
+    "content": {
+      "genichiro": {
+        "<object>": {
+          "id": "genichiro",
+          "display-name": "Genichiro",
+          "titles": ["Sakura Blade"]
+        }
+      }
+    }
+  }
+}

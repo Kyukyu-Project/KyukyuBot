@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "search": [
+      { "id": "davison",
+        "title": "Davison",
+        "matches": ["davison"]
+      },
+      { "id": "davison",
+        "title": "Davison (Dragon Emissary)",
+        "matches": ["dragon emissary"]
+      },
+      { "id": "davison",
+        "title": "Davison (Burning Council)",
+        "matches": ["burning council"]
+      }
+    ],
+    "content": {
+      "davison": {
+        "<object>": {
+          "id": "davison",
+          "display-name": "Davison",
+          "titles": ["Dragon Emissary", "Burning Council"]
+        }
+      }
+    }
+  }
+}

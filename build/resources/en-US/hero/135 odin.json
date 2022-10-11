@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "odin",
+        "title": "Odin",
+        "matches": ["odin"]
+      },
+      { "id": "odin",
+        "title": "Odin (Father of Gods)",
+        "matches": ["father of gods"]
+      }
+    ],
+    "content": {
+      "odin": {
+        "<object>": {
+          "id": "odin",
+          "display-name": "Odin",
+          "titles": ["Father of Gods"]
+        }
+      }
+    }
+  }
+}

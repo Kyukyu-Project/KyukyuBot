@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "search": [
+      { "id": "jinn",
+        "title": "Jinn",
+        "matches": ["jinn"]
+      },
+      { "id": "jinn",
+        "title": "Jinn (The Sprite of Lamp)",
+        "matches": ["the sprite of lamp", "lamp sprite"]
+      },
+      { "id": "jinn",
+        "title": "Jinn (Genie of Lamp)",
+        "matches": ["genie of lamp", "lamp genie"]
+      },
+      { "id": "jinn",
+        "title": "Jinn (Summer Joy)",
+        "matches": ["summer joy"]
+      }
+    ],
+    "content": {
+      "jinn": {
+        "<object>": {
+          "id": "jinn",
+          "display-name": "Jinn",
+          "titles": ["The Sprite of Lamp", "Summer Joy"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "search": [
+      { "id": "arthur",
+        "title": "Arthur",
+        "matches": ["arthur"]
+      },
+      { "id": "arthur",
+        "title": "Arthur (The King of Camelot)",
+        "matches": ["the king of camelot"]
+      }
+    ],
+    "content": {
+      "arthur": {
+        "<object>": {
+          "id": "arthur",
+          "display-name": "Arthur",
+          "titles": ["The King of Camelot"]
+        }
+      }
+    }
+  }
+}

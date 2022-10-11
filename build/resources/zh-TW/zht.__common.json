@@ -7,7 +7,8 @@
       "general": "執行指令時出現錯誤",
       "invalid": "執行指令時出現錯誤：指令無效。",
       "no-user-permission": "執行指令時出現錯誤：用戶沒有權限。",
-      "no-app-permission": "執行指令時出現錯誤：程式沒有權限。."
+      "no-app-permission": "執行指令時出現錯誤：程式沒有權限。.",
+      "not-found": "執行指令時出現錯誤：查無資料。"
     }
   },
   

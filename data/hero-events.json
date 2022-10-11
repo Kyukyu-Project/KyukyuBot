@@ -1,5 +1,18 @@
 [
   {
+    "ts": 1666051200000,
+    "date": "2022-10-18",
+    "type": "cm",
+    "heroes": [
+      "davison",
+      "drake",
+      "apollo",
+      "horus",
+      "mephisto",
+      "beowulf"
+    ]
+  },
+  {
     "ts": 1665446400000,
     "date": "2022-10-11",
     "type": "wof",
