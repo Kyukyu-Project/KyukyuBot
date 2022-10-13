@@ -1,0 +1,56 @@
+{
+  "cmd-info": {
+    "search": [
+      { "id": "event.cm",
+        "title": "Guide to Card Master",
+        "keyword-sets": [
+          ["card master", "cm", "hero event"],
+          ["guide", "tips", "how-to", "how to", "how do I"],
+          ["gem cost", "how much gem", "average"]
+        ]
+      }
+    ],
+    "content": {
+      "event.cm": {
+        "<object>": {
+          "title": "Guide to Card Master",
+          "embeds": [
+            {
+              "title": "Card Master",
+              "description": "Card Master is a __7-day__ event where a player can participate to get hero shards.",
+              "thumbnail": {
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/900654569141456916/icon-card-master.png"
+              },
+              "fields": [
+                {
+                  "name": "Rules",
+                  "value<text>": [
+                    "• The event feature 9 heroes.",
+                    "• Players can play up to __25__ rounds of card flipping",
+                    "• Each round has a set of 9 cards. The player first shuffles the cards and then flips the card one-by-one.",
+                    "• The player can end a round at any time.",
+                    "• After ending a round, the player can start a new round (for the same or a different hero).",
+                    "• The player can get bonus rewards for the total number of flips.",
+                    "• The first flip costs 300 gems, and subsequent flips cost 600 gems each. (**5100** gems for 9 flips)."
+                  ]
+                },
+                {
+                  "name": "Best Strategy",
+                  "value<text>": [
+                    "• End your round when you get the hero shard.",
+                    "• Don't start a round if you don't have 5100 gems for the worst-case scenario (9 flips).",
+                    "• Have around 24 000 <:aowgem:847363788592119838> ready and do ~8 rounds (and get 1 bonus shard). The average shard cost is 2390 <:aowgem:847363788592119838>",
+                    "• Have around 62 000 <:aowgem:847363788592119838> ready and do ~22 rounds (and get 3 bonus shards). The average shard cost is 2380 <:aowgem:847363788592119838>"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-13)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

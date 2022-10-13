@@ -1,0 +1,24 @@
+{
+  "commandName": "info",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.info.name%%",
+    "name_localizations": "%%cmd.info.name%%",
+    "description": "%%cmd.info.desc%%",
+    "description_localizations": "%%cmd.info.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true,
+    "options": [
+      {
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.info.query.name%%",
+        "name_localizations": "%%cmd.info.query.name%%",
+        "description": "%%cmd.info.query.desc%%",
+        "description_localizations": "%%cmd.info.query.desc%%",
+        "autocomplete": true,
+        "required": true
+      }
+    ]
+  }
+}

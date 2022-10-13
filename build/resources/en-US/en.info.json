@@ -1,0 +1,17 @@
+{
+  "cmd": {
+    "info": {
+      "name": "info",
+      "desc": "Get information on Art of War:Legions",
+      "query": {
+        "name": "query",
+        "desc": "what do you want to know?"
+      }
+    }
+  },
+  "cmd-info": {
+    "$comment": "default list of info topics",
+    "$default-list": [
+    ]
+  }
+}

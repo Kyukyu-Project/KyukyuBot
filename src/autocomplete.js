@@ -198,8 +198,7 @@ export class Autocomplete {
       if (query.includes(':')) [contentLocale, contentId] = query.split(':');
 
       let content = l10n.s(
-          contentLocale,
-          resourceKey + '.content.' + contentId,
+          contentLocale, `${resourceKey}.content.${contentId}`,
       );
 
       if (content) return content;
@@ -208,14 +207,8 @@ export class Autocomplete {
           this.suggestContent(locale, query, resourceKey, matchType);
 
       if (suggestions.length) {
-        if (suggestions.length === 1) {
-          content = l10n.s(
-              contentLocale,
-              resourceKey + '.content.' + suggestions[0].id,
-          );
-          if (content) return content;
-        }
-        return suggestions;
+        content = l10n.s(locale, `${resourceKey}.content.${suggestions[0].id}`);
+        if (content) return content;
       }
     }
     return undefined;
