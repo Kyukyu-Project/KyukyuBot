@@ -20,7 +20,6 @@ export async function execute(context) {
   /** @type {string} */ const query = options.getString('query');
   if (query) {
     const infoResult = l10n.autocomplete.getContent(locale, query, 'cmd-info');
-    console.log(infoResult);
 
     if (infoResult) {
       if (infoResult.embeds) {

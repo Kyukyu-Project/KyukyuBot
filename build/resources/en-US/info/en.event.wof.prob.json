@@ -1,0 +1,105 @@
+{
+  "cmd-info": {
+    "search": [
+      { "id": "event.wof.prob",
+        "title": "Wheel of Fortune Probability",
+        "keyword-sets": [
+          ["wheel", "wof"],
+          ["odds", "probability", "probabilities", "chances", "average"],
+          ["00 spin"]
+        ]
+      }
+    ],
+    "content": {
+      "event.wof.prob": {
+        "<object>": {
+          "title": "Wheel of Fortune Probability",
+          "embeds": [
+            {
+              "title": "Wheel of Fortune Probability",
+              "fields": [
+                {
+                  "name": "100 spins",
+                  "value<text>": [
+                    "• 22.9% chance for 2 (+2) legendary hero shards.",
+                    "• 22.9% chance for 3 epic hero shards",
+                    "• 67.1% chance for 29~43 super card vouchers"
+                  ]
+                },
+                {
+                  "name": "200 spins",
+                  "value<text>": [
+                    "• 16.2% chance for 4 (+4) legendary hero shards.",
+                    "• 16.3% chance for 6 epic hero shards",
+                    "• 66.6% chance for 63~83 super card vouchers"
+                  ]
+                },
+                {
+                  "name": "300 spins",
+                  "value<text>": [
+                    "• 13.0% chance for 6 (+4) legendary hero shards.",
+                    "• 73.9% chance for 3~9 (+4) legendary hero shards.",
+                    "• 13.3% chance for 9 epic hero shards",
+                    "• 60.3% chance for 7~11 epic hero shards",
+                    "• 68.9% chance for 97~123 super card vouchers"
+                  ]
+                },
+                {
+                  "name": "400 spins",
+                  "value<text>": [
+                    "• 11.3% chance for 9 (+4) legendary hero shards.",
+                    "• 68.3% chance for 6~12 (+4) legendary hero shards.",
+                    "• 11.6% chance for 3 epic hero shards",
+                    "• 69.7% chance for 9~15 epic hero shards",
+                    "• 68.6% chance for 132~162 super card vouchers"
+                  ]
+                },
+                {
+                  "name": "600 spins",
+                  "value<text>": [
+                    "• 9.2% chance for 14 (+4) legendary hero shards.",
+                    "• 70.5% chance for 10~18 (+4) legendary hero shards.",
+                    "• 9.5% chance for 18 epic hero shards",
+                    "• 72.0% chance for 14~22 epic hero shards",
+                    "• 67.3% chance for 203~239 super card vouchers"
+                  ]
+                },
+                {
+                  "name": "800 spins",
+                  "value<text>": [
+                    "• 8.0% chance for 18 (+4) legendary hero shards.",
+                    "• 72.5% chance for 13~23 (+4) legendary hero shards.",
+                    "• 8.2% chance for 24 epic hero shards",
+                    "• 65.0% chance for 20~28 epic hero shards",
+                    "• 67.7% chance for 274~316 super card vouchers"
+                  ]
+                },
+                {
+                  "name": "1200 spins",
+                  "value<text>": [
+                    "• 6.5% chance for 28 (+4) legendary hero shards.",
+                    "• 71.2% chance for 22~34 (+4) legendary hero shards.",
+                    "• 6.7% chance for 36 epic hero shards",
+                    "• 64.8% chance for 31~41 epic hero shards"
+                  ]
+                },
+                {
+                  "name": "1400 spins",
+                  "value<text>": [
+                    "• 6% chance for 33 (+4) legendary hero shards.",
+                    "• 67.5% chance for 27~39 (+4) legendary hero shards.",
+                    "• 6.2% chance for 42 epic hero shards",
+                    "• 69.2% chance for 36~48 epic hero shards"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-18)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
