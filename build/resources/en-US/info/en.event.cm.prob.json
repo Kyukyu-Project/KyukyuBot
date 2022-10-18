@@ -1,0 +1,77 @@
+{
+  "cmd-info": {
+    "search": [
+      { "id": "event.cm.prob",
+        "title": "Card Master Probability",
+        "keyword-sets": [
+          ["card master", "cm"],
+          ["gem cost", "how much gem", "saving", "should i save", "do i need"],
+          ["odds", "probability", "probabilities", "chances", "average"]
+        ]
+      }
+    ],
+    "content": {
+      "event.cm.prob": {
+        "<object>": {
+          "title": "Card Master Probability",
+          "embeds": [
+            {
+              "title": "Card Master Probability",
+              "description": "Statistically, doing 23 rounds of card flipping has the best value for players.",
+              "fields": [
+                {
+                  "name": "8 rounds",
+                  "value<text>": [
+                    "• 5.4% chance for 9 shards in 40 total flips.",
+                    "• 36.2% chance for 9 shards in 37~43 total flips (2400 gems/shard on average).",
+                    "• 69.0% chance for 9 shards in 33~47 total flips (2400 gems/shard on average).",
+                    "• Recommended gem saving: 23400 gems."
+                  ]
+                },
+                {
+                  "name": "12 rounds",
+                  "value<text>": [
+                    "• 4.4% chance for 13 shards in 60 total flips.",
+                    "• 30.1% chance for 13 shards in 57~63 total flips (2492 gems/shard on average).",
+                    "• 65.4% chance for 13 shards in 52~68 total flips (2492 gems/shard on average).",
+                    "• Recommended gem saving: 34200 gems."
+                  ]
+                },
+                {
+                  "name": "16 rounds",
+                  "value<text>": [
+                    "• 3.8% chance for 17 shards in 80 total flips.",
+                    "• 33.4% chance for 17 shards in 76~84 total flips (2541 gems/shard on average).",
+                    "• 68.8% chance for 17 shards in 70~90 total flips (2541 gems/shard on average).",
+                    "• Recommended gem saving: 45600 gems."
+                  ]
+                },
+                {
+                  "name": "23 rounds",
+                  "value<text>": [
+                    "• 3.2% chance for 26 shards in 115 total flips.",
+                    "• 34.1% chance for 26 shards in 110~120 total flips (2388 gems/shard on average).",
+                    "• 68.5% chance for 26 shards in 103~127 total flips (2388 gems/shard on average).",
+                    "• Recommended gem saving: 65100 gems."
+                  ]
+                },
+                {
+                  "name": "25 rounds",
+                  "value<text>": [
+                    "• 3.1% chance for 28 shards in 125 total flips.",
+                    "• 32.8% chance for 28 shards in 120~130 total flips (2411 gems/shard on average).",
+                    "• 66.5% chance for 28 shards in 113~137 total flips (2411 gems/shard on average).",
+                    "• Recommended gem saving: 70500 gems."
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-18)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
