@@ -69,7 +69,7 @@ export async function execute(context) {
     }
   }
 
-  const currPoints = Math.floor(options.getInteger('current'));
+  const currPoints = Math.floor(options.getInteger('exp-points'));
 
   const maxLevel = EXP_POINTS.length;
   const maxPoints = EXP_POINTS[maxLevel-1];
