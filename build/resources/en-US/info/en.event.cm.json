@@ -4,7 +4,7 @@
       { "id": "event.cm",
         "title": "Guide to Card Master",
         "keyword-sets": [
-          ["card master", "cm", "hero event"],
+          ["card master", "cm", "hero event", "card event"],
           ["guide", "tips", "how-to", "how to", "how do I"]
         ]
       }

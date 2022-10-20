@@ -1,100 +1,195 @@
 {
   "cmd-info": {
+    "$comment": [
+      "Example search phrase:",
+      "How many shards can I expect from the wheel?",
+      "How much do I need to save for the wheel?",
+      "What is the average result from 1200 spins?",
+      "What is the average shard cost in wheel event?"
+    ],
     "search": [
-      { "id": "event.wof.prob",
-        "title": "Wheel of Fortune Probability",
+      { "id": "event.wof.prob.1000",
+        "title": "Wheel of Fortune Probability (1000/1200/1400 spins)",
         "keyword-sets": [
           ["wheel", "wof"],
-          ["odds", "probability", "probabilities", "chances", "average"],
-          ["00 spin"]
+          ["shard", "scroll", "voucher"],
+          ["odds", "probability", "probabilities", "chances", "average", "likely", "expect"],
+          ["spin"],
+          ["1000", "1200", "1400", "full"],
+          ["gem cost", "how much gem", "saving", "should i save", "do i need"]
+        ]
+      },
+      { "id": "event.wof.prob.400",
+        "title": "Wheel of Fortune Probability (400/600/800 spins)",
+        "keyword-sets": [
+          ["wheel", "wof"],
+          ["shard", "scroll", "voucher"],
+          ["odds", "probability", "probabilities", "chances", "average", "likely", "expect"],
+          ["spin"],
+          ["400", "600", "800"]
+        ]
+      },
+      { "id": "event.wof.prob.100",
+        "title": "Wheel of Fortune Probability (100/200/300 spins)",
+        "keyword-sets": [
+          ["wheel", "wof"],
+          ["shard", "scroll", "voucher"],
+          ["odds", "probability", "probabilities", "chances", "average", "likely", "expect"],
+          ["spin"],
+          ["100", "200", "300"]
         ]
       }
     ],
     "content": {
-      "event.wof.prob": {
+      "event.wof.prob.100": {
         "<object>": {
-          "title": "Wheel of Fortune Probability",
+          "title": "Wheel of Fortune Probability (100/200/300 spins)",
           "embeds": [
             {
               "title": "Wheel of Fortune Probability",
+              "description": "Likely results of Wheel of Fortune in 100, 200, or 300 spins (results include progress bonuses).",
               "fields": [
                 {
                   "name": "100 spins",
                   "value<text>": [
-                    "• 22.9% chance for 2 (+2) legendary hero shards.",
-                    "• 22.9% chance for 3 epic hero shards",
-                    "• 67.1% chance for 29~43 super card vouchers"
+                    "• 23% chance for 4 legendary hero shards.",
+                    "• 23% chance for 3 epic hero shards.",
+                    "• undefined% chance for undefined~undefined epic hero shards.",
+                    "• 67% chance for 29~43 super card vouchers",
+                    "• Average shard cost: 2360 gems.",
+                    "• Recommended gem saving: 9440 gems."
                   ]
                 },
                 {
                   "name": "200 spins",
                   "value<text>": [
-                    "• 16.2% chance for 4 (+4) legendary hero shards.",
-                    "• 16.3% chance for 6 epic hero shards",
-                    "• 66.6% chance for 63~83 super card vouchers"
+                    "• 16% chance for 8 legendary hero shards.",
+                    "• 16% chance for 6 epic hero shards.",
+                    "• 70% chance for 4~8 epic hero shards.",
+                    "• 67% chance for 68~88 super card vouchers",
+                    "• Average shard cost: 2395 gems.",
+                    "• Recommended gem saving: 19 160 gems."
                   ]
                 },
                 {
                   "name": "300 spins",
                   "value<text>": [
-                    "• 13.0% chance for 6 (+4) legendary hero shards.",
-                    "• 73.9% chance for 3~9 (+4) legendary hero shards.",
-                    "• 13.3% chance for 9 epic hero shards",
-                    "• 60.3% chance for 7~11 epic hero shards",
-                    "• 68.9% chance for 97~123 super card vouchers"
+                    "• 13% chance for 10 legendary hero shards.",
+                    "• 74% chance for 7~13 legendary hero shards.",
+                    "• 13% chance for 9 epic hero shards.",
+                    "• 60% chance for 7~11 epic hero shards.",
+                    "• 69% chance for 102~128 super card vouchers",
+                    "• Average shard cost: 2888 gems.",
+                    "• Recommended gem saving: 28 880 gems."
                   ]
-                },
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-20)"
+              }
+            }
+          ]
+        }
+      },
+      "event.wof.prob.400": {
+        "<object>": {
+          "title": "Wheel of Fortune Probability (400/600/800 spins)",
+          "embeds": [
+            {
+              "title": "Wheel of Fortune Probability",
+              "description": "Likely results of Wheel of Fortune in 400, 600, or 800 spins (results include progress bonuses).",
+              "fields": [
                 {
                   "name": "400 spins",
                   "value<text>": [
-                    "• 11.3% chance for 9 (+4) legendary hero shards.",
-                    "• 68.3% chance for 6~12 (+4) legendary hero shards.",
-                    "• 11.6% chance for 3 epic hero shards",
-                    "• 69.7% chance for 9~15 epic hero shards",
-                    "• 68.6% chance for 132~162 super card vouchers"
+                    "• 11% chance for 13 legendary hero shards.",
+                    "• 68% chance for 10~16 legendary hero shards.",
+                    "• 12% chance for 12 epic hero shards.",
+                    "• 70% chance for 9~15 epic hero shards.",
+                    "• 69% chance for 137~167 super card vouchers",
+                    "• Average shard cost: 2969 gems.",
+                    "• Recommended gem saving: 38 600 gems."
                   ]
                 },
                 {
                   "name": "600 spins",
                   "value<text>": [
-                    "• 9.2% chance for 14 (+4) legendary hero shards.",
-                    "• 70.5% chance for 10~18 (+4) legendary hero shards.",
-                    "• 9.5% chance for 18 epic hero shards",
-                    "• 72.0% chance for 14~22 epic hero shards",
-                    "• 67.3% chance for 203~239 super card vouchers"
+                    "• 9% chance for 18 legendary hero shards.",
+                    "• 70% chance for 14~22 legendary hero shards.",
+                    "• 10% chance for 18 epic hero shards.",
+                    "• 72% chance for 14~22 epic hero shards.",
+                    "• 67% chance for 208~244 super card vouchers",
+                    "• Average shard cost: 3254 gems.",
+                    "• Recommended gem saving: 58 580 gems."
                   ]
                 },
                 {
                   "name": "800 spins",
                   "value<text>": [
-                    "• 8.0% chance for 18 (+4) legendary hero shards.",
-                    "• 72.5% chance for 13~23 (+4) legendary hero shards.",
-                    "• 8.2% chance for 24 epic hero shards",
-                    "• 65.0% chance for 20~28 epic hero shards",
-                    "• 67.7% chance for 274~316 super card vouchers"
+                    "• 8% chance for 22 legendary hero shards.",
+                    "• 73% chance for 17~27 legendary hero shards.",
+                    "• 8% chance for 24 epic hero shards.",
+                    "• 65% chance for 20~28 epic hero shards.",
+                    "• 68% chance for 279~321 super card vouchers",
+                    "• Average shard cost: 3546 gems.",
+                    "• Recommended gem saving: 78 020 gems."
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-20)"
+              }
+            }
+          ]
+        }
+      },
+      "event.wof.prob.1000": {
+        "<object>": {
+          "title": "Wheel of Fortune Probability (1000/1200/1400 spins)",
+          "embeds": [
+            {
+              "title": "Wheel of Fortune Probability",
+              "description": "Likely results of Wheel of Fortune in 1000, 1200, or 14300 spins (results include progress bonuses).",
+              "fields": [
+                {
+                  "name": "1000 spins",
+                  "value<text>": [
+                    "• 7% chance for 27 legendary hero shards.",
+                    "• 67% chance for 22~32 legendary hero shards.",
+                    "• 7% chance for 30 epic hero shards.",
+                    "• 69% chance for 25~35 epic hero shards.",
+                    "• 69% chance for 350~398 super card vouchers",
+                    "• Average shard cost: 3630 gems.",
+                    "• Recommended gem saving: 98 000 gems."
                   ]
                 },
                 {
                   "name": "1200 spins",
                   "value<text>": [
-                    "• 6.5% chance for 28 (+4) legendary hero shards.",
-                    "• 71.2% chance for 22~34 (+4) legendary hero shards.",
-                    "• 6.7% chance for 36 epic hero shards",
-                    "• 64.8% chance for 31~41 epic hero shards"
+                    "• 7% chance for 32 legendary hero shards.",
+                    "• 71% chance for 26~38 legendary hero shards.",
+                    "• 7% chance for 36 epic hero shards.",
+                    "• 65% chance for 31~41 epic hero shards.",
+                    "• 68% chance for 422~474 super card vouchers",
+                    "• Average shard cost: 3670 gems.",
+                    "• Recommended gem saving: 117 440 gems."
                   ]
                 },
                 {
                   "name": "1400 spins",
                   "value<text>": [
-                    "• 6% chance for 33 (+4) legendary hero shards.",
-                    "• 67.5% chance for 27~39 (+4) legendary hero shards.",
-                    "• 6.2% chance for 42 epic hero shards",
-                    "• 69.2% chance for 36~48 epic hero shards"
+                    "• 6% chance for 37 legendary hero shards.",
+                    "• 67% chance for 31~43 legendary hero shards.",
+                    "• 6% chance for 42 epic hero shards.",
+                    "• 69% chance for 36~48 epic hero shards.",
+                    "• 67% chance for 482~544 super card vouchers",
+                    "• Average shard cost: 3699 gems.",
+                    "• Recommended gem saving: 136 880 gems."
                   ]
                 }
               ],
               "footer": {
-                "text": "Contributed by community member (2022-10-18)"
+                "text": "Contributed by community member (2022-10-20)"
               }
             }
           ]
