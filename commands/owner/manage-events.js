@@ -41,13 +41,12 @@ function addCm(context) {
   const {options} = interaction;
 
   const heroes = [
-    l10n.findHeroByDisplayName(locale, options.getString('hero1')),
-    l10n.findHeroByDisplayName(locale, options.getString('hero2')),
-    l10n.findHeroByDisplayName(locale, options.getString('hero3')),
-    l10n.findHeroByDisplayName(locale, options.getString('hero4')),
-    l10n.findHeroByDisplayName(locale, options.getString('hero5')),
-    l10n.findHeroByDisplayName(locale, options.getString('hero6')),
-  ];
+    'hero1', 'hero2', 'hero3', 'hero4', 'hero5', 'hero6',
+  ].map((field) => (
+    l10n
+        .autocomplete
+        .getContent(locale, options.getString(field), 'hero', 'part-of')
+  ));
 
   if (heroes.includes(undefined)) {
     return {
@@ -56,10 +55,10 @@ function addCm(context) {
     };
   }
 
-  const newEvent = data.addCmEvent(heroes.map((el) => el[0]));
+  const newEvent = data.addCmEvent(heroes.map((h) => h.id));
 
   if (newEvent.heroes.length) {
-    const heroDisplayNames = heroes.map((el) => el[1]);
+    const heroDisplayNames = heroes.map((el) => el['display-name']);
 
     return {
       response: l10n.t(
@@ -85,10 +84,11 @@ function addWof(context) {
   const {locale, interaction} = context;
   const {options} = interaction;
 
-  const heroes = [
-    l10n.findHeroByDisplayName(locale, options.getString('hero1')),
-    l10n.findHeroByDisplayName(locale, options.getString('hero2')),
-  ];
+  const heroes = ['hero1', 'hero2'].map((field) => (
+    l10n
+        .autocomplete
+        .getContent(locale, options.getString(field), 'hero', 'part-of')
+  ));
 
   if ((heroes[0] === undefined) || (heroes[1] === undefined)) {
     return {
@@ -97,10 +97,13 @@ function addWof(context) {
     };
   }
 
-  const newEvent = data.addWofEvent([heroes[0][0], heroes[1][0]]);
+  const newEvent = data.addWofEvent([heroes[0].id, heroes[1].id]);
 
   if (newEvent.heroes.length) {
-    const heroDisplayNames = [heroes[0][1], heroes[1][1]];
+    const heroDisplayNames = [
+      heroes[0]['display-name'],
+      heroes[1]['display-name'],
+    ];
 
     return {
       response: l10n.t(
@@ -130,7 +133,9 @@ function remove(context) {
 
   if (removedEvent.heroes.length) {
     const heroDisplayNames =
-      removedEvent.heroes.map((h) => l10n.findHeroByName(locale, h)[1]);
+      removedEvent.heroes.map((h) => (
+        l10n.s(locale, `hero.content.${h}`)['display-name']),
+      );
 
     return {
       response: l10n.t(
@@ -158,8 +163,16 @@ export function autocomplete(context) {
   const suggestions = l10n.autocomplete.suggestContent(
       locale,
       focused,
-      'autocomplete.hero',
+      'hero',
       'part-of',
   );
-  interaction.respond(suggestions);
+
+  if (suggestions) {
+    interaction.respond(
+        suggestions.map((content) => ({
+          name: content.title,
+          value: content.id,
+        })),
+    );
+  } else interaction.respond([]);
 }

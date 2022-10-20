@@ -1,111 +1,111 @@
 [
   {
-    "name": "hohenheim",
+    "id": "hohenheim",
     "race": "human",
     "profession": "support",
     "rarity": "rare",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070009776668702/104_Hohenheim.png"
   },
   {
-    "name": "planck",
+    "id": "planck",
     "race": "human",
     "profession": "mage",
     "rarity": "rare",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070141799596042/105_Planck.png"
   },
   {
-    "name": "dante",
+    "id": "dante",
     "race": "human",
     "profession": "mage",
     "rarity": "rare",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306613029339156/116_Dante.png"
   },
   {
-    "name": "green",
+    "id": "green",
     "race": "wild",
     "profession": "support",
     "rarity": "rare",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306618554417182/121_Green.png"
   },
   {
-    "name": "diana",
+    "id": "diana",
     "race": "human",
     "profession": "assassin",
     "rarity": "rare",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306620831662110/122_Diana.png"
   },
   {
-    "name": "kelvins",
+    "id": "kelvins",
     "race": "dark",
     "profession": "warrior",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070011978022952/101_Kelvins.png"
   },
   {
-    "name": "illum",
+    "id": "illum",
     "race": "human",
     "profession": "mage",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070014251073556/102_Illum.png"
   },
   {
-    "name": "moshe",
+    "id": "moshe",
     "race": "sacred",
     "profession": "mage",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070007196647464/103_Moshe.png"
   },
   {
-    "name": "edward",
+    "id": "edward",
     "race": "human",
     "profession": "support",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070139858419722/107_Edward.png"
   },
   {
-    "name": "ainz",
+    "id": "ainz",
     "race": "dark",
     "profession": "warrior",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839305699736551454/111_Ainz.png"
   },
   {
-    "name": "kriss",
+    "id": "kriss",
     "race": "sacred",
     "profession": "warrior",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070726087639040/110_Kriss.png"
   },
   {
-    "name": "robin_hood",
+    "id": "robin_hood",
     "race": "human",
     "profession": "marksman",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306609728684042/112_Robin_Hood.png"
   },
   {
-    "name": "minotaur",
+    "id": "minotaur",
     "race": "wild",
     "profession": "warrior",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306616260132904/120_Minotaur.png"
   },
   {
-    "name": "cassandra",
+    "id": "cassandra",
     "race": "dark",
     "profession": "mage",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306621598957568/123_Cassandra.png"
   },
   {
-    "name": "miller",
+    "id": "miller",
     "race": "wild",
     "profession": "assassin",
     "rarity": "epic",
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306623360958514/124_Miller.png"
   },
   {
-    "name": "genichiro",
+    "id": "genichiro",
     "race": "dark",
     "profession": "warrior",
     "rarity": "epic",
@@ -114,7 +114,7 @@
 
 
   {
-    "name": "drake",
+    "id": "drake",
     "race": "human",
     "profession": "warrior",
     "rarity": "legendary",
@@ -123,7 +123,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070137727975424/106_Drake.png"
   },
   {
-    "name": "ivan",
+    "id": "ivan",
     "race": "human",
     "profession": "warrior",
     "rarity": "legendary",
@@ -132,7 +132,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070729493413908/108_Ivan.png"
   },
   {
-    "name": "harrison",
+    "id": "harrison",
     "race": "human",
     "profession": "support",
     "rarity": "legendary",
@@ -141,7 +141,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835070725333319690/109_Harrison.png"
   },
   {
-    "name": "apollo",
+    "id": "apollo",
     "race": "sacred",
     "profession": "marksman",
     "rarity": "legendary",
@@ -150,7 +150,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071376473456690/113_Apollo.png"
   },
   {
-    "name": "poseidon",
+    "id": "poseidon",
     "race": "sacred",
     "profession": "mage",
     "rarity": "legendary",
@@ -159,7 +159,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071374581301298/114_Poseidon.png"
   },
   {
-    "name": "azrael",
+    "id": "azrael",
     "race": "dark",
     "profession": "mage",
     "rarity": "legendary",
@@ -168,7 +168,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306612392722502/115_Azrael.png"
   },
   {
-    "name": "selene",
+    "id": "selene",
     "race": "sacred",
     "profession": "support",
     "rarity": "legendary",
@@ -177,7 +177,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071333259542551/117_Selene.png"
   },
   {
-    "name": "wukong",
+    "id": "wukong",
     "race": "wild",
     "profession": "warrior",
     "rarity": "legendary",
@@ -186,7 +186,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306614740615189/118_Wukong.png"
   },
   {
-    "name": "davison",
+    "id": "davison",
     "race": "human",
     "profession": "tank",
     "rarity": "legendary",
@@ -195,7 +195,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071334576816158/119_Davsion.png"
   },
   {
-    "name": "zeus",
+    "id": "zeus",
     "race": "sacred",
     "profession": "mage",
     "rarity": "legendary",
@@ -204,7 +204,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071336342749204/126_Zeus.png"
   },
   {
-    "name": "dracula",
+    "id": "dracula",
     "race": "dark",
     "profession": "mage",
     "rarity": "legendary",
@@ -213,7 +213,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071339458592778/127_Dracula.png"
   },
   {
-    "name": "chione",
+    "id": "chione",
     "race": "sacred",
     "profession": "mage",
     "rarity": "legendary",
@@ -222,7 +222,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071341161086996/128_Chione.png"
   },
   {
-    "name": "nezha",
+    "id": "nezha",
     "race": "sacred",
     "profession": "warrior",
     "rarity": "legendary",
@@ -231,7 +231,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306649101664277/129_Nezha.png"
   },
   {
-    "name": "mephisto",
+    "id": "mephisto",
     "race": "dark",
     "profession": "warrior",
     "rarity": "legendary",
@@ -240,7 +240,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306654817321010/130_Mephisto.png"
   },
   {
-    "name": "horus",
+    "id": "horus",
     "race": "sacred",
     "profession": "mage",
     "rarity": "legendary",
@@ -249,7 +249,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306658663628850/131_Horus.png"
   },
   {
-    "name": "arthur",
+    "id": "arthur",
     "race": "human",
     "profession": "warrior",
     "rarity": "legendary",
@@ -258,7 +258,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071330638495784/132_Arthur.png"
   },
   {
-    "name": "beowulf",
+    "id": "beowulf",
     "race": "human",
     "profession": "tank",
     "rarity": "legendary",
@@ -267,7 +267,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306660690657280/133_Beowulf.png"
   },
   {
-    "name": "athena",
+    "id": "athena",
     "race": "sacred",
     "profession": "warrior",
     "rarity": "legendary",
@@ -276,7 +276,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306606722023454/134_Athena.png"
   },
   {
-    "name": "aly",
+    "id": "aly",
     "race": "wild",
     "profession": "mage",
     "rarity": "legendary",
@@ -285,7 +285,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071270470418432/136_Aly.png"
   },
   {
-    "name": "kraken",
+    "id": "kraken",
     "race": "wild",
     "profession": "tank",
     "rarity": "legendary",
@@ -294,7 +294,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071262950162452/137_Kraken.png"
   },
   {
-    "name": "jinn",
+    "id": "jinn",
     "race": "sacred",
     "profession": "support",
     "rarity": "legendary",
@@ -303,7 +303,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071265973862422/138_Jinn.png"
   },
   {
-    "name": "seondeok",
+    "id": "seondeok",
     "race": "human",
     "profession": "support",
     "rarity": "legendary",
@@ -312,7 +312,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071268650090496/139_Seondeok.png"
   },
   {
-    "name": "odin",
+    "id": "odin",
     "race": "sacred",
     "profession": "mage",
     "rarity": "legendary",
@@ -321,7 +321,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839309559478878258/135_Odin.png"
   },
   {
-    "name": "charon",
+    "id": "charon",
     "race": "dark",
     "profession": "tank",
     "rarity": "legendary",
@@ -330,7 +330,7 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/1029229707499143168/140_charon.png"
   },
   {
-    "name": "freyja",
+    "id": "freyja",
     "race": "wild",
     "profession": "marksman",
     "rarity": "legendary",

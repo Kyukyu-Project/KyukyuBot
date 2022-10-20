@@ -52,10 +52,18 @@ export function autocomplete(context) {
   const suggestions = l10n.autocomplete.suggestContent(
       locale,
       focused,
-      'autocomplete.hero',
+      'hero',
       'part-of',
   );
-  interaction.respond(suggestions);
+
+  if (suggestions) {
+    interaction.respond(
+        suggestions.map((content) => ({
+          name: content.title,
+          value: content.id,
+        })),
+    );
+  } else interaction.respond([]);
 }
 
 /**
@@ -99,8 +107,9 @@ function current(context) {
   const eventStart = thisEvent.ts;
   const eventEnd = eventStart + EVENT_DURATION;
 
-  let heroDisplayNames = thisEvent.heroes.map((h) =>
-    l10n.findHeroByName(locale, h)[1]);
+  let heroDisplayNames = thisEvent.heroes.map(
+      (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
+  );
 
   if (thisEvent.type === 'wof') {
     response = l10n.t(
@@ -133,7 +142,7 @@ function current(context) {
     const nextEvent = events[thisEventIdx -1];
 
     heroDisplayNames = nextEvent.heroes.map(
-        (h) => l10n.findHeroByName(locale, h)[1],
+        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
     );
 
     if (nextEvent.type === 'wof') {
@@ -172,11 +181,11 @@ function stats(context, count) {
 
   const heroStats = [...new Set(recentHeroes)]
       .filter((hero) =>
-        heroBase.find((data) => data.name === hero).rarity === 'legendary',
+        heroBase.find((data) => data.id === hero).rarity === 'legendary',
       )
       .map((hero) => {
         return {
-          displayName: l10n.findHeroByName(locale, hero)[1],
+          displayName: l10n.s(locale, 'hero.content.' + hero)['display-name'],
           found: recentHeroes.filter((h) => h === hero).length,
         };
       });
@@ -251,8 +260,9 @@ function list(context, count) {
   const {locale} = context;
 
   const lines = eventBase.slice(0, count-1).map((event) => {
-    const heroDisplayNames =
-          event.heroes.map((h) => l10n.findHeroByName(locale, h)[1]);
+    const heroDisplayNames = event.heroes.map(
+        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
+    );
 
     if (event.type === 'wof' ) {
       return l10n.t(
@@ -284,21 +294,28 @@ function list(context, count) {
  */
 function find(context) {
   const {locale, interaction} = context;
+  const {options} = interaction;
+  /** @type {string} */ const query = options.getString('hero');
 
-  const hero = l10n
-      .findHeroByDisplayName(locale, interaction.options.getString('hero'));
+  const heroResult = l10n.autocomplete.getContent(
+      locale,
+      query,
+      'hero',
+      'part-of',
+  );
 
-  if (!hero) {
+  if (!heroResult) {
     return {
       response: l10n.t(
           locale, 'cmd.hero-events.find-result.not-found',
-          '{HERO}', interaction.options.getString('hero'),
+          '{HERO}', query,
       ),
       success: false,
     };
   }
 
-  const [heroName, heroDisplayName] = hero;
+  const heroName = heroResult['id'];
+  const heroDisplayName = heroResult['display-name'];
 
   const eventBase = data['hero-events'];
 
@@ -369,7 +386,9 @@ function download(context) {
   const json = eventBase.map((event) => ({
     date: l10n.formatDate(locale, new Date(event.ts)),
     type: (event.type == 'cm')?cm:wof,
-    heroes: event.heroes.map((h) => l10n.findHeroByName(locale, h)[1]),
+    heroes: event.heroes.map(
+        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
+    ),
   }));
 
   return new AttachmentBuilder(

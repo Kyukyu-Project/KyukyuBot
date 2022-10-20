@@ -32,7 +32,7 @@ export const data = {
    */
   addCmEvent(heroesToAdd) {
     heroesToAdd = [...new Set(heroesToAdd)]
-        .filter((h) => heroBase.findIndex((data) => data.name === h) !== -1);
+        .filter((h) => heroBase.findIndex((data) => data.id === h) !== -1);
 
     if (heroesToAdd.length == 0) return {Date: '', heroes: []};
 
@@ -64,7 +64,7 @@ export const data = {
    */
   addWofEvent(heroesToAdd) {
     heroesToAdd = [...new Set(heroesToAdd)]
-        .filter((h) => heroBase.findIndex((data) => data.name === h) !== -1);
+        .filter((h) => heroBase.findIndex((data) => data.id === h) !== -1);
 
     if (heroesToAdd.length == 0) return {Date: '', heroes: []};
 
