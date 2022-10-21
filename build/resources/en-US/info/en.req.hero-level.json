@@ -1,0 +1,57 @@
+{
+  "cmd-info": {
+    "$example searches": [
+      "how can I upgrade hero to level 17?",
+      "what are the requirements for level 16 hero?"
+    ],
+    "search": [
+      { "id": "req.hero-level",
+        "title": "Requirement to upgrade a hero to level 15-1 ~ 16",
+        "keyword-sets": [
+          ["level", "lvl", "upgrade"],
+          ["15.1", "15.2", "15.3", "16", "17", "15-1", "15-2", "15-3"],
+          ["hero"],
+          ["unlock", "require"]
+        ]
+      }
+    ],
+    "content": {
+      "req.hero-level": {
+        "<object>": {
+          "title": "Requirement to upgrade a hero to level 15-1 ~ 16",
+          "embeds": [
+            {
+              "title": "Requirement to upgrade a hero to level 15-1 ~ 16",
+              "fields": [
+                {
+                  "name": "Level 15-1 ~ 15-3",
+                  "value<text>": [
+                    "• 2× level-11 legendary heroes",
+                    "• 10× level-9 troops."
+                  ]
+                },
+                {
+                  "name": "Level 16 ~ 16-3",
+                  "value<text>": [
+                    "• 3× level-15 legendary heroes",
+                    "• 20× level-9 troops."
+                  ]
+                },
+                {
+                  "name": "Level 7",
+                  "value<text>": [
+                    "• 4× level-15 legendary heroes",
+                    "• 20× level-10 troops"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-21)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}

@@ -1,0 +1,51 @@
+{
+  "cmd-info": {
+    "$example searches": [
+      "how can I upgrade troops to 8?",
+      "what is the requirement for level 10 troops"
+    ],
+    "search": [
+      { "id": "req.troops-level",
+        "title": "Requirement to upgrade a troops to level 8 ~ 10",
+        "keyword-sets": [
+          ["level", "lvl", "upgrade"],
+          ["8", "9", "10"],
+          ["troops"],
+          ["unlock", "require"]
+        ]
+      }
+    ],
+    "content": {
+      "req.troops-level": {
+        "<object>": {
+          "title": "Requirement to upgrade a troops to level 8 ~ 10",
+          "embeds": [
+            {
+              "title": "Requirement to upgrade a troops to level 8 ~ 10",
+              "fields": [
+                {
+                  "name": "Level 8",
+                  "value": "• Reach Main Level 1001."
+                },
+                {
+                  "name": "Level 9",
+                  "value": "• Reach Main Level 2001."
+                },
+                {
+                  "name": "Level 10",
+                  "value<text>": [
+                    "• 1× level-15 hero of the same race",
+                    "• 10× level-9 troops of the same race."
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-21)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}
