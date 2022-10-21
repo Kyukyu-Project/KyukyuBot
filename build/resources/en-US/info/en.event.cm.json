@@ -5,7 +5,8 @@
         "title": "Guide to Card Master",
         "keyword-sets": [
           ["card master", "cm", "hero event", "card event"],
-          ["guide", "tips", "how-to", "how to", "how do I"]
+          ["guide", "tips", "strategy"],
+          ["rules"]
         ]
       }
     ],
@@ -17,9 +18,6 @@
             {
               "title": "Card Master",
               "description": "Card Master is a __7-day__ event where a player can participate to get hero shards.",
-              "thumbnail": {
-                "url": "https://cdn.discordapp.com/attachments/833978786395586600/900654569141456916/icon-card-master.png"
-              },
               "fields": [
                 {
                   "name": "Rules",
@@ -34,7 +32,7 @@
                   ]
                 },
                 {
-                  "name": "Best Strategy",
+                  "name": "Best strategy",
                   "value<text>": [
                     "• End your round when you get the hero shard.",
                     "• Do __NOT__ do rounds with single or double flips. If you need a small number of shards, it is more economic to play Wheel of Fortune and exchange for shards in the Trading Hall.",

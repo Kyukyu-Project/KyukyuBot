@@ -1,0 +1,81 @@
+{
+  "cmd-info": {
+    "$example searches": [
+      "what is the timer icon during arena battle?",
+      "when does the grim reaper appear on battle field?",
+      "what is the time limit of a battle?",
+      "what happens if the game crash during a battle",
+      "do I lose if I get a network error after a battle?",
+      "do I lose a battle if the game crashed?"
+    ],
+    "search": [
+      { "id": "arena.time-limit",
+        "title": "Time Limit of Arena Battle",
+        "keyword-sets": [
+          ["arena", "hero trial"],
+          ["battle", "fight"],
+          ["clock", "count down", "count-down", "timer", "time limit"]
+        ]
+      },
+      { "id": "arena.time-limit",
+        "title": "Grim Reaper on the battle field",
+        "keyword-sets": [
+          ["grim reaper"]
+        ]
+      },
+      { "id": "arena.time-limit",
+        "title": "Network error after arena battle",
+        "keyword-sets": [
+          ["network error", "connection error", "network problem", "connection problem"],
+          ["arena battle", "after battle"]
+        ]
+      },
+      { "id": "arena.time-limit",
+        "title": "Game crash during an arena battle",
+        "keyword-sets": [
+          ["game"],
+          ["crash"],
+          ["battle", "fight"],
+          ["arena", "hero trial"]
+        ]
+      }
+    ],
+    "content": {
+      "arena.time-limit": {
+        "<object>": {
+          "title": "Battle time limit",
+          "embeds": [
+            {
+              "title": "Arena battle time limit",
+              "description<text>": [
+                "• Each arena battle has a time limit of 2 minutes and 30 seconds.",
+                "• If the server doesn't receive the battle result in 5 minutes for any reason, the server will rule that the defender wins."
+              ],
+              "fields": [
+                {
+                  "name": "Grim Reaper",
+                  "value<text>": [
+                    "• If a battle does not end after 2 minutes of fighting, Grim Reaper will come to the battlefield.",
+                    "• When the Grim Reaper appears, all units will lose 10% of their maximum life every second.",
+                    "• Grim Reaper will ignore any damage immunity."
+                  ]
+                },
+                {
+                  "name": "Network error / game crash",
+                  "value<text>": [
+                    "• If a battle ends but fails to connect to the server due to network error, the player can try to reconnect to the server.",
+                    "• If the server does not receive the battle result 5 minutes after the start of battle (due to game crashing or unresolved network error), the server will rule that the defender wins the battle.",
+                    "• This mechanism was implemented to address a past abuse where players would intentionally quit battles to avoid losses."
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-21)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}

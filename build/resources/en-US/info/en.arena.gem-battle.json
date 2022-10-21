@@ -1,0 +1,63 @@
+{
+  "cmd-info": {
+    "$example searches": [
+      "How much do the extra arena battles cost?",
+      "What is the gem cost of all arena battles?",
+      "How much does it cost to do all 30 arena battles?",
+      "How much gem do I need to do 40 arena battles?",
+      "What is the maximum number of battles I can do in arena?",
+      "What is the limit to the number of battles in the arena?"
+    ],
+    "search": [
+      { "id": "arena.gem-battle",
+        "title": "Cost of additional arena battles",
+        "keyword-sets":  [
+          ["arena"],
+          ["battle", "fight"],
+          ["chance", "additional", "extra", "more"],
+          ["gem", "cost"]
+        ]
+      },
+      { "id": "arena.gem-battle",
+        "title": "Maximum number of arena battles",
+        "keyword-sets": [
+          ["arena"],
+          ["battle", "fight"],
+          ["max number", "max chance", "limit", "maximum"]
+        ]
+      }
+    ],
+    "content": {
+      "arena.gem-battle": {
+        "<object>": {
+          "title": "Arena battles (free and gem battles)",
+          "embeds": [
+            {
+              "title": "Arena battles (free and gem battles)",
+              "fields": [
+                {
+                  "name": "Free battles (Battle Pass)",
+                  "value": "A player with Battle Pass can do 30 free battles each day."
+                },
+                {
+                  "name": "Free battles (no Battle Pass)",
+                  "value": "A player without Battle Pass can do 20 free battles each day."
+                },
+                {
+                  "name": "Additional battles",
+                  "value<text>": [
+                    "• Each player can use gems to do up to 10 additional arena battles.",
+                    "• The gem cost is 10 / 10 / 10 / 20 / 20 / 30 / 30 / 40 / 40 / 50 (total **260 gems**)."
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-21)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}

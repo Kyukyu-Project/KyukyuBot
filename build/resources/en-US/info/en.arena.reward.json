@@ -1,0 +1,68 @@
+{
+  "cmd-info": {
+    "$example searches": [
+      "How many wins do I need to get all arena rewards?",
+      "Number of wins needed to get full arena rewards?"
+    ],
+    "search": [
+      { "id": "arena.reward",
+        "title": "Number of wins needed for arena rewards",
+        "keyword-sets": [
+          ["reward"],
+          [
+            "how many win", "how many arena win",
+            "number of win", "number of arena win",
+            "total win", "total arena win"
+          ]
+        ]
+      },
+      { "id": "arena.reward",
+        "title": "Arena Rewards",
+        "keyword-sets": [
+          ["arena"],
+          ["reward"]
+        ]
+      }
+    ],
+    "content": {
+      "arena.reward": {
+        "<object>": {
+          "title": "Arena rewards",
+          "embeds": [
+            {
+              "title": "Arena rewards",
+              "description<text>": [
+                "• You can unlock different levels of arena rewards by accumulating wins.",
+                "• You need a total of **375** wins to unlock all levels (225 wins to unlock level-20)."
+              ],
+              "fields": [
+                {
+                  "name": "Tips",
+                  "value<text>": [
+                    "If you have Battle Pass:",
+                    "• Consider doing **33** attacks each day.",
+                    "• On Day 13, you should be close to unlocking all rewards.",
+                    "• On Day 14 you can focus on pushing for arena rank.",
+                    "• In case you miss a day of attack, you can also recover easily.",
+                    "",
+                    "If you do __not__ have Battle Pass:",
+                    "• Consider doing **20** attacks each day.",
+                    "• On Day 13, you should be close to unlocking level-20 rewards.",
+                    "• On Day 14 you can focus on pushing for arena rank."
+                  ]
+                },
+                {
+                  "name": "Wins needed for reward levels",
+                  "value": "``` 1 ~  5:  5 wins each level\n 6 ~ 10: 10 wins each level\n11 ~ 30: 15 wins each level```"
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-21)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}

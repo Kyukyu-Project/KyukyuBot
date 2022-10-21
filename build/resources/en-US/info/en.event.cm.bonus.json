@@ -2,7 +2,7 @@
   "cmd-info": {
     "search": [
       { "id": "event.cm.bonus",
-        "title": "Card Master progress bar bonus rewards",
+        "title": "Card Master progress bonus rewards",
         "keyword-sets": [
           ["card master", "cm", "hero event"],
           ["progress bar", "progress bonus", "bonus reward"]

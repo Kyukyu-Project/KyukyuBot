@@ -9,52 +9,50 @@
     ],
     "search": [
       { "id": "event.wof.prob.1000",
-        "title": "Wheel of Fortune Probability (1000/1200/1400 spins)",
+        "title": "Wheel of Fortune probability (1000/1200/1400 spins)",
         "keyword-sets": [
           ["wheel", "wof"],
           ["shard", "scroll", "voucher"],
           ["odds", "probability", "probabilities", "chances", "average", "likely", "expect"],
-          ["spin"],
-          ["1000", "1200", "1400", "full"],
-          ["gem cost", "how much gem", "saving", "should i save", "do i need"]
+          ["1000 spin", "1200 spin", "1400 spin", "full spin"],
+          ["gem cost", "how much gem", "should i save"]
         ]
       },
       { "id": "event.wof.prob.400",
-        "title": "Wheel of Fortune Probability (400/600/800 spins)",
+        "title": "Wheel of Fortune probability (400/600/800 spins)",
         "keyword-sets": [
           ["wheel", "wof"],
           ["shard", "scroll", "voucher"],
           ["odds", "probability", "probabilities", "chances", "average", "likely", "expect"],
-          ["spin"],
-          ["400", "600", "800"]
+          ["400 spin", "600 spin", "800 spin"],
+          ["gem cost", "how much gem", "should i save"]
         ]
       },
       { "id": "event.wof.prob.100",
-        "title": "Wheel of Fortune Probability (100/200/300 spins)",
+        "title": "Wheel of Fortune probability (100/200/300 spins)",
         "keyword-sets": [
           ["wheel", "wof"],
           ["shard", "scroll", "voucher"],
           ["odds", "probability", "probabilities", "chances", "average", "likely", "expect"],
-          ["spin"],
-          ["100", "200", "300"]
+          ["100 spin", "200 spin", "300 spin"],
+          ["gem cost", "how much gem", "should i save"]
         ]
       }
     ],
     "content": {
       "event.wof.prob.100": {
         "<object>": {
-          "title": "Wheel of Fortune Probability (100/200/300 spins)",
+          "title": "Wheel of Fortune probability (100/200/300 spins)",
           "embeds": [
             {
-              "title": "Wheel of Fortune Probability",
-              "description": "Likely results of Wheel of Fortune in 100, 200, or 300 spins (results include progress bonuses).",
+              "title": "Wheel of Fortune probability (100/200/300 spins)",
+              "description": "Likely results of Wheel of Fortune (results include progress bonuses).",
               "fields": [
                 {
                   "name": "100 spins",
                   "value<text>": [
                     "• 23% chance for 4 legendary hero shards.",
                     "• 23% chance for 3 epic hero shards.",
-                    "• undefined% chance for undefined~undefined epic hero shards.",
                     "• 67% chance for 29~43 super card vouchers",
                     "• Average shard cost: 2360 gems.",
                     "• Recommended gem saving: 9440 gems."
@@ -93,11 +91,11 @@
       },
       "event.wof.prob.400": {
         "<object>": {
-          "title": "Wheel of Fortune Probability (400/600/800 spins)",
+          "title": "Wheel of Fortune probability (400/600/800 spins)",
           "embeds": [
             {
-              "title": "Wheel of Fortune Probability",
-              "description": "Likely results of Wheel of Fortune in 400, 600, or 800 spins (results include progress bonuses).",
+              "title": "Wheel of Fortune probability (400/600/800 spins)",
+              "description": "Likely results of Wheel of Fortune (results include progress bonuses).",
               "fields": [
                 {
                   "name": "400 spins",
@@ -145,11 +143,11 @@
       },
       "event.wof.prob.1000": {
         "<object>": {
-          "title": "Wheel of Fortune Probability (1000/1200/1400 spins)",
+          "title": "Wheel of Fortune probability (1000/1200/1400 spins)",
           "embeds": [
             {
-              "title": "Wheel of Fortune Probability",
-              "description": "Likely results of Wheel of Fortune in 1000, 1200, or 14300 spins (results include progress bonuses).",
+              "title": "Wheel of Fortune probability (1000/1200/1400 spins)",
+              "description": "Likely results of Wheel of Fortune (results include progress bonuses).",
               "fields": [
                 {
                   "name": "1000 spins",
