@@ -276,6 +276,15 @@
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839306606722023454/134_Athena.png"
   },
   {
+    "id": "odin",
+    "race": "sacred",
+    "profession": "mage",
+    "rarity": "legendary",
+    "released": true,
+    "exclusive": false,
+    "icon": "https://cdn.discordapp.com/attachments/833978786395586600/1032863430291501126/135_Odin.png"
+  },
+  {
     "id": "aly",
     "race": "wild",
     "profession": "mage",
@@ -310,15 +319,6 @@
     "released": true,
     "exclusive": false,
     "icon": "https://cdn.discordapp.com/attachments/833978786395586600/835071268650090496/139_Seondeok.png"
-  },
-  {
-    "id": "odin",
-    "race": "sacred",
-    "profession": "mage",
-    "rarity": "legendary",
-    "released": false,
-    "exclusive": false,
-    "icon": "https://cdn.discordapp.com/attachments/833978786395586600/839309559478878258/135_Odin.png"
   },
   {
     "id": "charon",
