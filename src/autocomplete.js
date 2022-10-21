@@ -20,7 +20,7 @@ function n(str) {
  * @property {string} title - Title of the matched item
  * @property {Object} content - Content of the matched item
  * @property {string} [locale] - Locale of the matched item
- * @property {number} [score] - Matching score
+ * @property {object} [score] - Matching score
  */
 
 /** Autocomplete helper class */
@@ -52,7 +52,7 @@ export class Autocomplete {
     /**
      * Suggest content by matching keywords
      * @param {string} locale - Locale
-     * @return {AutocompleteMatch[]} - Matching content
+     * @return {SearchMatch[]} - Matching content
      */
     function suggestByKeywordMatching(locale) {
       /** @type {Object[]} */
@@ -68,18 +68,21 @@ export class Autocomplete {
         /** @type {string[]} - Keywords */
         const keywordSets = entry['keyword-sets'];
         if ((keywordSets) && (Array.isArray(keywordSets))) {
-          /** Number of keywords contained in the query string */
-          const score = keywordSets.reduce(
-              (matchCount, set) => (
+          /** Total number of keyword hit possible */
+          const kwTotal = keywordSets.length;
+
+          /** Keyword hits */
+          const kwHit = keywordSets.reduce(
+              (hitCount, set) => (
                 (set.findIndex((kw) => query.includes(n(kw))) !== -1)?
-                (matchCount+1):
-                (matchCount)
+                (hitCount+1):
+                (hitCount)
               ),
               0,
           );
 
           if (
-            (score > 0) &&
+            (kwHit > 0) &&
             (matches.findIndex((m) => m.id === entry.id) === -1)
           ) {
             matches.push({
@@ -87,7 +90,7 @@ export class Autocomplete {
               title: entry.title,
               // content: content.content,
               locale: locale,
-              score: score,
+              score: {score: (kwHit / kwTotal), total: kwTotal},
             });
           }
         }
@@ -99,7 +102,7 @@ export class Autocomplete {
     /**
      * Suggest content by matching keywords
      * @param {string} locale - Locale
-     * @return {AutocompleteMatch[]} - Matching content
+     * @return {SearchMatch[]} - Matching content
      */
     function suggestByPartialMatching(locale) {
       /** @type {Object[]} */
@@ -114,18 +117,17 @@ export class Autocomplete {
       searchDb.forEach((entry) => {
         /** @type {string[]} - Keywords */
         if ((entry.matches) && (Array.isArray(entry.matches))) {
-          const score =
+          const matched =
               (entry.matches.findIndex((m) => m.includes(query)) !== -1);
 
           if (
-            (score) &&
+            (matched) &&
             (matches.findIndex((m) => m.id === entry.id) === -1)
           ) {
             matches.push({
               id: entry.id,
               title: entry.title,
               locale: locale,
-              score: score,
             });
           }
         }
@@ -141,12 +143,18 @@ export class Autocomplete {
      * @return {number} - Negative if A is before B
      */
     function sortByScore(a, b) {
-      if (b.score === a.score) {
-        if (a.locale === locale) return -1;
-        else return 1;
-      }
-      if (a.score > b.score) return -1;
-      else return 1;
+      if (a.score.score > b.score.score) return -1;
+
+      if (a.score.score < b.score.score) return 1;
+
+      // b.score.score === a.score.score
+      if (a.score.total > b.score.total) return -1;
+
+      if (a.score.total < b.score.total) return 1;
+
+      if (a.locale === locale) return -1;
+
+      return 1;
     }
 
     if (matchType === 'part-of') {
@@ -161,7 +169,7 @@ export class Autocomplete {
           }
         });
       }
-      return results.sort(sortByScore).slice(0, resultLimit);
+      return results.slice(0, resultLimit);
     } else {
       const results = suggestByKeywordMatching(locale);
 

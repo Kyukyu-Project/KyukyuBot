@@ -285,51 +285,6 @@ export class L10N {
     if (dataLocale === 'ISO') return d.toISOString().split('T')[0];
     return d.toLocaleString(dataLocale, {dateStyle: 'medium', timeZone: 'UTC'});
   }
-
-  /**
-   * Get hero by display name
-   * @example
-   *  l10n.findHeroByDisplayName('de', 'en-US:dracula');
-   * @example
-   *  l10n.findHeroByDisplayName('fr', 'Drake');
-   * @param {string} locale - Locale
-   * @param {string} query - Query string
-   * @return {string[]|undefined} - [heroName, heroDisplayName]
-   */
-  findHeroByDisplayName(locale, query) {
-    const heroNames = this.getResource(locale, 'hero-names');
-    if (typeof query === 'string') {
-      if (query.includes(':')) {
-        // Query is from autocomplete
-        // Format: <locale>:<internal name>
-        const v = query.split(':')[1];
-        const h = heroNames.find((el) => el[0] === v);
-        if (h) return h;
-      } else {
-        const v = query.trim().normalize();
-        // search hero display name
-        const h = heroNames.find((el) => el[1].normalize() === v);
-        if (h) return h;
-      }
-    }
-    return undefined;
-  }
-
-  /**
-   * Get hero by internal hero name
-   * @param {string} locale - Locale
-   * @param {string} query - Query string
-   * @return {string[]|undefined} - [heroName, heroDisplayName]
-   */
-  findHeroByName(locale, query) {
-    const heroNames = this.getResource(locale, 'hero-names');
-    if (typeof query === 'string') {
-      const v = query.trim();
-      const h = heroNames.find((el) => el[0] === v);
-      if (h) return h;
-    }
-    return undefined;
-  }
 }
 
 /** Localization helper */
