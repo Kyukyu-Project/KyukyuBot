@@ -1,0 +1,26 @@
+{
+  "cmd": {
+    "super-admin": {
+      "servers": {
+        "name": "servers",
+        "desc": "Get servers info",
+        "info": {
+          "name": "info",
+          "desc": "Get servers info",
+          "server": {
+            "name": "server",
+            "desc": "Target server"
+          }
+        },
+        "leave": {
+          "name": "leave",
+          "desc": "Leave a server",
+          "server": {
+            "name": "server",
+            "desc": "Server to leave"
+          }
+        }
+      }
+    }
+  }
+}

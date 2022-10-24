@@ -21,6 +21,8 @@ import {
   PermissionFlagsBits,
   GatewayIntentBits,
   Partials,
+  REST,
+  Routes,
 } from 'discord.js';
 
 import {clientConfig} from './app-config.js';
@@ -68,6 +70,13 @@ class Client extends djsClient {
      * @type {boolean}
      */
     this.pauseProcess = false;
+
+    /**
+     * List of all servers
+     * @type {string[]}
+     */
+    this.servers = [];
+    this.fetchServers();
   } // constructor
 
   /**
@@ -309,14 +318,36 @@ class Client extends djsClient {
   }
 
   /**
+   * Get a list of all servers the bot is on
+   */
+  fetchServers() {
+    const rest = new REST({version: '10'})
+        .setToken(clientConfig['login-token']);
+
+    const client = this;
+
+    rest
+        .get(Routes.userGuilds())
+        .then((guilds) => {
+          const servers = guilds.map((g) => ({
+            id: g.id,
+            name: g.name,
+          }));
+
+          client.servers = servers;
+
+          servers.forEach((g) => logger.openLogBook(`${g.id}.log`));
+        });
+  }
+
+  /**
    * Register event handlers and get ready for logging in
    */
-  ready() {
+  async ready() {
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
     this.on('guildCreate', (g) => this.onGuildCreate(g));
     this.on('guildDelete', (g) => this.onGuildLeave(g));
     this.on('messageReactionAdd', (r, u) => this.onReactionAdd(r, u));
-    this.guilds.cache.forEach((g) => logger.openLogBook(g.id));
   }
 }
 

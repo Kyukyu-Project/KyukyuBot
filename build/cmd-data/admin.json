@@ -157,36 +157,14 @@
             "name": "%%cmd.bot-admin.log.get.name%%",
             "name_localizations": "%%cmd.bot-admin.log.get.name%%",
             "description": "%%cmd.bot-admin.log.get.desc%%",
-            "description_localizations": "%%cmd.bot-admin.log.get.desc%%",
-            "options": [
-              { "$comment": "/bot-admin log get log",
-                "type": "CommandOptionType.String",
-                "name": "%%cmd.bot-admin.log.get.log.name%%",
-                "name_localizations": "%%cmd.bot-admin.log.clear.log.name%%",
-                "description": "%%cmd.bot-admin.log.get.log.desc%%",
-                "description_localizations": "%%cmd.bot-admin.log.get.log.desc%%",
-                "autocomplete": true,
-                "required": true
-              }
-            ]
+            "description_localizations": "%%cmd.bot-admin.log.get.desc%%"
           },
           { "$comment": "/bot-admin log clear",
             "type": "CommandOptionType.Subcommand",
             "name": "%%cmd.bot-admin.log.clear.name%%",
             "name_localizations": "%%cmd.bot-admin.log.clear.name%%",
             "description": "%%cmd.bot-admin.log.clear.desc%%",
-            "description_localizations": "%%cmd.bot-admin.log.clear.desc%%",
-            "options": [
-              { "$comment": "/bot-admin log clear log",
-                "type": "CommandOptionType.String",
-                "name": "%%cmd.bot-admin.log.clear.log.name%%",
-                "name_localizations": "%%cmd.bot-admin.log.clear.log.name%%",
-                "description": "%%cmd.bot-admin.log.clear.log.desc%%",
-                "description_localizations": "%%cmd.bot-admin.log.clear.log.desc%%",
-                "autocomplete": true,
-                "required": true
-              }
-            ]
+            "description_localizations": "%%cmd.bot-admin.log.clear.desc%%"
           }
         ]
       }

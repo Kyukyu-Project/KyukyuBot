@@ -10,6 +10,7 @@ export {
   findFiles,
   isDirectory,
   isFile,
+  getFileSize,
   joinPath,
   resolvePath,
   makeDirectory,

@@ -1,0 +1,22 @@
+{
+  "cmd": {
+    "bot-admin": {
+      "log": {
+        "name": "log",
+        "desc": "View or clear bot-command log",
+        "get": {
+          "name": "get",
+          "desc": "Get bot-command log"
+        },
+        "clear": {
+          "name": "clear",
+          "desc": "Clear bot-command log"
+        },
+        "get-result": "Bot-command log:",
+        "get-error": "Error executing command: no log found",
+        "clear-result": "Bot-command log cleared",
+        "clear-error": "Error executing command: nothing to clear"
+      }
+    }
+  }
+}

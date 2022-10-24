@@ -29,6 +29,14 @@ export function makeDirectory(filePath) {
   fs.mkdirSync(filePath, {recursive: true});
 }
 
+/**
+ * Get file size
+ * @param {string|URL} filePath - File path
+ * @return {boolean}
+ */
+export function getFileSize(filePath) {
+  return fs.statSync(filePath).size;
+}
 
 /**
  * Check if a file path describes a file system directory
