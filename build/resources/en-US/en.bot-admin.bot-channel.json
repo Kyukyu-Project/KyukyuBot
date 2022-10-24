@@ -1,6 +1,6 @@
 {
   "cmd": {
-    "admin": {
+    "bot-admin": {
       "bot-channel": {
         "name": "bot-channel",
         "desc": "Change or view bot-command channel settings",
@@ -31,33 +31,33 @@
   },
   "cmd-help": {
     "search": [
-      { "id": "admin.bot-channel",
-        "title": "/admin bot-channel",
-        "keyword-sets": [ ["/admin"], ["bot-channel"] ] },
-      { "id": "admin.bot-channel",
+      { "id": "bot-admin.bot-channel",
+        "title": "/bot-admin bot-channel",
+        "keyword-sets": [ ["/bot-admin"], ["bot-channel"] ] },
+      { "id": "bot-admin.bot-channel",
         "title": "[Admin] Managing bot-command channel",
         "keyword-sets": [
-          ["admin", "administrator"],
+          ["admin"],
           ["cooldown", "cool-down", "cool down"],
           ["bot spam", "bot-spam"],
           ["bot-command", "bot command", "bot cmd", "bot-cmd", "bot-channel", "bot channel"]
         ] }
     ],
     "content": {
-      "admin.bot-channel<object>": {
-        "title": "/admin bot-channel",
+      "bot-admin.bot-channel<object>": {
+        "title": "/bot-admin bot-channel",
         "text<text>": [
-          "`/admin bot-channel`",
+          "`/bot-admin bot-channel`",
           "",
           "In the bot-command channel, anyone can use bot commands without cool-down.",
           "",
-          "`/admin bot-channel info`",
+          "`/bot-admin bot-channel info`",
           "- Show information about the bot-command channel.",
           "",
-          "`/admin bot-channel set channel:<channel>`",
+          "`/bot-admin bot-channel set channel:<channel>`",
           "- Set bot-command channel settings.",
           "",
-          "`/admin bot-channel clear`",
+          "`/bot-admin bot-channel clear`",
           "- Clear (reset) bot-command channel setting."
         ]
       }

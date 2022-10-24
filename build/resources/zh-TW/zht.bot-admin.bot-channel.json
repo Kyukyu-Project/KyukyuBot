@@ -1,6 +1,6 @@
 {
   "cmd": {
-    "admin": {
+    "bot-admin": {
       "bot-channel": {
         "name": "機器人指令頻道",
         "desc": "修改或是檢視機器人指令頻道",

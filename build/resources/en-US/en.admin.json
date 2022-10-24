@@ -1,8 +1,0 @@
-{
-  "cmd": {
-    "admin": {
-      "name": "admin",
-      "desc": "Change or view administrator settings"
-    }
-  }
-}

@@ -1,7 +1,7 @@
 {
   "cmd": {
-    "manage-events": {
-      "name": "manage-events",
+    "events-admin": {
+      "name": "events-admin",
       "desc": "Manage the database for hero events",
       "add-cm": {
         "name": "add-cm",

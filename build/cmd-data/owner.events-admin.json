@@ -1,0 +1,112 @@
+{
+  "commandName": "events-admin",
+  "global": false,
+  "ownerOnly": true,
+  "commandData": {
+    "name": "%%cmd.events-admin.name%%",
+    "name_localizations": "%%cmd.events-admin.name%%",
+    "description": "%%cmd.events-admin.desc%%",
+    "description_localizations": "%%cmd.events-admin.desc%%",
+    "default_member_permissions": ["ManageGuild", "Administrator"],
+    "dm_permission": false,
+    "options": [
+      { "$comment": "/events-admin add-cm",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.events-admin.add-cm.name%%",
+        "name_localizations": "%%cmd.events-admin.add-cm.name%%",
+        "description": "%%cmd.events-admin.add-cm.desc%%",
+        "description_localizations": "%%cmd.events-admin.add-cm.desc%%",
+        "options": [
+          { "$comment": "/events-admin add-cm hero1",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-cm.hero1.name%%",
+            "name_localizations": "%%cmd.events-admin.add-cm.hero1.name%%",
+            "description": "%%cmd.events-admin.add-cm.hero1.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-cm.hero1.desc%%",
+            "autocomplete": true,
+            "required": true
+          },
+          { "$comment": "/events-admin add-cm hero2",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-cm.hero2.name%%",
+            "name_localizations": "%%cmd.events-admin.add-cm.hero2.name%%",
+            "description": "%%cmd.events-admin.add-cm.hero2.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-cm.hero2.desc%%",
+            "autocomplete": true,
+            "required": true
+          },
+          { "$comment": "/events-admin add-cm hero3",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-cm.hero3.name%%",
+            "name_localizations": "%%cmd.events-admin.add-cm.hero3.name%%",
+            "description": "%%cmd.events-admin.add-cm.hero3.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-cm.hero3.desc%%",
+            "autocomplete": true,
+            "required": true
+          },
+          { "$comment": "/events-admin add-cm hero4",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-cm.hero4.name%%",
+            "name_localizations": "%%cmd.events-admin.add-cm.hero4.name%%",
+            "description": "%%cmd.events-admin.add-cm.hero4.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-cm.hero4.desc%%",
+            "autocomplete": true,
+            "required": true
+          },
+          { "$comment": "/events-admin add-cm hero5",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-cm.hero5.name%%",
+            "name_localizations": "%%cmd.events-admin.add-cm.hero5.name%%",
+            "description": "%%cmd.events-admin.add-cm.hero5.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-cm.hero5.desc%%",
+            "autocomplete": true,
+            "required": true
+          },
+          { "$comment": "/events-admin add-cm hero6",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-cm.hero6.name%%",
+            "name_localizations": "%%cmd.events-admin.add-cm.hero6.name%%",
+            "description": "%%cmd.events-admin.add-cm.hero6.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-cm.hero6.desc%%",
+            "autocomplete": true,
+            "required": true
+          }
+        ]
+      },
+      { "$comment": "/events-admin add-wof",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.events-admin.add-wof.name%%",
+        "name_localizations": "%%cmd.events-admin.add-wof.name%%",
+        "description": "%%cmd.events-admin.add-wof.desc%%",
+        "description_localizations": "%%cmd.events-admin.add-wof.desc%%",
+        "options": [
+          { "$comment": "/events-admin add-cm hero1",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-wof.hero1.name%%",
+            "name_localizations": "%%cmd.events-admin.add-wof.hero1.name%%",
+            "description": "%%cmd.events-admin.add-wof.hero1.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-wof.hero1.desc%%",
+            "autocomplete": true,
+            "required": true
+          },
+          { "$comment": "/events-admin add-cm hero2",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-wof.hero2.name%%",
+            "name_localizations": "%%cmd.events-admin.add-wof.hero2.name%%",
+            "description": "%%cmd.events-admin.add-wof.hero2.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-wof.hero2.desc%%",
+            "autocomplete": true,
+            "required": true
+          }
+        ]
+      },
+      { "$comment": "/events-admin remove",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.events-admin.remove.name%%",
+        "name_localizations": "%%cmd.events-admin.remove.name%%",
+        "description": "%%cmd.events-admin.remove.desc%%",
+        "description_localizations": "%%cmd.events-admin.remove.desc%%"
+      }
+    ]
+  }
+}

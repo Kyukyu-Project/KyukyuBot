@@ -23,7 +23,7 @@
  * @typedef {Object} GuildSettings
  * @property {string} name - Cached name of the guild
  * @property {string} `bot-channel` - Id of the bot channel
- * @property {string} `helper-roles` - Ids of helper roles
+ * @property {string} `helper-roles` - Ids of bot helper roles
  */
 
 /**
@@ -48,7 +48,7 @@
  * @property {User} user - User who initiated the command
  * @property {string} locale - Locale of the originating command
  * @property {boolean} userIsAdmin - User is a server admin
- * @property {boolean} userIsHelper - User has a helper role
+ * @property {boolean} userIsHelper - User has a bot helper role
  */
 
 /**

@@ -1,0 +1,8 @@
+{
+  "cmd": {
+    "bot-admin": {
+      "name": "bot-admin",
+      "desc": "Change or view bot administrator settings"
+    }
+  }
+}

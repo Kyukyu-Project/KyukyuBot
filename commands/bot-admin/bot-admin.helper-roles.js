@@ -11,7 +11,7 @@ import {servers} from '../../src/servers.js';
 
 const requiredAppPermissions = PermissionFlagsBits.SendMessages;
 const settingKey = 'helper-roles';
-const localeKeyPrefix = 'cmd.admin.helper-roles';
+const localeKeyPrefix = 'cmd.bot-admin.helper-roles';
 
 /**
  * Get guild setting

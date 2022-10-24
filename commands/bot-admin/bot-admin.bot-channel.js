@@ -11,7 +11,7 @@ import {servers} from '../../src/servers.js';
 
 const requiredAppPermissions = PermissionFlagsBits.SendMessages;
 const settingKey = 'bot-channel';
-const localeKeyPrefix = 'cmd.admin.bot-channel';
+const localeKeyPrefix = 'cmd.bot-admin.bot-channel';
 
 /**
  * Get guild setting

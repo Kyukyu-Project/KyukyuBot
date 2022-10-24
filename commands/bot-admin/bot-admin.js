@@ -2,11 +2,11 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 
-export const commandName = 'admin';
+export const commandName = 'bot-admin';
 export const cooldown  = 0;
 
-import * as helperRoleCommand from './admin.helper-roles.js';
-import * as botChannelCommand from './admin.bot-channel.js';
+import * as helperRoleCommand from './bot-admin.helper-roles.js';
+import * as botChannelCommand from './bot-admin.bot-channel.js';
 
 /**
  * @param {CommandContext} context - Interaction context

@@ -1,6 +1,6 @@
 {
   "cmd": {
-    "manage-events": {
+    "events-admin": {
       "name": "活動管理",
       "desc": "管理英雄活動的資料庫",
       "add-cm": {

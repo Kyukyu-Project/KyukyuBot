@@ -7,7 +7,7 @@
 import {data} from '../../src/data.js';
 import {l10n} from '../../src/l10n.js';
 
-export const commandName = 'manage-events';
+export const commandName = 'events-admin';
 export const cooldown  = 0;
 const ephemeral = false;
 
@@ -50,7 +50,7 @@ function addCm(context) {
 
   if (heroes.includes(undefined)) {
     return {
-      response: l10n.s(locale, 'cmd.manage-events.add-error'),
+      response: l10n.s(locale, 'cmd.events-admin.add-error'),
       success: false,
     };
   }
@@ -62,7 +62,7 @@ function addCm(context) {
 
     return {
       response: l10n.t(
-          locale, `cmd.manage-events.add-result`,
+          locale, `cmd.events-admin.add-result`,
           '{DATE}', l10n.formatDate(locale, new Date(newEvent.ts)),
           '{HEROES}', l10n.makeList(locale, heroDisplayNames),
       ),
@@ -70,7 +70,7 @@ function addCm(context) {
     };
   } else {
     return {
-      response: l10n.s(locale, 'cmd.manage-events.add-error'),
+      response: l10n.s(locale, 'cmd.events-admin.add-error'),
       success: false,
     };
   }
@@ -92,7 +92,7 @@ function addWof(context) {
 
   if ((heroes[0] === undefined) || (heroes[1] === undefined)) {
     return {
-      response: l10n.s(locale, 'cmd.manage-events.add-error'),
+      response: l10n.s(locale, 'cmd.events-admin.add-error'),
       success: false,
     };
   }
@@ -107,7 +107,7 @@ function addWof(context) {
 
     return {
       response: l10n.t(
-          locale, `cmd.manage-events.add-result`,
+          locale, `cmd.events-admin.add-result`,
           '{DATE}', l10n.formatDate(locale, new Date(newEvent.ts)),
           '{HEROES}', l10n.makeList(locale, heroDisplayNames),
       ),
@@ -115,7 +115,7 @@ function addWof(context) {
     };
   } else {
     return {
-      response: l10n.s(locale, 'cmd.manage-events.add-error'),
+      response: l10n.s(locale, 'cmd.events-admin.add-error'),
       success: false,
     };
   }
@@ -139,7 +139,7 @@ function remove(context) {
 
     return {
       response: l10n.t(
-          locale, `cmd.manage-events.remove-result`,
+          locale, `cmd.events-admin.remove-result`,
           '{DATE}', l10n.formatDate(locale, new Date(removedEvent.ts)),
           '{HEROES}', l10n.makeList(locale, heroDisplayNames),
       ),
@@ -147,7 +147,7 @@ function remove(context) {
     };
   } else {
     return {
-      response: l10n.s(locale, 'cmd.manage-events.remove-error'),
+      response: l10n.s(locale, 'cmd.events-admin.remove-error'),
       success: false,
     };
   }
