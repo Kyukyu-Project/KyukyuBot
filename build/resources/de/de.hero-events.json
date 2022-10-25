@@ -3,7 +3,7 @@
     "hero-events": {
       "name": "helden-event",
       "desc": "Informationen zum Helden-Event",
-      "current": {
+      "exp-points": {
         "name": "aktuellen",
         "desc": "Informationen zum aktuellen Helden-Event"
       },
