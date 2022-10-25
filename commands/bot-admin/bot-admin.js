@@ -7,6 +7,7 @@ export const cooldown  = 0;
 
 import * as helperRoleCommand from './bot-admin.helper-roles.js';
 import * as botChannelCommand from './bot-admin.bot-channel.js';
+import * as logCommand from './bot-admin.log.js';
 
 /**
  * @param {CommandContext} context - Interaction context
@@ -19,6 +20,7 @@ export async function execute(context) {
   switch (subCommandGroup) {
     case 'bot-channel': return botChannelCommand.execute(context);
     case 'helper-roles': return helperRoleCommand.execute(context);
+    case 'log': return logCommand.execute(context);
   }
   return false;
 }

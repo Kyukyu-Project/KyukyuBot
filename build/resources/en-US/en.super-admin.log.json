@@ -3,10 +3,10 @@
     "super-admin": {
       "log": {
         "name": "log",
-        "desc": "View or clear bot-command log",
+        "desc": "Access bot log",
         "get": {
           "name": "get",
-          "desc": "Get bot-command log",
+          "desc": "Get a log",
           "log": {
             "name": "log",
             "desc": "Log to get"
@@ -14,7 +14,7 @@
         },
         "clear": {
           "name": "clear",
-          "desc": "Clear bot-command log",
+          "desc": "Clear a log",
           "log": {
             "name": "log",
             "desc": "Log to clear"
@@ -22,16 +22,24 @@
         },
         "clear-all": {
           "name": "clear-all",
-          "desc": "Clear all bot-command logs"
+          "desc": "Clear all logs"
         },
-        "client-log-name": "Bot command log",
+        "client-log-name": "Bot log",
         "client-error-log-name": "Bot error log",
-        "server-log-name": "Server: {SERVER}",
-        "get-result": "Bot-command log:",
+        "server-log-name": "Server log ({SERVER})",
+        "get-result": {
+          "client-log": "Bot log:",
+          "client-error-log": "Bot error log:",
+          "server-log": "Server log ({SERVER}):"
+        },
         "get-error": "Error executing command: no log found",
-        "clear-result": "Bot-command log for \"{SERVER}\" cleared",
+        "clear-result": {
+          "client-log": "Bot log cleared",
+          "client-error-log": "Bot error log cleared",
+          "server-log": "Server log ({SERVER}) cleared"
+        },
         "clear-error": "Error executing command: nothing to clear",
-        "clear-all-result": "All bot-command log cleared",
+        "clear-all-result": "All logs cleared",
         "clear-all-error": "Error executing command: nothing to clear"
       }
     }

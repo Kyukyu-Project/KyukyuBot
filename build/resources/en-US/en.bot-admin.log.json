@@ -3,7 +3,7 @@
     "bot-admin": {
       "log": {
         "name": "log",
-        "desc": "View or clear bot-command log",
+        "desc": "Access bot-command log",
         "get": {
           "name": "get",
           "desc": "Get bot-command log"

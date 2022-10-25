@@ -13,24 +13,52 @@ import {logger} from '../../src/logger.js';
 
 const requiredAppPermissions = PermissionFlagsBits.SendMessages;
 
+const ephemeral = false;
+
 /**
  * @param {CommandContext} context - Interaction context
  * @return {boolean}
  **/
 export function get(context) {
-  const {locale, interaction} = context;
+  const {client, locale, interaction} = context;
   const {options} = interaction;
 
+  /** @type {string} */
   const fileName = options.getString('log');
   const filePath = logger.getLogPath(fileName);
   if (fileExists(filePath) && (getFileSize(filePath) > 0)) {
+    let response;
+    if (fileName === 'client.log') {
+      response = l10n.s(
+          locale,
+          'cmd.super-admin.log.get-result.client-log',
+      );
+    } else if (fileName === 'error.log') {
+      response = l10n.s(
+          locale,
+          'cmd.super-admin.log.get-result.client-error-log',
+      );
+    } else {
+      const serverId = fileName.slice(0, -4);
+      const server = client.servers.find((s) => s.id === serverId);
+      response = l10n.t(
+          locale, 'cmd.super-admin.log.get-result.server-log',
+          '{SERVER}', server.name,
+      );
+    }
+
     interaction.reply({
-      content: l10n.s(locale, 'cmd.super-admin.log.get-result'),
-      files: [{attachment: filePath, name: fileName}],
-      ephemeral: true,
+      content: response,
+      files: [{attachment: filePath, name: fileName + '.txt'}],
+      ephemeral: ephemeral,
     });
     return true;
   }
+
+  interaction.reply({
+    content: l10n.s(locale, 'cmd.super-admin.log.get-error'),
+    ephemeral: ephemeral,
+  });
   return false;
 }
 
@@ -39,7 +67,61 @@ export function get(context) {
  * @return {boolean}
  */
 function clear(context) {
+  const {client, locale, interaction} = context;
+  const {options} = interaction;
+
+  const fileName = options.getString('log');
+  const filePath = logger.getLogPath(fileName);
+
+  if (fileExists(filePath) && (getFileSize(filePath) > 0)) {
+    let response;
+    if (fileName === 'client.log') {
+      response = l10n.s(
+          locale,
+          'cmd.super-admin.log.clear-result.client-log',
+      );
+    } else if (fileName === 'error.log') {
+      response = l10n.s(
+          locale,
+          'cmd.super-admin.log.clear-result.client-error-log',
+      );
+    } else {
+      const serverId = fileName.slice(0, -4);
+      const server = client.servers.find((s) => s.id === serverId);
+      response = l10n.t(
+          locale, 'cmd.super-admin.log.clear-result.server-log',
+          '{SERVER}', server.name,
+      );
+    }
+
+    if (logger.clearLog(fileName)) {
+      interaction.reply({content: response, ephemeral: ephemeral});
+      return true;
+    }
+  }
+
+  interaction.reply({
+    content: l10n.s(locale, 'cmd.super-admin.log.clear-error'),
+    ephemeral: ephemeral,
+  });
   return false;
+}
+
+/**
+ * @param {CommandContext} context - Interaction context
+ * @return {boolean}
+ */
+function clearAll(context) {
+  const {locale, interaction} = context;
+
+  logger.clearAllLog();
+
+  interaction.reply({
+    content: l10n.s(locale, 'cmd.super-admin.log.clear-all-result'),
+    ephemeral: ephemeral,
+  });
+
+  return true;
 }
 
 /**
@@ -62,7 +144,7 @@ export async function execute(context) {
   switch (subCommand) {
     case 'get': return get(context);
     case 'clear': return clear(context);
-    case 'clear-all':
+    case 'clear-all': return clearAll(context);
     default:
   }
 

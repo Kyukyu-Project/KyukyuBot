@@ -301,7 +301,7 @@ class Client extends djsClient {
    */
   async onGuildCreate(guild) {
     logger.writeLog(
-        'servers.log',
+        'client.log',
         `Joined server "${guild.name}" <${guild.id}>`,
     );
   }
@@ -312,7 +312,7 @@ class Client extends djsClient {
    */
   async onGuildLeave(guild) {
     logger.writeLog(
-        'servers.log',
+        'client.log',
         `Left server "${guild.name}" <${guild.id}>`,
     );
   }
@@ -321,22 +321,13 @@ class Client extends djsClient {
    * Get a list of all servers the bot is on
    */
   fetchServers() {
-    const rest = new REST({version: '10'})
-        .setToken(clientConfig['login-token']);
+    const botClient = this;
 
-    const client = this;
-
-    rest
+    new REST({version: '10'})
+        .setToken(clientConfig['login-token'])
         .get(Routes.userGuilds())
         .then((guilds) => {
-          const servers = guilds.map((g) => ({
-            id: g.id,
-            name: g.name,
-          }));
-
-          client.servers = servers;
-
-          servers.forEach((g) => logger.openLogBook(`${g.id}.log`));
+          botClient.servers = guilds.map((g) => ({id: g.id, name: g.name}));
         });
   }
 

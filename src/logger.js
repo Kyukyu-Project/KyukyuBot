@@ -5,6 +5,12 @@
 import {join as joinPath} from 'path';
 import {truncateSync, createWriteStream} from 'fs';
 
+import {
+  getFileSize,
+  fileExists,
+  findFiles,
+} from './utils.js';
+
 import {clientConfig} from './app-config.js';
 const clientDataPath = clientConfig['client-data-dir'];
 
@@ -21,9 +27,8 @@ class Logger {
   /** Constructor */
   constructor() {
     this.fileStreams = new Map();
-    this.openLogBook('client.log'); // General log
+    this.openLogBook('client.log'); // General log (server join/leave)
     this.openLogBook('client.error'); // Error log
-    this.openLogBook('servers.log'); // Server join/leave records
   }
 
   /**
@@ -82,16 +87,21 @@ class Logger {
   /**
    * Clear a log book
    * @param {string} log - Log file name
+   * @return {boolean} - True if result is successful
    */
   clearLog(log) {
-    if (this.fileStreams.has(log)) {
-      truncateSync(this.fileStreams.get(log).path, 0);
+    const logFilePath = joinPath(clientDataPath, log);
+    if (fileExists(logFilePath) && (getFileSize(logFilePath) > 0)) {
+      truncateSync(logFilePath, 0);
+      return true;
     }
+    return false;
   }
 
   /** Clear all log */
   clearAllLog() {
-    this.fileStreams.forEach((stream) => truncateSync(stream.path, 0));
+    const logFilePaths = findFiles(clientDataPath, ['.log', '.error'], 0);
+    logFilePaths.forEach((fPath) => truncateSync(fPath, 0));
   }
 
   /**
@@ -100,10 +110,7 @@ class Logger {
    * @return {string}
    */
   getLogPath(log) {
-    if (this.fileStreams.has(log)) {
-      return this.fileStreams.get(log).path;
-    }
-    return '';
+    return joinPath(clientDataPath, log);
   }
 }
 
