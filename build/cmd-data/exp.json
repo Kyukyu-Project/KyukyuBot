@@ -10,12 +10,12 @@
     "default_member_permissions": ["SendMessages"],
     "dm_permission": true,
     "options": [
-      { "$comment": "/exp current",
+      { "$comment": "/exp exp-points",
         "type": "CommandOptionType.Integer",
-        "name": "%%cmd.exp.current.name%%",
-        "name_localizations": "%%cmd.exp.current.name%%",
-        "description": "%%cmd.exp.current.desc%%",
-        "description_localizations": "%%cmd.exp.current.desc%%",
+        "name": "%%cmd.exp.exp-points.name%%",
+        "name_localizations": "%%cmd.exp.exp-points.name%%",
+        "description": "%%cmd.exp.exp-points.desc%%",
+        "description_localizations": "%%cmd.exp.exp-points.desc%%",
         "min_value": 8550,
         "required": true
       },

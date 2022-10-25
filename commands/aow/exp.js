@@ -69,7 +69,7 @@ export async function execute(context) {
     }
   }
 
-  const currPoints = Math.floor(options.getInteger('current'));
+  const currPoints = options.getInteger('exp-points');
 
   const maxLevel = EXP_POINTS.length;
   const maxPoints = EXP_POINTS[maxLevel-1];
@@ -84,7 +84,7 @@ export async function execute(context) {
 
   const currLevel = EXP_POINTS.findIndex((pt) => pt > currPoints);
 
-  let targetLevel = Math.floor(options.getInteger('level')||0);
+  let targetLevel = options.getInteger('level')||0;
   if (targetLevel == 0) {
     targetLevel = currLevel + 1;
   } else if (targetLevel <= currLevel) {

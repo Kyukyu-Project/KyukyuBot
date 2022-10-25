@@ -3,7 +3,7 @@
     "exp": {
       "name": "exp",
       "desc": "Estimate the gold needed for Exp leveling",
-      "current": {
+      "exp-points": {
         "name": "exp-points",
         "desc": "your current Exp points"
       },

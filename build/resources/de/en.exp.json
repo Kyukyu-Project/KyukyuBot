@@ -3,7 +3,7 @@
     "exp": {
       "name": "exp",
       "desc": "Schätzung des Goldes, das für das Leveln von Exp benötigt wird",
-      "current": {
+      "exp-points": {
         "name": "punkte",
         "desc": "Deine aktuellen Exp-Punkte"
       },
