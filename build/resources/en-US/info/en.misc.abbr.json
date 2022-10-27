@@ -1,0 +1,74 @@
+{
+  "cmd-info": {
+    "search": [
+      { "id": "misc.abbr",
+        "title": "Common abbreviations and acronyms",
+        "keyword-sets": [
+          ["abbr", "acronym"]
+        ]
+      }
+    ],
+    "content": {
+      "misc.abbr": {
+        "<object>": {
+          "title": "Common abbreviations and acronyms",
+          "embeds": [
+            {
+              "title": "Common abbreviations and acronyms",
+              "description<text>": [
+                "```AoE   Area of Effect",
+                "BM    Beast Master",
+                "BP    Battle Pass (Arena)",
+                "Cassy Cassandra",
+                "CC    Championship Cup",
+                "CM    Card Master",
+                "Davi  Davison",
+                "DW    Dark Witch",
+                "FA    Frost Archers",
+                "FM    Fire Mage",
+                "GA    Ghost Assassins",
+                "GF    Growth Fund",
+                "GoW   God of War",
+                "GT    Goblin Tech",
+                "HG    Hunger Game (Discord)",
+                "HH    Honor Hunting",
+                "HM    Honor Medal",
+                "HoF   Harbinger of Fire",
+                "HT    Hero Trial",
+                "IM    Ice Mage",
+                "IW    Infinity War",
+                "kazes Goblikazes",
+                "MA    Magic Apprentice",
+                "MG    Meteor Golem",
+                "NS    Ninja Assassins",
+                "OH    Orc Hunters",
+                "pelt  Peltasts",
+                "PG    Pumpkin Guard",
+                "pil   Pilgrims",
+                "PM    Priest Mage",
+                "Pos   Poseidon",
+                "PS    Pirate Ship",
+                "RK    Rhino Knight",
+                "SG    Stone Golem",
+                "Seon  Seondeok",
+                "SS    Sacred Swordsman",
+                "TH    Trading Hall",
+                "TK    Templar Knight",
+                "ToF   Temple of Fusion",
+                "TW    Taurus Witcher",
+                "US    Undead Soldier",
+                "UW    Undead Warriors",
+                "VD    Voodoo Dolls",
+                "WoF   Wheel of Fortune",
+                "WT    Witchcraft Totem```"
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-27)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

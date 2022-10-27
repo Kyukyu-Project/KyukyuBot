@@ -1,0 +1,61 @@
+{
+  "cmd-info": {
+    "search": [
+      { "id": "event.sunshine.supply",
+        "title": "Sunshine Supply Event",
+        "keyword-sets": [
+          ["sunshine supply", "sun shine supply", "sunshine event", "double medal event"]
+        ]
+      }
+    ],
+    "content": {
+      "event.sunshine.supply": {
+        "<object>": {
+          "title": "Sunshine Supply Event",
+          "embeds": [
+            {
+              "title": "Sunshine Supply Event",
+              "description": "Sunshine Supply Event is a semi-annual event where Super Card packs have increased drop rate of Hunting Medals and legendary heroes.",
+              "fields": [
+                {
+                  "name": "Sunshine Supply V",
+                  "value<text>": [
+                    "• 2022-12-23 ~ 2022-12-25",
+                    "• Double (2×) Hunting Medals: first 1000 openings",
+                    "• Increased legendary hero drop: unlimited openings"
+                  ]
+                },{
+                  "name": "Sunshine Supply III",
+                  "value<text>": [
+                    "• 2022-06-17 ~ 2022-06-19",
+                    "• Double (2×) Hunting Medals: first 1000 openings",
+                    "• Increased legendary hero drop: unlimited openings"
+                  ]
+                },
+                {
+                  "name": "Sunshine Supply II",
+                  "value<text>": [
+                    "• 2021-12-24 ~ 2021-12-26",
+                    "• Double (2×) Hunting Medals: first 1000 openings",
+                    "• Increased legendary hero drop: first 1000 openings"
+                  ]
+                },
+                {
+                  "name": "Sunshine Supply I",
+                  "value<text>": [
+                    "• 2021-07-09 ~ 2021-07-11",
+                    "• Double (2×) Hunting Medals: unlimited openings",
+                    "• Increased legendary hero drop: unlimited openings"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-26)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
