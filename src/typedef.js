@@ -49,6 +49,28 @@
  * @property {string} locale - Locale of the originating command
  * @property {boolean} userIsAdmin - User is a server admin
  * @property {boolean} userIsHelper - User has a bot helper role
+ * @property {number} cooldown - Command cooldown (in seconds)
+ * @property {string} cooldownKey - Key to cooldown entry
+ * @property {boolean} inBotChannel - Is the channel the bot-command channel?
+ * @property {Date} time - Execution time of this command
+ */
+
+/**
+ * Context object for message
+ * @typedef {Object} MessageContext
+ * @property {Client} client - Bot client
+ * @property {Guild} [guild] - Server where the command was executed
+ * @property {GuildSettings} [guildSettings] - Server settings
+ * @property {Channel} channel - Channel where the command was executed
+ * @property {Message} message - Message that initiated the command
+ * @property {User} user - User who initiated the command
+ * @property {string} locale - Preferred locale of the guild
+ * @property {boolean} userIsAdmin - User is a server admin
+ * @property {boolean} userIsHelper - User has a bot helper role
+ * @property {number} cooldown - Command cooldown (in seconds)
+ * @property {string} cooldownKey - Key to cooldown entry
+ * @property {boolean} inBotChannel - Is the channel the bot-command channel?
+ * @property {Date} time - Execution time of the message
  */
 
 /**

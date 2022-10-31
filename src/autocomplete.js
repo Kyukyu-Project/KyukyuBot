@@ -93,6 +93,28 @@ export class Autocomplete {
               score: {score: (kwHit / kwTotal), total: kwTotal},
             });
           }
+
+          if (kwHit > 0) {
+            const prevIdx = matches.findIndex(
+                (prevMatch) => prevMatch.id === entry.id,
+            );
+
+            const newMatch = {
+              id: entry.id,
+              title: entry.title,
+              locale: locale,
+              score: {score: (kwHit / kwTotal), total: kwTotal},
+            };
+
+            if (prevIdx === -1) {
+              matches.push(newMatch);
+            } else {
+              const prevMatch = matches[prevIdx];
+              if (prevMatch.score.score < newMatch.score.score) {
+                matches[prevIdx] = newMatch;
+              }
+            }
+          }
         }
       });
 
@@ -213,7 +235,14 @@ export class Autocomplete {
           this.suggestContent(locale, query, resourceKey, matchType);
 
       if (suggestions.length) {
-        content = l10n.s(locale, `${resourceKey}.content.${suggestions[0].id}`);
+        const {score, id} = suggestions[0];
+        if (matchType === 'keywords') {
+          if (score.score >= 0.5) {
+            content = l10n.s(locale, `${resourceKey}.content.${id}`);
+          }
+        } else {
+          content = l10n.s(locale, `${resourceKey}.content.${id}`);
+        }
         if (content) return content;
       }
     }
