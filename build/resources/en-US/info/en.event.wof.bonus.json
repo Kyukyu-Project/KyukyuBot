@@ -1,0 +1,56 @@
+{
+  "cmd-info": {
+    "search": [
+      { "id": "event.wof.bonus",
+        "title": "Wheel of Fortune progress bonus rewards",
+        "keyword-sets": [
+          ["wheel of fortune", "in wof", "of wof", "for wof", "play wof", "wof event", "wheel event"],
+          [
+            "progress bar",
+            "bonus reward", "bonus chest",
+            "progress reward", "flip reward", "milestone reward",
+            "progress bonus", "flip bonus", "milestone bonus"
+          ]
+        ]
+      },
+      { "id": "event.wof.bonus",
+        "title": "Do Wheel of Fortune bonus reward reset?",
+        "keyword-sets": [
+          ["wheel of fortune", "in wof", "of wof", "for wof", "play wof", "wof event", "wheel event"],
+          [
+            "progress bar",
+            "bonus reward", "bonus chest",
+            "progress reward", "spin reward", "milestone reward",
+            "progress bonus", "spin bonus", "milestone bonus"
+          ],
+          ["reset"]
+        ]
+      }
+    ],
+    "content": {
+      "event.wof.bonus": {
+        "<object>": {
+          "title": "Wheel of Fortune progress bonus rewards",
+          "embeds": [
+            {
+              "title": "Wheel of Fortune progress bonus rewards",
+              "description": "In the Wheel of Fortune event, the player can get bonus rewards for the total number of spins in the event.",
+              "image": {
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1037627899395719168/event-bonus-wof.png"
+              },
+              "fields": [
+                {
+                  "name": "Rules",
+                  "value<text>": [
+                    "• The player can get bonus hero shards after accumulating 25, 100, and 200 spins.",
+                    "• The bonus rewards are for the entire event and __do not reset__."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

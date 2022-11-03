@@ -1,174 +1,59 @@
 {
   "cmd-info": {
     "$example searches": [
+      "Example search phrase:",
       "How many shards can I expect from the card master?",
+      "What is the average shard cost in card event?",
       "How much gem do I need to save to play cm?",
-      "What is the average shard cost in card event?"
+      "Amount of gem needed for cm?"
     ],
     "search": [
-      { "id": "event.cm.prob.3",
-        "title": "Card Master probability (21/23/25 rounds)",
+      { "id": "event.planning.cm",
+        "title": "What to expect from Card Master",
         "keyword-sets": [
-          ["card master", "cm", "card event"],
-          ["shard cost", "how many shard"],
-          ["how much gem", "should i save", "need to save"],
-          ["odds", "probability", "probabilities", "expect"],
-          ["20 round", "21 round", "22 round", "23 round", "24 round", "25 round"]
+          ["card master", "in cm", "of cm", "for cm", "from cm", "play cm", "cm event", "card event"],
+          ["shard", "hero"],
+          ["expect", "probable", "probably", "look forward to", "predict", "estimate", "likely have", "likely get"]
         ]
       },
-      { "id": "event.cm.prob.2",
-        "title": "Card Master probability (13/16/19 rounds)",
+      { "id": "event.planning.cm",
+        "title": "Gem needed for Card Master",
         "keyword-sets": [
-          ["card master", "cm", "card event"],
-          ["shard cost", "how many shard"],
-          ["how much gem", "should i save", "need to save"],
-          ["odds", "probability", "probabilities", "expect"],
-          ["11 round", "12 round", "13 round", "14 round", "15 round", "16 round", "17 round", "18 round", "19 round"]
+          ["card master", "in cm", "of cm", "for cm", "from cm", "play cm", "cm event", "card event"],
+          ["how much", "total", "amount"],
+          ["gem"],
+          ["should i save", "do i need", "is needed", "are needed", "is enough", "are enough", "would be enough"]
         ]
       },
-      { "id": "event.cm.prob.1",
-        "title": "Card Master probability (6/8/10 rounds)",
+      { "id": "event.planning.cm",
+        "title": "Average shard cost for Card Master",
         "keyword-sets": [
-          ["card master", "cm", "card event"],
-          ["shard cost", "how many shard"],
-          ["how much gem", "should i save", "need to save"],
-          ["odds", "probability", "probabilities", "expect"],
-          ["1 round", "2 round", "3 round", "4 round", "5 round", "6 round", "7 round", "8 round", "9 round", "10 round"]
+          ["card master", "in cm", "of cm", "for cm", "from cm", "play cm", "cm event", "card event"],
+          ["how much", "average", "per shard"],
+          ["gem"]
+        ]
+      },
+      { "id": "event.planning.cm",
+        "title": "Card Master probability",
+        "keyword-sets": [
+          ["card master", "in cm", "of cm", "for cm", "from cm", "play cm", "cm event", "card event"],
+          ["odds", "probability", "probabilities"]
         ]
       }
     ],
     "content": {
-      "event.cm.prob.1": {
+      "event.planning.cm": {
         "<object>": {
-          "title": "Card Master probability (6/8/10 rounds)",
+          "title": "Guide to planning for Card Master",
           "embeds": [
             {
-              "title": "Card Master probability (6/8/10 rounds)",
-              "description": "Statistically, doing 23 rounds of card flipping has the best value for players (results include progress bonuses).",
-              "fields": [
-                {
-                  "name": "6 rounds",
-                  "value<text>": [
-                    "• 6% chance for 7 shards in 30 total flips.",
-                    "• 30% chance for 6~7 shards in 28~32 total flips.",
-                    "• 69% chance for 6~7 shards in 24~36 total flips.",
-                    "• Average shard cost: 2314 gems.",
-                    "• Recommended gem saving: 17 400 gems."
-                  ]
-                },
-                {
-                  "name": "8 rounds",
-                  "value<text>": [
-                    "• 5% chance for 9 shards in 40 total flips.",
-                    "• 36% chance for 9 shards in 37~43 total flips.",
-                    "• 69% chance for 9 shards in 33~47 total flips.",
-                    "• Average shard cost: 2400 gems.",
-                    "• Recommended gem saving: 23 400 gems."
-                  ]
-                },
-                {
-                  "name": "10 rounds",
-                  "value<text>": [
-                    "• 5% chance for 11 shards in 50 total flips.",
-                    "• 33% chance for 11 shards in 47~53 total flips.",
-                    "• 70% chance for 11 shards in 42~58 total flips.",
-                    "• Average shard cost: 2455 gems.",
-                    "• Recommended gem saving: 28 800 gems."
-                  ]
-                }              ],
+              "title": "Guide to planning for Card Master",
+              "description": "Statistically, doing 20 rounds of card flipping has the best economics for players.",
+              "image": {
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1037198404184444948/event-planning-cm.png"
+              },
               "footer": {
-                "text": "Contributed by community member (2022-10-20)"
-              }
-            }
-          ]
-        }
-      },
-      "event.cm.prob.2": {
-        "<object>": {
-          "title": "Card Master probability (13/16/19 rounds)",
-          "embeds": [
-            {
-              "title": "Card Master probability (13/16/19 rounds)",
-              "description": "Statistically, doing 23 rounds of card flipping has the best value for players (results include progress bonuses).",
-              "fields": [
-                {
-                  "name": "13 rounds",
-                  "value<text>": [
-                    "• 4% chance for 14 shards in 65 total flips.",
-                    "• 37% chance for 14 shards in 61~69 total flips.",
-                    "• 69% chance for 14 shards in 56~74 total flips.",
-                    "• Average shard cost: 2507 gems.",
-                    "• Recommended gem saving: 37 500 gems."
-                  ]
-                },
-                {
-                  "name": "16 rounds",
-                  "value<text>": [
-                    "• 4% chance for 17 shards in 80 total flips.",
-                    "• 33% chance for 17 shards in 76~84 total flips.",
-                    "• 69% chance for 17 shards in 70~90 total flips.",
-                    "• Average shard cost: 2541 gems.",
-                    "• Recommended gem saving: 45 600 gems."
-                  ]
-                },
-                {
-                  "name": "19 rounds",
-                  "value<text>": [
-                    "• 4% chance for 20 shards in 95 total flips.",
-                    "• 31% chance for 20 shards in 91~99 total flips.",
-                    "• 69% chance for 20~20 shards in 84~106 total flips.",
-                    "• Average shard cost: 2565 gems.",
-                    "• Recommended gem saving: 53 700 gems."
-                  ]
-                }              ],
-              "footer": {
-                "text": "Contributed by community member (2022-10-20)"
-              }
-            }
-          ]
-        }
-      },
-      "event.cm.prob.3": {
-        "<object>": {
-          "title": "Card Master probability (21/23/25 rounds)",
-          "embeds": [
-            {
-              "title": "Card Master probability (21/23/25 rounds)",
-              "description": "Statistically, doing 23 rounds of card flipping has the best value for players (results include progress bonuses).",
-              "fields": [
-                {
-                  "name": "21 rounds",
-                  "value<text>": [
-                    "• 3% chance for 24 shards in 105 total flips.",
-                    "• 36% chance for 24 shards in 100~110 total flips.",
-                    "• 67% chance for 22~24 shards in 94~116 total flips.",
-                    "• Average shard cost: 2363 gems.",
-                    "• Recommended gem saving: 59 700 gems."
-                  ]
-                },
-                {
-                  "name": "23 rounds",
-                  "value<text>": [
-                    "• 3% chance for 26 shards in 115 total flips.",
-                    "• 34% chance for 26 shards in 110~120 total flips.",
-                    "• 69% chance for 26 shards in 103~127 total flips.",
-                    "• Average shard cost: 2388 gems.",
-                    "• Recommended gem saving: 65 100 gems."
-                  ]
-                },
-                {
-                  "name": "25 rounds",
-                  "value<text>": [
-                    "• 3% chance for 28 shards in 125 total flips.",
-                    "• 33% chance for 28 shards in 120~130 total flips.",
-                    "• 67% chance for 28 shards in 113~137 total flips.",
-                    "• Average shard cost: 2411 gems.",
-                    "• Recommended gem saving: 70 500 gems."
-                  ]
-                }
-              ],
-              "footer": {
-                "text": "Contributed by community member (2022-10-20)"
+                "text": "Contributed by community member (2022-11-02)"
               }
             }
           ]

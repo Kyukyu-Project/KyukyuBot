@@ -1,5 +1,18 @@
 [
   {
+    "ts": 1668470400000,
+    "date": "2022-11-15",
+    "type": "cm",
+    "heroes": [
+      "selene",
+      "dracula",
+      "apollo",
+      "horus",
+      "mephisto",
+      "beowulf"
+    ]
+  },
+  {
     "ts": 1667865600000,
     "date": "2022-11-08",
     "type": "wof",
