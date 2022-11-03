@@ -1,0 +1,49 @@
+{
+  "cmd-info": {
+    "$comment": [
+      "Example search phrase:",
+      "What heroes are best for HT",
+      "Which heroes should I use in ht?",
+      "What are the top heroes for ht"
+    ],
+    "search": [
+      { "id": "ht.guide",
+        "title": "Guide to Hero Trial",
+        "keyword-sets": [
+          ["meta", "are best", "best hero", "should i use", "top hero", "commonly used"],
+          ["hero"],
+          ["in ht", "for ht", "hero trial"]
+        ]
+      }
+    ],
+    "content": {
+      "ht.guide": {
+        "<object>": {
+          "title": "Guide to Hero Trial",
+          "embeds": [
+            {
+              "title": "Guide to Hero Trial",
+              "description<text>": [
+                "• Do not put all of your heroes on the first line.",
+                "• After you level up a hero, update your defense (hero levels are not automatically updated).",
+                "• Use five heroes (a mid-level hero is better than a level-10 troops).",
+                "• If possible, use one or two healing heroes.",
+                "• The hero combo should be either *balanced* or *stacked*.",
+
+                "• A __balanced__ hero combo has a mix of healing, attack, defense, and crowd control. An example combo is Chione, Aly, Dracula, Seondeok, and Davison",
+
+                "• A __stacked__ hero combo emphasizes on a common buff from most of the heroes. An example combo is Chione, Dracula, Zeus, Drake, and Edward",
+
+                "• See [hero attribute guide](https://cdn.discordapp.com/attachments/833978786395586600/1036481375701831700/info-ht-attr.png).",
+                "• See [hero combo guide](https://cdn.discordapp.com/attachments/833978786395586600/1036481332395646996/info-ht-meta.png)."
+                ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-31)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
