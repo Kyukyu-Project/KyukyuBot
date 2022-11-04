@@ -1,0 +1,82 @@
+{
+  "cmd-info": {
+    "$example searches": [
+      "what troops can I draw from 4-star troops purchases?",
+      "what 4-star cards can I get from 4-star troops recruitment",
+      "what are th 4-star epic I can get from 4-star draws?",
+      "what troops can I draw from 120k packs?"
+    ],
+    "search": [
+      { "id": "draws.4-star",
+        "title": "What can I get from 4-star troops draws?",
+        "keyword-sets": [
+          ["4-star", "4 star", "120k"],
+          ["troops", "card", "rare", "epic", "legendary", "available"],
+          ["luck", "normal", "draw", "purchase"]
+        ]
+      },
+      { "id": "draws.4-star",
+        "title": "4-star troops draws",
+        "keyword-sets": [
+          ["4-star", "4 star", "120k"],
+          ["draw", "purchase"]
+        ]
+      },
+      { "id": "draws.4-star",
+        "title": "Lucky Time probability from 4-star troops draws",
+        "keyword-sets": [
+          ["4-star", "4 star", "120k"],
+          ["lucky time", "lucky draw"],
+          [
+            "probability", "probabilities",
+            "odds of", "chance of", "rate of",
+            "appearance rate"
+          ]
+        ]
+      }
+    ],
+    "content": {
+      "draws.4-star": {
+        "<object>": {
+          "title": "4-star troops draws",
+          "embeds": [
+            {
+              "title": "4-star troops draws",
+              "description": "The best way to obtain Epic and Legendary troops is through 4-star troops draws.",
+              "thumbnail": {
+                "url": "https://cdn.discordapp.com/attachments/667757428816871434/830848307953795092/120k.png"
+              },
+              "fields": [
+                {
+                  "name": "Normal 4-star troops draws",
+                  "value<text>": [
+                    "In normal 4-star troops draws, the player can get:",
+                    "• Common troops (1%),",
+                    "• Rare troops (93%), or",
+                    "• Epic troops (6%)",
+                    "",
+                    "The pool includes all __Common__ troops, all __Rare__ troops (except Inquisitor), and the following __Epic__ troops: Brawlers, Peltasts, Taurus Witcher, Voodoo Dolls, Pumpkin Guard, Orc Hunters, Undead Warrior, and Shadow Ninja"
+                  ]
+                },
+                {
+                  "name": "Lucky Time draws",
+                  "value<text>": [
+                    "In Lucky Time, the player can get:",
+                    "• Rare troops (~22%),",
+                    "• Epic troops (~62%), or",
+                    "• Legendary troops (~16%)",
+                    "",
+                    "Lucky Time occurs approximately once every 2.7 normal draws"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-11-04)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}
