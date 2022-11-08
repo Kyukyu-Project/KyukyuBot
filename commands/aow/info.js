@@ -1,14 +1,14 @@
 /**
- * @typedef {import('../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
+ * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
+ * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
 import {l10n} from '../../src/l10n.js';
+import {smartReply} from '../../src/smartReply.js';
 
 export const commandName = 'info';
 export const cooldown  = 5;
-const ephemeral = false;
 
 /**
  * @param {CommandContext} context - Interaction context
@@ -22,19 +22,15 @@ export async function execute(context) {
     const infoResult = l10n.autocomplete.getContent(locale, query, 'cmd-info');
 
     if (infoResult) {
-      if (infoResult.embeds) {
-        interaction.reply({
-          embeds: infoResult.embeds,
-          ephemeral: ephemeral,
-        });
-        return true;
-      } else if (Array.isArray(infoResult)) {
-        interaction.reply({
-          embeds: infoResult[0].embeds,
-          ephemeral: ephemeral,
-        });
-        return true;
-      }
+      smartReply({
+        locale: locale,
+        interaction: interaction,
+        content: infoResult,
+        dbResKey: 'cmd-info',
+        userId: interaction.user.id,
+        taggedUserId: undefined,
+      });
+      return true;
     }
   }
 

@@ -108,7 +108,7 @@ class Client extends djsClient {
         (mPermissions.has(PermissionFlagsBits.ManageGuild));
 
       const helperRoles = guildSettings['helper-roles'] || [];
-      const mRoleCache = interaction.member.roles.mRoles.cache;
+      const mRoleCache = interaction.member.roles.cache;
       userIsHelper = (
         (helperRoles.length) &&
         (mRoleCache.some((r) => helperRoles.includes(r.id)) )

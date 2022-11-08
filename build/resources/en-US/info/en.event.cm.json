@@ -4,7 +4,7 @@
       { "id": "event.cm",
         "title": "Guide to Card Master",
         "keyword-sets": [
-          ["card master", "cm", "hero event", "card event"],
+          ["card master", "cm", "card event"],
           ["guide", "tips", "strategy"],
           ["rules"]
         ]
@@ -16,8 +16,8 @@
           "title": "Guide to Card Master",
           "embeds": [
             {
-              "title": "Card Master",
-              "description": "Card Master is a __7-day__ event where a player can participate to get hero shards.",
+              "title": "Guide to Card Master",
+              "description": "Card Master <:eventcard:1039004346957955112> is a __7-day__ event where a player can participate to get hero shards.",
               "fields": [
                 {
                   "name": "Rules",
@@ -45,6 +45,11 @@
                 "text": "Contributed by community member (2022-10-18)"
               }
             }
+          ],
+          "related": [
+            "event.planning.cm",
+            "event.cm.bonus",
+            "event.wof"
           ]
         }
       }

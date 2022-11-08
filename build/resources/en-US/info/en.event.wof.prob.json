@@ -50,12 +50,16 @@
               "title": "Guide to planning for Wheel of Fortune",
               "description": "Statistically, doing 200 spins has the best economics for players.",
               "image": {
-                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1037198368310562926/event-planning-wof.png"
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1039073741310795826/event-planning-wof.png"
               },
               "footer": {
-                "text": "Contributed by community member (2022-10-20)"
+                "text": "Contributed by community member (2022-11-07)"
               }
             }
+          ],
+          "related": [
+            "event.planning.cm",
+            "event.wof"
           ]
         }
       }

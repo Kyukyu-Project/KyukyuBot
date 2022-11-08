@@ -56,6 +56,11 @@
                 "text": "Contributed by community member (2022-11-02)"
               }
             }
+          ],
+          "related": [
+            "event.planning.wof",
+            "event.cm",
+            "event.cm.bonus"
           ]
         }
       }

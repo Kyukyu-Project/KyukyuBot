@@ -18,13 +18,16 @@
       "not-found": "Error executing command: no information found."
     },
     "no-interaction-permission": "Sorry, only the user who invoked the command or the user tagged can use this.",
-    "reply-message": "<@!{USER ID}>, here is the information requested.",
-    "reply-message-tagged": "<@!{TAGGED ID}>, here is the information <@!{USER ID}> requested on your behalf.",
+    "reply-message": "Requested by: <@!{USER ID}>",
+    "reply-message-tagged<text>": [
+      "Requested by: <@!{USER ID}>",
+      "Tagged: <@!{TAGGED ID}>"
+    ],
     "info-sent": "The requested info has been posted.",
     "dm-me": "DM me this",
     "dm-sent": "Sent by direct message.",
     "dm-error": "Oof. There was a problem sending the information by direct message.",
-    "select-placeholder": "select a different section"
+    "select-related-topic": "select a related topic"
   },
   "card-master": "Card Master",
   "wheel-of-fortune": "Wheel of Fortune"

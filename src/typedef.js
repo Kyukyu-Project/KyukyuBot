@@ -5,6 +5,7 @@
 * @typedef {import('discord.js').Channel} Channel
 * @typedef {import('discord.js').Message} Message
 * @typedef {import('discord.js').CommandInteraction} CommandInteraction
+* @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
 * @typedef {import('discord.js').User} User
 */
 
@@ -31,10 +32,10 @@
  * @typedef {Object} ReplyContext
  * @property {CommandInteraction} interaction - Interaction that initiated the command
  * @property {string} locale - Locale of the originating command
- * @property {string} [text] - Text content
- * @property {Object} [embed] - Embed content
- * @property {Object[]} [embeds] - Array of embed content
- * @property {string} [`tagged-user-id`] - Id of the tagged user
+ * @property {content} content - Content
+ * @property {string} dbResKey - Resource key of the content database
+ * @property {string} [userId] - Id of the original user
+ * @property {string} [taggedUserId] - Id of the tagged user
  */
 
 /**

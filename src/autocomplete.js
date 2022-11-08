@@ -212,11 +212,11 @@ export class Autocomplete {
    * Get content
    * @param {string} locale - Locale
    * @param {string} query - Query string (user input)
-   * @param {string} resourceKey - Resource key of content database
+   * @param {string} dbResKey - Resource key of content database
    * @param {'keywords'|'part-of'} [matchType] - How content are matched
    * @return {object|SearchMatch[]} - Matched content
    */
-  getContent(locale, query, resourceKey, matchType = 'keywords') {
+  getContent(locale, query, dbResKey, matchType = 'keywords') {
     const l10n = this.l10n;
 
     if (query) {
@@ -225,24 +225,24 @@ export class Autocomplete {
 
       if (query.includes(':')) [contentLocale, contentId] = query.split(':');
 
-      let content = l10n.s(
-          contentLocale, `${resourceKey}.content.${contentId}`,
-      );
+      let content = l10n.s(contentLocale, `${dbResKey}.content.${contentId}`);
 
       if (content) return content;
 
       const suggestions =
-          this.suggestContent(locale, query, resourceKey, matchType);
+          this.suggestContent(locale, query, dbResKey, matchType);
 
       if (suggestions.length) {
         const {score, id} = suggestions[0];
+
         if (matchType === 'keywords') {
           if (score.score >= 0.5) {
-            content = l10n.s(locale, `${resourceKey}.content.${id}`);
+            content = l10n.s(locale, `${dbResKey}.content.${id}`);
           }
         } else {
-          content = l10n.s(locale, `${resourceKey}.content.${id}`);
+          content = l10n.s(locale, `${dbResKey}.content.${id}`);
         }
+
         if (content) return content;
       }
     }
