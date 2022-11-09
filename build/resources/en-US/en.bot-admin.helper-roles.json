@@ -51,7 +51,7 @@
       }
     }
   },
-  "cmd-help": {
+  "help-info": {
     "search": [
       { "id": "bot-admin.helper-roles",
         "title": "/bot-admin helper-roles",
@@ -70,7 +70,7 @@
       "bot-admin.helper-roles<object>": {
         "title": "/bot-admin helper-roles",
         "text<text>": [
-          "'/bot-admin helper-roles'",
+          "**[Admin] Helper roles**",
           "",
           "To reduce unnecessary bot messages in chat channels, some bot commands have cool-down or are blocked when used outside of the bot-command channel.",
           "",
@@ -87,6 +87,9 @@
           "",
           "`/bot-admin helper-roles clear`",
           "- Clear (reset) the list of bot helper roles."
+        ],
+        "related": [
+          "bot-admin.bot-channel"
         ]
       }
     }

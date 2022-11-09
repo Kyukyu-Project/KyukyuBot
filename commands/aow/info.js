@@ -5,10 +5,15 @@
  */
 
 import {l10n} from '../../src/l10n.js';
-import {smartReply} from '../../src/smartReply.js';
+import {smartReply} from '../../src/smart-reply.js';
 
-export const commandName = 'info';
+export const commandName = 'aow-info';
 export const cooldown  = 5;
+
+/**
+ * Resource key of content database
+ */
+const DbResKey = 'aow-info';
 
 /**
  * @param {CommandContext} context - Interaction context
@@ -17,27 +22,36 @@ export const cooldown  = 5;
 export async function execute(context) {
   const {locale, interaction} = context;
   const {options} = interaction;
-  /** @type {string} */ const query = options.getString('query');
-  if (query) {
-    const infoResult = l10n.autocomplete.getContent(locale, query, 'cmd-info');
 
-    if (infoResult) {
+  /**
+   * @type {string}
+   * User query
+   */
+  const query = options.getString('query');
+
+  /**
+   * Tagged user
+   */
+  const taggedUser = options.getUser('tag');
+  const taggedUserId = taggedUser?taggedUser.id:undefined;
+
+  if (query) {
+    const queryResult = l10n.autocomplete.getContent(locale, query, DbResKey);
+
+    if (queryResult) {
       smartReply({
         locale: locale,
         interaction: interaction,
-        content: infoResult,
-        dbResKey: 'cmd-info',
+        content: queryResult,
+        dbResKey: DbResKey,
         userId: interaction.user.id,
-        taggedUserId: undefined,
+        taggedUserId: taggedUserId,
       });
       return true;
     }
   }
 
-  interaction.reply({
-    content: l10n.s(locale, 'messages.command-error.not-found'),
-    ephemeral: ephemeral,
-  });
+  interaction.reply(l10n.s(locale, 'messages.command-error.not-found'));
   return false;
 }
 
@@ -46,27 +60,24 @@ export async function execute(context) {
  */
 export function autocomplete(context) {
   const {interaction} = context;
-  const {locale, options} = interaction;
-  const query = options.getFocused();
+  const locale = interaction.locale;
+  const query = interaction.options.getFocused();
 
-  const suggestions =
-    l10n.autocomplete.suggestContent(locale, query, 'cmd-info', 'keywords');
+  let options =
+    l10n.autocomplete.suggestContent(locale, query, DbResKey, 'keywords');
 
-  /*
-  if (!suggestions.length) {
-    const defaultList = l10n.s(locale, 'cmd-info.default-list');
-    suggestions = l10n
+  if (!options.length) {
+    const defaultList = l10n.s(locale, `${DbResKey}.default-list`);
+    options = l10n
         .autocomplete
-        .getDefaultSuggestions(locale, 'cmd-info', defaultList);
+        .getDefaultSuggestions(locale, DbResKey, defaultList);
   }
-  */
 
-  if (suggestions) {
-    interaction.respond(
-        suggestions.map((content) => ({
-          name: content.title,
-          value: content.id,
-        })),
-    );
-  } else interaction.respond([]);
+  if (options) {
+    options = options.map((c) => ({name: c.title, value: c.id}));
+  } else {
+    options = [];
+  }
+
+  interaction.respond(options);
 }

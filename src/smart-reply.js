@@ -124,6 +124,8 @@ export async function smartReply(replyContext) {
       useDmButton,
   );
 
+  const copy = Object.assign({}, responseContent);
+
   if (useDmButton) {
     if ((taggedUserId) && (taggedUserId !== userId)) {
       tagline = l10n.t(
@@ -138,14 +140,13 @@ export async function smartReply(replyContext) {
       );
     }
 
-    if (responseContent.content) {
-      responseContent.content = tagline + '\n\n' + responseContent.content;
-    } else {
-      responseContent.content = tagline;
-    }
+    copy.content =
+        (copy.content)?
+        tagline + '\n\n' + responseContent.content:
+        tagline;
   }
 
-  const responseMessage = await interaction.reply(responseContent);
+  const responseMessage = await interaction.reply(copy);
 
   const iRelatedCollector = responseMessage.createMessageComponentCollector({
     componentType: ComponentType.SelectMenu,
@@ -181,19 +182,17 @@ export async function smartReply(replyContext) {
         useDmButton,
     );
 
+    const copy = Object.assign({}, responseContent);
+
     if (useDmButton) {
-      const textContent =
-          (responseContent.content)?
-          tagline + '\n\n' + responseContent.content:
-          tagline;
-      responseMessage.edit(
-          Object.assign({content: textContent}, responseContent),
-      );
-    } else {
-      responseMessage.edit(responseContent);
+      copy.content =
+        (copy.content)?
+        tagline + '\n\n' + responseContent.content:
+        tagline;
     }
 
     // responseMessage.interaction.editReply(responseContent);
+    responseMessage.edit(copy);
     i.deferUpdate();
   });
 

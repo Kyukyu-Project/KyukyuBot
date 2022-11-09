@@ -152,7 +152,7 @@ class Client extends djsClient {
   getMessageContext(message) {
     const {guild, channel} = message;
 
-    const commandName = 'info';
+    const commandName = 'aow-info';
     const cooldown = 5;
 
     const user = message.author;
@@ -380,7 +380,7 @@ class Client extends djsClient {
       const query = String(message.content).toLowerCase();
       const infoResult = l10n
           .autocomplete
-          .getContent(ctx.locale, query, 'cmd-info');
+          .getContent(ctx.locale, query, 'aow-info');
 
       if (infoResult) {
         if (infoResult.embeds) {

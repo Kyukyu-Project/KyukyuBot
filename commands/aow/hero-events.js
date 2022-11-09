@@ -47,23 +47,19 @@ export async function execute(context) {
  */
 export function autocomplete(context) {
   const {interaction} = context;
-  const {locale, options} = interaction;
-  const focused = options.getFocused();
-  const suggestions = l10n.autocomplete.suggestContent(
-      locale,
-      focused,
-      'hero',
-      'part-of',
-  );
+  const locale = interaction.locale;
+  const query = interaction.options.getFocused();
 
-  if (suggestions) {
-    interaction.respond(
-        suggestions.map((content) => ({
-          name: content.title,
-          value: content.id,
-        })),
-    );
-  } else interaction.respond([]);
+  const options =
+    l10n.autocomplete.suggestContent(locale, query, 'hero', 'part-of');
+
+  if (options) {
+    options = options.map((c) => ({name: c.title, value: c.id}));
+  } else {
+    options = [];
+  }
+
+  interaction.respond(options);
 }
 
 /**

@@ -27,10 +27,10 @@
       }
     }
   },
-  "cmd-help": {
+  "help-info": {
     "search": [
       { "id": "exp",
-        "title": "/exp",
+        "title": "Using /exp command",
         "keyword-sets": [ ["/exp"] ] },
       { "id": "exp",
         "title": "Estimate the gold needed for Exp leveling",

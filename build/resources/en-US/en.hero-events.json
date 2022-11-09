@@ -63,9 +63,44 @@
       }
     }
   },
-  "cmd-help": [
-    {
-      "id": "hero-event",
+  "help-info": {
+    "$example searches": [
+      "Find past events of a hero",
+      "List of all selene events",
+      "List of past selene events",
+      "List of selene events in the past"
+    ],
+    "search": [
+      { "id": "hero-events",
+        "title": "Using /hero-events command",
+        "keyword-sets": [ ["/hero-event"] ] },
+      { "id": "hero-events",
+        "title": "Get information on hero events",
+        "keyword-sets": [
+          ["stats", "list", "search", "find"],
+          [
+            "hero event",
+            "wheel of fortune", " wof ", "wheel event",
+            "card master",      " cm ",  "card event"
+          ]
+        ]
+      },
+      { "id": "hero-events",
+        "title": "Find past events of a hero",
+        "keyword-sets": [
+          [
+            "past event", "prev event", "previous event", "last event",
+            "past appear", "prev appear", "previous appear", "last appear"
+          ],
+          [
+            "hero",
+            "selene", "chione", "aly", "seon", "davison", "jinn", "dracula"
+          ]
+        ]
+      }
+    ],
+    "content": {
+      "id": "hero-events",
       "title": "Get information on past and current hero events",
       "content": {
         "<text>": [
@@ -83,15 +118,7 @@
           "`/hero-events find hero:<hero>`",
           "- Get information about past hero events of a hero."
         ]
-      },
-      "keyword-sets": [
-        ["appearance", "appear"],
-        ["hero"],
-        ["event"],
-        ["wheel", "fortune", "wof", "luck"],
-        ["card master", "cm"],
-        ["next week"]
-      ]
+      }
     }
-  ]
+  }
 }

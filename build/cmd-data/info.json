@@ -1,23 +1,31 @@
 {
-  "commandName": "info",
+  "commandName": "aow-info",
   "global": true,
   "ownerOnly": false,
   "commandData": {
-    "name": "%%cmd.info.name%%",
-    "name_localizations": "%%cmd.info.name%%",
-    "description": "%%cmd.info.desc%%",
-    "description_localizations": "%%cmd.info.desc%%",
+    "name": "%%cmd.aow-info.name%%",
+    "name_localizations": "%%cmd.aow-info.name%%",
+    "description": "%%cmd.aow-info.desc%%",
+    "description_localizations": "%%cmd.aow-info.desc%%",
     "default_member_permissions": ["SendMessages"],
     "dm_permission": true,
     "options": [
       {
         "type": "CommandOptionType.String",
-        "name": "%%cmd.info.query.name%%",
-        "name_localizations": "%%cmd.info.query.name%%",
-        "description": "%%cmd.info.query.desc%%",
-        "description_localizations": "%%cmd.info.query.desc%%",
+        "name": "%%cmd.aow-info.query.name%%",
+        "name_localizations": "%%cmd.aow-info.query.name%%",
+        "description": "%%cmd.aow-info.query.desc%%",
+        "description_localizations": "%%cmd.aow-info.query.desc%%",
         "autocomplete": true,
         "required": true
+      },
+      {
+        "type": "CommandOptionType.User",
+        "name": "%%cmd.aow-info.tag.name%%",
+        "name_localizations": "%%cmd.aow-info.tag.name%%",
+        "description": "%%cmd.aow-info.tag.desc%%",
+        "description_localizations": "%%cmd.aow-info.tag.desc%%",
+        "required": false
       }
     ]
   }

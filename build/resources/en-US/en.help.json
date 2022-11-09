@@ -5,11 +5,15 @@
       "desc": "Help on bot command",
       "query": {
         "name": "query",
-        "desc": "what do you want to know?"
+        "desc": "what bot command do you want to know?"
+      },
+      "tag": {
+        "name": "tag",
+        "desc": "a person you want to tag (@mention)"
       }
     }
   },
-  "cmd-help": {
+  "help-info": {
     "$comment": "default list of help topics",
     "default-list": [
       "hero-event",

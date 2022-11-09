@@ -18,6 +18,14 @@
         "description_localizations": "%%cmd.help.query.desc%%",
         "autocomplete": true,
         "required": true
+      },
+      {
+        "type": "CommandOptionType.User",
+        "name": "%%cmd.help.tag.name%%",
+        "name_localizations": "%%cmd.help.tag.name%%",
+        "description": "%%cmd.help.tag.desc%%",
+        "description_localizations": "%%cmd.help.tag.desc%%",
+        "required": false
       }
     ]
   }

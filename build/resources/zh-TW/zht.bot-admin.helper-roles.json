@@ -56,7 +56,7 @@
       }
     }
   },
-  "cmd-help": [
+  "help-info": [
     {
       "id": "bot-admin.helper-roles",
       "title": "［管理員］機器人幫手身分組",

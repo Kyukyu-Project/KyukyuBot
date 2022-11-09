@@ -29,7 +29,7 @@
       }
     }
   },
-  "cmd-help": {
+  "help-info": {
     "search": [
       { "id": "bot-admin.bot-channel",
         "title": "/bot-admin bot-channel",
@@ -47,7 +47,7 @@
       "bot-admin.bot-channel<object>": {
         "title": "/bot-admin bot-channel",
         "text<text>": [
-          "`/bot-admin bot-channel`",
+          "**[Admin] Managing bot-command channel**",
           "",
           "In the bot-command channel, anyone can use bot commands without cool-down.",
           "",
@@ -59,6 +59,9 @@
           "",
           "`/bot-admin bot-channel clear`",
           "- Clear (reset) bot-command channel setting."
+        ],
+        "related": [
+          "bot-admin.helper-roles"
         ]
       }
     }

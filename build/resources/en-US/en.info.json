@@ -1,17 +1,30 @@
 {
   "cmd": {
-    "info": {
-      "name": "info",
+    "aow-info": {
+      "name": "aow-info",
       "desc": "Get information on Art of War:Legions",
       "query": {
         "name": "query",
-        "desc": "what do you want to know?"
+        "desc": "what AoW information do you want to know?"
+      },
+      "tag": {
+        "name": "tag",
+        "desc": "a person you want to tag (@mention)"
       }
     }
   },
-  "cmd-info": {
+  "aow-info": {
     "$comment": "default list of info topics",
-    "$default-list": [
+    "default-list": [
+      "misc.abbr",
+      "req.hero-level",
+      "req.troops-level",
+      "draws.4-star",
+      "arena.reward",
+      "arena.gem-battle",
+      "event.wof",
+      "event.cm",
+      "event.sunshine.supply"
     ]
   }
 }

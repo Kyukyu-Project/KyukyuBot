@@ -1,0 +1,38 @@
+{
+  "aow-info": {
+    "$example searches": [
+      "how are trophies calculated?"
+    ],
+    "search": [
+      { "id": "arena.points",
+        "title": "Arena points",
+        "keyword-sets": [
+          ["point", "trophy", "trophies"],
+          ["arena"],
+          ["calculate", "determine"]
+        ]
+      }
+    ],
+    "content": {
+      "arena.points": {
+        "<object>": {
+          "title": "Arena points",
+          "embeds": [
+            {
+              "title": "Arena points",
+              "description<text>": [
+                "• Each player starts each Arena season with 2500, 2000, or 1000 Rank Points (<:aowcup:849196168495628309>), depending on the player's past performance.",
+                "• After a player does a battle (either on offense and defense), the player's Rank Points are updated.",
+                "• The game uses the winner's Rank Point and the loser's Rank Point to calculate both players' final points.",
+                "• You can use the `/arena-points` command to estimate point changes after a battle."
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-21)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }    
+}
