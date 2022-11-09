@@ -1,8 +1,8 @@
 {
   "cmd-info": {
     "search": [
-      { "id": "event.cm",
-        "title": "Guide to Card Master",
+      { "id": "event.wof",
+        "title": "Guide to Wheel of Fortune",
         "keyword-sets": [
           ["wheel of fortune", "wof", "wheel event"],
           ["guide", "tips", "strategy"],
@@ -17,21 +17,22 @@
           "embeds": [
             {
               "title": "Guide to Wheel of Fortune",
-              "description": "Wheel of Fortune <:eventwheel:1039004325214691388> is a __7-day__ event where a player can participate to get hero shards.",
+              "description": "Wheel of Fortune <:eventwheel:909986289552617502> is a __7-day__ event where a player can participate to get hero shards.",
               "fields": [
                 {
                   "name": "Rules",
                   "value<text>": [
                     "• Players can play up to __200__ spins each day",
                     "• The first spin is always free.",
-                    "• On day 2~7 of the event, the first spin costs 60 gems **if** you do not have any unused Raffle Ticket <:aowraffle:1039016638248386581>.",
+                    "• On day 2~7 of the event, the first spin costs 60 gems **if** you do not have any unused Raffle Ticket <:aowraffle:1039016540332359721>.",
                     "• On day 7, any unused Raffle Ticket carry over to the next Wheel of Fortune."
                   ]
                 },
                 {
                   "name": "Best strategy",
                   "value<text>": [
-                    "• Distribute your spins and make sure you use all Raffle Tickets <:aowraffle:1039016638248386581> each day so you can take advantage of discount the next day.",
+                    "• Distribute your spins so you can take advantage of discount spins.",
+                    "• Make sure you do not leave any Raffle Tickets <:aowraffle:1039016540332359721> unused.",
                     "• Statistically, doing 200 spins is the most economic. You will need about 19 160 <:aowgem:847363788592119838>."
                   ]
                 }

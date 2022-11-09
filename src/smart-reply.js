@@ -38,7 +38,7 @@ function createContent(locale, content, dbResKey, useRelatedMenu, useDMButton) {
           type: ComponentType.Button,
           style: ButtonStyle.Secondary,
           custom_id: 'dm',
-          label: l10n.s(locale, 'messages.dm-me'),
+          label: l10n.s(locale, 'smart-reply.dm-me'),
         },
       ],
     };
@@ -72,7 +72,7 @@ function createContent(locale, content, dbResKey, useRelatedMenu, useDMButton) {
             {
               type: ComponentType.SelectMenu,
               custom_id: 'related',
-              placeholder: l10n.s(locale, 'messages.select-related-topic'),
+              placeholder: l10n.s(locale, 'smart-reply.select-related-topic'),
               options: relatedOptions,
             },
           ],
@@ -127,13 +127,13 @@ export async function smartReply(replyContext) {
   if (useDmButton) {
     if ((taggedUserId) && (taggedUserId !== userId)) {
       tagline = l10n.t(
-          locale, 'messages.reply-message-tagged',
+          locale, 'smart-reply.reply-message-tagged',
           '{USER ID}', replyContext.userId,
           '{TAGGED ID}', replyContext.taggedUserId,
       );
     } else {
       tagline = l10n.t(
-          locale, 'messages.reply-message',
+          locale, 'smart-reply.reply-message',
           '{USER ID}', replyContext.userId,
       );
     }
@@ -150,7 +150,11 @@ export async function smartReply(replyContext) {
   const iRelatedCollector = responseMessage.createMessageComponentCollector({
     componentType: ComponentType.SelectMenu,
     time: 10 * 60 * 1000, // Disable after 10 minute
-    idle: 2 * 60 * 1000, // Disable after 2 minute idle time
+  });
+
+  const iButtonCollector = responseMessage.createMessageComponentCollector({
+    componentType: ComponentType.Button,
+    time: 10 * 60 * 1000, // Disable after 10 minute
   });
 
   iRelatedCollector.on('collect', async (i) => {
@@ -160,7 +164,12 @@ export async function smartReply(replyContext) {
         .getContent(locale, related, dbResKey);
 
     if ((i.user.id !== userId) && (i.user.id !== taggedUserId)) {
-      i.deferUpdate();
+      // This menu can only be used by the user who invoked the command
+      // or the user tagged.
+      i.reply({
+        content: l10n.s(locale, 'smart-reply.no-menu-permission'),
+        ephemeral: true,
+      });
       return;
     }
 
@@ -173,23 +182,49 @@ export async function smartReply(replyContext) {
     );
 
     if (useDmButton) {
-      if (responseContent.content) {
-        responseContent.content = tagline + '\n\n' + responseContent.content;
-      } else {
-        responseContent.content = tagline;
-      }
+      const textContent =
+          (responseContent.content)?
+          tagline + '\n\n' + responseContent.content:
+          tagline;
+      responseMessage.edit(
+          Object.assign({content: textContent}, responseContent),
+      );
+    } else {
+      responseMessage.edit(responseContent);
     }
 
     // responseMessage.interaction.editReply(responseContent);
-    responseMessage.edit(responseContent);
     i.deferUpdate();
   });
 
   iRelatedCollector.on('end', (c) => {
-    responseContent
-        .components[0] // Row 1
-        .components[0] // Select menu
-        .disabled = true;
+    responseContent.components.forEach((row) => {
+      row.components.forEach((el)=> el.disabled = true);
+    });
+
     responseMessage.edit(responseContent);
+  });
+
+  iButtonCollector.on('collect', async (i) => {
+    /** Message copy */
+    const copy = {};
+    if (responseContent.content) copy.content = responseContent.content;
+    if (responseContent.embeds) copy.embeds = responseContent.embeds;
+
+    i.user
+        .send(copy)
+        .then(()=> {
+          i.reply({
+            content: l10n.s(locale, 'smart-reply.dm-sent'),
+            ephemeral: true,
+          });
+        })
+        .catch(()=> {
+          i.reply({
+            content: l10n.s(lang, 'smart-reply.dm-error'),
+            ephemeral: true,
+          });
+        });
+    return;
   });
 }

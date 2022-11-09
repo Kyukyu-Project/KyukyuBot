@@ -16,8 +16,10 @@
       "no-user-permission": "Error executing command: no user permission.",
       "no-app-permission": "Error executing command: no application permission.",
       "not-found": "Error executing command: no information found."
-    },
-    "no-interaction-permission": "Sorry, only the user who invoked the command or the user tagged can use this.",
+    }
+  },
+  "smart-reply": {
+    "no-menu-permission": "This menu can only be used by the user who invoked the command or the user tagged.",
     "reply-message": "Requested by: <@!{USER ID}>",
     "reply-message-tagged<text>": [
       "Requested by: <@!{USER ID}>",
@@ -25,8 +27,8 @@
     ],
     "info-sent": "The requested info has been posted.",
     "dm-me": "DM me this",
-    "dm-sent": "Sent by direct message.",
-    "dm-error": "Oof. There was a problem sending the information by direct message.",
+    "dm-sent": "Sent by DM.",
+    "dm-error": "Oof. There was a problem sending the information by DM.",
     "select-related-topic": "select a related topic"
   },
   "card-master": "Card Master",
