@@ -8,27 +8,27 @@
         "desc": "Add a new Card Master event",
         "hero1": {
           "name": "hero1",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 1"
         },
         "hero2": {
           "name": "hero2",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 2"
         },
         "hero3": {
           "name": "hero3",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 3"
         },
         "hero4": {
           "name": "hero4",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 4"
         },
         "hero5": {
           "name": "hero5",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 5"
         },
         "hero6": {
           "name": "hero6",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 6"
         }
       },
       "add-wof": {
@@ -36,11 +36,15 @@
         "desc": "Add a new Wheel of Fortune event",
         "hero1": {
           "name": "hero1",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 1"
         },
         "hero2": {
           "name": "hero2",
-          "desc": "Hero to add"
+          "desc": "Legendary hero 2"
+        },
+        "hero3": {
+          "name": "hero3",
+          "desc": "Epic/Rare hero"
         }
       },
       "remove": {

@@ -1,6 +1,6 @@
 {
   "name": "kyukyu-bot",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Discord information bot",
   "main": "app.js",
   "type": "module",

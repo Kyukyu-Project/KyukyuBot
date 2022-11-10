@@ -50,7 +50,7 @@ export function autocomplete(context) {
   const locale = interaction.locale;
   const query = interaction.options.getFocused();
 
-  const options =
+  let options =
     l10n.autocomplete.suggestContent(locale, query, 'hero', 'part-of');
 
   if (options) {
@@ -103,20 +103,29 @@ function current(context) {
   const eventStart = thisEvent.ts;
   const eventEnd = eventStart + EVENT_DURATION;
 
-  let heroDisplayNames = thisEvent.heroes.map(
-      (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
-  );
+  /** @type {string} - List separator ('/') */
+  const listSeparator = l10n.s(locale, 'cmd.hero-events.list-separator');
+
+  const primaryHeroList = thisEvent
+      .primaryHeroes
+      .map((h) => l10n.s(locale, `hero.content.${h}`)['display-name'])
+      .join(listSeparator);
 
   if (thisEvent.type === 'wof') {
+    const secondaryHeroList = thisEvent
+        .secondaryHeroes
+        .map((h) => l10n.s(locale, `hero.content.${h}`)['display-name'])
+        .join(listSeparator);
+
     response = l10n.t(
         locale, 'cmd.hero-events.current-result.current-wof',
-        '{HERO}', heroDisplayNames[0],
-        '{HERO2}', heroDisplayNames[1],
+        '{HERO}', primaryHeroList,
+        '{HERO2}', secondaryHeroList,
     );
   } else {
     response = l10n.t(
         locale, 'cmd.hero-events.current-result.current-cm',
-        '{HEROES}', l10n.makeList(locale, heroDisplayNames),
+        '{HEROES}', primaryHeroList,
     );
   }
 
@@ -137,20 +146,26 @@ function current(context) {
   if (thisEventIdx > 0) { // next event has been announced
     const nextEvent = events[thisEventIdx -1];
 
-    heroDisplayNames = nextEvent.heroes.map(
-        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
-    );
+    const nextPrimaryHeroList = nextEvent
+        .primaryHeroes
+        .map((h) => l10n.s(locale, `hero.content.${h}`)['display-name'])
+        .join(listSeparator);
 
     if (nextEvent.type === 'wof') {
+      const nextSecondaryHeroList = nextEvent
+          .secondaryHeroes
+          .map((h) => l10n.s(locale, `hero.content.${h}`)['display-name'])
+          .join(listSeparator);
+
       response += l10n.t(
           locale, 'cmd.hero-events.current-result.next-wof',
-          '{HERO}', heroDisplayNames[0],
-          '{HERO2}', heroDisplayNames[1],
+          '{HERO}', nextPrimaryHeroList,
+          '{HERO2}', nextSecondaryHeroList,
       );
     } else {
       response += l10n.t(
           locale, 'cmd.hero-events.current-result.next-cm',
-          '{HEROES}', l10n.makeList(locale, heroDisplayNames),
+          '{HEROES}', nextPrimaryHeroList,
       );
     }
   }
@@ -168,17 +183,13 @@ function current(context) {
  */
 function stats(context, count) {
   const eventBase = data['hero-events'];
-  const heroBase = data['heroes'];
   const {locale} = context;
 
   const recentHeroes = eventBase
       .slice(0, count-1)
-      .reduce((all, event) => all.concat(event.heroes), []);
+      .reduce((all, event) => all.concat(event.primaryHeroes), []);
 
   const heroStats = [...new Set(recentHeroes)]
-      .filter((hero) =>
-        heroBase.find((data) => data.id === hero).rarity === 'legendary',
-      )
       .map((hero) => {
         return {
           displayName: l10n.s(locale, 'hero.content.' + hero)['display-name'],
@@ -197,46 +208,49 @@ function stats(context, count) {
 
   let response = l10n.s(locale, 'cmd.hero-events.stats-result');
 
+  /** @type {string} - List separator ('/') */
+  const listSeparator = l10n.s(locale, 'cmd.hero-events.list-separator');
+
   if (sortedByOccurrences[0].length > 0) {
     response +=
       l10n.t(
           locale, 'cmd.hero-events.stats-result.1x',
-          '{HEROES}', l10n.makeList(locale, sortedByOccurrences[0]),
+          '{HEROES}', sortedByOccurrences[0].join(listSeparator),
       );
   }
   if (sortedByOccurrences[1].length > 0) {
     response +=
       l10n.t(
           locale, 'cmd.hero-events.stats-result.2x',
-          '{HEROES}', l10n.makeList(locale, sortedByOccurrences[1]),
+          '{HEROES}', sortedByOccurrences[1].join(listSeparator),
       );
   }
   if (sortedByOccurrences[2].length > 0) {
     response +=
       l10n.t(
           locale, 'cmd.hero-events.stats-result.3x',
-          '{HEROES}', l10n.makeList(locale, sortedByOccurrences[2]),
+          '{HEROES}', sortedByOccurrences[2].join(listSeparator),
       );
   }
   if (sortedByOccurrences[3].length > 0) {
     response +=
       l10n.t(
           locale, 'cmd.hero-events.stats-result.4x',
-          '{HEROES}', l10n.makeList(locale, sortedByOccurrences[3]),
+          '{HEROES}', sortedByOccurrences[3].join(listSeparator),
       );
   }
   if (sortedByOccurrences[4].length > 0) {
     response +=
       l10n.t(
           locale, 'cmd.hero-events.stats-result.5x',
-          '{HEROES}', l10n.makeList(locale, sortedByOccurrences[4]),
+          '{HEROES}', sortedByOccurrences[4].join(listSeparator),
       );
   }
   if (sortedByOccurrences[5].length > 0) {
     response +=
       l10n.t(
           locale, 'cmd.hero-events.stats-result.6x',
-          '{HEROES}', l10n.makeList(locale, sortedByOccurrences[5]),
+          '{HEROES}', sortedByOccurrences[5].join(listSeparator),
       );
   }
 
@@ -256,22 +270,31 @@ function list(context, count) {
   const {locale} = context;
 
   const lines = eventBase.slice(0, count-1).map((event) => {
-    const heroDisplayNames = event.heroes.map(
-        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
-    );
+    /** @type {string} - List separator ('/') */
+    const listSeparator = l10n.s(locale, 'cmd.hero-events.list-separator');
+
+    const primaryHeroList = event
+        .primaryHeroes
+        .map((h) => l10n.s(locale, `hero.content.${h}`)['display-name'])
+        .join(listSeparator);
 
     if (event.type === 'wof' ) {
+      const secondaryHeroList = event
+          .secondaryHeroes
+          .map((h) => l10n.s(locale, `hero.content.${h}`)['display-name'])
+          .join(listSeparator);
+
       return l10n.t(
           locale, 'cmd.hero-events.list-result.wof',
           '{DATE}', l10n.formatDate(locale, new Date(event.ts)),
-          '{HERO}', heroDisplayNames[0],
-          '{HERO2}', heroDisplayNames[1],
+          '{HERO}', primaryHeroList,
+          '{HERO2}', secondaryHeroList,
       );
     } else {
       return l10n.t(
           locale, 'cmd.hero-events.list-result.cm',
           '{DATE}', l10n.formatDate(locale, new Date(event.ts)),
-          '{HEROES}', l10n.makeList(locale, heroDisplayNames),
+          '{HEROES}', primaryHeroList,
       );
     }
   });
@@ -320,7 +343,10 @@ function find(context) {
   if (heroName === 'athena') {
     foundEvents = [];
   } else {
-    foundEvents = eventBase.filter((evt) => evt.heroes.includes(heroName));
+    foundEvents = eventBase.filter((evt) => (
+      evt.primaryHeroes.includes(heroName) ||
+      (evt.secondaryHeroes && evt.secondaryHeroes.includes(heroName))
+    ));
   }
 
   if (foundEvents.length === 0) {
@@ -382,7 +408,10 @@ function download(context) {
   const json = eventBase.map((event) => ({
     date: l10n.formatDate(locale, new Date(event.ts)),
     type: (event.type == 'cm')?cm:wof,
-    heroes: event.heroes.map(
+    primaryHeroes: event.primaryHeroes.map(
+        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
+    ),
+    secondaryHeroes: event.secondaryHeroes.map(
         (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
     ),
   }));

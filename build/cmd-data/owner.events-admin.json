@@ -97,6 +97,15 @@
             "description_localizations": "%%cmd.events-admin.add-wof.hero2.desc%%",
             "autocomplete": true,
             "required": true
+          },
+          { "$comment": "/events-admin add-cm hero3",
+            "type": "CommandOptionType.String",
+            "name": "%%cmd.events-admin.add-wof.hero3.name%%",
+            "name_localizations": "%%cmd.events-admin.add-wof.hero3.name%%",
+            "description": "%%cmd.events-admin.add-wof.hero3.desc%%",
+            "description_localizations": "%%cmd.events-admin.add-wof.hero3.desc%%",
+            "autocomplete": true,
+            "required": true
           }
         ]
       },

@@ -60,7 +60,8 @@
         "recent-cm":  "\n-- <:eventcard:909986289535832104> {DATE}",
         "recent-wof": "\n-- <:eventwheel:909986289552617502> {DATE}",
         "not-found": "No information found for {HERO}"
-      }
+      },
+      "list-separator": " / "
     }
   },
   "help-info": {

@@ -1,9 +1,21 @@
 [
   {
+    "ts": 1669075200000,
+    "date": "2022-11-22",
+    "type": "wof",
+    "primaryHeroes": [
+      "odin",
+      "seondeok"
+    ],
+    "secondaryHeroes": [
+      "kriss"
+    ]
+  },
+  {
     "ts": 1668470400000,
     "date": "2022-11-15",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "dracula",
       "apollo",
@@ -16,8 +28,10 @@
     "ts": 1667865600000,
     "date": "2022-11-08",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -25,7 +39,7 @@
     "ts": 1667260800000,
     "date": "2022-11-01",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "charon",
       "poseidon",
@@ -38,8 +52,10 @@
     "ts": 1666656000000,
     "date": "2022-10-25",
     "type": "wof",
-    "heroes": [
-      "dracula",
+    "primaryHeroes": [
+      "dracula"
+    ],
+    "secondaryHeroes": [
       "ainz"
     ]
   },
@@ -47,7 +63,7 @@
     "ts": 1666051200000,
     "date": "2022-10-18",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "drake",
       "apollo",
@@ -60,8 +76,10 @@
     "ts": 1665446400000,
     "date": "2022-10-11",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -69,7 +87,7 @@
     "ts": 1664841600000,
     "date": "2022-10-04",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "freyja",
       "kraken",
       "poseidon",
@@ -82,8 +100,10 @@
     "ts": 1664236800000,
     "date": "2022-09-27",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "illum"
     ]
   },
@@ -91,7 +111,7 @@
     "ts": 1663632000000,
     "date": "2022-09-20",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "kraken",
       "apollo",
@@ -104,8 +124,10 @@
     "ts": 1663027200000,
     "date": "2022-09-13",
     "type": "wof",
-    "heroes": [
-      "dracula",
+    "primaryHeroes": [
+      "dracula"
+    ],
+    "secondaryHeroes": [
       "kelvins"
     ]
   },
@@ -113,7 +135,7 @@
     "ts": 1662422400000,
     "date": "2022-09-06",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "charon",
       "poseidon",
@@ -126,8 +148,10 @@
     "ts": 1661817600000,
     "date": "2022-08-30",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "edward"
     ]
   },
@@ -135,7 +159,7 @@
     "ts": 1661212800000,
     "date": "2022-08-23",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "aly",
       "drake",
       "apollo",
@@ -148,8 +172,10 @@
     "ts": 1660608000000,
     "date": "2022-08-16",
     "type": "wof",
-    "heroes": [
-      "freyja",
+    "primaryHeroes": [
+      "freyja"
+    ],
+    "secondaryHeroes": [
       "minotaur"
     ]
   },
@@ -157,7 +183,7 @@
     "ts": 1660003200000,
     "date": "2022-08-09",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "jinn",
       "kraken",
       "poseidon",
@@ -170,8 +196,10 @@
     "ts": 1659398400000,
     "date": "2022-08-02",
     "type": "wof",
-    "heroes": [
-      "freyja",
+    "primaryHeroes": [
+      "freyja"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -179,7 +207,7 @@
     "ts": 1658793600000,
     "date": "2022-07-26",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "dracula",
       "apollo",
@@ -192,8 +220,10 @@
     "ts": 1658188800000,
     "date": "2022-07-19",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -201,7 +231,7 @@
     "ts": 1657584000000,
     "date": "2022-07-12",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "charon",
       "drake",
       "poseidon",
@@ -214,8 +244,10 @@
     "ts": 1656979200000,
     "date": "2022-07-05",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "kriss"
     ]
   },
@@ -223,7 +255,7 @@
     "ts": 1656374400000,
     "date": "2022-06-28",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "kraken",
       "apollo",
@@ -236,8 +268,10 @@
     "ts": 1655769600000,
     "date": "2022-06-21",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "minotaur"
     ]
   },
@@ -245,7 +279,7 @@
     "ts": 1655164800000,
     "date": "2022-06-14",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "dracula",
       "harrison",
@@ -258,8 +292,10 @@
     "ts": 1654560000000,
     "date": "2022-06-07",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -267,7 +303,7 @@
     "ts": 1653955200000,
     "date": "2022-05-31",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "drake",
       "apollo",
@@ -280,8 +316,10 @@
     "ts": 1653350400000,
     "date": "2022-05-24",
     "type": "wof",
-    "heroes": [
-      "charon",
+    "primaryHeroes": [
+      "charon"
+    ],
+    "secondaryHeroes": [
       "ainz"
     ]
   },
@@ -289,7 +327,7 @@
     "ts": 1652745600000,
     "date": "2022-05-17",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "kraken",
       "poseidon",
@@ -302,8 +340,10 @@
     "ts": 1652140800000,
     "date": "2022-05-10",
     "type": "wof",
-    "heroes": [
-      "charon",
+    "primaryHeroes": [
+      "charon"
+    ],
+    "secondaryHeroes": [
       "genichiro"
     ]
   },
@@ -311,7 +351,7 @@
     "ts": 1651536000000,
     "date": "2022-05-03",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "dracula",
       "apollo",
@@ -324,8 +364,10 @@
     "ts": 1650931200000,
     "date": "2022-04-26",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "kriss"
     ]
   },
@@ -333,7 +375,7 @@
     "ts": 1650326400000,
     "date": "2022-04-19",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "drake",
       "poseidon",
@@ -346,8 +388,10 @@
     "ts": 1649721600000,
     "date": "2022-04-12",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -355,7 +399,7 @@
     "ts": 1649116800000,
     "date": "2022-04-05",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "aly",
       "dracula",
       "apollo",
@@ -368,8 +412,10 @@
     "ts": 1648512000000,
     "date": "2022-03-29",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "kriss"
     ]
   },
@@ -377,7 +423,7 @@
     "ts": 1647907200000,
     "date": "2022-03-22",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "jinn",
       "kraken",
       "poseidon",
@@ -390,8 +436,10 @@
     "ts": 1647302400000,
     "date": "2022-03-15",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -399,7 +447,7 @@
     "ts": 1646697600000,
     "date": "2022-03-08",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "drake",
       "apollo",
@@ -412,8 +460,10 @@
     "ts": 1646092800000,
     "date": "2022-03-01",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -421,7 +471,7 @@
     "ts": 1645488000000,
     "date": "2022-02-22",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "kraken",
       "poseidon",
@@ -434,8 +484,10 @@
     "ts": 1644883200000,
     "date": "2022-02-15",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "kriss"
     ]
   },
@@ -443,7 +495,7 @@
     "ts": 1644278400000,
     "date": "2022-02-08",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "drake",
       "apollo",
@@ -456,8 +508,10 @@
     "ts": 1643673600000,
     "date": "2022-02-01",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -465,7 +519,7 @@
     "ts": 1643068800000,
     "date": "2022-01-25",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "jinn",
       "poseidon",
       "dracula",
@@ -478,8 +532,10 @@
     "ts": 1642464000000,
     "date": "2022-01-18",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -487,7 +543,7 @@
     "ts": 1641859200000,
     "date": "2022-01-11",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "mephisto",
       "apollo",
@@ -500,8 +556,10 @@
     "ts": 1641254400000,
     "date": "2022-01-04",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "edward"
     ]
   },
@@ -509,7 +567,7 @@
     "ts": 1640649600000,
     "date": "2021-12-28",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "dracula",
       "wukong",
       "nezha",
@@ -522,8 +580,10 @@
     "ts": 1640044800000,
     "date": "2021-12-21",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "kriss"
     ]
   },
@@ -531,7 +591,7 @@
     "ts": 1639440000000,
     "date": "2021-12-14",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "jinn",
       "mephisto",
       "apollo",
@@ -544,8 +604,10 @@
     "ts": 1638835200000,
     "date": "2021-12-07",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -553,7 +615,7 @@
     "ts": 1638230400000,
     "date": "2021-11-30",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "jinn",
       "dracula",
@@ -566,8 +628,10 @@
     "ts": 1637625600000,
     "date": "2021-11-23",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -575,7 +639,7 @@
     "ts": 1637020800000,
     "date": "2021-11-16",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "mephisto",
       "apollo",
@@ -588,8 +652,10 @@
     "ts": 1636416000000,
     "date": "2021-11-09",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -597,7 +663,7 @@
     "ts": 1635811200000,
     "date": "2021-11-02",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "poseidon",
       "davison",
@@ -610,8 +676,10 @@
     "ts": 1635206400000,
     "date": "2021-10-26",
     "type": "wof",
-    "heroes": [
-      "dracula",
+    "primaryHeroes": [
+      "dracula"
+    ],
+    "secondaryHeroes": [
       "ainz"
     ]
   },
@@ -619,7 +687,7 @@
     "ts": 1634601600000,
     "date": "2021-10-19",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "apollo",
       "drake",
@@ -632,8 +700,10 @@
     "ts": 1633996800000,
     "date": "2021-10-12",
     "type": "wof",
-    "heroes": [
-      "jinn",
+    "primaryHeroes": [
+      "jinn"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -641,7 +711,7 @@
     "ts": 1633392000000,
     "date": "2021-10-05",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "kraken",
       "poseidon",
@@ -654,8 +724,10 @@
     "ts": 1632787200000,
     "date": "2021-09-28",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -663,7 +735,7 @@
     "ts": 1632182400000,
     "date": "2021-09-21",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "drake",
       "apollo",
@@ -676,8 +748,10 @@
     "ts": 1631577600000,
     "date": "2021-09-14",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "minotaur"
     ]
   },
@@ -685,7 +759,7 @@
     "ts": 1630972800000,
     "date": "2021-09-07",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "poseidon",
       "dracula",
@@ -698,8 +772,10 @@
     "ts": 1630368000000,
     "date": "2021-08-31",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -707,7 +783,7 @@
     "ts": 1629763200000,
     "date": "2021-08-24",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "mephisto",
       "apollo",
@@ -720,8 +796,10 @@
     "ts": 1629158400000,
     "date": "2021-08-17",
     "type": "wof",
-    "heroes": [
-      "drake",
+    "primaryHeroes": [
+      "drake"
+    ],
+    "secondaryHeroes": [
       "edward"
     ]
   },
@@ -729,7 +807,7 @@
     "ts": 1628553600000,
     "date": "2021-08-10",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "kraken",
       "davison",
       "dracula",
@@ -742,8 +820,10 @@
     "ts": 1627948800000,
     "date": "2021-08-03",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "genichiro"
     ]
   },
@@ -751,7 +831,7 @@
     "ts": 1627344000000,
     "date": "2021-07-27",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "apollo",
       "drake",
@@ -764,8 +844,10 @@
     "ts": 1626739200000,
     "date": "2021-07-20",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -773,7 +855,7 @@
     "ts": 1626134400000,
     "date": "2021-07-13",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "dracula",
       "poseidon",
@@ -786,8 +868,10 @@
     "ts": 1625529600000,
     "date": "2021-07-06",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "edward"
     ]
   },
@@ -795,7 +879,7 @@
     "ts": 1624924800000,
     "date": "2021-06-29",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "drake",
       "apollo",
@@ -808,8 +892,10 @@
     "ts": 1624320000000,
     "date": "2021-06-22",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "cassandra"
     ]
   },
@@ -817,7 +903,7 @@
     "ts": 1623715200000,
     "date": "2021-06-15",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "poseidon",
       "kraken",
@@ -830,8 +916,10 @@
     "ts": 1623110400000,
     "date": "2021-06-08",
     "type": "wof",
-    "heroes": [
-      "mephisto",
+    "primaryHeroes": [
+      "mephisto"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -839,7 +927,7 @@
     "ts": 1622505600000,
     "date": "2021-06-01",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "seondeok",
       "apollo",
       "horus",
@@ -852,8 +940,10 @@
     "ts": 1621900800000,
     "date": "2021-05-25",
     "type": "wof",
-    "heroes": [
-      "kraken",
+    "primaryHeroes": [
+      "kraken"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -861,7 +951,7 @@
     "ts": 1621296000000,
     "date": "2021-05-18",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "apollo",
       "drake",
@@ -874,8 +964,10 @@
     "ts": 1620691200000,
     "date": "2021-05-11",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -883,7 +975,7 @@
     "ts": 1620086400000,
     "date": "2021-05-04",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "kraken",
       "seondeok",
       "dracula",
@@ -896,8 +988,10 @@
     "ts": 1619481600000,
     "date": "2021-04-27",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "genichiro"
     ]
   },
@@ -905,7 +999,7 @@
     "ts": 1618876800000,
     "date": "2021-04-20",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "horus",
       "nezha",
@@ -918,8 +1012,10 @@
     "ts": 1618272000000,
     "date": "2021-04-13",
     "type": "wof",
-    "heroes": [
-      "kraken",
+    "primaryHeroes": [
+      "kraken"
+    ],
+    "secondaryHeroes": [
       "edward"
     ]
   },
@@ -927,7 +1023,7 @@
     "ts": 1617667200000,
     "date": "2021-04-06",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "drake",
       "dracula",
@@ -940,8 +1036,10 @@
     "ts": 1617062400000,
     "date": "2021-03-30",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "cassandra"
     ]
   },
@@ -949,7 +1047,7 @@
     "ts": 1616457600000,
     "date": "2021-03-23",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "mephisto",
       "davison",
       "horus",
@@ -962,8 +1060,10 @@
     "ts": 1615852800000,
     "date": "2021-03-16",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -971,7 +1071,7 @@
     "ts": 1615248000000,
     "date": "2021-03-09",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "kraken",
       "dracula",
       "drake",
@@ -984,8 +1084,10 @@
     "ts": 1614643200000,
     "date": "2021-03-02",
     "type": "wof",
-    "heroes": [
-      "seondeok",
+    "primaryHeroes": [
+      "seondeok"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -993,7 +1095,7 @@
     "ts": 1614038400000,
     "date": "2021-02-23",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "drake",
       "aly",
@@ -1006,8 +1108,10 @@
     "ts": 1613433600000,
     "date": "2021-02-16",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "diana"
     ]
   },
@@ -1015,7 +1119,7 @@
     "ts": 1612828800000,
     "date": "2021-02-09",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "aly",
       "poseidon",
       "mephisto",
@@ -1028,8 +1132,10 @@
     "ts": 1612224000000,
     "date": "2021-02-02",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "cassandra"
     ]
   },
@@ -1037,7 +1143,7 @@
     "ts": 1611619200000,
     "date": "2021-01-26",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "mephisto",
       "davison",
@@ -1050,8 +1156,10 @@
     "ts": 1611014400000,
     "date": "2021-01-19",
     "type": "wof",
-    "heroes": [
-      "kraken",
+    "primaryHeroes": [
+      "kraken"
+    ],
+    "secondaryHeroes": [
       "hohenheim"
     ]
   },
@@ -1059,7 +1167,7 @@
     "ts": 1610409600000,
     "date": "2021-01-12",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "poseidon",
       "mephisto",
       "horus",
@@ -1072,8 +1180,10 @@
     "ts": 1609804800000,
     "date": "2021-01-05",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "hohenheim"
     ]
   },
@@ -1081,7 +1191,7 @@
     "ts": 1609200000000,
     "date": "2020-12-29",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "dracula",
       "apollo",
       "wukong",
@@ -1094,8 +1204,10 @@
     "ts": 1608595200000,
     "date": "2020-12-22",
     "type": "wof",
-    "heroes": [
-      "chione",
+    "primaryHeroes": [
+      "chione"
+    ],
+    "secondaryHeroes": [
       "moshe"
     ]
   },
@@ -1103,7 +1215,7 @@
     "ts": 1607990400000,
     "date": "2020-12-15",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "poseidon",
       "nezha",
@@ -1116,8 +1228,10 @@
     "ts": 1607385600000,
     "date": "2020-12-08",
     "type": "wof",
-    "heroes": [
-      "mephisto",
+    "primaryHeroes": [
+      "mephisto"
+    ],
+    "secondaryHeroes": [
       "miller"
     ]
   },
@@ -1125,7 +1239,7 @@
     "ts": 1606780800000,
     "date": "2020-12-01",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "dracula",
       "poseidon",
       "wukong",
@@ -1138,8 +1252,10 @@
     "ts": 1606176000000,
     "date": "2020-11-24",
     "type": "wof",
-    "heroes": [
-      "aly",
+    "primaryHeroes": [
+      "aly"
+    ],
+    "secondaryHeroes": [
       "edward"
     ]
   },
@@ -1147,7 +1263,7 @@
     "ts": 1605571200000,
     "date": "2020-11-17",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "apollo",
       "davison",
       "dracula",
@@ -1160,8 +1276,10 @@
     "ts": 1604966400000,
     "date": "2020-11-10",
     "type": "wof",
-    "heroes": [
-      "apollo",
+    "primaryHeroes": [
+      "apollo"
+    ],
+    "secondaryHeroes": [
       "cassandra"
     ]
   },
@@ -1169,7 +1287,7 @@
     "ts": 1604361600000,
     "date": "2020-11-03",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "davison",
       "chione",
       "beowulf",
@@ -1180,8 +1298,10 @@
     "ts": 1603756800000,
     "date": "2020-10-27",
     "type": "wof",
-    "heroes": [
-      "dracula",
+    "primaryHeroes": [
+      "dracula"
+    ],
+    "secondaryHeroes": [
       "ainz"
     ]
   },
@@ -1189,7 +1309,7 @@
     "ts": 1603152000000,
     "date": "2020-10-20",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "nezha",
       "harrison",
@@ -1200,8 +1320,10 @@
     "ts": 1602547200000,
     "date": "2020-10-13",
     "type": "wof",
-    "heroes": [
-      "athena",
+    "primaryHeroes": [
+      "athena"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -1209,7 +1331,7 @@
     "ts": 1601942400000,
     "date": "2020-10-06",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "mephisto",
       "poseidon",
       "drake",
@@ -1220,8 +1342,10 @@
     "ts": 1601337600000,
     "date": "2020-09-29",
     "type": "wof",
-    "heroes": [
-      "davison",
+    "primaryHeroes": [
+      "davison"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -1229,7 +1353,7 @@
     "ts": 1600732800000,
     "date": "2020-09-22",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "horus",
       "dracula",
@@ -1240,8 +1364,10 @@
     "ts": 1600128000000,
     "date": "2020-09-15",
     "type": "wof",
-    "heroes": [
-      "beowulf",
+    "primaryHeroes": [
+      "beowulf"
+    ],
+    "secondaryHeroes": [
       "genichiro"
     ]
   },
@@ -1249,7 +1375,7 @@
     "ts": 1602115200000,
     "date": "2020-10-08",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "apollo",
       "poseidon",
       "mephisto",
@@ -1260,15 +1386,16 @@
     "ts": 1601510400000,
     "date": "2020-10-01",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1600992000000,
     "date": "2020-09-25",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "poseidon",
       "drake",
@@ -1279,15 +1406,16 @@
     "ts": 1600387200000,
     "date": "2020-09-18",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "horus"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1599782400000,
     "date": "2020-09-11",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "nezha",
       "chione",
       "poseidon",
@@ -1298,15 +1426,16 @@
     "ts": 1599177600000,
     "date": "2020-09-04",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1598572800000,
     "date": "2020-08-28",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "poseidon",
       "apollo",
       "wukong",
@@ -1317,15 +1446,16 @@
     "ts": 1597968000000,
     "date": "2020-08-21",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "horus"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1597363200000,
     "date": "2020-08-14",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "chione",
       "wukong",
       "nezha",
@@ -1336,15 +1466,16 @@
     "ts": 1596758400000,
     "date": "2020-08-07",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1596067200000,
     "date": "2020-07-30",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "nezha",
       "poseidon",
       "chione",
@@ -1355,15 +1486,16 @@
     "ts": 1595462400000,
     "date": "2020-07-23",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "horus"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1594857600000,
     "date": "2020-07-16",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "wukong",
       "apollo",
       "hohenheim",
@@ -1374,15 +1506,16 @@
     "ts": 1594252800000,
     "date": "2020-07-09",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1593648000000,
     "date": "2020-07-02",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "poseidon",
       "nezha",
       "harrison",
@@ -1393,8 +1526,10 @@
     "ts": 1593129600000,
     "date": "2020-06-26",
     "type": "wof",
-    "heroes": [
-      "poseidon",
+    "primaryHeroes": [
+      "poseidon"
+    ],
+    "secondaryHeroes": [
       "robin_hood"
     ]
   },
@@ -1402,7 +1537,7 @@
     "ts": 1592524800000,
     "date": "2020-06-19",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "apollo",
       "poseidon",
       "dracula",
@@ -1413,16 +1548,19 @@
     "ts": 1591920000000,
     "date": "2020-06-12",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1591315200000,
     "date": "2020-06-05",
     "type": "wof",
-    "heroes": [
-      "nezha",
+    "primaryHeroes": [
+      "nezha"
+    ],
+    "secondaryHeroes": [
       "ainz",
       "hohenheim"
     ]
@@ -1431,7 +1569,7 @@
     "ts": 1590624000000,
     "date": "2020-05-28",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "apollo",
       "poseidon",
       "wukong",
@@ -1442,15 +1580,16 @@
     "ts": 1590019200000,
     "date": "2020-05-21",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "dracula"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1589414400000,
     "date": "2020-05-14",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "selene",
       "dracula",
       "davison",
@@ -1461,15 +1600,16 @@
     "ts": 1588809600000,
     "date": "2020-05-07",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "wukong"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1588291200000,
     "date": "2020-05-01",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "harrison",
       "drake",
       "wukong",
@@ -1480,15 +1620,16 @@
     "ts": 1587686400000,
     "date": "2020-04-24",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "poseidon"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1587081600000,
     "date": "2020-04-17",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "wukong",
       "davison",
       "apollo",
@@ -1499,23 +1640,25 @@
     "ts": 1586476800000,
     "date": "2020-04-10",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "dracula"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1585872000000,
     "date": "2020-04-03",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1585094400000,
     "date": "2020-03-25",
     "type": "cm",
-    "heroes": [
+    "primaryHeroes": [
       "drake",
       "harrison",
       "apollo",
@@ -1526,32 +1669,36 @@
     "ts": 1584489600000,
     "date": "2020-03-18",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "wukong"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1583625600000,
     "date": "2020-03-08",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "davison"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1582156800000,
     "date": "2020-02-20",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "apollo"
-    ]
+    ],
+    "secondaryHeroes": []
   },
   {
     "ts": 1580601600000,
     "date": "2020-02-02",
     "type": "wof",
-    "heroes": [
+    "primaryHeroes": [
       "poseidon"
-    ]
+    ],
+    "secondaryHeroes": []
   }
 ]

@@ -57,14 +57,19 @@ function addCm(context) {
 
   const newEvent = data.addCmEvent(heroes.map((h) => h.id));
 
-  if (newEvent.heroes.length) {
-    const heroDisplayNames = heroes.map((el) => el['display-name']);
+  if (newEvent.primaryHeroes.length) {
+    /** @type {string} - List separator ('/') */
+    const listSeparator = l10n.s(locale, 'cmd.hero-events.list-separator');
+
+    const primaryHeroList = heroes
+        .map((el) => el['display-name'])
+        .join(listSeparator);
 
     return {
       response: l10n.t(
           locale, `cmd.events-admin.add-result`,
           '{DATE}', l10n.formatDate(locale, new Date(newEvent.ts)),
-          '{HEROES}', l10n.makeList(locale, heroDisplayNames),
+          '{HEROES}', primaryHeroList,
       ),
       success: true,
     };
@@ -84,32 +89,34 @@ function addWof(context) {
   const {locale, interaction} = context;
   const {options} = interaction;
 
-  const heroes = ['hero1', 'hero2'].map((field) => (
+  const heroes = ['hero1', 'hero2', 'hero3'].map((field) => (
     l10n
         .autocomplete
         .getContent(locale, options.getString(field), 'hero', 'part-of')
   ));
 
-  if ((heroes[0] === undefined) || (heroes[1] === undefined)) {
+  if (heroes.includes(undefined)) {
     return {
       response: l10n.s(locale, 'cmd.events-admin.add-error'),
       success: false,
     };
   }
 
-  const newEvent = data.addWofEvent([heroes[0].id, heroes[1].id]);
+  const newEvent = data.addWofEvent(heroes.map((h) => h.id));
 
-  if (newEvent.heroes.length) {
-    const heroDisplayNames = [
-      heroes[0]['display-name'],
-      heroes[1]['display-name'],
-    ];
+  if (newEvent.primaryHeroes.length) {
+    /** @type {string} - List separator ('/') */
+    const listSeparator = l10n.s(locale, 'cmd.hero-events.list-separator');
+
+    const heroList = heroes.map((h) => (
+      l10n.s(locale, `hero.content.${h.id}`)['display-name']),
+    ).join(listSeparator);
 
     return {
       response: l10n.t(
           locale, `cmd.events-admin.add-result`,
           '{DATE}', l10n.formatDate(locale, new Date(newEvent.ts)),
-          '{HEROES}', l10n.makeList(locale, heroDisplayNames),
+          '{HEROES}', heroList,
       ),
       success: true,
     };
@@ -131,17 +138,19 @@ function remove(context) {
 
   const removedEvent = data.removeEvent();
 
-  if (removedEvent.heroes.length) {
-    const heroDisplayNames =
-      removedEvent.heroes.map((h) => (
-        l10n.s(locale, `hero.content.${h}`)['display-name']),
-      );
+  if (removedEvent.primaryHeroes.length) {
+    /** @type {string} - List separator ('/') */
+    const listSeparator = l10n.s(locale, 'cmd.hero-events.list-separator');
+
+    const heroList = removedEvent.primaryHeroes.map((h) => (
+      l10n.s(locale, `hero.content.${h}`)['display-name']),
+    ).join(listSeparator);
 
     return {
       response: l10n.t(
           locale, `cmd.events-admin.remove-result`,
           '{DATE}', l10n.formatDate(locale, new Date(removedEvent.ts)),
-          '{HEROES}', l10n.makeList(locale, heroDisplayNames),
+          '{HEROES}', heroList,
       ),
       success: true,
     };
@@ -161,7 +170,7 @@ export function autocomplete(context) {
   const locale = interaction.locale;
   const query = interaction.options.getFocused();
 
-  const options =
+  let options =
     l10n.autocomplete.suggestContent(locale, query, 'hero', 'part-of');
 
   if (options) {
