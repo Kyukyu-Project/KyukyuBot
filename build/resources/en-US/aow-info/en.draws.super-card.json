@@ -1,0 +1,57 @@
+{
+  "aow-info": {
+    "$example searches": [
+      "how many medals do I get from opening super cards?"
+    ],
+    "search": [
+      { "id": "draws.super-card",
+        "title": "Medals from opening Super Cards",
+        "keyword-sets": [
+          ["medal", " hm "],
+          ["super card", "voucher", "scroll"],
+          ["open", "using", "use"]
+        ]
+      }
+    ],
+    "content": {
+      "draws.super-card": {
+        "<object>": {
+          "title": "Super Card openings",
+          "embeds": [
+            {
+              "title": "Super Card openings",
+              "fields": [
+                {
+                  "name": "Normal openings",
+                  "value<text>": [
+                    "• 27 <:aowmedal:847363788194054165> per Super Card (for both 1x and 10x openings)",
+                    "",
+                    "(Stats from 200×1 and 274×10 openings on March 2021)"
+                  ]
+                },
+                {
+                  "name": "During Sunshine Supply event",
+                  "value<text>": [
+                    "• 57 <:aowmedal:847363788194054165> per Super Card",
+                    "• Legendary hero (~1.5%)",
+                    "• Epic hero (~7.2%)",
+                    "• Rare hero (~4.9%)",
+                    "",
+                    "(Stats from 996 openings on July 2021)"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-11-11)"
+              }
+            }
+          ],
+          "related": [
+            "draws.4-star",
+            "event.sunshine.supply"
+          ]
+        }
+      }
+    }
+  }    
+}
