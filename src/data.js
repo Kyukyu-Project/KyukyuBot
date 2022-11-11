@@ -34,7 +34,7 @@ export const data = {
     heroesToAdd = [...new Set(heroesToAdd)]
         .filter((h) => heroBase.findIndex((data) => data.id === h) !== -1);
 
-    if (heroesToAdd.length == 0) return {Date: '', heroes: []};
+    if (heroesToAdd.length == 0) return {Date: '', primaryHeroes: []};
 
     let eventDate;
     if (heroEventBase.length == 0) {
@@ -49,7 +49,7 @@ export const data = {
       ts: Number(eventDate),
       date: eventDate.toISOString().split('T')[0],
       type: 'cm',
-      heroes: heroesToAdd,
+      primaryHeroes: heroesToAdd,
     };
 
     heroEventBase.unshift(newEvent);
@@ -66,7 +66,7 @@ export const data = {
     heroesToAdd = [...new Set(heroesToAdd)]
         .filter((h) => heroBase.findIndex((data) => data.id === h) !== -1);
 
-    if (heroesToAdd.length == 0) return {Date: '', heroes: []};
+    if (heroesToAdd.length !== 3) return {Date: '', primaryHeroes: []};
 
     let eventDate;
     if (heroEventBase.length == 0) {
@@ -76,12 +76,15 @@ export const data = {
       eventDate.setUTCDate(eventDate.getUTCDate() + 7);
     }
 
+    const secondaryHeroes = [heroesToAdd.pop()];
+
     /** @type Event */
     const newEvent = {
       ts: Number(eventDate),
       date: eventDate.toISOString().split('T')[0],
       type: 'wof',
-      heroes: heroesToAdd,
+      primaryHeroes: heroesToAdd,
+      secondaryHeroes: secondaryHeroes,
     };
 
     heroEventBase.unshift(newEvent);
