@@ -19,7 +19,7 @@ const ephemeral = false;
  * @param {CommandContext} context - Interaction context
  * @return {boolean}
  **/
-export function get(context) {
+function get(context) {
   const {client, locale, interaction} = context;
   const {options} = interaction;
 
@@ -33,7 +33,7 @@ export function get(context) {
           locale,
           'cmd.super-admin.log.get-result.client-log',
       );
-    } else if (fileName === 'error.log') {
+    } else if (fileName === 'client.error') {
       response = l10n.s(
           locale,
           'cmd.super-admin.log.get-result.client-error-log',
