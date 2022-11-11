@@ -6,31 +6,27 @@ export const commandName = 'super-admin';
 export const cooldown  = 0;
 
 import * as logCommand from './super-admin.log.js';
+import * as avatarCommand from './super-admin.bot-avatar.js';
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
 export async function execute(context) {
-  const {interaction} = context;
-
-  const subCommandGroup = interaction.options.getSubcommandGroup();
-  switch (subCommandGroup) {
+  switch (context.interaction.options.getSubcommandGroup()) {
     case 'log': return logCommand.execute(context);
+    case 'bot-avatar': return avatarCommand.execute(context);
   }
   return false;
 }
 
 /**
+ * Run autocomplete
  * @param {CommandContext} context - Interaction context
- * @return {boolean} - `true` if command is executed successfully
  */
 export function autocomplete(context) {
-  const {interaction} = context;
-
-  const subCommandGroup = interaction.options.getSubcommandGroup();
-  switch (subCommandGroup) {
-    case 'log': return logCommand.autocomplete(context);
+  switch (context.interaction.options.getSubcommandGroup()) {
+    case 'log': logCommand.autocomplete(context);
   }
-  return false;
 }
