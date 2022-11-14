@@ -182,7 +182,30 @@ export async function execute(context) {
     fields.push({name: 'Just ended', value: value});
   }
 
-  interaction.reply({embeds: [{fields: fields}]});
+  const response = {embeds: [{fields: fields}]};
+
+  // Get pinned announcement
+  const news = readJson(joinPath(dataDir, 'news.json'));
+  let pinned = undefined;
+  for (let i=0; i < news.length; i++) {
+    const n = news[i];
+    if (!n.publish) continue;
+    let deadline = Date.parse(n.pin.date);
+    if (n.pin.until === 'end-of') deadline += 24 * 60 * 60 * 1000;
+    if (deadline > currentTS) {
+      pinned = n;
+      break;
+    }
+  }
+
+  if (pinned) {
+    response.content =
+        pinned.content[locale]?
+        pinned.content[locale]:
+        pinned.content['en-US'];
+  }
+
+  interaction.reply(response);
 
   return true;
 }
