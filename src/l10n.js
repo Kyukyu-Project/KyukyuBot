@@ -130,7 +130,10 @@ export class L10N {
     /** string template   */
     let template;
 
-    if (this.data.get(locale).has(resourceKey)) {
+    if (
+      this.data.has(locale) &&
+      this.data.get(locale).has(resourceKey)
+    ) {
       template = this.data.get(locale).get(resourceKey);
     } else {
       locale = this.defaultLocale;
