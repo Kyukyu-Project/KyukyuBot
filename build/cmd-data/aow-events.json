@@ -1,0 +1,16 @@
+{
+  "commandName": "aow-events",
+  "global": false,
+  "ownerOnly": false,
+  "servers": [
+    { "$comment": "Official", ".": "658594298983350293"}
+  ],
+  "commandData": {
+    "name": "%%cmd.aow-events.name%%",
+    "name_localizations": "%%cmd.aow-events.name%%",
+    "description": "%%cmd.aow-events.desc%%",
+    "description_localizations": "%%cmd.aow-events.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true
+  }
+}

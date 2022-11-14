@@ -1,0 +1,68 @@
+[
+  {
+    "publish": true,
+    "emoji": "🎈",
+    "title": {"en-US": "**Caravan Camp**", "zh-TW": "商店營地"},
+    "date": {"start": "2022-10-06", "end": "2022-10-13", "duration": 0}
+  },
+  {
+    "publish": true,
+    "emoji": "🎈",
+    "title": {"en-US": "**Caravan Camp**", "zh-TW": "商店營地"},
+    "date": {"start": "2022-11-07", "end": "2022-11-27", "duration": 0}
+  },
+  {
+    "publish": true,
+    "emoji": "🎈",
+    "title": {"en-US": "**Halloween Bonus**", "zh-TW": "萬聖節簽到"},
+    "date": {"start": "2022-10-21", "end": "2022-11-03", "duration": 0}
+  },
+
+
+  {
+    "publish": true,
+    "emoji": "✨",
+    "title": {"en-US": "**Honor Celebration**", "zh-TW": "榮耀慶典"},
+    "date": {"start": "2022-10-06", "end": "2022-10-13", "duration": 0}
+  },
+  {
+    "publish": true,
+    "emoji": "✨",
+    "title": {"en-US": "Hero Trial: **Glory of Victory**", "zh-TW": "勝利的榮耀"},
+    "date": {"start": "2022-11-04", "end": "2022-11-10", "duration": 0}
+  },
+  {
+    "publish": true,
+    "emoji": "✨",
+    "title": {"en-US": "**Clan General Day**", "zh-TW": "會長節"},
+    "date": {"start": "2022-11-06", "end": "2022-11-06", "duration": 0}
+  },
+
+
+  {
+    "publish": true,
+    "emoji": "✨",
+    "title": {"en-US": "**Gem Spending Event** (Odin)", "zh-TW": "奧丁寶石消費活動"},
+    "date": {"start": "2022-11-22", "end": "2022-12-05", "duration": 0}
+  },
+
+
+  {
+    "publish": true,
+    "emoji": "🔥",
+    "title": {"en-US": "**Troop's Probability Will Increase** (GA, PS, FA)", "zh-TW": "士兵概率提升"},
+    "date": {"start": "2022-11-11", "duration": 3}
+  },
+  {
+    "publish": true,
+    "emoji": "🔥",
+    "title": {"en-US": "**Troop's Probability Will Increase** (GT, SN, Angel)", "zh-TW": "士兵概率提升"},
+    "date": {"start": "2022-11-25", "duration": 3}
+  },
+  {
+    "publish": false,
+    "emoji": "🔥",
+    "title": {"en-US": "**Troop's Probability Will Increase** (TBD)", "zh-TW": "士兵概率提升"},
+    "date": {"start": "2022-12-09", "duration": 3}
+  }
+]

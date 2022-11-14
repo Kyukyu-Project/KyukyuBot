@@ -1,0 +1,8 @@
+{
+  "cmd": {
+    "aow-events": {
+      "name": "aow-events",
+      "desc": "Information on current and upcoming events"
+    }
+  }
+}

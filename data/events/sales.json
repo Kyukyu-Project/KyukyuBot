@@ -1,0 +1,33 @@
+[
+  {
+    "publish": true,
+    "emoji": "💸",
+    "title": {
+      "en-US": "**Black Friday Sales**",
+      "zh-TW": "黑五特賣會"
+    },
+    "date": {"start": "2022-11-18", "end": "2022-12-01"}
+  },
+  {
+    "publish": true,
+    "emoji": "🛒",
+    "title": {
+      "en-US": "**Special Progress Packs**",
+      "zh-TW": "超值成長禮包"
+    },
+    "date": {"start": "2022-10-10", "end": "2022-11-10"}
+  },
+  {
+    "publish": true,
+    "emoji": "🛒",
+    "title": {
+      "en-US": "**Classic Skin Pack**",
+      "zh-TW": "典藏皮膚禮包"
+    },
+    "date": {
+      "start": "2022-10-10",
+      "end": "2022-10-23",
+      "duration": 0
+    }
+  }
+]

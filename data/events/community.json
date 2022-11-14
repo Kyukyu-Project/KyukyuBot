@@ -1,0 +1,38 @@
+[
+  {
+    "publish": true,
+    "emoji": "🎃",
+    "title": {
+      "en-US": "**Halloween Painting** (<#922780824062009344>)",
+      "zh-TW": ""
+    },
+    "date": {"start": "2022-10-26", "end": "2022-11-8"}
+  },
+  {
+    "publish": true,
+    "emoji": "🤡",
+    "title": {
+      "en-US": "**Cosplay Sharing** (<#1015114173727911967>)",
+      "zh-TW": ""
+    },
+    "date": {"start": "2022-10-01", "end": "2022-11-03"}
+  },
+  {
+    "publish": true,
+    "emoji": "🌐",
+    "title": {
+      "en-US": "My Territory Sharing (#aow-decorationdesigner)",
+      "zh-TW": "我的領地設計分享"
+    },
+    "date": {"start": "2022-09-27", "end": "2022-10-17"}
+  },
+  {
+    "publish": true,
+    "emoji": "🌐",
+    "title": {
+      "en-US": "**Formation Mastery** (#formation-mastery)",
+      "zh-TW": "陣形大師"
+    },
+    "date": {"start": "2022-10-18", "end": "2022-10-24"}
+  }
+]
