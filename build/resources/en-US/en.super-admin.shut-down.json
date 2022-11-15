@@ -1,0 +1,11 @@
+{
+  "cmd": {
+    "super-admin": {
+      "shut-down": {
+        "name": "shut-down",
+        "desc": "Shut down the boat",
+        "result": "The bot will shut down..."
+      }
+    }
+  }
+}

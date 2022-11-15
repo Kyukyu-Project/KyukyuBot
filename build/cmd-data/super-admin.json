@@ -164,9 +164,14 @@
             "description": "%%cmd.super-admin.run.npm-run-deploy.desc%%",
             "description_localizations": "%%cmd.super-admin.run.npm-run-deploy.desc%%"
           }
-        ],
-        "result": "Command executed:",
-        "error": "Error executing command:"
+        ]
+      },
+      { "$comment": "/super-admin shut-down",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.super-admin.shut-down.name%%",
+        "name_localizations": "%%cmd.super-admin.shut-down.name%%",
+        "description": "%%cmd.super-admin.shut-down.desc%%",
+        "description_localizations": "%%cmd.super-admin.shut-down.desc%%"
       }
     ]
   }

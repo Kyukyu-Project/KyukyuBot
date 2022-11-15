@@ -20,7 +20,7 @@ const importFilePath = joinPath(importDir, 'command-data.json');
 /**
  * Deploy command data
  */
-export async function deploy() {
+(async function() {
   const commandData = objectToMap(readJson(importFilePath));
   const rest = new REST({version: '10'}).setToken(clientConfig['login-token']);
 
@@ -53,6 +53,4 @@ export async function deploy() {
       }
     }
   }
-}
-
-deploy();
+})();

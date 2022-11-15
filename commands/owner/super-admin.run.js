@@ -32,16 +32,18 @@ export async function execute(context) {
     case 'npm-run-deploy': shellCommand = 'npm run deploy'; break;
   }
 
+  interaction.deferReply();
+
   return new Promise((resolve, reject) => {
     exec(shellCommand, (error, stdout, stderr) => {
       if (error) {
-        interaction.reply(
+        interaction.editReply(
             l10n.s(locale, 'cmd.super-admin.run.error') + '\n' +
             '```' + stderr + '```',
         );
         reject(error);
       } else {
-        interaction.reply(
+        interaction.editReply(
             l10n.s(locale, 'cmd.super-admin.run.result') + '\n' +
             '```' + stdout + '```',
         );

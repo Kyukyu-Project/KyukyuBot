@@ -8,6 +8,7 @@ export const cooldown  = 0;
 import * as logCommand from './super-admin.log.js';
 import * as avatarCommand from './super-admin.bot-avatar.js';
 import * as runCommand from './super-admin.run.js';
+import * as shutDownCommand from './super-admin.shut-down.js';
 
 /**
  * Execute the command
@@ -19,6 +20,10 @@ export async function execute(context) {
     case 'log': return logCommand.execute(context);
     case 'bot-avatar': return avatarCommand.execute(context);
     case 'run': return runCommand.execute(context);
+    default:
+      switch (context.interaction.options.getSubcommand()) {
+        case 'shut-down': return shutDownCommand.execute(context);
+      }
   }
   return false;
 }
