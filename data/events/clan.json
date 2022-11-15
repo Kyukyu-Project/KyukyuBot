@@ -3,28 +3,37 @@
     "publish": true,
     "emoji": "🚩",
     "title": {
-      "en-US": "**[Clan Competition: Infinity War](https://discord.com/channels/658594298983350293/1029595804773650592/1036465968727212112)** (req. registr.)",
-      "zh-TW": "**[公會賽：無限戰爭](https://discord.com/channels/658594298983350293/1029595804773650592/1036465968727212112)** (需報名)"
+      "en-US": "[Clan Ranking: Infinity War](https://discord.com/channels/658594298983350293/1029595804773650592/1036465968727212112) (req. registr.)",
+      "zh-TW": "[公會排名賽：無限戰爭](https://discord.com/channels/658594298983350293/1029595804773650592/1036465968727212112) (需報名)"
     },
-    "date": {"start": "2022-11-05", "end": "2022-11-11"}
+    "date": {
+      "start": "2022-11-05T00:00:00.000Z",
+      "end":   "2022-11-11T23:59:59.999Z"
+    }
   },
   {
     "publish": true,
     "emoji": "🚩",
     "title": {
-      "en-US": "**[Clan Competition: Hero Trial](https://discord.com/channels/658594298983350293/1029595804773650592/1035407924601831515)** (req. registr.)",
-      "zh-TW": "**[公會賽：英雄試煉](https://discord.com/channels/658594298983350293/1029595804773650592/1035407924601831515)** (需報名)"
+      "en-US": "[Clan Ranking: Hero Trial](https://discord.com/channels/658594298983350293/1029595804773650592/1035407924601831515) (req. registr.)",
+      "zh-TW": "[公會排名賽：英雄試煉](https://discord.com/channels/658594298983350293/1029595804773650592/1035407924601831515) (需報名)"
     },
-    "date": {"start": "2022-11-11", "end": "2022-11-24"}
+    "date": {
+      "start": "2022-11-11T00:00:00.000Z",
+      "end":   "2022-11-24T23:59:59.999Z"
+    }
   },
   {
     "publish": true,
     "emoji": "🚩",
     "title": {
-      "en-US": "**[Clan Competition: Honor Hunting](https://discord.com/channels/658594298983350293/1029595804773650592/1032114009090052177)** (req. registr.)",
-      "zh-TW": "**[公會賽：榮耀狩獵](https://discord.com/channels/658594298983350293/1029595804773650592/1032114009090052177)** (需報名)"
+      "en-US": "[Clan Ranking: Honor Hunting](https://discord.com/channels/658594298983350293/1029595804773650592/1032114009090052177) (req. registr.)",
+      "zh-TW": "[公會排名賽：榮耀狩獵](https://discord.com/channels/658594298983350293/1029595804773650592/1032114009090052177) (需報名)"
     },
-    "date": {"start": "2022-10-26", "end": "2022-11-01"}
+    "date": {
+      "start": "2022-10-26T00:00:00.000Z",
+      "end":   "2022-11-01T23:59:59.999Z"
+    }
   },
 
 
@@ -32,9 +41,12 @@
     "publish": true,
     "emoji": "🏁",
     "title": {
-      "en-US": "**[The Greatest Clan Event](https://discord.com/channels/658594298983350293/1031765198178095154/1031766229632958475)** (req. registr.)",
-      "zh-TW": "**[The Greatest Clan Event](https://discord.com/channels/658594298983350293/1031765198178095154/1031766229632958475)** (需報名)"
+      "en-US": "[The Greatest Clan Event](https://discord.com/channels/658594298983350293/1031765198178095154/1031766229632958475) (req. registr.)",
+      "zh-TW": "[The Greatest Clan Event](https://discord.com/channels/658594298983350293/1031765198178095154/1031766229632958475) (需報名)"
     },
-    "date": {"start": "2022-10-18", "end": "2022-10-31"}
+    "date": {
+      "start": "2022-10-18T00:00:00.000Z",
+      "end":   "2022-10-31T23:59:59.999Z"
+    }
   }  
 ]

@@ -2,7 +2,15 @@
   "cmd": {
     "aow-events": {
       "name": "aow-events",
-      "desc": "Information on current and upcoming events"
+      "desc": "Information on current and upcoming events",
+      "result": {
+        "current-line": "`{COUNT DOWN} left` {EMOJI} {TITLE}",
+        "current-title": "Ongoing events",
+        "upcoming-line": "`in {COUNT DOWN}` {EMOJI} {TITLE}",
+        "upcoming-title": "Upcoming events",
+        "ended-line": "`{COUNT DOWN} ago` {EMOJI} {TITLE}",
+        "ended-title": "Just ended"
+      }
     }
   }
 }
