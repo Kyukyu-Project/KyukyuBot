@@ -5,6 +5,7 @@
  */
 
 // import {l10n} from '../../src/l10n.js';
+import {l10n} from '../../src/l10n.js';
 import {
   getModuleDirectory,
   joinPath,
@@ -82,37 +83,20 @@ export async function execute(context) {
   function getCountDownString(countdown) {
     const D = 24 * 60 * 60 * 1000;
     const H = 60 * 60 * 1000;
-    // const M = 60 * 1000;
-
-    return (
-      `__${Math.floor(countdown / D)}__d ` +
-      `__${Math.floor((countdown % D) / H)}__h`
-    );
-
-    /*
-
-    if (countdown < (5 * M)) {
-      return '< 5m>';
-    }
+    const M = 60 * 1000;
 
     if (countdown > D) {
-      return (
-        `__${Math.floor(countdown / D)}__d ` +
-        `__${Math.floor((countdown % D) / H)}__h`
-      );
+      const dd = Math.ceil(countdown / D);
+      return (dd >= 10)?`${dd}d`:` ${dd}d`;
     }
 
     if (countdown > H) {
-      return (
-        `__${Math.floor(countdown / H)}__h ` +
-        `__${Math.floor((countdown % H) / M)}__m`
-      );
+      const hh = Math.ceil(countdown / H);
+      return (hh >= 10)?`${hh}h`:` ${hh}h`;
     }
 
-    if (countdown > M) {
-      return `__${Math.floor(countdown / M)}__m`;
-    }
-    */
+    const mm = Math.ceil(countdown / M);
+    return (mm >= 10)?`${mm}m`:` ${mm}m`;
   }
 
   allEvents
@@ -137,7 +121,7 @@ export async function execute(context) {
           }
         } else {
           // Recently ended events
-          if ((currentTS - endTS) < 3 * 24 * 60 * 60 * 1000) {
+          if ((currentTS - endTS) < 7 * 24 * 60 * 60 * 1000) {
             const countdown = currentTS - endTS;
             endedEvents.push(
                 Object.assign({countdown: countdown}, event),
@@ -153,33 +137,54 @@ export async function execute(context) {
   const fields = [];
 
   if (currentEvents.length) {
-    const lines = currentEvents.map((event) => (
-      `${event.emoji} ` +
-      (event.title[locale]?event.title[locale]:event.title['en-US']) +
-      ` (ends in ${getCountDownString(event.countdown)})`
-    ));
-    const value = lines.join('\n');
-    fields.push({name: 'Ongoing events', value: value});
+    const Template = l10n.s(locale, 'cmd.aow-events.result.current-line');
+    const Title = l10n.s(locale, 'cmd.aow-events.result.current-title');
+    const lines = currentEvents.map((evt) =>
+      l10n.r(
+          Template,
+          '{COUNT DOWN}', getCountDownString(evt.countdown),
+          '{EMOJI}', evt.emoji,
+          '{TITLE}', evt.title[locale]||evt.title['en-US'],
+      ),
+    );
+    fields.push({
+      name: Title,
+      value: lines.join('\n'),
+    });
   }
 
   if (upcomingEvents.length) {
-    const lines = upcomingEvents.map((event) => (
-      `${event.emoji} ` +
-      (event.title[locale]?event.title[locale]:event.title['en-US']) +
-      ` (starts in ${getCountDownString(event.countdown)})`
-    ));
-    const value = lines.join('\n');
-    fields.push({name: 'Upcoming events', value: value});
+    const Template = l10n.s(locale, 'cmd.aow-events.result.upcoming-line');
+    const Title = l10n.s(locale, 'cmd.aow-events.result.upcoming-title');
+    const lines = upcomingEvents.map((evt) =>
+      l10n.r(
+          Template,
+          '{COUNT DOWN}', getCountDownString(evt.countdown),
+          '{EMOJI}', evt.emoji,
+          '{TITLE}', evt.title[locale]||evt.title['en-US'],
+      ),
+    );
+    fields.push({
+      name: Title,
+      value: lines.join('\n'),
+    });
   }
 
   if (endedEvents.length) {
-    const lines = endedEvents.map((event) => (
-      `${event.emoji} ` +
-      (event.title[locale]?event.title[locale]:event.title['en-US']) +
-      ` (ended ${getCountDownString(event.countdown)} ago)`
-    ));
-    const value = lines.join('\n');
-    fields.push({name: 'Just ended', value: value});
+    const Template = l10n.s(locale, 'cmd.aow-events.result.ended-line');
+    const Title = l10n.s(locale, 'cmd.aow-events.result.ended-title');
+    const lines = endedEvents.slice(0, 3).map((evt) =>
+      l10n.r(
+          Template,
+          '{COUNT DOWN}', getCountDownString(evt.countdown),
+          '{EMOJI}', evt.emoji,
+          '{TITLE}', evt.title[locale]||evt.title['en-US'],
+      ),
+    );
+    fields.push({
+      name: Title,
+      value: lines.join('\n'),
+    });
   }
 
   const response = {embeds: [{fields: fields}]};
@@ -199,10 +204,7 @@ export async function execute(context) {
   }
 
   if (pinned) {
-    response.content =
-        pinned.content[locale]?
-        pinned.content[locale]:
-        pinned.content['en-US'];
+    response.content = pinned.content[locale]||pinned.content['en-US'];
   }
 
   interaction.reply(response);
