@@ -96,38 +96,45 @@
         ]
       },      
       { "$comment": "/super-admin bot-avatar",
-      "type": "CommandOptionType.SubcommandGroup",
-      "name": "%%cmd.super-admin.bot-avatar.name%%",
-      "name_localizations": "%%cmd.super-admin.bot-avatar.name%%",
-      "description": "%%cmd.super-admin.bot-avatar.desc%%",
-      "description_localizations": "%%cmd.super-admin.bot-avatar.desc%%",
-      "options": [
-        { "$comment": "/super-admin bot-avatar set",
-          "type": "CommandOptionType.Subcommand",
-          "name": "%%cmd.super-admin.bot-avatar.set.name%%",
-          "name_localizations": "%%cmd.super-admin.bot-avatar.set.name%%",
-          "description": "%%cmd.super-admin.bot-avatar.set.desc%%",
-          "description_localizations": "%%cmd.super-admin.bot-avatar.set.desc%%",
-          "options": [
-            { "$comment": "/super-admin bot-avatar set attach",
-              "type": "CommandOptionType.Attachment",
-              "name": "%%cmd.super-admin.bot-avatar.set.attach.name%%",
-              "name_localizations": "%%cmd.super-admin.bot-avatar.set.attach.name%%",
-              "description": "%%cmd.super-admin.bot-avatar.set.attach.desc%%",
-              "description_localizations": "%%cmd.super-admin.bot-avatar.set.attach.desc%%",
-              "ephemeral": true,
-              "required": true
-            }
-          ]
-        },
-        { "$comment": "/super-admin bot-avatar get",
-          "type": "CommandOptionType.Subcommand",
-          "name": "%%cmd.super-admin.bot-avatar.get.name%%",
-          "name_localizations": "%%cmd.super-admin.bot-avatar.get.name%%",
-          "description": "%%cmd.super-admin.bot-avatar.get.desc%%",
-          "description_localizations": "%%cmd.super-admin.bot-avatar.get.desc%%"
-        }
-      ]
+        "type": "CommandOptionType.SubcommandGroup",
+        "name": "%%cmd.super-admin.bot-avatar.name%%",
+        "name_localizations": "%%cmd.super-admin.bot-avatar.name%%",
+        "description": "%%cmd.super-admin.bot-avatar.desc%%",
+        "description_localizations": "%%cmd.super-admin.bot-avatar.desc%%",
+        "options": [
+          { "$comment": "/super-admin bot-avatar set",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.super-admin.bot-avatar.set.name%%",
+            "name_localizations": "%%cmd.super-admin.bot-avatar.set.name%%",
+            "description": "%%cmd.super-admin.bot-avatar.set.desc%%",
+            "description_localizations": "%%cmd.super-admin.bot-avatar.set.desc%%",
+            "options": [
+              { "$comment": "/super-admin bot-avatar set attach",
+                "type": "CommandOptionType.Attachment",
+                "name": "%%cmd.super-admin.bot-avatar.set.attach.name%%",
+                "name_localizations": "%%cmd.super-admin.bot-avatar.set.attach.name%%",
+                "description": "%%cmd.super-admin.bot-avatar.set.attach.desc%%",
+                "description_localizations": "%%cmd.super-admin.bot-avatar.set.attach.desc%%",
+                "ephemeral": true,
+                "required": true
+              }
+            ]
+          },
+          { "$comment": "/super-admin bot-avatar get",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.super-admin.bot-avatar.get.name%%",
+            "name_localizations": "%%cmd.super-admin.bot-avatar.get.name%%",
+            "description": "%%cmd.super-admin.bot-avatar.get.desc%%",
+            "description_localizations": "%%cmd.super-admin.bot-avatar.get.desc%%"
+          }
+        ]
+      },
+      { "$comment": "/super-admin git-pull",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.super-admin.git-pull.name%%",
+        "name_localizations": "%%cmd.super-admin.git-pull.name%%",
+        "description": "%%cmd.super-admin.git-pull.desc%%",
+        "description_localizations": "%%cmd.super-admin.git-pull.desc%%"
       }
     ]
   }

@@ -1,0 +1,12 @@
+{
+  "cmd": {
+    "super-admin": {
+      "git-pull": {
+        "name": "git-pull",
+        "desc": "Run git-pull command",
+        "result": "Git pulled:",
+        "error": "Error executing command:"
+      }
+    }
+  }
+}

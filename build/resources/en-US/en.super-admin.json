@@ -2,7 +2,7 @@
   "cmd": {
     "super-admin": {
       "name": "super-admin",
-      "desc": "Change or view super administrator settings"
+      "desc": "Access super administrator (owner) functions"
     }
   }
 }
