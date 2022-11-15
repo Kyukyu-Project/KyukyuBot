@@ -129,12 +129,44 @@
           }
         ]
       },
-      { "$comment": "/super-admin git-pull",
-        "type": "CommandOptionType.Subcommand",
-        "name": "%%cmd.super-admin.git-pull.name%%",
-        "name_localizations": "%%cmd.super-admin.git-pull.name%%",
-        "description": "%%cmd.super-admin.git-pull.desc%%",
-        "description_localizations": "%%cmd.super-admin.git-pull.desc%%"
+      { "$comment": "/super-admin run",
+        "type": "CommandOptionType.SubcommandGroup",
+        "name": "%%cmd.super-admin.run.name%%",
+        "name_localizations": "%%cmd.super-admin.run.name%%",
+        "description": "%%cmd.super-admin.run.desc%%",
+        "description_localizations": "%%cmd.super-admin.run.desc%%",
+        "options": [
+          { "$comment": "/super-admin run git-pull",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.super-admin.run.git-pull.name%%",
+            "name_localizations": "%%cmd.super-admin.run.git-pull.name%%",
+            "description": "%%cmd.super-admin.run.git-pull.desc%%",
+            "description_localizations": "%%cmd.super-admin.run.git-pull.desc%%"
+          },
+          { "$comment": "/super-admin run npm-update",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.super-admin.run.npm-update.name%%",
+            "name_localizations": "%%cmd.super-admin.run.npm-update.name%%",
+            "description": "%%cmd.super-admin.run.npm-update.desc%%",
+            "description_localizations": "%%cmd.super-admin.run.npm-update.desc%%"
+          },
+          { "$comment": "/super-admin run npm-run-build",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.super-admin.run.npm-run-build.name%%",
+            "name_localizations": "%%cmd.super-admin.run.npm-run-build.name%%",
+            "description": "%%cmd.super-admin.run.npm-run-build.desc%%",
+            "description_localizations": "%%cmd.super-admin.run.npm-run-build.desc%%"
+          },
+          { "$comment": "/super-admin run npm-run-deploy",
+            "type": "CommandOptionType.Subcommand",
+            "name": "%%cmd.super-admin.run.npm-run-deploy.name%%",
+            "name_localizations": "%%cmd.super-admin.run.npm-run-deploy.name%%",
+            "description": "%%cmd.super-admin.run.npm-run-deploy.desc%%",
+            "description_localizations": "%%cmd.super-admin.run.npm-run-deploy.desc%%"
+          }
+        ],
+        "result": "Command executed:",
+        "error": "Error executing command:"
       }
     ]
   }

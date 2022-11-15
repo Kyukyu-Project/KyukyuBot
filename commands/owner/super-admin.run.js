@@ -24,17 +24,25 @@ export async function execute(context) {
     return false;
   }
 
+  let shellCommand = '';
+  switch (interaction.options.getSubcommand()) {
+    case 'git-pull': shellCommand = 'git pull'; break;
+    case 'npm-update': shellCommand = 'npm update'; break;
+    case 'npm-run-build': shellCommand = 'npm run build'; break;
+    case 'npm-run-deploy': shellCommand = 'npm run deploy'; break;
+  }
+
   return new Promise((resolve, reject) => {
-    exec('git pull', (error, stdout, stderr) => {
+    exec(shellCommand, (error, stdout, stderr) => {
       if (error) {
         interaction.reply(
-            l10n.s(locale, 'cmd.super-admin.git-pull.error') + '\n' +
+            l10n.s(locale, 'cmd.super-admin.run.error') + '\n' +
             '```' + stderr + '```',
         );
         reject(error);
       } else {
         interaction.reply(
-            l10n.s(locale, 'cmd.super-admin.git-pull.result') + '\n' +
+            l10n.s(locale, 'cmd.super-admin.run.result') + '\n' +
             '```' + stdout + '```',
         );
         resolve(true);

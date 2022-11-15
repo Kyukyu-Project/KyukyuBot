@@ -1,0 +1,28 @@
+{
+  "cmd": {
+    "super-admin": {
+      "run": {
+        "name": "run",
+        "desc": "Remotely run a command on the shell",
+        "git-pull": {
+          "name": "git-pull",
+          "desc": "Run 'git pull' (update source code)"
+        },
+        "npm-update": {
+          "name": "npm-update",
+          "desc": "Run 'npm update' (update dependency packages)"
+        },
+        "npm-run-build": {
+          "name": "npm-run-build",
+          "desc": "Run 'npm run build' (build resources)"
+        },
+        "npm-run-deploy": {
+          "name": "npm-run-deploy",
+          "desc": "Run 'npm run deploy' (deploy command data)"
+        },
+        "result": "Command executed:",
+        "error": "Error executing command:"
+      }
+    }
+  }
+}
