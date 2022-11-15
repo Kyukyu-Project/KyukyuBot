@@ -40,11 +40,11 @@ function toUTCDate(d) {
 export async function execute(context) {
   const {interaction, locale} = context;
 
-  /** current time in UTC */
-  const currentTime = toUTCDate(new Date());
-
   /** current time in number */
-  const currentTS = Number(currentTime);
+  const currentTS = toUTCDate(new Date());
+
+  /** current time in UTC */
+  const currentTime = new Date(currentTS);
 
   const dataDir = resolvePath(moduleDir, '../../data/events/');
 
@@ -110,21 +110,18 @@ export async function execute(context) {
         if (endTS > currentTS) {
           if (startTS <= currentTS) { // Ongoing events
             const countdown = endTS - currentTS;
-            currentEvents.push(
-                Object.assign({countdown: countdown}, event),
+            currentEvents.push(Object.assign({countdown: countdown}, event),
             );
           } else { // Future events
             const countdown = startTS - currentTS;
-            upcomingEvents.push(
-                Object.assign({countdown: countdown}, event),
+            upcomingEvents.push(Object.assign({countdown: countdown}, event),
             );
           }
         } else {
           // Recently ended events
           if ((currentTS - endTS) < 7 * 24 * 60 * 60 * 1000) {
             const countdown = currentTS - endTS;
-            endedEvents.push(
-                Object.assign({countdown: countdown}, event),
+            endedEvents.push(Object.assign({countdown: countdown}, event),
             );
           }
         }
@@ -147,10 +144,7 @@ export async function execute(context) {
           '{TITLE}', evt.title[locale]||evt.title['en-US'],
       ),
     );
-    fields.push({
-      name: Title,
-      value: lines.join('\n'),
-    });
+    fields.push({name: Title, value: lines.join('\n')});
   }
 
   if (upcomingEvents.length) {
@@ -164,10 +158,7 @@ export async function execute(context) {
           '{TITLE}', evt.title[locale]||evt.title['en-US'],
       ),
     );
-    fields.push({
-      name: Title,
-      value: lines.join('\n'),
-    });
+    fields.push({name: Title, value: lines.join('\n')});
   }
 
   if (endedEvents.length) {
@@ -181,33 +172,66 @@ export async function execute(context) {
           '{TITLE}', evt.title[locale]||evt.title['en-US'],
       ),
     );
-    fields.push({
-      name: Title,
-      value: lines.join('\n'),
-    });
+    fields.push({name: Title, value: lines.join('\n')});
   }
-
-  const response = {embeds: [{fields: fields}]};
 
   // Get pinned announcement
   const news = readJson(joinPath(dataDir, 'news.json'));
   let pinned = undefined;
-  for (let i=0; i < news.length; i++) {
-    const n = news[i];
-    if (!n.publish) continue;
-    let deadline = Date.parse(n.pin.date);
-    if (n.pin.until === 'end-of') deadline += 24 * 60 * 60 * 1000;
-    if (deadline > currentTS) {
-      pinned = n;
-      break;
+
+  if (currentTime.getDay() === 2) {
+    pinned = l10n.s(
+        locale,
+        'cmd.aow-events.result.clan-hunting-start',
+    );
+  }
+
+  const Day = 24 * 60 * 60 * 1000;
+  const Season = 14 * Day;
+
+  if (!pinned) {
+    const Season77 = Date.parse('2022-11-6');
+    if ( ((currentTS - Season77) % Season) >= (13 * Day)) {
+      pinned = l10n.s(
+          locale,
+          'cmd.aow-events.result.arena-last-day',
+      );
+    }
+  }
+
+  if (!pinned) {
+    const Season73 = Date.parse('2022-11-11');
+    if ( ((currentTS - Season73) % Season) < (Day)) {
+      pinned = l10n.s(
+          locale,
+          'cmd.aow-events.result.championship-cup-start',
+      );
+    }
+  }
+
+  if (!pinned) {
+    for (let i=0; i < news.length; i++) {
+      const n = news[i];
+      if (!n.publish) continue;
+      let deadline = Date.parse(n.pin.date);
+      if (n.pin.until === 'end-of') deadline += 24 * 60 * 60 * 1000;
+      if (deadline > currentTS) {
+        pinned = n.content[locale]||n.content['en-US'];
+        break;
+      }
     }
   }
 
   if (pinned) {
-    response.content = pinned.content[locale]||pinned.content['en-US'];
+    interaction.reply({embeds: [
+      {color: 0xea4335, description: pinned},
+      {color: 0x3271a6, fields: fields},
+    ]});
+  } else {
+    interaction.reply({embeds: [
+      {color: 0x3271a6, fields: fields},
+    ]});
   }
-
-  interaction.reply(response);
 
   return true;
 }
