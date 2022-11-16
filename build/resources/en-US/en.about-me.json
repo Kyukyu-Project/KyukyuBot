@@ -1,0 +1,66 @@
+{
+  "cmd": {
+    "about-me": {
+      "name": "about-kyukyu",
+      "desc": "Information about Kyukyu",
+      "info": {
+        "name": "info",
+        "desc": "Get to know the technical side of Kyukyu"
+      },
+      "bios": {
+        "name": "bios",
+        "desc": "Get to know the personal side of Kyukyu"
+      },
+      "commands": {
+        "name": "commands",
+        "desc": "List all commands"
+      },
+  
+      "info-result": {
+        "version": {
+          "label": "Version",
+          "value": "{VERSION}"
+        },
+        "source-code": {
+          "label": "Source code",
+          "value<text>": [
+            "Repository: [{REPO URL}]({REPO URL})",
+            "Branch: {BRANCH}",
+            "Last-commit: {HASH}"
+          ]
+        },
+        "uptime": {
+          "label": "Uptime",
+          "value<text>": [
+            "Bot: {BOT UPTIME}",
+            "System: {SYS UPTIME}"
+          ]
+        },
+        "servers": {
+          "label": "Servers",
+          "value": "{SERVER COUNT} servers"
+        }
+      },
+  
+      "bios-result<text>": [
+        "I'm a shy fox who like hiding in a bunny cove and eavesdropping on convo in the Discord jungle...",
+        "",
+        "Motto: something witty....",
+        "",
+        "Companion: Harmless Buns",
+        "Favorite clan: NBA",
+        "Favorite musician: Koacia",
+        "Favorite anime: Fairy Tails"
+      ],
+  
+      "commands-result": {
+        "heading<text>": [
+          "Global command list",
+          "(Server-specific command not listed)",
+          ""
+        ],
+        "item": "{COMMAND}\n  {DESCRIPTION}"
+      }
+    }
+  }  
+}

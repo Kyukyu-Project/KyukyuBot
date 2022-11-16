@@ -1,0 +1,29 @@
+{
+  "commandName": "about-me",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.about-me.name%%",
+    "name_localizations": "%%cmd.about-me.name%%",
+    "description": "%%cmd.about-me.desc%%",
+    "description_localizations": "%%cmd.about-me.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true,
+    "options": [
+      {
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.about-me.info.name%%",
+        "name_localizations": "%%cmd.about-me.info.name%%",
+        "description": "%%cmd.about-me.info.desc%%",
+        "description_localizations": "%%cmd.about-me.info.desc%%"
+      },
+      {
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.about-me.bios.name%%",
+        "name_localizations": "%%cmd.about-me.bios.name%%",
+        "description": "%%cmd.about-me.bios.desc%%",
+        "description_localizations": "%%cmd.about-me.bios.desc%%"
+      }
+    ]
+  }
+}
