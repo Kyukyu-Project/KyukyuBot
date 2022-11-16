@@ -25,6 +25,7 @@ import {
   Partials,
   REST,
   Routes,
+  ActivityType,
 } from 'discord.js';
 
 import {clientConfig} from './app-config.js';
@@ -34,6 +35,14 @@ import {servers} from './servers.js';
 import {commands} from './commands.js';
 import {noop, getFullSlashCommand} from './utils.js';
 
+const presences = [
+  'Kracking jokes with Kraken',
+  'Watching cherry blossom with Aly',
+  'Singing karaoke will Miller',
+  'Munching on mochi and drinking matcha',
+];
+
+let presenceIdx = 0;
 
 /** Extending Discord Client */
 class Client extends djsClient {
@@ -454,6 +463,26 @@ class Client extends djsClient {
   }
 
   /**
+   * Register event handlers and get ready for logging in
+   */
+  ready() {
+    const client = this;
+    const updatePresence = () => {
+      if (presenceIdx >= presences.length) presenceIdx = 0;
+      client.user.setPresence({
+        status: 'online',
+        activities: [{
+          type: ActivityType.Playing,
+          name: presences[presenceIdx],
+        }],
+      });
+      presenceIdx++;
+    };
+    updatePresence();
+    setInterval(()=> updatePresence(), 10 * 60 * 1000);
+  }
+
+  /**
    * Event handler for leaving a server
    * @param {Discord.Guild} guild
    */
@@ -481,12 +510,13 @@ class Client extends djsClient {
   /**
    * Register event handlers and get ready for logging in
    */
-  async ready() {
+  async registerEventHandlers() {
     this.on('messageCreate', (msg) => this.onMessageCreate(msg));
     this.on('interactionCreate', (i) => this.onInteractionCreate(i));
     this.on('guildCreate', (g) => this.onGuildCreate(g));
     this.on('guildDelete', (g) => this.onGuildLeave(g));
     this.on('messageReactionAdd', (r, u) => this.onReactionAdd(r, u));
+    this.on('ready', ()=> this.ready());
   }
 }
 
