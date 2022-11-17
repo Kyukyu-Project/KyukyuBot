@@ -269,6 +269,7 @@ class Client extends djsClient {
     const {commandName, guild, interaction, time} = ctx;
 
     if (typeof result == 'boolean') {
+      if (!guild) return;
       logger.writeLog(
           `${guild.id}.log`,
           {
