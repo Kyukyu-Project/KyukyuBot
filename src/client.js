@@ -8,6 +8,7 @@
  * @typedef {import('discord.js').Interaction} Interaction
  * @typedef {import('discord.js').Message} Message
  * @typedef {import('discord.js').MessageReaction} MessageReaction
+ * @typedef {import('discord.js').Activity} Activity
  * @typedef {import('./typedef.js').CommandHandler} CommandHandler
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').MessageContext} MessageContext
@@ -35,14 +36,20 @@ import {servers} from './servers.js';
 import {commands} from './commands.js';
 import {noop, getFullSlashCommand} from './utils.js';
 
-const presences = [
+const activities = [
   'Kracking jokes with Kraken',
   'Watching cherry blossom with Aly',
-  'Singing karaoke will Miller',
+  'Singing karaoke with Miller',
   'Munching on mochi and drinking matcha',
+  'Poking bears with Beast Master',
+  'Moonwalking with Selene',
+  'Playing poker with Cassandra',
+  'Chillin with Chione',
+  'Barhopping with Edward',
+  'Playing Hide & Seek with Shadow Ninja',
 ];
 
-let presenceIdx = 0;
+let activityIdx = Math.floor(Math.random() * activities.length) + 1;
 
 /** Extending Discord Client */
 class Client extends djsClient {
@@ -464,19 +471,19 @@ class Client extends djsClient {
 
   /**
    * Register event handlers and get ready for logging in
-   * @param {djsClient} client
    */
-  onReady(client) {
+  onReady() {
+    const client = this;
     const updatePresence = () => {
-      if (presenceIdx >= presences.length) presenceIdx = 0;
+      if (activityIdx >= activities.length) activityIdx = 0;
       client.user.setPresence({
         status: 'online',
         activities: [{
           type: ActivityType.Playing,
-          name: presences[presenceIdx],
+          name: activities[activityIdx],
         }],
       });
-      presenceIdx++;
+      activityIdx++;
     };
     updatePresence();
     setInterval(()=> updatePresence(), 10 * 60 * 1000);

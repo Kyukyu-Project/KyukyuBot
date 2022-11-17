@@ -15,7 +15,6 @@
         "name": "commands",
         "desc": "List all commands"
       },
-  
       "info-result": {
         "version": {
           "label": "Version",
@@ -43,9 +42,9 @@
       },
   
       "bios-result<text>": [
-        "I'm a shy fox who like hiding in a bunny cove and eavesdropping on convo in the Discord jungle...",
+        "I'm a shy fox who like hiding in a bunny hole and eavesdropping on convo in the Discord jungle...",
         "",
-        "Motto: something witty....",
+        "*Revenge is a dish best served with veggies and a single malt.*",
         "",
         "Companion: Harmless Buns",
         "Favorite clan: NBA",
