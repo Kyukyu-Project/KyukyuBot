@@ -245,7 +245,14 @@ class Client extends djsClient {
 
     const ctx = this.getCommandContext(interaction, cmd);
 
-    if (this.checkCooldown(ctx)) return;
+    if (this.checkCooldown(ctx)) {
+      interaction.reply({
+        content: l10n.s(ctx.locale, 'messages.command-error.on-cool-down'),
+        ephemeral: true,
+      });
+
+      return;
+    }
 
     cmd
         .execute(ctx)

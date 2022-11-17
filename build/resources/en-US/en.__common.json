@@ -15,7 +15,8 @@
       "invalid": "Error executing command: invalid command.",
       "no-user-permission": "Error executing command: no user permission.",
       "no-app-permission": "Error executing command: no application permission.",
-      "not-found": "Error executing command: no information found."
+      "not-found": "Error executing command: no information found.",
+      "on-cool-down": "You are on cool down for this command."
     }
   },
   "smart-reply": {
