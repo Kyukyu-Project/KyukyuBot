@@ -1,8 +1,8 @@
 /**
  * Command helper
  **/
+
 /**
- * @typedef {import('discord.js')} Discord
  * @typedef {import('./typedef.js').CommandHandler} CommandHandler
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').CommandContext} CommandContext

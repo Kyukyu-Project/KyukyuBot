@@ -34,6 +34,7 @@ function toUTCDate(d) {
 }
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
@@ -77,26 +78,18 @@ export async function execute(context) {
   }
 
   /**
-   * @param {number} countdown - countdown
+   * Convert countdown (microseconds) to XXd, XXh, or XXm
+   * @param {number} countdown - countdown (microseconds)
    * @return {string}
    */
-  function getCountDownString(countdown) {
+  function formatCountdown(countdown) {
+    const pad = (n) => ((n < 10 ? '0' : '') + n);
     const D = 24 * 60 * 60 * 1000;
     const H = 60 * 60 * 1000;
     const M = 60 * 1000;
-
-    if (countdown > D) {
-      const dd = Math.ceil(countdown / D);
-      return (dd >= 10)?`${dd}d`:` ${dd}d`;
-    }
-
-    if (countdown > H) {
-      const hh = Math.ceil(countdown / H);
-      return (hh >= 10)?`${hh}h`:` ${hh}h`;
-    }
-
-    const mm = Math.ceil(countdown / M);
-    return (mm >= 10)?`${mm}m`:` ${mm}m`;
+    if (countdown > D) return pad(Math.ceil(countdown / D)) + 'd';
+    if (countdown > H) return pad(Math.ceil(countdown / H)) + 'h';
+    return pad(Math.ceil(countdown / M)) + 'm';
   }
 
   allEvents
@@ -139,7 +132,7 @@ export async function execute(context) {
     const lines = currentEvents.map((evt) =>
       l10n.r(
           Template,
-          '{COUNT DOWN}', getCountDownString(evt.countdown),
+          '{COUNT DOWN}', formatCountdown(evt.countdown),
           '{EMOJI}', evt.emoji,
           '{TITLE}', evt.title[locale]||evt.title['en-US'],
       ),
@@ -153,7 +146,7 @@ export async function execute(context) {
     const lines = upcomingEvents.map((evt) =>
       l10n.r(
           Template,
-          '{COUNT DOWN}', getCountDownString(evt.countdown),
+          '{COUNT DOWN}', formatCountdown(evt.countdown),
           '{EMOJI}', evt.emoji,
           '{TITLE}', evt.title[locale]||evt.title['en-US'],
       ),
@@ -167,7 +160,7 @@ export async function execute(context) {
     const lines = endedEvents.slice(0, 3).map((evt) =>
       l10n.r(
           Template,
-          '{COUNT DOWN}', getCountDownString(evt.countdown),
+          '{COUNT DOWN}', formatCountdown(evt.countdown),
           '{EMOJI}', evt.emoji,
           '{TITLE}', evt.title[locale]||evt.title['en-US'],
       ),

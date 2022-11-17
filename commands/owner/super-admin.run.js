@@ -10,6 +10,7 @@ import {l10n} from '../../src/l10n.js';
 const requiredAppPermissions = PermissionFlagsBits.SendMessages;
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

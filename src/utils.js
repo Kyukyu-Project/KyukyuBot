@@ -4,6 +4,7 @@
 
 /**
  * @typedef {import('discord.js').Interaction} Interaction
+ * @typedef {import('discord.js').CommandInteractionOption} CommandInteractionOption
  */
 
 export {
@@ -73,7 +74,7 @@ export function getFullSlashCommand(interaction) {
 
   /**
    * Serialize command options
-   * @param {Discord.CommandInteractionOption[]} options - Command options
+   * @param {CommandInteractionOption[]} options - Command options
    */
   function __serialize(options) {
     options.forEach((currOption) => {

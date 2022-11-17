@@ -10,6 +10,7 @@ import * as botChannelCommand from './bot-admin.bot-channel.js';
 import * as logCommand from './bot-admin.log.js';
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
@@ -26,8 +27,8 @@ export async function execute(context) {
 }
 
 /**
+ * Run autocomplete
  * @param {CommandContext} context - Interaction context
- * @return {boolean} - `true` if command is executed successfully
  */
 export function autocomplete(context) {
   const {interaction} = context;
@@ -35,7 +36,6 @@ export function autocomplete(context) {
   const subCommandGroup = interaction.options.getSubcommandGroup();
   switch (subCommandGroup) {
     // case 'bot-channel': return botChannelCommand.autocomplete(context);
-    case 'helper-roles': return helperRoleCommand.autocomplete(context);
+    case 'helper-roles': helperRoleCommand.autocomplete(context);
   }
-  return false;
 }

@@ -12,6 +12,12 @@
   "globals": {
   },
   "rules": {
+    "max-len": [
+      "error",
+      {
+        "ignoreComments": true
+      }
+    ],
     "no-multi-spaces": [
       "error",
       {

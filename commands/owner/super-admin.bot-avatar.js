@@ -63,6 +63,7 @@ async function get(context) {
 }
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

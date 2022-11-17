@@ -6,6 +6,7 @@ export const commandName = 'art-of-love';
 export const cooldown  = 3;
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

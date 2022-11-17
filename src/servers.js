@@ -10,7 +10,7 @@ import {saveJson, readJson, objectToMap}
   from './utils.js';
 
 /**
- * @typedef {import('discord.js')} Discord
+ * @typedef {import('discord.js').Guild} Guild
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
  */
@@ -30,7 +30,7 @@ class Servers {
 
   /**
    * Get a copy of the server settings
-   * @param {Discord.Guild} server - Guild (Discord server)
+   * @param {Guild} server - Guild (Discord server)
    * @return {GuildSettings}
    */
   getSettings(server) {
@@ -47,7 +47,7 @@ class Servers {
 
   /**
    * Update server settings
-   * @param {Discord.Guild} server - Guild (Discord server)
+   * @param {Guild} server - Guild (Discord server)
    * @param {string} key - Setting key
    * @param {string|string[]} value - New value
    */

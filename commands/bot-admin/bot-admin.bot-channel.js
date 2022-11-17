@@ -31,7 +31,7 @@ function getSetting(settings) {
  * @param {CommandContext} context - Interaction context
  * @return {ActionResult}
  **/
-export function set(context) {
+function set(context) {
   const {guild, guildSettings, interaction} = context;
   const {locale, options} = interaction;
 
@@ -119,6 +119,7 @@ function info(context) {
 }
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

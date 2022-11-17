@@ -1,7 +1,5 @@
 /**
  * @typedef {import('../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
  */
 
 import {l10n} from '../src/l10n.js';
@@ -16,6 +14,7 @@ export const cooldown  = 5;
 const DbResKey = 'help-info';
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
@@ -23,17 +22,11 @@ export async function execute(context) {
   const {locale, interaction} = context;
   const {options} = interaction;
 
-  /**
-   * @type {string}
-   * User query
-   */
+  /** @type {string} User query */
   const query = options.getString('query');
 
-  /**
-   * Tagged user
-   */
-  const taggedUser = options.getUser('tag');
-  const taggedUserId = taggedUser?taggedUser.id:undefined;
+  /** Id of tagged user */
+  const taggedUserId = options.getUser('tag')?.id;
 
   if (query) {
     const queryResult = l10n.autocomplete.getContent(locale, query, DbResKey);
@@ -56,6 +49,7 @@ export async function execute(context) {
 }
 
 /**
+ * Run autocomplete
  * @param {CommandContext} context - Interaction context
  */
 export function autocomplete(context) {

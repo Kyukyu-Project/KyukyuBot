@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /**
 * @typedef {import('./client.js').default} Client
 * @typedef {import('discord.js').Guild} Guild

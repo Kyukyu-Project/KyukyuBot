@@ -1,10 +1,8 @@
-/* eslint max-len: ["error", { "ignoreComments": true }] */
-
 /**
+ * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').GuildSettings} GuildSettings
  * @typedef {import('./typedef.js').ReplyContext} ReplyContext
- * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
  */
 
 import {ComponentType, ChannelType, ButtonStyle} from 'discord.js';

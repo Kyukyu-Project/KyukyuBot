@@ -1,7 +1,5 @@
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
 import {ChannelType} from 'discord.js';
@@ -31,6 +29,7 @@ const EXP_POINTS = [
   2204550, 2284550, 2366550, 2450550, 2536550];
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

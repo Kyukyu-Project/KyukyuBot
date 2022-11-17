@@ -1,6 +1,5 @@
 /**
  * @typedef {import('../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../src/typedef.js').GuildSettings} GuildSettings
  * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
  */
 
@@ -41,14 +40,18 @@ function info(context) {
   const gitLastCommit = execSync('git rev-parse HEAD')
       .toString().slice(0, 7);
 
-  const formatUptime = (seconds) => {
-    const pad = (s) => ((s < 10 ? '0' : '') + s);
-
-    const hh = Math.floor(seconds / (60*60));
-    const mm = Math.floor(seconds % (60*60) / 60);
-    const ss = Math.floor(seconds % 60);
+  /**
+   * Convert up-time to hh:mm:ss format
+   * @param {number} uptime - uptime (in seconds)
+   * @return {string}
+   */
+  function formatUptime(uptime) {
+    const pad = (n) => ((n < 10 ? '0' : '') + n);
+    const hh = Math.floor(uptime / (60*60));
+    const mm = Math.floor(uptime % (60*60) / 60);
+    const ss = Math.floor(uptime % 60);
     return `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
-  };
+  }
 
   const embed = {
     fields: [
@@ -93,6 +96,7 @@ function info(context) {
 }
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

@@ -3,9 +3,11 @@
  **/
 
 /**
- * @typedef {import('discord.js')} Discord
- * @typedef {import('discord.js').Message} Message
+ * @typedef {import('discord.js').Guild} Guild
+ * @typedef {import('discord.js').User} User
  * @typedef {import('discord.js').Interaction} Interaction
+ * @typedef {import('discord.js').Message} Message
+ * @typedef {import('discord.js').MessageReaction} MessageReaction
  * @typedef {import('./typedef.js').CommandHandler} CommandHandler
  * @typedef {import('./typedef.js').CommandContext} CommandContext
  * @typedef {import('./typedef.js').MessageContext} MessageContext
@@ -13,8 +15,6 @@
  * @typedef {import('./typedef.js').ClientConfig} ClientConfig
  * @typedef {import('./logger.js').LogEntry} LogEntry
  */
-
-/* eslint max-len: ["error", { "ignoreComments": true }] */
 
 import {
   Client as djsClient,
@@ -222,7 +222,7 @@ class Client extends djsClient {
 
   /**
    * Execute an application command
-   * @param {Discord.Interaction} interaction
+   * @param {Interaction} interaction
    */
   async runCommand(interaction) {
     const {commandName} = interaction;
@@ -319,7 +319,7 @@ class Client extends djsClient {
 
   /**
    * Execute command autocomplete function
-   * @param {Discord.Interaction} interaction
+   * @param {Interaction} interaction
    */
   async runAutocomplete(interaction) {
     const {commandName, locale, guild, channel, user} = interaction;
@@ -355,7 +355,7 @@ class Client extends djsClient {
 
   /**
    * Process interaction
-   * @param {Discord.Interaction} interaction
+   * @param {Interaction} interaction
    */
   async onInteractionCreate(interaction) {
     if (this.pauseProcess) return;
@@ -373,7 +373,7 @@ class Client extends djsClient {
 
   /**
    * Process message
-   * @param {Discord.Message} message
+   * @param {Message} message
    */
   async onMessageCreate(message) {
     const {client, channel} = message;
@@ -407,8 +407,8 @@ class Client extends djsClient {
 
   /**
    * Process waste bin reaction (🗑️) for deleting bot's own message
-   * @param {Discord.MessageReaction} reaction
-   * @param {Discord.User} user
+   * @param {MessageReaction} reaction
+   * @param {User} user
    */
   async onReactionAdd(reaction, user) {
     if (this.pauseProcess) return;
@@ -453,7 +453,7 @@ class Client extends djsClient {
 
   /**
    * Event handler for joining a new server
-   * @param {Discord.Guild} guild
+   * @param {Guild} guild
    */
   async onGuildCreate(guild) {
     logger.writeLog(
@@ -464,9 +464,9 @@ class Client extends djsClient {
 
   /**
    * Register event handlers and get ready for logging in
+   * @param {djsClient} client
    */
-  ready() {
-    const client = this;
+  onReady(client) {
     const updatePresence = () => {
       if (presenceIdx >= presences.length) presenceIdx = 0;
       client.user.setPresence({
@@ -484,7 +484,7 @@ class Client extends djsClient {
 
   /**
    * Event handler for leaving a server
-   * @param {Discord.Guild} guild
+   * @param {Guild} guild
    */
   async onGuildLeave(guild) {
     logger.writeLog(
@@ -516,7 +516,7 @@ class Client extends djsClient {
     this.on('guildCreate', (g) => this.onGuildCreate(g));
     this.on('guildDelete', (g) => this.onGuildLeave(g));
     this.on('messageReactionAdd', (r, u) => this.onReactionAdd(r, u));
-    this.on('ready', ()=> this.ready());
+    this.on('ready', (client) => this.onReady());
   }
 }
 

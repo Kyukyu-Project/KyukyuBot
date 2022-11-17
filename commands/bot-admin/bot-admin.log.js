@@ -19,7 +19,7 @@ const ephemeral = false;
  * @param {CommandContext} context - Interaction context
  * @return {boolean}
  **/
-export function get(context) {
+function get(context) {
   const {locale, guild, interaction} = context;
   const fileName = guild.id + '.log';
   const filePath = logger.getLogPath(fileName);
@@ -63,6 +63,7 @@ function clear(context) {
 }
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

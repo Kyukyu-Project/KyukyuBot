@@ -1,7 +1,5 @@
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
 import {l10n} from '../../src/l10n.js';
@@ -11,6 +9,7 @@ export const cooldown  = 5;
 const ephemeral = false;
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */

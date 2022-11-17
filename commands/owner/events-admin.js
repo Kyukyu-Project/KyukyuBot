@@ -12,6 +12,7 @@ export const cooldown  = 0;
 const ephemeral = false;
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
@@ -163,6 +164,7 @@ function remove(context) {
 }
 
 /**
+ * Run autocomplete
  * @param {CommandContext} context - Interaction context
  */
 export function autocomplete(context) {

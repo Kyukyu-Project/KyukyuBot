@@ -1,6 +1,5 @@
 /**
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
@@ -13,6 +12,7 @@ export const cooldown  = 5;
 const ephemeral = false;
 
 /**
+ * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
@@ -43,6 +43,7 @@ export async function execute(context) {
 }
 
 /**
+ * Run autocomplete
  * @param {CommandContext} context - Interaction context
  */
 export function autocomplete(context) {
