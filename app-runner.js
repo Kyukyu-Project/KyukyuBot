@@ -16,6 +16,9 @@ pm2.connect(function(err) {
     const processConfig = {
       script: './app.js',
       name: clientConfig['process-name'],
+      env: {
+        npm_package_version: process.env.npm_package_version,
+      },
       log_date_format: 'YYYY-MM-DD HH:mm Z',
       out_file: resolve(clientConfig['client-data-dir'], './pm2.log'),
       error_file: resolve(clientConfig['client-data-dir'], './pm2.error'),

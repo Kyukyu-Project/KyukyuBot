@@ -37,7 +37,9 @@ export async function buildLocaleResources() {
   const resourceMap = new Map();
   const locales = [];
 
-  resourceMap.set('version', process.env.npm_package_version);
+  if (process.env.npm_package_version) {
+    resourceMap.set('version', process.env.npm_package_version);
+  }
   resourceMap.set('locales', locales);
 
   readDirectory(importDir).forEach((fileName) => {

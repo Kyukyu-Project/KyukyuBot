@@ -56,13 +56,6 @@ function info(context) {
   const embed = {
     fields: [
       {
-        name: l10n.s(locale, 'cmd.about-me.info-result.version.label'),
-        value: l10n.t(
-            locale, 'cmd.about-me.info-result.version.value',
-            '{VERSION}', process.env.npm_package_version || '?',
-        ),
-      },
-      {
         name: l10n.s(locale, 'cmd.about-me.info-result.source-code.label'),
         value: l10n.t(
             locale, 'cmd.about-me.info-result.source-code.value',
@@ -88,6 +81,18 @@ function info(context) {
       },
     ],
   };
+
+  if (process.env.npm_package_version) {
+    embed.fields.unshift(
+        {
+          name: l10n.s(locale, 'cmd.about-me.info-result.version.label'),
+          value: l10n.t(
+              locale, 'cmd.about-me.info-result.version.value',
+              '{VERSION}', process.env.npm_package_version,
+          ),
+        },
+    );
+  }
 
   return ({
     success: true,
