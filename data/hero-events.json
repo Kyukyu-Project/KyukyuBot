@@ -1,5 +1,18 @@
 [
   {
+    "ts": 1669680000000,
+    "date": "2022-11-29",
+    "type": "cm",
+    "primaryHeroes": [
+      "aly",
+      "charon",
+      "poseidon",
+      "nezha",
+      "wukong",
+      "harrison"
+    ]
+  },
+  {
     "ts": 1669075200000,
     "date": "2022-11-22",
     "type": "wof",
