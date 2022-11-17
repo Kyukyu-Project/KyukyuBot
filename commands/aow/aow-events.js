@@ -83,7 +83,7 @@ export async function execute(context) {
    * @return {string}
    */
   function formatCountdown(countdown) {
-    const pad = (n) => ((n < 10 ? '0' : '') + n);
+    const pad = (n) => ((n < 10 ? ' ' : '') + n);
     const D = 24 * 60 * 60 * 1000;
     const H = 60 * 60 * 1000;
     const M = 60 * 1000;
