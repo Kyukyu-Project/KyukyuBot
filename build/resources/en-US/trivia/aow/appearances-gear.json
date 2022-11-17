@@ -1,0 +1,26 @@
+{
+  "$comment": "Trivia questions related to equipment of hero and troops",
+  "trivia.aow": [
+    {
+      "question": "What weapon do brawlers weld? ",
+      "type": "multiple",
+      "choices": ["Axe", "Sword", "Spear", "Harpoon"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following troops does not carry a shield?",
+      "type": "multiple",
+      "choices": ["Pilgrims", "Brawlers", "Skeletons", "Paladin", "They all carry shields"],
+      "correct-answer": 4,
+      "order": "fixed"
+    },
+    {
+      "question": "What is at the tip of Necromancer's staff?",
+      "type": "multiple",
+      "choices": ["Scythe", "Human skull", "Chrystal ball", "Bat"],
+      "correct-answer": 0,
+      "order": "fixed"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "$comment": "Trivia questions related to attire of hero and troops",
+  "trivia.aow": [
+    {
+      "question": "What is the emblem on Ivan’s cape?",
+      "type": "multiple",
+      "choices": ["Crown", "Sword", "Shield", "No emblem"],
+      "correct-answer": 0,
+      "order": "fixed"
+    },
+    {
+      "question": "What is the emblem on Arthur’s cape?",
+      "type": "multiple",
+      "choices": ["Crown", "Sword", "Lightening", "No emblem"],
+      "correct-answer": 3,
+      "order": "fixed"
+    },
+    {
+      "question": "What is the emblem on Drake’s cape?",
+      "type": "multiple",
+      "choices": ["Compass", "Sword", "Anchor", "No emblem"],
+      "correct-answer": 2,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following colors best describes the attire of enemy __Undead Warrior__?",
+      "type": "multiple",
+      "choices": ["Dark purple", "Dark red", "Dark green", "Camouflage"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following colors best describes the attire of enemy __Shadow Ninja__?",
+      "type": "multiple",
+      "choices": ["Bright red", "Dark red", "Dark green", "Dark blue"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "What is the helmet decoration of Kriss's Christmas Guardian skin?",
+      "type": "multiple",
+      "choices": ["Reindeer antlers", "Bison horns", "Red feathered crest", "Poinsettia leaves"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "What is the color of the skull on Edward's hat?",
+      "type": "multiple",
+      "choices": ["Red", "Black", "White", "There is no skull"],
+      "correct-answer": 0,
+      "order": "fixed"
+    },
+    {
+      "question": "What is the color of the crest on Athena's helmet?",
+      "type": "multiple",
+      "choices": ["Gold", "Red", "Green", "There is no crest"],
+      "correct-answer": 1,
+      "order": "fixed"
+    },
+    {
+      "question": "Which of the following are not part of Chione’s Royal Christmas Ball skin?",
+      "type": "multiple",
+      "choices": ["Long red shawl", "Green belt with golden bell", "Red sleeves", "White boots"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following is not part of Queen of Frozen Land? ",
+      "type": "multiple",
+      "choices": ["Blue sleeves", "White plain belt", "Frost crown", "Blue shawl"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "Which of the following is not true of Jinn's Summer Joy skin? ",
+      "type": "multiple",
+      "choices": [
+        "The hat has white frangipani flowers",
+        "The float is a duck wearing sunglasses",
+        "Jinn has a clean-shaved face",
+        "The coconut has an umbrella decoration"
+      ],
+      "correct-answer": 2,
+      "order": "random"
+    }
+  ]
+}

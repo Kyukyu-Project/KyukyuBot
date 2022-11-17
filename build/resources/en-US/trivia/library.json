@@ -1,0 +1,12 @@
+{
+  "trivia.library": [
+    {
+      "id": "aow",
+      "title": "Art of War: Legions"
+    },
+    {
+      "id": "lotr",
+      "title": "Lord of the Rings"
+    }
+  ]
+}

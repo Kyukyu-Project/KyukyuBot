@@ -1,0 +1,55 @@
+{
+  "$comment": "Unsorted...",
+  "trivia.aow": [
+    {
+      "question": "Which of the following troops does not have horns?",
+      "type": "multiple",
+      "choices": ["Taurus Witcher", "Yasha", "Demon", "They all have horns"],
+      "correct-answer": 3,
+      "order": "fixed"
+    },
+    {
+      "question": "Which troops does not have wings?",
+      "type": "multiple",
+      "choices": ["Ghost Assassins", "Hell Jailers", "Undead Soldier", "Demon"],
+      "correct-answer": 0,
+      "order": "random"
+    },
+    {
+      "question": "How many tentacles does Kraken have?",
+      "type": "multiple",
+      "choices": ["6", "7", "8", "10"],
+      "correct-answer": 2,
+      "order": "fixed"
+    },
+    {
+      "question": "How many tails does Aly have?",
+      "type": "multiple",
+      "choices": ["3", "5", "9", "10"],
+      "correct-answer": 2,
+      "order": "fixed"
+    },
+    {
+      "question": "At which row position will __Shadow Ninja__ arrive at enemy the quickest?",
+      "type": "multiple",
+      "choices": ["The 1st row", "The 2nd row", "The last row", "Any row position"],
+      "correct-answer": 3,
+      "order": "fixed"
+    },
+    {
+      "question": "At which row position will __Magic Apprentice__ arrive at enemy the quickest?",
+      "type": "multiple",
+      "choices": ["The 1st row", "The 2nd row", "The last row", "Any row position"],
+      "correct-answer": 0,
+      "order": "fixed"
+    },
+    {
+      "question": "What is the normal attack of level-9 Goblikazes?",
+      "type": "multiple",
+      "choices": ["0", "530", "928", "1115"],
+      "correct-answer": 0,
+      "answer-note": "Goblikazes deal skill damage and have no normal attack.",
+      "order": "fixed"
+    }
+  ]
+}

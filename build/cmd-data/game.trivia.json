@@ -1,0 +1,45 @@
+{
+  "commandName": "trivia",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.trivia.name%%",
+    "name_localizations": "%%cmd.trivia.name%%",
+    "description": "%%cmd.trivia.desc%%",
+    "description_localizations": "%%cmd.trivia.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": false,
+    "options": [
+      { "$comment": "/trivia subject",
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.trivia.subject.name%%",
+        "name_localizations": "%%cmd.trivia.subject.name%%",
+        "description": "%%cmd.trivia.subject.desc%%",
+        "description_localizations": "%%cmd.trivia.subject.desc%%",
+        "required": true,
+        "choices": [
+          {
+            "name": "%%cmd.trivia.subject.lotr.name%%",
+            "name_localizations": "%%cmd.trivia.subject.lotr.name%%",
+            "value": "lotr"
+          },
+          {
+            "name": "%%cmd.trivia.subject.aow.name%%",
+            "name_localizations": "%%cmd.trivia.subject.aow.name%%",
+            "value": "aow"
+          }
+        ]
+      },
+      { "$comment": "/trivia rounds",
+        "type": "CommandOptionType.Integer",
+        "name": "%%cmd.trivia.rounds.name%%",
+        "name_localizations": "%%cmd.trivia.rounds.name%%",
+        "description": "%%cmd.trivia.rounds.desc%%",
+        "description_localizations": "%%cmd.trivia.rounds.desc%%",
+        "max_value": 30,
+        "min_value": 5,
+        "required": false
+      }
+    ]
+  }
+}

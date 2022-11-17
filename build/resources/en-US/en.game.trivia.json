@@ -1,0 +1,69 @@
+{
+  "cmd": {
+    "trivia": {
+      "name": "trivia",
+      "desc": "Start a trivia",
+      "subject": {
+        "name": "subject",
+        "desc": "Trivia subject",
+        "lotr": { "name": "Lord of the Ring"   },
+        "aow":  { "name": "Art of War: Legion" }
+      },
+      "rounds": {
+        "name": "rounds",
+        "desc": "Number of trivia questions"
+      },
+      "game-control": {
+        "intro<text>": [
+          "**Game control for Trivia**",
+          "",
+          "Announcement channel: {ANNOUNCEMENT CHANNEL}",
+          "(Where the bot will announce the game)",
+          "",
+          "Game channel: {GAME CHANNEL}",
+          "(Where the bot will run the game)"
+        ],
+        "": "<#{CHANNEL}>",
+        "n/a": "n/a",
+        "set-game-channel": "Set game channel",
+        "change-game-channel": "Change game channel",
+        "set-announcement-channel": "Set announcement channel",
+        "change-announcement-channel": "Change announcement channel",
+        "game-channel-set-success": "{CHANNEL} is now set as the game channel.",
+        "game-channel-set-error": "Error: unable to set {CHANNEL} as the game channel.",
+        "announcement-channel-set-success": "{CHANNEL} is now set as the announcement channel.",
+        "announcement-channel-set-error": "Error: unable to set {CHANNEL} as the announcement channel."
+      },
+      "opening-gif": "https://i.imgur.com/5aLHCto.gif",
+      "opening-message": "Let's do a round of trivia for **{SUBJECT}**, starting in 30 seconds!",
+
+      "trivia-title": "Trivia {NUMBER}/{COUNT}",
+      "question-label": "Question",
+      "choices-label": "Choices",
+      "answer-label": "Correct Answer",
+      "note-label": "Note",
+      "tally-message": "{CORRECT}/{TOTAL} people got this one correct.",
+
+      "response-correct": [
+        "✔️ Correct! Good job.",
+        "✔️ That is correct!",
+        "✔️ Right on!",
+        "✔️ That's correct. Superb!"
+      ],
+
+      "response-incorrect": [
+        "❌ Unfortunately that is incorrect.",
+        "❌ I'm sorry but that's not correct."
+      ],
+
+      "response-already-answered": [
+        "⚠️ You've already attempted an answer.",
+        "⚠️ Looks like you answered already.",
+        "⚠️ No second attempt!"
+      ],
+
+      "final-scoring": "The top scorers are:\n",
+      "final-scoring-line": "<@!{USER ID}> ({SCORE} pts)"
+    }
+  }
+}
