@@ -3,7 +3,7 @@
  */
 
 import {l10n} from '../../src/l10n.js';
-import {waitSync} from '../../src/utils.js';
+import {waitAsync} from '../../src/utils.js';
 
 export const commandName = 'trivia';
 export const cooldown  = 10;
@@ -118,7 +118,7 @@ export async function execute(context) {
 
   const triviaBase = l10n.s(locale, 'trivia.' + subjectId);
 
-  let roundCount = options?.getNumber('rounds') || 10;
+  let roundCount = options?.getInteger('rounds') || 10;
   roundCount = Math.floor(Math.min(roundCount, triviaBase.length * 0.3));
 
   const openingGif = l10n.s(locale, 'cmd.trivia.opening-gif');
@@ -257,9 +257,9 @@ export async function execute(context) {
   };
 
   await interaction.reply(openingGif);
-  waitSync(1);
+  await waitAsync(1);
   await channel.send(openingMsg);
-  waitSync(30);
+  await waitAsync(10);
   postNextQuiz(0);
   return true;
 }

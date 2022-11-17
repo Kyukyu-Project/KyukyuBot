@@ -35,7 +35,7 @@
         "announcement-channel-set-error": "Error: unable to set {CHANNEL} as the announcement channel."
       },
       "opening-gif": "https://i.imgur.com/5aLHCto.gif",
-      "opening-message": "Let's do a round of trivia for **{SUBJECT}**, starting in 30 seconds!",
+      "opening-message": "Let's do a round of trivia for **{SUBJECT}**, starting in 10 seconds!",
 
       "trivia-title": "Trivia {NUMBER}/{COUNT}",
       "question-label": "Question",

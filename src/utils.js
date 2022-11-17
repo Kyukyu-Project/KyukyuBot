@@ -41,17 +41,8 @@ import {
  * @param {number} seconds - Number of seconds
  * @return {Promise}
  */
-export async function waitAsync(seconds) {
+export function waitAsync(seconds) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
-}
-
-/**
- * Synchronously pause (hard stop) for a few seconds
- * @param {number} seconds - Number of seconds
- * @return {Promise}
- */
-export async function waitSync(seconds) {
-  await pause(seconds);
 }
 
 /**
