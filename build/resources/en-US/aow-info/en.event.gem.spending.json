@@ -1,0 +1,79 @@
+{
+  "aow-info": {
+    "$example searches": [
+      "Example search phrase:",
+      "What is gem spending event?",
+      "How much do I need to spend in the gem spending event?",
+      "What are the rewards of the gem spending event?"
+    ],
+    "search": [
+      { "id": "event.gem.spending.3",
+        "title": "Gem spending event (2022-05)",
+        "keyword-sets": [
+          ["gem spending"],
+          ["reward", "to spend", "event", "charon"]
+        ]
+      }
+    ],
+    "content": {
+      "event.gem.spending.3": {
+        "<object>": {
+          "title": "Gem spending event (2022-05)",
+          "embeds": [
+            {
+              "title": "Gem spending event: Charon",
+              "description": "Gem spending event (Charon) is a 14-day event between 2022-05-10 and 2022-05-23. Players can obtain __two Charon shards__ by completing the event.",
+              "image": {
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1044056824225222676/gem-spending-charon.png"
+              },
+              "footer": {
+                "text": "Contributed by community member (2022-11-21)"
+              }
+            }
+          ],
+          "related": [
+            "event.gem.spending.2",
+            "event.gem.spending.1"
+          ]
+        }
+      },
+      "event.gem.spending.2": {
+        "<object>": {
+          "title": "Gem spending event (2021-03)",
+          "embeds": [
+            {
+              "title": "Gem spending event: Selene",
+              "description": "Gem spending event (Selene) is a 12-day event between 2021-03-31 and 2021-04-11. Players can obtain __Selene: Scythe of Darkmoon__ skin by completing the event.",
+              "description3": "2020-11-24 to 12-03 (Thanksgiving ....)10 ",
+              "footer": {
+                "text": "Contributed by community member (2022-11-21)"
+              }
+            }
+          ],
+          "related": [
+            "event.gem.spending.3",
+            "event.gem.spending.1"
+          ]
+        }
+      },
+      "event.gem.spending.1": {
+        "<object>": {
+          "title": "Gem spending event (2020-11)",
+          "embeds": [
+            {
+              "title": "Gem spending event: Kelvins",
+              "description": "Gem spending event (Kelvins) is a 10-day event between 2020-11-24 and 2020-12-03. Players can obtain __Kelvins: Immortal Knight__ skin by completing the event.",
+              "footer": {
+                "text": "Contributed by community member (2022-11-21)"
+              }
+            }
+          ],
+          "related": [
+            "event.gem.spending.3",
+            "event.gem.spending.2"
+          ]
+        }
+      }
+    }
+  }
+}
