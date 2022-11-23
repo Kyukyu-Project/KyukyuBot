@@ -105,6 +105,18 @@
     }
   },
   {
+    "publish": true,
+    "emoji": "🔥",
+    "title": {
+      "en-US": "MA/UW/TW Probability Increase",
+      "zh-TW": "學徒/武士/圖騰概率提升"
+    },
+    "date": {
+      "start": "2022-12-23T00:00:00.000Z",
+      "duration": 3
+    }
+  },
+  {
     "publish": false,
     "emoji": "🔥",
     "title": {
