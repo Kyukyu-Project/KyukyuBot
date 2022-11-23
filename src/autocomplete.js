@@ -31,7 +31,6 @@ export class Autocomplete {
    */
   constructor(l10n) {
     this.l10n = l10n;
-    this.data = l10n.data;
   }
 
   /**
@@ -45,7 +44,7 @@ export class Autocomplete {
   suggestContent(locale, query, resourceKey, matchType = 'keywords') {
     const resultLimit = 25;
     const defaultLocale = this.l10n.defaultLocale;
-    const data = this.data;
+    const data = this.l10n.data;
 
     query = n(query);
 

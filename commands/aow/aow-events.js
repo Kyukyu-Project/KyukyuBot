@@ -182,23 +182,33 @@ export async function execute(context) {
   const Day = 24 * 60 * 60 * 1000;
   const Season = 14 * Day;
 
+  const ArenaSeason77 = Date.parse('2022-11-6');
+  const ArenaSeasonNbr = Math.floor((currentTS - ArenaSeason77) / Season) + 77;
+  const ArenaDayNbr = Math.ceil( (currentTS - ArenaSeason77) % Season / Day );
+
+  const CCSeason77 = Date.parse('2022-11-11');
+  const CCSeasonNbr = Math.floor((currentTS - CCSeason77) / Season) + 77;
+  const CCDayNbr = Math.floor( (currentTS - CCSeason77) % Season / Day );
+
   if (!pinned) {
-    const Season77 = Date.parse('2022-11-6');
-    if ( ((currentTS - Season77) % Season) >= (13 * Day)) {
+    if ( ArenaDayNbr == 14) { // last day of Arena
       pinned = l10n.s(
-          locale,
-          'cmd.aow-events.result.arena-last-day',
+          locale, 'cmd.aow-events.result.arena-last-day',
+          '{SEASON NUMBER}', ArenaSeasonNbr,
       );
     }
   }
 
   if (!pinned) {
-    const Season73 = Date.parse('2022-11-11');
-    if ( ((currentTS - Season73) % Season) < (Day)) {
-      pinned = l10n.s(
-          locale,
-          'cmd.aow-events.result.championship-cup-start',
+    if ( CCDayNbr == 1) { // first day of Championship Cup
+      pinned = l10n.r(
+          locale, 'cmd.aow-events.result.championship-cup-start',
+          '{SEASON NUMBER}', CCSeasonNbr,
       );
+    } else if ( CCDayNbr == 13) { // 1 day before start of next Championship Cup
+      // Do nothing
+    } else if ( CCDayNbr >= 4) { // Championship Cup has ended
+      // Do nothing
     }
   }
 

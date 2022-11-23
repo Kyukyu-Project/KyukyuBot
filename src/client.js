@@ -235,6 +235,8 @@ class Client extends djsClient {
     const {commandName} = interaction;
     const cmd = commands.getCommand(commandName);
 
+    if (!interaction.isRepliable()) return false;
+
     if ((!cmd) || (!cmd.execute)) {
       logger.writeLog(
           'client.error',
@@ -269,7 +271,9 @@ class Client extends djsClient {
     const {commandName, guild, interaction, time} = ctx;
 
     if (typeof result == 'boolean') {
-      if (!guild) return;
+      // We do not log commands that failed or was executed in DMs
+      if ((!result) || (!guild)) return;
+
       logger.writeLog(
           `${guild.id}.log`,
           {
