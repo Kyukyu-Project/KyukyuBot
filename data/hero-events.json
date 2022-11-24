@@ -1,5 +1,17 @@
 [
   {
+    "ts": 1670284800000,
+    "date": "2022-12-06",
+    "type": "wof",
+    "primaryHeroes": [
+      "odin",
+      "davison"
+    ],
+    "secondaryHeroes": [
+      "moshe"
+    ]
+  },
+  {
     "ts": 1669680000000,
     "date": "2022-11-29",
     "type": "cm",

@@ -51,12 +51,12 @@ export async function execute(context) {
 
   /** @type {Array} */
   const communityEvents = readJson(joinPath(dataDir, 'community.json'));
-  const clanEvents = readJson(joinPath(dataDir, 'clan.json'));
+  const rankingEvents = readJson(joinPath(dataDir, 'ranking.json'));
   const specialEvents = readJson(joinPath(dataDir, 'special.json'));
   const salesEvents = readJson(joinPath(dataDir, 'sales.json'));
 
   const allEvents = communityEvents
-      .concat(clanEvents)
+      .concat(rankingEvents)
       .concat(specialEvents)
       .concat(salesEvents)
       .filter((event) => event.publish);

@@ -3,6 +3,18 @@
     "publish": true,
     "emoji": "🚩",
     "title": {
+      "en-US": "[The Highest Arena Scores in Season 79](https://discord.com/channels/658594298983350293/658964105046261760/1044451860716724264)",
+      "zh-TW": "[第79賽季最高杯數排行榜](https://discord.com/channels/807945706157506571/808172159897305118/1044512642699644948)"
+    },
+    "date": {
+      "start": "2022-12-04T00:00:00.000Z",
+      "end":   "2022-12-17T23:59:59.999Z"
+    }
+  },
+  {
+    "publish": true,
+    "emoji": "🚩",
+    "title": {
       "en-US": "[Clan Ranking: Infinity War](https://discord.com/channels/658594298983350293/1029595804773650592/1036465968727212112) (req. registr.)",
       "zh-TW": "[公會排名賽：無限戰爭](https://discord.com/channels/658594298983350293/1029595804773650592/1036465968727212112) (需報名)"
     },
