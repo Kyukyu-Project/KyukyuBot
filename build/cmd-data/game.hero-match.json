@@ -1,0 +1,13 @@
+{
+  "commandName": "hero-match",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.hero-match.name%%",
+    "name_localizations": "%%cmd.hero-match.name%%",
+    "description": "%%cmd.hero-match.desc%%",
+    "description_localizations": "%%cmd.hero-match.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": false
+  }
+}

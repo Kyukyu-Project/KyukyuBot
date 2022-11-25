@@ -1,0 +1,27 @@
+{
+  "cmd": {
+    "hero-match": {
+      "name": "hero-match",
+      "desc": "Start a hero-match game",
+      "type": {
+        "name": "type",
+        "desc": "Match type",
+        "solitaire": { "name": "solitaire" },
+        "paired":  { "name": "paired" }
+      },
+      "messages": {
+        "welcome<text>": [
+          "Welcome to **Hero Match**",
+          "",
+          "Rule:",
+          "At the beginning, the computer will show 16 cards (8 card pairs), and the player has __10__ seconds to memorize all the cards. After 10 seconds, the computer will turn all cards faced down. At each round, the computer will randomly pick a card, and the player has 5 seconds to pick the matching card. The player may play a maximum of 10 rounds. The game ends when the player successfully match all pairs or when the player played 10 rounds."
+        ],
+        "get-ready": "Get ready...",
+        "memorize-now": "Memorize the cards. You have 10 seconds.",
+        "your-turn": "Round {ROUND}/10: Pick the matching card.",
+        "correct": "✔️ Correct! Good job.",
+        "incorrect": "❌ Unfortunately that is incorrect."
+      }
+    }
+  }
+}
