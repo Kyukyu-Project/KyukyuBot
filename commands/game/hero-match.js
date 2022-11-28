@@ -852,7 +852,7 @@ export async function execute(context) {
       return;
     } else {
       sessions.add(user.id);
-      playMP(context);
+      playSP(context);
     }
   }
   return true;
