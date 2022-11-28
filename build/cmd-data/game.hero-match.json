@@ -8,6 +8,6 @@
     "description": "%%cmd.hero-match.desc%%",
     "description_localizations": "%%cmd.hero-match.desc%%",
     "default_member_permissions": ["SendMessages"],
-    "dm_permission": false
+    "dm_permission": true
   }
 }
