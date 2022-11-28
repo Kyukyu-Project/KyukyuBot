@@ -10,72 +10,42 @@
         "paired":  { "name": "paired" }
       },
       "mp": {
+        "title": "Hero Match (Multi-Player)",
         "welcome<text>": [
-          "**Hero Match** (Multi-Player)",
-          "",
           "Rule:",
           "- The board is 5x5 with 10 pairs and 5 wild cards",
           "- Players have __15__ seconds to memorize all the cards.",
           "- At each round, the computer will randomly pick a card, and each player has 5 seconds to pick the matching card.",
           "- The game ends after 10 rounds and the players are ranked by correct picks."
         ],
-        "memorize-now<text>": [
-          "**Hero Match**",
-          "",
-          "Memorize the cards. You have __15__ seconds."
-        ],
-        "get-ready<text>": [
-          "**Hero Match**",
-          "",
-          "Get ready..."
-        ],
-        "your-turn<text>": [
-          "**Hero Match**: (**{ROUND}**/10)",
-          "",
-          "The computer flipped {COMPUTER PICK}. Pick the matching card (you have __10__ seconds)."
-        ],
-        "times-up<text>": [
-          "**Hero Match**: (**{ROUND}**/10)",
-          "",
-          "Time's up!"
-        ],
+        "memorize-now": "Memorize the cards. You have __15__ seconds.",
+        "get-ready": "Get ready...",
+        "your-turn": "({ROUND}/10): The computer flipped {COMPUTER PICK}. Pick the matching card (you have __10__ seconds).",
+        "times-up": "({ROUND}/10): Time's up!",
         "correct": "✔️ You picked {CARD}.",
         "incorrect": "❌ You picked {CARD}.",
-        "already-answered": "⚠️ You've already attempted an answer."
+        "already-answered": "⚠️ You've already attempted an answer.",  
+        "final-scoring": "The top scorers are:",
+        "final-scoring-line": "<@!{USER ID}> ({SCORE}/10 pts)"
       },
       "sp": {
+        "title": "Hero Match (Single-Player)",
         "welcome<text>": [
-          "**Hero Match** (Single-Player)",
-          "",
           "Rule:",
           "- The board is 4x4 with 8 pairs",
           "- The player has __10__ seconds to memorize all the cards.",
           "- At each round, the computer will randomly pick a card, and the player has 5 seconds to pick the matching card.",
           "- The game ends after 8 rounds and the player is scored by correct picks."
         ],
-        "memorize-now<text>": [
-          "**Hero Match**",
-          "",
-          "Memorize the cards. You have __15__ seconds."
-        ],
-        "get-ready<text>": [
-          "**Hero Match**",
-          "",
-          "Get ready..."
-        ],
-        "your-turn<text>": [
-          "**Hero Match**: (**{ROUND}**/8)",
-          "",
-          "The computer flipped {COMPUTER PICK}. Pick the matching card (you have __10__ seconds)."
-        ],
-        "times-up<text>": [
-          "**Hero Match**: (**{ROUND}**/8)",
-          "",
-          "Time's up!."
-        ],
+        "memorize-now": "Memorize the cards. You have __15__ seconds.",
+        "get-ready": "Get ready...",
+        "your-turn": "({ROUND}/8): The computer flipped {COMPUTER PICK}. Pick the matching card (you have __10__ seconds).",
+        "times-up": "({ROUND}/8): Time's up!",
         "correct": "✔️ You picked {CARD}.",
-        "incorrect": "❌ You picked {CARD}."
-      }
+        "incorrect": "❌ You picked {CARD}.",
+        "final-scoring": "Your final score: {SCORE}/8"
+      },
+      "session-in-progress": "Another session of this game is already in progress"
     }
   }
 }
