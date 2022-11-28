@@ -122,9 +122,9 @@ function generateSPBoard() {
   // Shuffle all the values
   const cardValues = shuffle([]
       // Values that computer will pick
-      .concat(values..map((v) => ({value: v, type: 'C'})))
+      .concat(values.map((v) => ({value: v, type: 'C'})))
       // Corresponding matching values (answers)
-      .concat(values..map((v) => ({value: v, type: 'A'})))
+      .concat(values.map((v) => ({value: v, type: 'A'})))
   );
 
   // Index of cards that computer will pick
