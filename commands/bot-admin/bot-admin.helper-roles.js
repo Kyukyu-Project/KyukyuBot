@@ -4,12 +4,18 @@
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
-import {PermissionFlagsBits} from 'discord.js';
+import {
+  PermissionFlagsBits,
+  ComponentType,
+} from 'discord.js';
 
 import {l10n} from '../../src/l10n.js';
 import {servers} from '../../src/servers.js';
 
-const requiredAppPermissions = PermissionFlagsBits.SendMessages;
+const requiredAppPermissions =
+    PermissionFlagsBits.SendMessages |
+    PermissionFlagsBits.ManageRoles;
+
 const settingKey = 'helper-roles';
 const localeKeyPrefix = 'cmd.bot-admin.helper-roles';
 
@@ -28,202 +34,143 @@ function getSetting(settings) {
 }
 
 /**
- * @param {CommandContext} context - Interaction context
- * @return {ActionResult}
- **/
-function add(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {locale, options} = interaction;
-
-  const currRoles = getSetting(guildSettings) || [];
-
-  const rolesToAdd = [...new Set([
-    options.getRole('role1').id,
-    options.getRole('role2')?.id || undefined,
-    options.getRole('role3')?.id || undefined,
-    options.getRole('role4')?.id || undefined,
-    options.getRole('role5')?.id || undefined,
-  ])]
-      .filter((role) => ((role !== undefined) && (!currRoles.includes(role))));
-
-  if (rolesToAdd.length === 1) {
-    servers.updateSettings(guild, settingKey, currRoles.concat(rolesToAdd));
-    return ({
-      success: true,
-      response: l10n.t(
-          locale, `${localeKeyPrefix}.add-result-one`,
-          '{ROLE}', `<@&${rolesToAdd[0]}>`,
-      ),
-    });
-  } else if (rolesToAdd.length) {
-    servers.updateSettings(guild, settingKey, currRoles.concat(rolesToAdd));
-    const addedRoleTags = rolesToAdd.map((roleId)=>`<@&${roleId}>`);
-    const addedRoleTagList = l10n.makeList(locale, addedRoleTags);
-    return ({
-      success: true,
-      response: l10n.t(
-          locale, `${localeKeyPrefix}.add-result-many`,
-          '{ROLES}', addedRoleTagList,
-      ),
-    });
-  } else {
-    return ({
-      success: false,
-      response: l10n.s(locale, `${localeKeyPrefix}.add-error`),
-    });
-  }
-}
-
-/**
- * @param {CommandContext} context - Interaction context
- * @return {ActionResult}
- */
-function clear(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {locale} = interaction;
-
-  const currRoles = getSetting(guildSettings);
-
-  if (currRoles) {
-    servers.updateSettings(guild, settingKey, []);
-    return ({
-      success: true,
-      response: l10n.s(locale, `${localeKeyPrefix}.clear-result`),
-    });
-  } else {
-    return ({
-      success: false,
-      response: l10n.s(locale, `${localeKeyPrefix}.clear-error`),
-    });
-  }
-}
-
-/**
- * @param {CommandContext} context - Interaction context
- * @return {ActionResult}
- */
-function remove(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {locale, options} = interaction;
-
-  const currRoles = getSetting(guildSettings);
-
-  if (currRoles) {
-    const roleToRemove = options.getString('role');
-    const roleIdx = currRoles.indexOf(roleToRemove);
-    if (roleIdx > -1) {
-      currRoles.splice(roleIdx, 1);
-      servers.updateSettings(guild, settingKey, currRoles);
-      return ({
-        success: true,
-        response: l10n.t(
-            locale, `${localeKeyPrefix}.remove-result`,
-            '{ROLE}', `<@&${roleToRemove}>`,
-        ),
-      });
-      // 'messages.command-error.no-app-permission'
-    }
-  }
-}
-
-/**
- * @param {CommandContext} context - Interaction context
- * @return {ActionResult}
- */
-function info(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {locale, appPermissions} = interaction;
-
-  const currRoles = getSetting(guildSettings);
-  if (currRoles) {
-    // Remove invalid roles from server settings
-    if (appPermissions.has(PermissionFlagsBits.ManageRoles)) {
-      const validRoles = currRoles.filter((id) => guild.roles.cache.get(id));
-      if (validRoles.length) {
-        if (currRoles.length !== validRoles.length) {
-          servers.updateSettings(guild, settingKey, validRoles);
-          currRoles = validRoles;
-        }
-      } else {
-        currRoles = undefined;
-      }
-    }
-  }
-
-  if (currRoles) {
-    const currRoleTags = currRoles.map((roleId)=>`<@&${roleId}>`);
-    const currRoleTagList = l10n.makeList(locale, currRoleTags);
-    return ({
-      success: true,
-      response: l10n.t(
-          locale, `${localeKeyPrefix}.info-result`,
-          '{ROLES}', currRoleTagList,
-      ),
-    });
-  } else {
-    return ({
-      success: true,
-      response: l10n.s(locale, `${localeKeyPrefix}.info-result-none`),
-    });
-  }
-}
-
-/**
  * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
 export async function execute(context) {
-  const {interaction} = context;
-  const {locale, appPermissions, options} = interaction;
+  const {guild, guildSettings, interaction} = context;
+  const {locale, appPermissions, user} = interaction;
 
   if (!appPermissions.has(requiredAppPermissions)) {
-    interaction.reply(
-        l10n.s(locale, 'messages.command-error.no-app-permission'),
-    );
-    return false;
+    const err = l10n.s(locale, 'messages.command-error.no-app-permission');
+    interaction.reply(err);
+    throw new Error(`Bot does not have the required permissions.`);
   }
 
-  const subCommand = options.getSubcommand();
-  let actionResult;
-  switch (subCommand) {
-    case 'add': actionResult = add(context); break;
-    case 'remove': actionResult = remove(context); break;
-    case 'clear': actionResult = clear(context); break;
-    case 'info':
-    default: actionResult = info(context);
-  }
+  await interaction.deferReply();
 
-  interaction.reply({
-    content: actionResult.response,
-    ephemeral: true,
-  });
+  /** @type {string} - Ids of current helper roles */
+  const currRoleIds =  [...new Set(getSetting(guildSettings))];
 
-  return actionResult.success;
-}
+  /** @type {string[]} - Ids of valid helper roles */
+  const validRoleIds = [];
 
-/**
- * Run autocomplete
- * @param {CommandContext} context - Interaction context
- */
-export function autocomplete(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {options} = interaction;
-  const typed = options.getFocused(true).value;
+  /** List of menu items */
+  const validRoleOptions = [];
 
-  const currRoles = getSetting(guildSettings);
-  if (currRoles) {
-    const roleList = [];
-    currRoles.forEach((id)=> {
+  if (currRoleIds.length) {
+    await guild.roles.fetch(); // Refresh role cache
+
+    // Remove invalid roles from server settings
+    currRoleIds.forEach((id) => {
       const role = guild.roles.cache.get(id);
-      if (role && role.name.includes(typed)) {
-        roleList.push({name: role.name, value: id});
+      if (role) {
+        validRoleOptions.push({label: role.name, value: id});
+        validRoleIds.push(id);
       }
     });
 
-    interaction.respond(roleList);
-  } else {
-    interaction.respond([]);
+    if (currRoleIds.length !== validRoleIds.length) {
+      servers.updateSettings(guild, settingKey, validRoleIds);
+    }
   }
-}
 
+  const addRoleRow = {
+    type: ComponentType.ActionRow,
+    components: [
+      {
+        type: ComponentType.RoleSelect,
+        custom_id: 'add-helper-role',
+        placeholder: l10n.s(locale, `${localeKeyPrefix}.add-placeholder`),
+      },
+    ],
+  };
+
+  const removeRoleRow = {
+    type: ComponentType.ActionRow,
+    components: [
+      {
+        type: ComponentType.StringSelect,
+        custom_id: 'remove-helper-role',
+        placeholder: l10n.s(locale, `${localeKeyPrefix}.remove-placeholder`),
+        options: validRoleOptions,
+      },
+    ],
+  };
+
+  const responseContent = {
+    content: l10n.t(locale, `${localeKeyPrefix}.info`),
+    components:
+        (validRoleOptions.length)?
+        [addRoleRow, removeRoleRow]:
+        [addRoleRow],
+    ephemeral: false,
+    fetchReply: true,
+  };
+
+  const responseMessage = await interaction.editReply(responseContent);
+
+  const iActionCollector = responseMessage.createMessageComponentCollector({
+    filter: (i) => (i.user.id === user.id),
+    time: 5 * 60 * 1000, // Disable after 5 minute
+  });
+
+  iActionCollector.on('collect', async (i) => {
+    const roleId = i.values[0];
+
+    if (i.customId === 'add-helper-role') {
+      if (validRoleIds.includes(roleId)) {
+        i.deferUpdate();
+        responseContent.content += '\n' + l10n.t(
+            locale, `${localeKeyPrefix}.add-error`, '{ROLE ID}', roleId,
+        );
+        interaction.editReply(responseContent);
+      } else {
+        const selectedRole = guild.roles.cache.get(roleId);
+        validRoleIds.push(roleId);
+        validRoleOptions.push({label: selectedRole.name, value: roleId});
+        servers.updateSettings(guild, settingKey, validRoleIds);
+        i.deferUpdate();
+        responseContent.content += '\n' + l10n.t(
+            locale, `${localeKeyPrefix}.add-result`, '{ROLE ID}', roleId,
+        );
+        responseContent.components =
+            (validRoleOptions.length)?
+            [addRoleRow, removeRoleRow]:
+            [addRoleRow];
+        interaction.editReply(responseContent);
+      }
+    } else if (i.customId === 'remove-helper-role') {
+      const roleIdx = validRoleIds.indexOf(roleId);
+      if (roleIdx !== -1) {
+        validRoleIds.splice(roleIdx, 1);
+        validRoleOptions.splice(roleIdx, 1);
+        servers.updateSettings(guild, settingKey, validRoleIds);
+        i.deferUpdate();
+        responseContent.content += '\n' + l10n.t(
+            locale, `${localeKeyPrefix}.remove-result`, '{ROLE ID}', roleId,
+        );
+        responseContent.components =
+            (validRoleOptions.length)?
+            [addRoleRow, removeRoleRow]:
+            [addRoleRow];
+        interaction.editReply(responseContent);
+      } else {
+        i.deferUpdate();
+        responseContent.content += '\n' + l10n.t(
+            locale, `${localeKeyPrefix}.remove-error`, '{ROLE ID}', roleId,
+        );
+        interaction.editReply(responseContent);
+      }
+    }
+  });
+
+  iActionCollector.on('end', (c) => {
+    addRoleRow.components[0].disabled = true;
+    removeRoleRow.components[0].disabled = true;
+    interaction.editReply(responseContent);
+  });
+
+  return true;
+}

@@ -3,51 +3,14 @@
     "bot-admin": {
       "helper-roles": {
         "name": "helper-roles",
-        "desc": "Change or view bot helper roles",
-        "info": {
-          "name": "info",
-          "desc": "Show information about bot helper roles"
-        },
-        "add": {
-          "name": "add",
-          "desc": "Add up to 5 roles to the list of bot helper roles",
-          "role1": { "name": "role1", "desc": "Role to add" },
-          "role2": { "name": "role2", "desc": "Role to add" },
-          "role3": { "name": "role3", "desc": "Role to add" },
-          "role4": { "name": "role4", "desc": "Role to add" },
-          "role5": { "name": "role5", "desc": "Role to add" }
-        },
-        "remove": {
-          "name": "remove",
-          "desc": "Remove a role from the list of bot helper roles",
-          "role": {
-            "name": "role",
-            "desc": "Role to remove"
-          }
-        },
-        "clear": {
-          "name": "clear",
-          "desc": "Clear (reset) the list of bot helper roles"
-        },
-        "add-result-many": "{ROLES} are now bot helper roles",
-        "add-result-one": "{ROLE} is now a bot helper role",
-        "add-error": "Error executing command: no new bot helper role is added",
-        "remove-result": "{ROLE} is no longer a bot helper role",
-        "remove-error": "Error executing command: no bot helper role is removed",
-        "clear-result": "Bot helper role(s) unset",
-        "clear-error": "Error executing command: nothing to clear",
-        "info-result": {
-          "<text>": [
-            "Users with bot helper roles can use bot commands without any cooldown.",
-            "Bot helper role(s): {ROLES}."
-          ] 
-        },
-        "info-result-none": {
-          "<text>": [
-            "Users with bot helper roles can use bot commands without any cooldown.",
-            "Bot helper role(s): not set."
-          ] 
-        }
+        "desc": "Access bot helper roles settings",
+        "info": "Users with bot helper roles can use bot commands without any cooldown.",
+        "add-placeholder": "Select a role to add",
+        "add-result": "✅ <@&{ROLE ID}> is now a bot helper role",
+        "add-error": "❌ <@&{ROLE ID}> is already a bot helper role",
+        "remove-placeholder": "Select a role to remove",
+        "remove-result": "✅ <@&{ROLE ID}> is no longer a bot helper role",
+        "remove-error": "❌ <@&{ROLE ID}> is not a bot helper role"
       }
     }
   },

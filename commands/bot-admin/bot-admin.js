@@ -18,10 +18,16 @@ export async function execute(context) {
   const {interaction} = context;
 
   const subCommandGroup = interaction.options.getSubcommandGroup();
+  const subCommand = interaction.options.getSubcommand();
   switch (subCommandGroup) {
     case 'bot-channel': return botChannelCommand.execute(context);
-    case 'helper-roles': return helperRoleCommand.execute(context);
+    // case 'helper-roles': return helperRoleCommand.execute(context);
     case 'log': return logCommand.execute(context);
+    default:
+      switch (subCommand) {
+        case 'helper-roles': return helperRoleCommand.execute(context);
+        default:
+      }
   }
   return false;
 }
