@@ -3,48 +3,64 @@
     "hero-match": {
       "name": "hero-match",
       "desc": "Start a hero-match game",
-      "type": {
-        "name": "type",
-        "desc": "Match type",
-        "solitaire": { "name": "solitaire" },
-        "paired":  { "name": "paired" }
-      },
-      "mp": {
+      "multi-player": {
         "title": "Hero Match (Multi-Player)",
-        "welcome<text>": [
-          "Rule:",
-          "- The board is 5x5 with 10 pairs and 5 wild cards",
-          "- Players have __15__ seconds to memorize all the cards.",
-          "- At each round, the computer will randomly pick a card, and each player has 5 seconds to pick the matching card.",
-          "- The game ends after 10 rounds and the players are ranked by correct picks."
-        ],
-        "memorize-now": "Memorize the cards. You have __15__ seconds.",
-        "get-ready": "Get ready...",
-        "your-turn": "({ROUND}/10): The computer flipped {COMPUTER PICK}. Pick the matching card (you have __10__ seconds).",
-        "times-up": "({ROUND}/10): Time's up!",
-        "correct": "✔️ You picked {CARD}.",
-        "incorrect": "❌ You picked {CARD}.",
-        "already-answered": "⚠️ You've already attempted an answer.",  
-        "final-scoring": "The top scorers are:",
-        "final-scoring-line": "<@!{USER ID}> ({SCORE}/10 pts)"
+        "welcome": {
+          "title": "Welcome",
+          "text<text>": [
+            "Rule:",
+            "- The board is 5x5 with 10 pairs and 5 wild cards",
+            "- Players have __15__ seconds to memorize all the cards.",
+            "- At each round, the computer will randomly pick a card, and each player has __10__ seconds to pick the matching card.",
+            "- The game ends after 10 rounds and the players are ranked by correct picks."
+          ]
+        },
+        "get-ready": {
+          "title": "Get ready",
+          "text": "Memorize the cards. You have __15__ seconds.",
+          "times-up": "Time's up. The game will start soon."
+        },
+        "play-round": {
+          "title": "Round {ROUND}/10",
+          "text": "The computer flipped {COMPUTER PICK} . Pick the matching card (you have __10__ seconds).",
+          "times-up": "Time's up!"
+        },
+        "game-over": {
+          "title": "Game over",
+          "text": "The top scorers are:",
+          "top-scorer": "<@!{USER ID}> - {SCORE}/10 points"
+        }
       },
-      "sp": {
+      "single-player": {
         "title": "Hero Match (Single-Player)",
-        "welcome<text>": [
-          "Rule:",
-          "- The board is 4x4 with 8 pairs",
-          "- The player has __10__ seconds to memorize all the cards.",
-          "- At each round, the computer will randomly pick a card, and the player has 5 seconds to pick the matching card.",
-          "- The game ends after 8 rounds and the player is scored by correct picks."
-        ],
-        "memorize-now": "Memorize the cards. You have __15__ seconds.",
-        "get-ready": "Get ready...",
-        "your-turn": "({ROUND}/8): The computer flipped {COMPUTER PICK}. Pick the matching card (you have __10__ seconds).",
-        "times-up": "({ROUND}/8): Time's up!",
-        "correct": "✔️ You picked {CARD}.",
-        "incorrect": "❌ You picked {CARD}.",
-        "final-scoring": "Your final score: {SCORE}/8"
+        "welcome": {
+          "title": "Welcome",
+          "text<text>": [
+            "Rule:",
+            "- The board is 4x4 with 8 pairs",
+            "- You have __10__ seconds to memorize all the cards.",
+            "- At each round, the computer will randomly pick a card, and you have __8__ seconds to pick the matching card.",
+            "- The game ends after 8 rounds and you are scored by correct picks."
+          ]
+        },
+        "get-ready": {
+          "title": "Get ready",
+          "text": "Memorize the cards. You have __10__ seconds.",
+          "times-up": "Time's up. The game will start soon."
+        },
+        "play-round": {
+          "title": "Round {ROUND}/8",
+          "text": "The computer flipped {COMPUTER PICK} . Pick the matching card (you have __8__ seconds).",
+          "times-up": "Time's up!"
+        },
+        "game-over": {
+          "title": "Game over",
+          "text": "Your final score: {SCORE}/8"
+        }
       },
+      "correct": "✅ You picked {CARD}.",
+      "incorrect": "❌ You picked {CARD}.",
+      "already-answered": "⚠️ You've already attempted an answer.",
       "session-in-progress": "Another session of this game is already in progress"
     }
   }
