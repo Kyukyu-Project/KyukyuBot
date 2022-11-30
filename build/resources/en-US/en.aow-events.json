@@ -12,7 +12,7 @@
         "ended-title": "Just ended",
         "clan-hunting-start": "Commanders, a new round of Clan Hunting has started! Fight the mighty Manticore for nice rewards for everyone in your clan!",
         "championship-cup-start": "Commanders, season {SEASON NUMBER} of Championship Cup has just started! Remember to do 10 battles for participation rewards.",
-        "arena-last-day": "Commanders, the end of Arena reason #{SEASON NUMBER} is upon us. May you have a glorious and victorious day!"
+        "arena-last-day": "Commanders, the end of Arena season #{SEASON NUMBER} is upon us. May you have a glorious and victorious day!"
       }
     }
   }

@@ -1,10 +1,7 @@
 {
   "commandName": "aow-events",
-  "global": false,
+  "global": true,
   "ownerOnly": false,
-  "servers": [
-    { "$comment": "Official", ".": "658594298983350293"}
-  ],
   "commandData": {
     "name": "%%cmd.aow-events.name%%",
     "name_localizations": "%%cmd.aow-events.name%%",
