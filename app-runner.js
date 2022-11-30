@@ -19,10 +19,11 @@ pm2.connect(function(err) {
       env: {
         npm_package_version: process.env.npm_package_version,
       },
-      log_date_format: 'YYYY-MM-DD HH:mm Z',
+      log_date_format: 'YYYY-MM-DDTHH:mm:ss.sssZ',
       out_file: resolve(clientConfig['client-data-dir'], './pm2.log'),
       error_file: resolve(clientConfig['client-data-dir'], './pm2.error'),
       args: process.argv.slice(2)?.[0],
+      node_args: '--no-warnings',
     };
 
     pm2.start(processConfig, function(err, apps) {

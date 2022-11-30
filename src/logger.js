@@ -69,16 +69,16 @@ class Logger {
     if (typeof entry === 'string') {
       const ts =(new Date()).toISOString();
       if (!entry.endsWith('\n')) entry = entry + '\n';
-      logStream.write(`${ts}\t${entry}`);
+      logStream.write(`${ts}: ${entry}`);
     } else {
       const t = (entry.time instanceof Date)?(entry.time):(new Date());
       const ts = t.toISOString();
-      logStream.write(`${ts}\t${entry.summary}\n`);
+      logStream.write(`${ts}: ${entry.summary}\n`);
       if (entry.details) {
         logStream.write(
             entry.details
                 .toString().split('\n')
-                .reduce((all, line) => all + `${ts}\t  ${line}\n`, ''),
+                .reduce((all, line) => all + `${ts}:  ${line}\n`, ''),
         );
       }
     }
