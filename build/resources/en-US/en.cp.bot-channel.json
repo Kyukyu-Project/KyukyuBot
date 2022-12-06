@@ -1,0 +1,29 @@
+{
+  "cp": {
+    "bot-channel": {
+      "name": "Bot-command channel",
+      "desc": "Access bot-command channel settings",
+      "main": {
+        "title": "Bot-command channel",
+        "desc": "In the bot-command channel, anyone can use bot commands without cool-down.",
+
+        "list": "Channel: {CHANNEL}",
+        "list-none": "Channel: none set"
+      },
+      "set": {
+        "button-label": "Set channel",
+        "menu-placeholder": "Select a channel to set",
+
+        "title": "Bot-command channel: set channel",
+        "desc": "Select a channel to set",
+
+        "success": "✅ <#{CHANNEL ID}> set"
+      },
+      "unset": {
+        "button-label": "Unset channel",
+
+        "success": "✅ Bot-command channel unset"
+      }
+    }
+  }
+}
