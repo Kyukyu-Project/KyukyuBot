@@ -12,8 +12,6 @@
         "desc": "your target Exp level"
       },
       "result": {
-        "dm-only": "To reduce spam message, you can only run this command in DM",
-        "bot-channel-only": "To reduce spam message, you can only run this command in {CHANNEL} or DM",
         "next": {
           ".<text>": [
             "With {EXP POINT} Exp points, you are at level __{CURR LEVEL}__.",

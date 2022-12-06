@@ -1,4 +1,5 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('discord.js').ButtonInteraction} ButtonInteraction
  */
@@ -7,8 +8,8 @@ import {ChannelType} from 'discord.js';
 import {l10n} from '../../src/l10n.js';
 import {waitAsync} from '../../src/utils.js';
 
-export const commandName = 'hero-match';
-export const cooldown  = 0;
+const commandName = 'hero-match';
+const cooldown  = 0;
 
 /**
  * Client configuration
@@ -955,7 +956,7 @@ async function playSP(context) {
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {locale, guild, channel, interaction, user} = context;
   if (channel.type === ChannelType.GuildText) {
     if (sessions.has(guild.id)) {
@@ -977,3 +978,9 @@ export async function execute(context) {
   return true;
 }
 
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

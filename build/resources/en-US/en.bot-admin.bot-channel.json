@@ -10,7 +10,7 @@
         },
         "set": {
           "name": "set",
-          "desc": "Set bot-command channel settings",
+          "desc": "Set bot-command channel",
           "channel": {
             "name": "channel",
             "desc": "Channel to set"

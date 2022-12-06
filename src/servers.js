@@ -36,6 +36,7 @@ class Servers {
   getSettings(server) {
     const settings = this.data.get(server.id);
     if (settings) {
+      settings['name'] = server.name;
       return Object.assign({}, settings);
     } else {
       return {
@@ -50,12 +51,18 @@ class Servers {
    * @param {Guild} server - Guild (Discord server)
    * @param {string} key - Setting key
    * @param {string|string[]} value - New value
+   * @return {GuildSettings}
    */
   updateSettings(server, key, value) {
     const settings = this.getSettings(server);
-    settings[key] = value;
+
+    if (value === undefined) delete settings[key];
+    else settings[key] = value;
+
     this.data.set(server.id, settings);
     this.saveSettings();
+
+    return Object.assign({}, settings);
   }
 
   /**

@@ -1,0 +1,23 @@
+{
+  "cmd": {
+    "bot-avatar": {
+      "name": "bot-avatar",
+      "desc": "Access bot avatar",
+      "set": {
+        "name": "set",
+        "desc": "Set bot avatar",
+        "attach": {
+          "name": "attach",
+          "desc": "Attach the avatar image"
+        }
+      },
+      "get": {
+        "name": "get",
+        "desc": "Get bot avatar"
+      },
+      "get-result": "Bot avatar:",
+      "set-result": "Bot avatar set",
+      "set-error": "Error executing command: bot avatar not updated"
+    }
+  }
+}

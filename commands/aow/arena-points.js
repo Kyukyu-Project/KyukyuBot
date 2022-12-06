@@ -1,19 +1,19 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 
 import {l10n} from '../../src/l10n.js';
 
-export const commandName = 'arena-points';
-export const cooldown  = 5;
-const ephemeral = false;
+const commandName = 'arena-points';
+const cooldown  = 5;
 
 /**
  * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+function execute(context) {
   const {interaction, locale} = context;
   const {options} = interaction;
 
@@ -44,10 +44,7 @@ export async function execute(context) {
 
   lines.push('```');
 
-  interaction.reply({
-    content: lines.join('\n'),
-    ephemeral: ephemeral,
-  });
+  interaction.reply(lines.join('\n'));
   return true;
 }
 
@@ -153,3 +150,10 @@ function getBrackets(currScore) {
 
   return results;
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

@@ -1,47 +1,110 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
  */
 
-export const commandName = 'bot-admin';
-export const cooldown  = 0;
+import {ComponentType} from 'discord.js';
+import {commands} from '../../src/commands.js';
+import {l10n} from '../../src/l10n.js';
 
-import * as helperRoleCommand from './bot-admin.helper-roles.js';
-import * as botChannelCommand from './bot-admin.bot-channel.js';
-import * as logCommand from './bot-admin.log.js';
+const commandName = 'bot-admin';
+const cooldown  = 0;
 
 /**
  * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
-  const {interaction} = context;
+async function execute(context) {
+  const {locale, interaction, user} = context;
+  const controlPanels = commands.controlPanels;
+  const MenuOptions = controlPanels.map((cp) => {
+    return cp.getNavMenuItem(context);
+  });
 
-  const subCommandGroup = interaction.options.getSubcommandGroup();
-  const subCommand = interaction.options.getSubcommand();
-  switch (subCommandGroup) {
-    case 'bot-channel': return botChannelCommand.execute(context);
-    // case 'helper-roles': return helperRoleCommand.execute(context);
-    case 'log': return logCommand.execute(context);
-    default:
-      switch (subCommand) {
-        case 'helper-roles': return helperRoleCommand.execute(context);
-        default:
+  /** @type {InteractionReplyOptions} */
+  const topContent = {
+    embeds: [{
+      title: l10n.s(locale, 'cmd.bot-admin.page.title'),
+      description: l10n.s(locale, 'cmd.bot-admin.page.content'),
+    }],
+    components: [{
+      type: ComponentType.ActionRow,
+      components: [
+        {
+          type: ComponentType.StringSelect,
+          custom_id: 'top.select',
+          placeholder: l10n.s(locale, 'cmd.bot-admin.nav-menu.placeholder'),
+          options: MenuOptions,
+        },
+      ],
+    }],
+    fetchReply: true,
+  };
+
+  const responseMessage = await interaction.reply(topContent);
+
+  context.responseContent = topContent;
+  context.responseMessage = responseMessage;
+
+  const iCollector = responseMessage.createMessageComponentCollector({
+    idle: 2 * 60 * 1000, // Disable after 2 minute idle time
+  });
+
+  iCollector.on('end', (c) => {
+    context.responseContent.components.forEach((row) => {
+      row.components.forEach((el)=> el.disabled = true);
+    });
+    responseMessage.edit(context.responseContent);
+  });
+
+  iCollector.on('collect', async (i) => {
+    if ((i.user.id !== user.id)) {
+      // Can only be used by the user who invoked the command
+      i.reply({
+        content: l10n.s(locale, 'messages.command-error.no-user-permission'),
+        ephemeral: true,
+      });
+      return;
+    };
+    // i.deferUpdate();
+
+    // const value = i.values[0];
+    const customId = i.customId;
+
+    console.log(`custom id: ${customId}, value: ${i.values?.[0]||undefined}`);
+
+    if (customId === 'top') {
+      context.responseContent = topContent;
+      i.update(topContent);
+      // responseMessage.edit(topContent);
+    } else if (customId === 'top.select') {
+      const value = i.values[0];
+      const cp = controlPanels.find((cp) => cp.name === value);
+      const content = cp.getContent(context);
+      context.responseContent = content;
+      i.update(content);
+      // context.responseMessage.edit(content);
+    } else {
+      const cp = controlPanels.find((cp) => (
+        cp.handleInteraction(context, i) === true
+      ));
+      if (!cp) {
+        console.error('unhandled interaction', i);
+      } else {
+        i.update(context.responseContent);
+        // context.responseMessage.edit(context.responseContent);
       }
-  }
+    }
+  });
+
   return false;
 }
 
-/**
- * Run autocomplete
- * @param {CommandContext} context - Interaction context
- */
-export function autocomplete(context) {
-  const {interaction} = context;
-
-  const subCommandGroup = interaction.options.getSubcommandGroup();
-  switch (subCommandGroup) {
-    // case 'bot-channel': return botChannelCommand.autocomplete(context);
-    case 'helper-roles': helperRoleCommand.autocomplete(context);
-  }
-}
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

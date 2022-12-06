@@ -1,0 +1,41 @@
+{
+  "cp": {
+    "helper-roles": {
+      "name": "Helper roles",
+      "desc": "Access bot helper roles settings",
+      "main": {
+        "title": "Helper roles",
+        "desc": "Users with bot helper roles can use bot commands without any cooldown.",
+  
+        "list": "Helper roles: {ROLES}",
+        "list-none": "Helper roles: none set"
+      },
+      "add": {
+        "button-label": "Add a role",
+        "menu-placeholder": "Select a role to add",
+
+        "title": "Helper roles: add a role",
+        "desc": "Select a role to add",
+
+        "success": "✅ <@&{ROLE ID}> added",
+        "error": {
+          "already-a-role": "❌ <@&{ROLE ID}> is already a helper role",
+          "not-valid-role": "❌ Not a valid role"
+        }
+      },
+      "remove": {
+        "button-label": "Remove a role",
+        "menu-placeholder": "Select a role to remove",
+
+        "title": "Helper roles: remove a role",
+        "desc": "Select a role to remove",
+
+        "success": "✅ <@&{ROLE ID}> removed",
+        "error": {
+          "not-a-role": "❌ <@&{ROLE ID}> is not a helper role",
+          "not-valid-role": "❌ Not a valid role"
+        }
+      }
+    }
+  }
+}

@@ -1,18 +1,15 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
 import {l10n} from '../../src/l10n.js';
 import {smartReply} from '../../src/smart-reply.js';
 
-export const commandName = 'aow-info';
-export const cooldown  = 5;
+const commandName = 'aow-info';
+const cooldown  = 5;
 
-/**
- * Resource key of content database
- */
+/** Resource key of content database */
 const DbResKey = 'aow-info';
 
 /**
@@ -20,7 +17,7 @@ const DbResKey = 'aow-info';
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {locale, interaction} = context;
   const {options} = interaction;
 
@@ -54,7 +51,7 @@ export async function execute(context) {
  * Run autocomplete
  * @param {CommandContext} context - Interaction context
  */
-export function autocomplete(context) {
+function autocomplete(context) {
   const {interaction} = context;
   const locale = interaction.locale;
   const query = interaction.options.getFocused();
@@ -77,3 +74,11 @@ export function autocomplete(context) {
 
   interaction.respond(options);
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+  autocomplete: autocomplete,
+};

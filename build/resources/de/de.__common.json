@@ -6,8 +6,8 @@
     "command-error": {
       "general": "Error executing command",
       "invalid": "Error executing command: invalid command.",
-      "no-user-permission": "Error executing command: no user permission.",
-      "no-app-permission": "Error executing command: no application permission.",
+      "no-user-permission": "Error: you do not have permission to use this",
+      "no-app-permission": "Error: the bot does not have the required permission(s)",
       "not-found": "Error executing command: no information found."
     }
   },

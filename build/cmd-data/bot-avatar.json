@@ -1,0 +1,40 @@
+{
+  "commandName": "bot-avatar",
+  "global": false,
+  "ownerOnly": true,
+  "commandData": {
+    "name": "%%cmd.bot-avatar.name%%",
+    "name_localizations": "%%cmd.bot-avatar.name%%",
+    "description": "%%cmd.bot-avatar.desc%%",
+    "description_localizations": "%%cmd.bot-avatar.desc%%",
+    "default_member_permissions": ["ManageGuild", "Administrator"],
+    "dm_permission": false,
+    "options": [
+      { "$comment": "/bot-avatar set",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.bot-avatar.set.name%%",
+        "name_localizations": "%%cmd.bot-avatar.set.name%%",
+        "description": "%%cmd.bot-avatar.set.desc%%",
+        "description_localizations": "%%cmd.bot-avatar.set.desc%%",
+        "options": [
+          { "$comment": "/super-admin bot-avatar set attach",
+            "type": "CommandOptionType.Attachment",
+            "name": "%%cmd.bot-avatar.set.attach.name%%",
+            "name_localizations": "%%cmd.bot-avatar.set.attach.name%%",
+            "description": "%%cmd.bot-avatar.set.attach.desc%%",
+            "description_localizations": "%%cmd.bot-avatar.set.attach.desc%%",
+            "ephemeral": true,
+            "required": true
+          }
+        ]
+      },
+      { "$comment": "/super-admin bot-avatar get",
+        "type": "CommandOptionType.Subcommand",
+        "name": "%%cmd.bot-avatar.get.name%%",
+        "name_localizations": "%%cmd.bot-avatar.get.name%%",
+        "description": "%%cmd.bot-avatar.get.desc%%",
+        "description_localizations": "%%cmd.bot-avatar.get.desc%%"
+      }
+    ]
+  }
+}

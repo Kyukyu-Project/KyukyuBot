@@ -1,10 +1,8 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
-// import {l10n} from '../../src/l10n.js';
 import {l10n} from '../../src/l10n.js';
 import {
   getModuleDirectory,
@@ -13,10 +11,18 @@ import {
   resolvePath,
 } from '../../src/utils.js';
 
-export const commandName = 'aow-events';
-export const cooldown  = 20;
+const commandName = 'aow-events';
+const cooldown  = 20;
 
 const moduleDir = getModuleDirectory(import.meta);
+const dataDir = resolvePath(moduleDir, '../../data/events/');
+const dataFilePaths =
+  [
+    'community.json',
+    'ranking.json',
+    'special.json',
+    'sales.json',
+  ].map((fName) => joinPath(dataDir, fName));
 
 /**
  * @param {Date} d - Date
@@ -38,7 +44,7 @@ function toUTCDate(d) {
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {interaction, locale} = context;
 
   /** current time in number */
@@ -47,18 +53,9 @@ export async function execute(context) {
   /** current time in UTC */
   const currentTime = new Date(currentTS);
 
-  const dataDir = resolvePath(moduleDir, '../../data/events/');
-
   /** @type {Array} */
-  const communityEvents = readJson(joinPath(dataDir, 'community.json'));
-  const rankingEvents = readJson(joinPath(dataDir, 'ranking.json'));
-  const specialEvents = readJson(joinPath(dataDir, 'special.json'));
-  const salesEvents = readJson(joinPath(dataDir, 'sales.json'));
-
-  const allEvents = communityEvents
-      .concat(rankingEvents)
-      .concat(specialEvents)
-      .concat(salesEvents)
+  const allEvents = dataFilePaths
+      .reduce((allEvents, fPath) => allEvents.concat(readJson(fPath)), [])
       .filter((event) => event.publish);
 
   const currentEvents = [];
@@ -238,3 +235,10 @@ export async function execute(context) {
 
   return true;
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

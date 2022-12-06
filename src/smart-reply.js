@@ -68,7 +68,7 @@ function createContent(locale, content, dbResKey, useRelatedMenu, useDMButton) {
           type: ComponentType.ActionRow,
           components: [
             {
-              type: ComponentType.SelectMenu,
+              type: ComponentType.StringSelect,
               custom_id: 'related',
               placeholder: l10n.s(locale, 'smart-reply.select-related-topic'),
               options: relatedOptions,
@@ -147,7 +147,7 @@ export async function smartReply(replyContext) {
   const responseMessage = await interaction.reply(copy);
 
   const iRelatedCollector = responseMessage.createMessageComponentCollector({
-    componentType: ComponentType.SelectMenu,
+    componentType: ComponentType.StringSelect,
     time: 10 * 60 * 1000, // Disable after 10 minute
   });
 

@@ -1,12 +1,13 @@
 /**
- * @typedef {import('../src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
+ * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 
 import {l10n} from '../../src/l10n.js';
 import {waitAsync} from '../../src/utils.js';
 
-export const commandName = 'trivia';
-export const cooldown  = 10;
+const commandName = 'trivia';
+const cooldown  = 10;
 
 const Emojis = [
   '\uD83C\uDDE6',
@@ -91,7 +92,7 @@ function prepareQuiz(triviaData) {
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {locale, channel, interaction} = context;
   const {options} = interaction;
 
@@ -142,7 +143,7 @@ export async function execute(context) {
     prepareQuiz(triviaBase[pick])
   ));
 
-  let qIndex = 0;
+  let rIndex = 0;
   let correctAnswer;
   let quizMessage;
   const currentRoundWinners = new Set();
@@ -174,9 +175,9 @@ export async function execute(context) {
   const tallyQuizAnswers = () => {
     const winnerCount = currentRoundWinners.size;
     const allCount = winnerCount + currentRoundLosers.size;
-    const quiz = quizzes[qIndex];
+    const quiz = quizzes[rIndex];
     const quizEmbed = {
-      title: l10n.r(triviaTitle, '{NUMBER}', qIndex + 1, '{COUNT}', roundCount),
+      title: l10n.r(triviaTitle, '{NUMBER}', rIndex + 1, '{COUNT}', roundCount),
       fields: [
         {name: questionLabel, value: quiz.question},
         {name: answerLabel, value: quiz.choices[correctAnswer]},
@@ -202,8 +203,8 @@ export async function execute(context) {
       scores.set(userId, (scores.get(userId)||0) + 1);
     });
 
-    qIndex++;
-    if (qIndex < roundCount) {
+    rIndex++;
+    if (rIndex < roundCount) {
       currentRoundWinners.clear();
       currentRoundLosers.clear();
       postNextQuiz();
@@ -229,9 +230,9 @@ export async function execute(context) {
   };
 
   const postNextQuiz = async () => {
-    const quiz = quizzes[qIndex];
+    const quiz = quizzes[rIndex];
     const quizEmbed = {
-      title: l10n.r(triviaTitle, '{NUMBER}', qIndex + 1, '{COUNT}', roundCount),
+      title: l10n.r(triviaTitle, '{NUMBER}', rIndex + 1, '{COUNT}', roundCount),
       fields: [
         {name: questionLabel, value: quiz.question},
         {name: choicesLabel, value: quiz.choices.join('\n')},
@@ -263,3 +264,10 @@ export async function execute(context) {
   postNextQuiz(0);
   return true;
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

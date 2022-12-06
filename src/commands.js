@@ -3,11 +3,7 @@
  **/
 
 /**
- * @typedef {import('./typedef.js').CommandHandler} CommandHandler
- * @typedef {import('./typedef.js').CommandContext} CommandContext
- * @typedef {import('./typedef.js').CommandContext} CommandContext
- * @typedef {import('./typedef.js').GuildSettings} GuildSettings
- * @typedef {import('./typedef.js').ClientConfig} ClientConfig
+ * @typedef {import('./typedef.js').CommandContainer} CommandContainer
  * @typedef {import('./logger.js').LogEntry} LogEntry
  */
 
@@ -20,12 +16,8 @@ import {findFiles} from './utils.js';
 /** File path of this module */
 const filePath = resolve(fileURLToPath(import.meta.url), './../');
 
-const commandPath = resolve(filePath, './../commands/');
+const cmdFilePaths = resolve(filePath, './../commands/');
 
-/**
- * @typedef {import('./typedef.js').CommandHandler} CommandHandler
- * @typedef {import('./typedef.js').DeploymentContext} DeploymentContext
- */
 
 /** Command helper class */
 class Commands {
@@ -36,21 +28,26 @@ class Commands {
      * @type {Map}
      * @private
      */
-    this.dataSources = new Map();
+    this.cmdDataSources = new Map();
 
     /**
      * All command handlers
      * @type {Map<string, CommandHandler>}
      * @private
      */
-    this.data = new Map();
+    this.cmdData = new Map();
+
+    /**
+     * All control panel handlers
+     */
+    this.controlPanels = [];
   }
 
   /**
    * Initialization - load all commands
    */
   load() {
-    this.loadCommandFiles(findFiles(commandPath, ['.js'], 3));
+    this.loadCommandFiles(findFiles(cmdFilePaths, ['.js'], 3));
   }
 
   /**
@@ -58,20 +55,35 @@ class Commands {
    * @param {string[]} filePaths -File paths (.js files)
    */
   loadCommandFiles(filePaths) {
+    const cpNames = [];
     filePaths.forEach(async (path) => {
       try {
         const href = pathToFileURL(path).href;
-        /** @type {CommandHandler} */
-        const cmd = await import(href);
-        if ((cmd.commandName) && (cmd.execute)) {
-          if (this.data.has(cmd.commandName)) {
+
+        /** @type {CommandContainer} */
+        const imported = await import(href);
+
+        if (imported.command) {
+          const cmd = imported.command;
+          if (this.cmdData.has(cmd.name)) {
             logger.writeLog(
                 'client.error',
-                `Command name collision: ${cmd.commandName}`,
+                `Command name collision: ${cmd.name}`,
             );
           } else {
-            this.data.set(cmd.commandName, cmd);
-            this.dataSources.set(cmd.commandName, href);
+            this.cmdData.set(cmd.name, cmd);
+            this.cmdDataSources.set(cmd.name, href);
+          }
+        } else if (imported.controlPanel) {
+          const cp = imported.controlPanel;
+          if (cpNames.includes(cp.name)) {
+            logger.writeLog(
+                'client.error',
+                `Control panel name collision: ${cp.name}`,
+            );
+          } else {
+            cpNames.push(cp.name);
+            this.controlPanels.push(cp);
           }
         }
       } catch (error) {
@@ -90,11 +102,11 @@ class Commands {
    * @param {string} commandName - Command name
    */
   async reloadCommand(commandName) {
-    const oldPath = this.dataSources.get(commandName);
+    const oldPath = this.cmdDataSources.get(commandName);
     const timeStamp = (new Date()).getTime();
 
     import(`${oldPath}?update=${timeStamp}`).then((newCmd) => {
-      this.data.set(commandName, newCmd);
+      this.cmdData.set(commandName, newCmd);
     });
 
     return;
@@ -105,8 +117,9 @@ class Commands {
    * @return {CommandHandler}
    */
   getCommand(commandName) {
-    return this.data.get(commandName);
+    return this.cmdData.get(commandName);
   }
 }
 
+/** Command helper */
 export const commands = new Commands();

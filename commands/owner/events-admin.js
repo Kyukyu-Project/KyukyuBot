@@ -1,14 +1,14 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
  * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  */
 
 import {data} from '../../src/data.js';
 import {l10n} from '../../src/l10n.js';
 
-export const commandName = 'events-admin';
-export const cooldown  = 0;
+const commandName = 'events-admin';
+const cooldown  = 0;
 const ephemeral = false;
 
 /**
@@ -16,7 +16,7 @@ const ephemeral = false;
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {interaction} = context;
   let actionResult;
   switch (interaction.options.getSubcommand()) {
@@ -167,7 +167,7 @@ function remove(context) {
  * Run autocomplete
  * @param {CommandContext} context - Interaction context
  */
-export function autocomplete(context) {
+function autocomplete(context) {
   const {interaction} = context;
   const locale = interaction.locale;
   const query = interaction.options.getFocused();
@@ -183,3 +183,11 @@ export function autocomplete(context) {
 
   interaction.respond(options);
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+  autocomplete: autocomplete,
+};

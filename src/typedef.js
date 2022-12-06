@@ -3,6 +3,7 @@
 * @typedef {import('discord.js').Guild} Guild
 * @typedef {import('discord.js').Channel} Channel
 * @typedef {import('discord.js').Message} Message
+* @typedef {import('discord.js').BaseMessageOptions} BaseMessageOptions
 * @typedef {import('discord.js').CommandInteraction} CommandInteraction
 * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
 * @typedef {import('discord.js').User} User
@@ -23,7 +24,9 @@
  * @typedef {Object} GuildSettings
  * @property {string} name - Cached name of the guild
  * @property {string} `bot-channel` - Id of the bot channel
- * @property {string} `helper-roles` - Ids of bot helper roles
+ * @property {string[]} `helper-roles` - Ids of bot helper roles
+ * @property {string} [`trivia-broadcast-channel`] - Id of the trivia's broadcast (announcement) channel
+ * @property {string} [`trivia-game-channel`] - Id of the trivia's game channel
  */
 
 /**
@@ -45,6 +48,8 @@
  * @property {GuildSettings} [guildSettings] - Server settings
  * @property {Channel} channel - Channel where the command was executed
  * @property {CommandInteraction} interaction - Interaction that initiated the command
+ * @property {Message} [responseMessage] - Interaction response
+ * @property {BaseMessageOptions} [responseContent] - Cached content of the interaction response
  * @property {User} user - User who initiated the command
  * @property {string} locale - Locale of the originating command
  * @property {boolean} userIsAdmin - User is a server admin
@@ -74,15 +79,6 @@
  */
 
 /**
- * Application command handler
- * @typedef {Object} CommandHandler
- * @property {string} commandName - Command name
- * @property {number} cooldown - Cooldown (in seconds)
- * @property {Function} execute - Command handler function
- * @property {Function} [autocomplete] - Autocomplete handler function
- */
-
-/**
  * Data for application command building and deployment
  * @typedef {Object} CommandBuilderData
  * @property {string} commandName - Command name
@@ -107,5 +103,32 @@
  * @property {string} content - Content
  * @property {string[]} keywords - List of keywords
  */
+
+/**
+ * Control panel handler
+ * @typedef {Object} ControlPanelHandler
+ * @property {string} panelName - Control panel name
+ * @property {boolean} super - Is this control panel for super-admin?
+ * @property {Function} getNavMenuItem - Top menu item getter function
+ * @property {Function} getContent - Panel page getter function
+ * @property {Function} handleInteraction - Interaction handler function
+ */
+
+/**
+ * Application command handler
+ * @typedef {Object} CommandHandler
+ * @property {string} commandName - Command name
+ * @property {number} cooldown - Cooldown (in seconds)
+ * @property {Function} execute - Command handler function
+ * @property {Function} [autocomplete] - Autocomplete handler function
+ */
+
+/**
+ * Container module
+ * @typedef {Object} CommandContainer
+ * @property {CommandHandler} [command] - Command handler
+ * @property {ControlPanelHandler} [controlPanel] - Control panel handler
+ */
+
 
 export const unused = {};

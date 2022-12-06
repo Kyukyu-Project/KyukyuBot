@@ -1,6 +1,7 @@
 /**
  * @typedef {import('../src/typedef.js').CommandContext} CommandContext
- * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
+  * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
+ * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
  */
 
 import {execSync} from 'child_process';
@@ -8,16 +9,15 @@ import os from 'os';
 
 import {l10n} from '../src/l10n.js';
 
-export const commandName = 'about-kyukyu';
-export const cooldown  = 10;
+const commandName = 'about-kyukyu';
+const cooldown  = 10;
 
 /**
  * @param {CommandContext} context - Interaction context
  * @return {ActionResult}
  **/
 function bios(context) {
-  const {interaction} = context;
-  const {locale} = interaction;
+  const {locale} = context;
 
   return ({
     success: true,
@@ -30,8 +30,7 @@ function bios(context) {
  * @return {ActionResult}
  **/
 function info(context) {
-  const {client, interaction} = context;
-  const {locale} = interaction;
+  const {client, locale} = context;
 
   const repoUrl = execSync('git config --get remote.origin.url')
       .toString().trim();
@@ -105,7 +104,7 @@ function info(context) {
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {interaction} = context;
   await interaction.deferReply();
 
@@ -120,3 +119,11 @@ export async function execute(context) {
 
   return actionResult.success;
 }
+
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

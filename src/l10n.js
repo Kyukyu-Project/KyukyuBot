@@ -212,8 +212,7 @@ export class L10N {
           const lastItem = list2.pop();
           return list2.join('、') + '和' + lastItem;
         }
-      case 'jp':
-      case 'jp-JP':
+      case 'ja':
         if (len === 2) {
           // 'リンゴとバナナ'
           return `${list[0]}と${list[1]}`;

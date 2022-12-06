@@ -7,16 +7,15 @@ import {AttachmentBuilder} from 'discord.js';
 import {data} from '../../src/data.js';
 import {l10n} from '../../src/l10n.js';
 
-export const commandName = 'hero-events';
-export const cooldown  = 5;
-const ephemeral = false;
+const commandName = 'hero-events';
+const cooldown  = 5;
 
 /**
  * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {interaction} = context;
   const {options} = interaction;
   let actionResult;
@@ -27,17 +26,11 @@ export async function execute(context) {
     case 'find': actionResult = find(context); break;
     case 'download':
       const attachment = download(context);
-      interaction.reply({
-        files: [attachment],
-        ephemeral: ephemeral},
-      );
+      interaction.reply({files: [attachment]});
       return true;
   }
 
-  interaction.reply({
-    content: actionResult.response,
-    ephemeral: ephemeral,
-  });
+  interaction.reply(actionResult.response);
 
   return actionResult.success;
 }
@@ -46,7 +39,7 @@ export async function execute(context) {
  * Run autocomplete
  * @param {CommandContext} context - Interaction context
  */
-export function autocomplete(context) {
+function autocomplete(context) {
   const {interaction} = context;
   const locale = interaction.locale;
   const query = interaction.options.getFocused();
@@ -406,19 +399,32 @@ function download(context) {
   const cm = l10n.s(locale, `card-master`);
   const wof = l10n.s(locale, `wheel-of-fortune`);
 
-  const json = eventBase.map((event) => ({
-    date: l10n.formatDate(locale, new Date(event.ts)),
-    type: (event.type == 'cm')?cm:wof,
-    primaryHeroes: event.primaryHeroes.map(
-        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
-    ),
-    secondaryHeroes: event.secondaryHeroes.map(
-        (h) => l10n.s(locale, 'hero.content.' + h)['display-name'],
-    ),
-  }));
+  const json = eventBase.map((e) => {
+    const eventEntry = {
+      date: l10n.formatDate(locale, new Date(e.ts)),
+      type: (e.type == 'cm')?cm:wof,
+      primaryHeroes: e.primaryHeroes.map(
+          (h) => l10n.s(locale, `hero.content.${h}`)['display-name'],
+      ),
+    };
+    if (e.secondaryHeroes) {
+      eventEntry.secondaryHeroes = e.secondaryHeroes.map(
+          (h) => l10n.s(locale, `hero.content.${h}`)['display-name'],
+      );
+    }
+    return eventEntry;
+  });
 
   return new AttachmentBuilder(
       Buffer.from(JSON.stringify(json, null, 2)),
       {name: 'aow-hero-events.json'},
   );
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+  autocomplete: autocomplete,
+};

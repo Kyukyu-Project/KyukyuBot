@@ -2,7 +2,16 @@
   "cmd": {
     "bot-admin": {
       "name": "bot-admin",
-      "desc": "Change or view bot administrator settings"
+      "desc": "Bot administration",
+      "page": {
+        "title": "Bot control panel",
+        "content": "Select what you would like to access:"
+      },
+      "nav-menu": {
+        "placeholder": "Select what you would like to access"
+      },
+      "top": "Return to top",
+      "back": "Back"
     }
   }
 }

@@ -61,8 +61,7 @@ function set(context) {
  * @return {ActionResult}
  */
 function clear(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {locale} = interaction;
+  const {locale, guild, guildSettings} = context;
 
   const currChannelId = getSetting(guildSettings);
 
@@ -85,8 +84,8 @@ function clear(context) {
  * @return {ActionResult}
  **/
 function info(context) {
-  const {guild, guildSettings, interaction} = context;
-  const {locale, appPermissions} = interaction;
+  const {locale, guild, guildSettings, interaction} = context;
+  const {appPermissions} = interaction;
 
   const currChannelId = getSetting(guildSettings);
   if (currChannelId) {

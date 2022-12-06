@@ -45,10 +45,10 @@
       "tally-message": "{CORRECT}/{TOTAL} people got this one correct.",
 
       "response-correct": [
-        "✔️ Correct! Good job.",
-        "✔️ That is correct!",
-        "✔️ Right on!",
-        "✔️ That's correct. Superb!"
+        "✅ Correct! Good job.",
+        "✅ That is correct!",
+        "✅ Right on!",
+        "✅ That's correct. Superb!"
       ],
 
       "response-incorrect": [
