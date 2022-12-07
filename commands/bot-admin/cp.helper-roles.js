@@ -11,6 +11,7 @@ import {PermissionFlagsBits, ComponentType, ButtonStyle} from 'discord.js';
 
 import {l10n} from '../../src/l10n.js';
 import {servers} from '../../src/servers.js';
+import {logger} from '../../src/logger.js';
 
 const controlPanelName = 'helper-roles';
 
@@ -234,7 +235,6 @@ function getMainPage(context, status) {
   };
 }
 
-
 /**
  * Remove a role
  * @param {CommandContext} context - Originating interaction context
@@ -242,8 +242,8 @@ function getMainPage(context, status) {
  * @return {InteractionReplyOptions}
  **/
 function removeRole(context, i) {
-  const {locale, guild} = context;
-  const value = i.values[0];
+  const {locale, guild, user} = context;
+  const roleId = i.values[0];
 
   /** Ids of current helper roles */
   const currRoleIds = getCurrentHelperRoles(context);
@@ -251,19 +251,24 @@ function removeRole(context, i) {
   /** Action result message */
   let status = '';
 
-  const roleIdx = currRoleIds.indexOf(value);
+  const roleIdx = currRoleIds.indexOf(roleId);
   if (roleIdx !== -1) {
     currRoleIds.splice(roleIdx, 1);
     context.guildSettings =
         servers.updateSettings(guild, 'helper-roles', currRoleIds);
     status = l10n.t(
         locale, 'cp.helper-roles.remove.success',
-        '{ROLE ID}', value,
+        '{ROLE ID}', roleId,
+    );
+
+    logger.writeLog(
+        `${guild.id}.log`,
+        `${user.tag} unset <@&${roleId}> as helper role`,
     );
   } else {
     status = l10n.t(
         locale, 'cp.helper-roles.remove.error.not-a-role',
-        '{ROLE ID}', value,
+        '{ROLE ID}', roleId,
     );
   }
 
@@ -277,8 +282,8 @@ function removeRole(context, i) {
  * @return {InteractionReplyOptions}
  **/
 function addRole(context, i) {
-  const {locale, guild} = context;
-  const value = i.values[0];
+  const {locale, guild, user} = context;
+  const roleId = i.values[0];
 
   /** Ids of current helper roles */
   const currRoleIds = getCurrentHelperRoles(context);
@@ -286,19 +291,23 @@ function addRole(context, i) {
   /** Action result message  */
   let status = '';
 
-  if (!currRoleIds.includes(value)) {
-    const selectedRole = guild.roles.cache.get(value);
+  if (!currRoleIds.includes(roleId)) {
+    const selectedRole = guild.roles.cache.get(roleId);
     currRoleIds.push(selectedRole.id);
     context.guildSettings =
         servers.updateSettings(guild, 'helper-roles', currRoleIds);
     status = l10n.t(
         locale, 'cp.helper-roles.add.success',
-        '{ROLE ID}', value,
+        '{ROLE ID}', roleId,
+    );
+    logger.writeLog(
+        `${guild.id}.log`,
+        `${user.tag} set <@&${roleId}> as helper role`,
     );
   } else {
     status = l10n.t(
         locale, 'cp.helper-roles.add.error.already-a-role',
-        '{ROLE ID}', value,
+        '{ROLE ID}', roleId,
     );
   }
 

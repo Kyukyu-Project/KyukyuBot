@@ -11,6 +11,7 @@ import {ComponentType, ButtonStyle, ChannelType} from 'discord.js';
 
 import {l10n} from '../../src/l10n.js';
 import {servers} from '../../src/servers.js';
+import {logger} from '../../src/logger.js';
 
 const controlPanelName = 'bot-channel';
 
@@ -128,12 +129,17 @@ function getMainPage(context, status) {
  * @return {InteractionReplyOptions}
  **/
 function unsetChannel(context) {
-  const {locale, guild} = context;
+  const {locale, guild, user} = context;
 
   context.guildSettings = servers
       .updateSettings(guild, 'bot-channel', undefined);
 
   const status = l10n.s(locale, 'cp.bot-channel.unset.success');
+
+  logger.writeLog(
+      `${guild.id}.log`,
+      `${user.tag} unset bot-channel`,
+  );
 
   return getMainPage(context, status);
 }
@@ -145,7 +151,7 @@ function unsetChannel(context) {
  * @return {InteractionReplyOptions}
  **/
 function setChannel(context, i) {
-  const {locale, guild} = context;
+  const {locale, guild, user} = context;
   const channelId = i.values[0];
 
   context.guildSettings = servers
@@ -154,6 +160,11 @@ function setChannel(context, i) {
   const status = l10n.t(
       locale, 'cp.bot-channel.set.success',
       '{CHANNEL ID}', channelId,
+  );
+
+  logger.writeLog(
+      `${guild.id}.log`,
+      `${user.tag} set bot-channel to <#${channelId}>`,
   );
 
   return getMainPage(context, status);

@@ -1,0 +1,61 @@
+{
+  "cp": {
+    "log": {
+      "name": "Log",
+      "desc": "Access bot logs",
+      "normal": {
+        "title": "Bot log",
+        "desc": "Select an action",
+
+        "get": {
+          "button-label": "Get log",
+          "menu-placeholder": "Select a channel to set",
+  
+          "title": "Bot-command channel: set channel",
+          "desc": "Select a channel to set",
+  
+          "success": "✅ <#{CHANNEL ID}> set"
+        },
+        "unset": {
+          "button-label": "Unset channel",
+  
+          "success": "✅ Bot-command channel unset"
+        }
+      },
+      "super-admin": {
+        "title": "Bot log",
+        "desc": "Select an action",
+
+        "get": {
+          "button-label": "Get log",
+          "menu-placeholder": "Select a log to get",
+          "title": "Bot log: get log",
+          "desc": "Select a log to get",
+          "success": "Log:"
+        },
+        "clear": {
+          "button-label": "Clear log",
+          "title": "Bot log: clear log",
+          "desc": "Select a log to clear",
+          "success": "Log cleared"
+        }
+      },
+
+      "get-result": {
+        "client-log": "Bot log:",
+        "error-log": "Error log:",
+        "server-log": "Server log ({SERVER}):"
+      },
+
+      "clear-result": {
+        "client-log": "Bot log cleared",
+        "error-log": "Error log cleared",
+        "server-log": "Server log ({SERVER}) cleared"
+      },
+
+      "client-log-label": "Bot log ({SIZE})",
+      "error-log-label": "Error log ({SIZE})",
+      "server-log-label": "Server log ({SERVER}) ({SIZE})"
+    }
+  }
+}

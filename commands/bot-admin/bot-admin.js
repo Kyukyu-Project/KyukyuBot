@@ -73,19 +73,17 @@ async function execute(context) {
     // const value = i.values[0];
     const customId = i.customId;
 
-    console.log(`custom id: ${customId}, value: ${i.values?.[0]||undefined}`);
+    // console.log(`custom id: ${customId}, value: ${i.values?.[0]||undefined}`);
 
     if (customId === 'top') {
       context.responseContent = topContent;
       i.update(topContent);
-      // responseMessage.edit(topContent);
     } else if (customId === 'top.select') {
       const value = i.values[0];
       const cp = controlPanels.find((cp) => cp.name === value);
       const content = cp.getContent(context);
       context.responseContent = content;
       i.update(content);
-      // context.responseMessage.edit(content);
     } else {
       const cp = controlPanels.find((cp) => (
         cp.handleInteraction(context, i) === true
@@ -94,7 +92,6 @@ async function execute(context) {
         console.error('unhandled interaction', i);
       } else {
         i.update(context.responseContent);
-        // context.responseMessage.edit(context.responseContent);
       }
     }
   });
