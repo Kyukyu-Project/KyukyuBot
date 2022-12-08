@@ -1,12 +1,12 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 
-import {ChannelType} from 'discord.js';
 import {l10n} from '../../src/l10n.js';
 
-export const commandName = 'exp';
-export const cooldown  = 20;
+const commandName = 'exp';
+const cooldown  = 20;
 
 const EXP_POINTS = [
   0, 50, 150, 350, 750, 1550,
@@ -33,40 +33,12 @@ const EXP_POINTS = [
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {
-    channel,
     interaction,
     locale,
-    guildSettings,
-    userIsAdmin,
-    userIsHelper,
   } = context;
   const options = interaction.options;
-
-  if (
-    (channel.type === ChannelType.GuildText) &&
-    (!userIsHelper) && (!userIsAdmin)
-  ) {
-    const botChannelId = guildSettings['bot-channel'];
-    if (botChannelId) {
-      if (botChannelId !== channel.id) {
-        interaction.reply({
-          content: l10n.t(
-              locale, 'cmd.exp.result.bot-channel-only',
-              '{CHANNEL}', `<#${botChannelId}>`),
-          ephemeral: true,
-        });
-        return false;
-      }
-    } else {
-      interaction.reply({
-        content: l10n.s(locale, 'cmd.exp.result.dm-only'),
-        ephemeral: true,
-      });
-      return false;
-    }
-  }
 
   const currPoints = options.getInteger('exp-points');
 
@@ -122,3 +94,10 @@ export async function execute(context) {
   }
   return true;
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};
