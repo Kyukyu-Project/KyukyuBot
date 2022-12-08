@@ -115,3 +115,23 @@ class Logger {
 }
 
 export const logger = new Logger();
+
+process.on('uncaughtException', (error) => {
+  logger.writeLog(
+      'client.error',
+      {
+        summary: error.message,
+        details: error.stack,
+      },
+  );
+});
+
+process.on('unhandledRejection', (error) => {
+  logger.writeLog(
+      'client.error',
+      {
+        summary: error.message,
+        details: error.stack,
+      },
+  );
+});

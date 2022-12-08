@@ -1,5 +1,5 @@
 /**
-* @typedef {import('./client.js').default} Client
+* @typedef {import('./client.js').Client} Client
 * @typedef {import('discord.js').Guild} Guild
 * @typedef {import('discord.js').Channel} Channel
 * @typedef {import('discord.js').Message} Message

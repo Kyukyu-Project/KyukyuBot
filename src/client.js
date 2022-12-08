@@ -52,7 +52,7 @@ const activities = [
 let activityIdx = Math.floor(Math.random() * activities.length) + 1;
 
 /** Extending Discord Client */
-class Client extends djsClient {
+export class Client extends djsClient {
   /**
    * @param {ClientConfig} clientConfig
    */

@@ -12,3 +12,6 @@ client-data/*.*
 !/*.example.json
 !/package*.json
 !/cspell.json
+
+*.no-json
+*.no-js
