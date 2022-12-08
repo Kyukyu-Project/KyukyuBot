@@ -18,5 +18,15 @@
     "content": {
       "en-US": "The formation \"Greenbelt\" in Infinity War will be replaced by a new formation \"[Outlaws](https://cdn.discordapp.com/attachments/658964105046261760/1034732590034329661/6bca220d8b30d458.png)\" on 2022-11-10."
     }
+  },
+  {
+    "publish": true,
+    "pin": {
+      "until": "start-of",
+      "date": "2022-12-13"
+    },
+    "content": {
+      "en-US": "The formation \"Watch Out\" in Infinity War will be replaced by a new formation \"[Call of Wild](https://cdn.discordapp.com/attachments/658964105046261760/1049532300137865266/2839939227d4224d.png)\" on 2022-12-13."
+    }
   }
 ]

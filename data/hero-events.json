@@ -1,5 +1,30 @@
 [
   {
+    "ts": 1671494400000,
+    "date": "2022-12-20",
+    "type": "wof",
+    "primaryHeroes": [
+      "chione",
+      "aly"
+    ],
+    "secondaryHeroes": [
+      "kriss"
+    ]
+  },
+  {
+    "ts": 1670889600000,
+    "date": "2022-12-13",
+    "type": "cm",
+    "primaryHeroes": [
+      "freyja",
+      "kraken",
+      "apollo",
+      "horus",
+      "mephisto",
+      "beowulf"
+    ]
+  },
+  {
     "ts": 1670284800000,
     "date": "2022-12-06",
     "type": "wof",
