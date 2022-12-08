@@ -7,6 +7,7 @@
 import {ComponentType} from 'discord.js';
 import {commands} from '../../src/commands.js';
 import {l10n} from '../../src/l10n.js';
+import {logger} from '../../src/logger.js';
 
 const commandName = 'bot-admin';
 const cooldown  = 0;
@@ -70,26 +71,30 @@ async function execute(context) {
     };
     // i.deferUpdate();
 
-    // const value = i.values[0];
     const customId = i.customId;
-
-    // console.log(`custom id: ${customId}, value: ${i.values?.[0]||undefined}`);
+    const value = i.values?.[0] || undefined;
 
     if (customId === 'top') {
       context.responseContent = topContent;
       i.update(topContent);
     } else if (customId === 'top.select') {
-      const value = i.values[0];
       const cp = controlPanels.find((cp) => cp.name === value);
       const content = cp.getContent(context);
       context.responseContent = content;
       i.update(content);
     } else {
-      const cp = controlPanels.find((cp) => (
-        cp.handleInteraction(context, i) === true
-      ));
+      const cp = controlPanels.find((cp) => {
+        try {
+          return cp.handleInteraction(context, i);
+        } catch (e) {
+          return false;
+        }
+      });
       if (!cp) {
-        console.error('unhandled interaction', i);
+        logger.writeLog('client.error', {
+          summary: 'Unhandled interaction',
+          details: `custom_id: ${customId}, value: ${value}`,
+        });
       } else {
         i.update(context.responseContent);
       }

@@ -65,5 +65,39 @@
       "final-scoring": "The top scorers are:\n",
       "final-scoring-line": "<@!{USER ID}> ({SCORE} pts)"
     }
+  },
+  "cp": {
+    "trivia": {
+      "name": "Trivia",
+      "desc": "Access trivia game settings",
+      "main": {
+        "title": "Trivia",
+        "desc<text>": "After the `/trivia` command is executed, the bot will first post an announcement in the broadcast channel (or the channel where the command is executed). The game will official start in the game channel (or the channel where the command is executed)",
+        "list-broadcast-channel": "Broadcast Channel: <#{CHANNEL ID}>",
+        "list-broadcast-channel-none": "Broadcast Channel: none set",
+        "list-game-channel": "Game Channel: <#{CHANNEL ID}>",
+        "list-game-channel-none": "Game Channel: none set"
+      },
+      "set-broadcast-channel": {
+        "button-label": "Set broadcast channel",
+        "menu-placeholder": "Select a channel to set",
+
+        "title": "Trivia: broadcast channel",
+        "desc": "Select a channel to set"
+      },
+      "set-game-channel": {
+        "button-label": "Set game channel",
+        "menu-placeholder": "Select a channel to set",
+
+        "title": "Trivia: game channel",
+        "desc": "Select a channel to set"
+      },
+      "unset-broadcast-channel": {
+        "button-label": "Unset broadcast channel"
+      },
+      "unset-game-channel": {
+        "button-label": "Unset game channel"
+      }
+    }
   }
 }

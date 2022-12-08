@@ -74,7 +74,9 @@ class Commands {
             this.cmdData.set(cmd.name, cmd);
             this.cmdDataSources.set(cmd.name, href);
           }
-        } else if (imported.controlPanel) {
+        }
+
+        if (imported.controlPanel) {
           const cp = imported.controlPanel;
           if (cpNames.includes(cp.name)) {
             logger.writeLog(

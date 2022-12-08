@@ -2,7 +2,6 @@
  * @typedef {import('../../src/typedef.js').ControlPanelHandler} ControlPanelHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
- * @typedef {import('../../src/typedef.js').CommandActionResult} ActionResult
  * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
  * @typedef {import('discord.js').MessageComponentInteraction} MessageComponentInteraction
  * @typedef {import('discord.js').SelectMenuComponentOptionData} SelectMenuComponentOptionData

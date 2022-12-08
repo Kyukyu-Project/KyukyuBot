@@ -1,10 +1,23 @@
 /**
+ * @typedef {import('../../src/typedef.js').ControlPanelHandler} ControlPanelHandler
  * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
+ * @typedef {import('../../src/typedef.js').GuildSettings} GuildSettings
+ * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
+ * @typedef {import('discord.js').MessageComponentInteraction} MessageComponentInteraction
+ * @typedef {import('discord.js').SelectMenuComponentOptionData} SelectMenuComponentOptionData
  */
 
 import {l10n} from '../../src/l10n.js';
+import {servers} from '../../src/servers.js';
+import {logger} from '../../src/logger.js';
 import {waitAsync} from '../../src/utils.js';
+
+import {ComponentType, ButtonStyle, ChannelType} from 'discord.js';
+
+/* ********************************************************************* */
+/* *************************** Main Command **************************** */
+/* ********************************************************************* */
 
 const commandName = 'trivia';
 const cooldown  = 10;
@@ -270,4 +283,364 @@ export const command = {
   name: commandName,
   cooldown: cooldown,
   execute: execute,
+};
+
+/* ********************************************************************* */
+/* *************************** Control Panel *************************** */
+/* ********************************************************************* */
+
+const controlPanelName = 'trivia';
+
+// Component ids
+const CompUnsetBroadcastChannelButton = 'trivia.unset-broadcast-channel';
+const CompUnsetGameChannelButton = 'trivia.unset-game-channel';
+const CompSetBroadcastChannelButton = 'trivia.set-broadcast-channel';
+const CompSetBroadcastChannelSelect = 'trivia.set-broadcast-channel.select';
+const CompSetGameChannelButton = 'trivia.set-game-channel';
+const CompSetGameChannelSelect = 'trivia.set-game-channel.select';
+const CompBackButton = 'trivia.back';
+const CompTop = 'top';
+
+/**
+ * Get 'set broadcast channel' page
+ * @param {CommandContext} context - Interaction context
+ * @return {InteractionReplyOptions}
+ */
+function getSetBroadcastChannelPage(context) {
+  const {locale} = context;
+
+  const pageContent = {
+    embeds: [{
+      title: l10n.s(locale, 'cp.trivia.set-broadcast-channel.title'),
+      description: l10n.s(locale, 'cp.trivia.set-broadcast-channel.desc'),
+    }],
+    components: [
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.ChannelSelect,
+            custom_id: CompSetBroadcastChannelSelect,
+            channel_types: [ChannelType.GuildText],
+            placeholder: l10n.s(
+                locale,
+                'cp.trivia.set-broadcast-channel.menu-placeholder',
+            ),
+          },
+        ],
+      },
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Secondary,
+            custom_id: CompBackButton,
+            label: l10n.s(locale, 'cmd.bot-admin.back'),
+          },
+        ],
+      },
+    ],
+  };
+
+  return pageContent;
+}
+
+/**
+ * Get 'set game channel' page
+ * @param {CommandContext} context - Interaction context
+ * @return {InteractionReplyOptions}
+ */
+function getSetGameChannelPage(context) {
+  const {locale} = context;
+
+  const pageContent = {
+    embeds: [{
+      title: l10n.s(locale, 'cp.trivia.set-game-channel.title'),
+      description: l10n.s(locale, 'cp.trivia.set-game-channel.desc'),
+    }],
+    components: [
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.ChannelSelect,
+            custom_id: CompSetGameChannelSelect,
+            channel_types: [ChannelType.GuildText],
+            placeholder: l10n.s(
+                locale,
+                'cp.trivia.set-game-channel.menu-placeholder',
+            ),
+          },
+        ],
+      },
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Secondary,
+            custom_id: CompBackButton,
+            label: l10n.s(locale, 'cmd.bot-admin.back'),
+          },
+        ],
+      },
+    ],
+  };
+
+  return pageContent;
+}
+
+/**
+ * Get main page
+ * @param {CommandContext} context - Interaction context
+ * @return {InteractionReplyOptions}
+ */
+function getMainPage(context) {
+  const {locale, guildSettings} = context;
+
+  const broadcastChannelId = guildSettings['trivia-broadcast-channel'];
+  const gameChannelId = guildSettings['trivia-game-channel'];
+
+  const pageTitle = l10n.s(locale, 'cp.trivia.main.title');
+  const pageDesc = l10n.s(locale, 'cp.trivia.main.desc');
+
+  const listBroadcastChannel = broadcastChannelId?
+      l10n.t(
+          locale, 'cp.trivia.main.list-broadcast-channel',
+          '{CHANNEL ID}', broadcastChannelId,
+      ):
+      l10n.s(locale, 'cp.trivia.main.list-broadcast-channel-none');
+
+  const listGameChannel = gameChannelId?
+      l10n.t(
+          locale, 'cp.trivia.main.list-game-channel',
+          '{CHANNEL ID}', gameChannelId,
+      ):
+      l10n.s(locale, 'cp.trivia.main.list-game-channel-none');
+
+  return {
+    embeds: [{
+      title: pageTitle,
+      description: pageDesc +
+          '\n\n' + listBroadcastChannel +
+          '\n\n' + listGameChannel,
+    }],
+    components: [
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Primary,
+            custom_id: CompSetBroadcastChannelButton,
+            label: l10n.s(
+                locale,
+                'cp.trivia.set-broadcast-channel.button-label',
+            ),
+          },
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Primary,
+            custom_id: CompUnsetBroadcastChannelButton,
+            label: l10n.s(
+                locale,
+                'cp.trivia.unset-broadcast-channel.button-label',
+            ),
+            disabled: (!broadcastChannelId),
+          },
+        ],
+      },
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Primary,
+            custom_id: CompSetGameChannelButton,
+            label: l10n.s(
+                locale,
+                'cp.trivia.set-game-channel.button-label',
+            ),
+          },
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Primary,
+            custom_id: CompUnsetGameChannelButton,
+            label: l10n.s(
+                locale,
+                'cp.trivia.unset-game-channel.button-label',
+            ),
+            disabled: (!gameChannelId),
+          },
+        ],
+      },
+      {
+        type: ComponentType.ActionRow,
+        components: [
+          {
+            type: ComponentType.Button,
+            style: ButtonStyle.Secondary,
+            custom_id: CompTop,
+            label: l10n.s(locale, 'cmd.bot-admin.top'),
+          },
+        ],
+      },
+    ],
+  };
+}
+
+/**
+ * Unset broadcast
+ * @param {CommandContext} context - Originating interaction context
+ * @return {InteractionReplyOptions}
+ **/
+function unsetBroadcastChannel(context) {
+  const {guild, user} = context;
+
+  context.guildSettings = servers
+      .updateSettings(guild, 'trivia-broadcast-channel', undefined);
+
+  logger.writeLog(
+      `${guild.id}.log`,
+      `${user.tag} unset trivia broadcast channel`,
+  );
+
+  return getMainPage(context);
+}
+
+
+/**
+ * Unset broadcast
+ * @param {CommandContext} context - Originating interaction context
+ * @return {InteractionReplyOptions}
+ **/
+function unsetGameChannel(context) {
+  const {guild, user} = context;
+
+  context.guildSettings = servers
+      .updateSettings(guild, 'trivia-game-channel', undefined);
+
+  logger.writeLog(
+      `${guild.id}.log`,
+      `${user.tag} unset trivia game channel`,
+  );
+
+  return getMainPage(context);
+}
+
+/**
+ * Set broadcast channel
+ * @param {CommandContext} context - Originating interaction context
+ * @param {MessageComponentInteraction} i - Message component interaction
+ * @return {InteractionReplyOptions}
+ **/
+function setBroadcastChannel(context, i) {
+  const {guild, user} = context;
+  const channelId = i.values[0];
+
+  console.log('setting broadcast channel');
+
+  context.guildSettings = servers
+      .updateSettings(guild, 'trivia-broadcast-channel', channelId);
+
+  logger.writeLog(
+      `${guild.id}.log`,
+      `${user.tag} set trivia broadcast channel to <#${channelId}>`,
+  );
+
+  return getMainPage(context);
+}
+
+/**
+ * Set game channel
+ * @param {CommandContext} context - Originating interaction context
+ * @param {MessageComponentInteraction} i - Message component interaction
+ * @return {InteractionReplyOptions}
+ **/
+function setGameChannel(context, i) {
+  const {guild, user} = context;
+  const channelId = i.values[0];
+
+  console.log('setting game channel');
+
+  context.guildSettings = servers
+      .updateSettings(guild, 'trivia-game-channel', channelId);
+
+  logger.writeLog(
+      `${guild.id}.log`,
+      `${user.tag} set trivia game channel to <#${channelId}>`,
+  );
+
+  return getMainPage(context);
+}
+
+/**
+ * Handle component interaction
+ * @param {CommandContext} context - Originating interaction context
+ * @param {MessageComponentInteraction} i - Message component interaction
+ * @return {InteractionReplyOptions}
+ **/
+function handleInteraction(context, i) {
+  /** @type {string} */
+  const customId = i.customId;
+
+  if (!customId.startsWith('trivia')) return undefined;
+
+  switch (customId) {
+    case CompBackButton:
+      context.responseContent = getMainPage(context);
+      return true;
+    case CompSetBroadcastChannelButton:
+      context.responseContent = getSetBroadcastChannelPage(context);
+      return true;
+    case CompSetGameChannelButton:
+      context.responseContent = getSetGameChannelPage(context);
+      return true;
+    case CompSetBroadcastChannelSelect:
+      context.responseContent = setBroadcastChannel(context, i);
+      return true;
+    case CompSetGameChannelSelect:
+      context.responseContent = setGameChannel(context, i);
+      return true;
+    case CompUnsetBroadcastChannelButton:
+      context.responseContent = unsetBroadcastChannel(context);
+      return true;
+    case CompUnsetGameChannelButton:
+      context.responseContent = unsetGameChannel(context);
+      return true;
+    default: return false;
+  }
+}
+
+/**
+ * Main panel page getter
+ * @param {CommandContext} context - Interaction context
+ * @return {InteractionReplyOptions}
+ */
+function getContent(context) {
+  return getMainPage(context);
+}
+
+/**
+ * Top nav-menu item getter
+ * @param {CommandContext} context - Interaction context
+ * @return {SelectMenuComponentOptionData}
+ **/
+function getNavMenuItem(context) {
+  const {locale} = context;
+  return {
+    label: l10n.s(locale, 'cp.trivia.name'),
+    description: l10n.s(locale, 'cp.trivia.desc'),
+    value: controlPanelName,
+  };
+}
+
+/** @type {ControlPanelHandler} */
+export const controlPanel = {
+  name: controlPanelName,
+  super: false,
+  getNavMenuItem: getNavMenuItem,
+  getContent: getContent,
+  handleInteraction: handleInteraction,
 };

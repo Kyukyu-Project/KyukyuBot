@@ -122,7 +122,6 @@ function getMainPage(context, status) {
   };
 }
 
-
 /**
  * Unset bot-channel
  * @param {CommandContext} context - Originating interaction context
@@ -145,7 +144,7 @@ function unsetChannel(context) {
 }
 
 /**
- * Add a role
+ * Set bot-channel
  * @param {CommandContext} context - Originating interaction context
  * @param {MessageComponentInteraction} i - Message component interaction
  * @return {InteractionReplyOptions}
