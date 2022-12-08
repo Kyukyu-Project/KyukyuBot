@@ -461,7 +461,7 @@ async function playMP(context) {
 
     fieldText =
         l10n.s(locale, 'cmd.hero-match.multi-player.game-over.text') + '\n' +
-        lines.join('/n');
+        lines.join('\n');
 
     const buttons = board.cards.map((card, idx) => {
       if (card.picked) {
