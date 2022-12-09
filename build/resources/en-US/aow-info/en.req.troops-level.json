@@ -43,6 +43,10 @@
                 "text": "Contributed by community member (2022-10-21)"
               }
             }
+          ],
+          "related": [
+            "req.hero-level",
+            "res-req.troops-level"
           ]
         }
       }

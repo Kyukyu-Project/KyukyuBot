@@ -1,0 +1,44 @@
+{
+  "aow-info": {
+    "$example searches": [
+      "how many shards do I need to level a hero?",
+      "what are dust needed to upgrade a hero?"
+    ],
+    "search": [
+      { "id": "res-req.hero-level",
+        "title": "Resource requirement for hero leveling",
+        "keyword-sets": [
+          ["level", "lvl", "upgrade"],
+          ["hero"],
+          [
+            "shards required", "shards needed", "how many shard",
+            "dust required", "shards needed", "how much dust"
+          ]
+        ]
+      }
+    ],
+    "content": {
+      "res-req.hero-level": {
+        "<object>": {
+          "title": "Resource requirement for hero leveling",
+          "embeds": [
+            {
+              "title": "Resource requirement for hero leveling",
+              "description": "A level-15 hero needs 120 shards and 2000 gems. A level-17 hero needs 225 shards, 2000 gems, and 252k dust.",
+              "image": {
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1050634084768022549/hero-upgrade-res-req.png"
+              },
+              "footer": {
+                "text": "Contributed by community member (2022-12-09)"
+              }
+            }
+          ],
+          "related": [
+            "req.hero-level",
+            "res-req.troops-level"
+          ]
+        }
+      }
+    }
+  }    
+}

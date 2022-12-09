@@ -6,7 +6,7 @@
     ],
     "search": [
       { "id": "req.hero-level",
-        "title": "Requirement to upgrade a hero to level 15-1 ~ 16",
+        "title": "Requirement to upgrade a hero to level 15-1 ~ 17",
         "keyword-sets": [
           ["level", "lvl", "upgrade"],
           ["15.1", "15.2", "15.3", "16", "17", "15-1", "15-2", "15-3"],
@@ -18,10 +18,10 @@
     "content": {
       "req.hero-level": {
         "<object>": {
-          "title": "Requirement to upgrade a hero to level 15-1 ~ 16",
+          "title": "Requirement to upgrade a hero to level 15-1 ~ 17",
           "embeds": [
             {
-              "title": "Requirement to upgrade a hero to level 15-1 ~ 16",
+              "title": "Requirement to upgrade a hero to level 15-1 ~ 17",
               "fields": [
                 {
                   "name": "Level 15-1 ~ 15-3",
@@ -38,7 +38,7 @@
                   ]
                 },
                 {
-                  "name": "Level 7",
+                  "name": "Level 17",
                   "value<text>": [
                     "• 4× level-15 legendary heroes",
                     "• 20× level-10 troops"
@@ -46,9 +46,13 @@
                 }
               ],
               "footer": {
-                "text": "Contributed by community member (2022-10-21)"
+                "text": "Contributed by community member (2022-12-09)"
               }
             }
+          ],
+          "related": [
+            "req.troops-level",
+            "res-req.hero-level"
           ]
         }
       }

@@ -1,0 +1,47 @@
+{
+  "aow-info": {
+    "$example searches": [
+      "how many medals do I need to level a troops?",
+      "what are the medals needed to upgrade a troops?"
+    ],
+    "search": [
+      { "id": "res-req.troops-level",
+        "title": "Resource requirement for troops leveling",
+        "keyword-sets": [
+          ["level", "lvl", "upgrade"],
+          ["troops"],
+          [
+            "gem required", "gem needed", "how much gem",
+            "gems required", "gems needed", "how much gem",
+            "mh required", "mh needed", "how many mh",
+            "medal required", "medal needed", "how many medal",
+            "medals required", "medals needed"
+          ]
+        ]
+      }
+    ],
+    "content": {
+      "res-req.troops-level": {
+        "<object>": {
+          "title": "Resource requirement for troops leveling",
+          "embeds": [
+            {
+              "title": "Resource requirement for troops leveling",
+              "description": "A level-8 troops needs 64 level-2 troops. A level-9 troops needs 128 level-2 troops and 2500 Hunting Medals. A level-10 troops needs 256 level-2 troops and 8500 Hunting Medals",
+              "image": {
+                "url": "https://cdn.discordapp.com/attachments/833978786395586600/1050681236370231296/troops-upgrade-res-req.png"
+              },
+              "footer": {
+                "text": "Contributed by community member (2022-12-09)"
+              }
+            }
+          ],
+          "related": [
+            "req.troops-level",
+            "res-req.hero-level"
+          ]
+        }
+      }
+    }
+  }    
+}
