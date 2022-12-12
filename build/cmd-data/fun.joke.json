@@ -1,0 +1,13 @@
+{
+  "commandName": "joke",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.joke.name%%",
+    "name_localizations": "%%cmd.joke.name%%",
+    "description": "%%cmd.joke.desc%%",
+    "description_localizations": "%%cmd.joke.desc%%",
+    "default_member_permissions": ["SendMessages"],
+    "dm_permission": true
+  }
+}
