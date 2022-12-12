@@ -4,9 +4,6 @@
       "name": "joke",
       "desc": "Tell a joke",
       "result": {
-        "title": "Random joke",
-        "question": ":regional_indicator_q: {TEXT}",
-        "answer": "\n\n:regional_indicator_a: {TEXT}",
         "credit": "Credit: {NAME}"
       }
     }

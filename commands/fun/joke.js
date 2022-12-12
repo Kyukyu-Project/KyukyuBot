@@ -21,43 +21,37 @@ async function execute(context) {
   const jokeIdx = Math.floor(Math.random() * jokeBase.length);
   const joke = jokeBase[jokeIdx];
 
-  if (joke.question) {
-    const Title = l10n.s(locale, 'cmd.joke.result.title');
-    const Q = l10n.t(locale, 'cmd.joke.result.question',
-        '{TEXT}', joke.question);
-    const A = l10n.t(locale, 'cmd.joke.result.answer',
-        '{TEXT}', joke.answer);
-    const Credit = l10n.t(locale, 'cmd.joke.result.credit',
-        '{NAME}', joke.credit);
+  const Credit =
+      l10n.t(locale, 'cmd.joke.result.credit', '{NAME}', joke.credit);
 
+  if (joke.question) {
     interaction
         .reply({
           embeds: [{
-            title: Title,
-            description: Q,
-            footer: {text: Credit},
+            color: 0x3271a6,
+            description: joke.question,
           }],
-          fetchReply: true,
         })
         .then(() => waitAsync(5))
         .then(() => interaction
             .editReply({
-              embeds: [{
-                title: Title,
-                description: Q + A,
-                footer: {text: Credit},
-              }],
-              fetchReply: true,
+              embeds: [
+                {
+                  color: 0x3271a6,
+                  description: joke.question,
+                },
+                {
+                  color: 0xea4335,
+                  description: joke.answer,
+                  footer: {text: Credit},
+                },
+              ],
             }));
   } else {
-    const Title = l10n.s(locale, 'cmd.joke.result.title');
-    const Credit = l10n.t(locale, 'cmd.joke.result.credit',
-        '{NAME}', joke.credit);
-
     interaction
         .reply({
           embeds: [{
-            title: Title,
+            color: 0x3271a6,
             description: joke.joke,
             footer: {text: Credit},
           }],
