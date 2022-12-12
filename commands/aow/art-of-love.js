@@ -3,15 +3,15 @@
  * @typedef {import('../../src/typedef.js').CommandContext} CommandContext
  */
 
-export const commandName = 'art-of-love';
-export const cooldown  = 3;
+const commandName = 'art-of-love';
+const cooldown  = 3;
 
 /**
  * Execute the command
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {channel, interaction} = context;
   await interaction.deferReply({ephemeral: true});
   const message = channel.messages.cache.get(interaction.targetId);
@@ -24,3 +24,10 @@ export async function execute(context) {
   interaction.editReply('❤️');
   return true;
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

@@ -1,12 +1,13 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../src/typedef.js').CommandContext} CommandContext
  */
 
 import {l10n} from '../src/l10n.js';
 import {smartReply} from '../src/smart-reply.js';
 
-export const commandName = 'help';
-export const cooldown  = 5;
+const commandName = 'help';
+const cooldown  = 5;
 
 /**
  * Resource key of content database
@@ -18,7 +19,7 @@ const DbResKey = 'help-info';
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-export async function execute(context) {
+async function execute(context) {
   const {locale, interaction} = context;
   const {options} = interaction;
 
@@ -75,3 +76,10 @@ export function autocomplete(context) {
 
   interaction.respond(options);
 }
+
+/** @type {CommandHandler} */
+export const command = {
+  name: commandName,
+  cooldown: cooldown,
+  execute: execute,
+};

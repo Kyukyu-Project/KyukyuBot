@@ -1,6 +1,7 @@
 /**
+ * @typedef {import('../../src/typedef.js').CommandHandler} CommandHandler
  * @typedef {import('../src/typedef.js').CommandContext} CommandContext
-  * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
+ * @typedef {import('../src/typedef.js').CommandActionResult} ActionResult
  * @typedef {import('discord.js').InteractionReplyOptions} InteractionReplyOptions
  */
 

@@ -13,7 +13,7 @@ const cooldown  = 5;
  * @param {CommandContext} context - Interaction context
  * @return {boolean} - `true` if command is executed successfully
  */
-function execute(context) {
+async function execute(context) {
   const {interaction, locale} = context;
   const {options} = interaction;
 
