@@ -1,0 +1,43 @@
+{
+  "aow-info": {
+    "search": [
+      { "id": "troops.angel",
+        "title": "Angel",
+        "keyword-sets": [
+          ["angel", "divine protect"]
+        ]
+      }
+    ],
+    "content": {
+      "troops.angel": {
+        "<object>": {
+          "title": "Angel",
+          "embeds": [
+            {
+              "title": "Angel",
+              "fields": [
+                {
+                  "name": "Skill: Divine Protect",
+                  "value<text>": [
+                    "[Reference graphics](https://cdn.discordapp.com/attachments/833978786395586600/979667992243736586/angel.en-02.png)",
+                    "• Angel will randomly select a non-Angel friendly unit within range (3) as the target.",
+                    "• If no target is found, Angel will select the closest non-Angel friendly unit.",
+                    "• If all friendly units are Angel, all Angels will not move or select a target.",
+                    "• Angel's skill cool-down is 5 seconds (the first skill release is 5 seconds after the start of the battle).",
+                    "• With Angel as the center, all friendly units within range (2) will receives evasion buff.",
+                    "• A friendly unit under the evasion buff has the ability to evade control triggered by normal attack (e.g. Frost Archers’s Chill) but not control triggered by skill (e.g. Aly's fire bomb)"
+                  ]
+                }
+
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-12-13)"
+              }
+            }
+          ],
+          "$related": []
+        }
+      }
+    }
+  }
+}
