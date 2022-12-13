@@ -17,7 +17,7 @@
         "description": "%%cmd.bot-avatar.set.desc%%",
         "description_localizations": "%%cmd.bot-avatar.set.desc%%",
         "options": [
-          { "$comment": "/super-admin bot-avatar set attach",
+          { "$comment": "/bot-avatar set attach",
             "type": "CommandOptionType.Attachment",
             "name": "%%cmd.bot-avatar.set.attach.name%%",
             "name_localizations": "%%cmd.bot-avatar.set.attach.name%%",
@@ -28,7 +28,7 @@
           }
         ]
       },
-      { "$comment": "/super-admin bot-avatar get",
+      { "$comment": "/bot-avatar get",
         "type": "CommandOptionType.Subcommand",
         "name": "%%cmd.bot-avatar.get.name%%",
         "name_localizations": "%%cmd.bot-avatar.get.name%%",

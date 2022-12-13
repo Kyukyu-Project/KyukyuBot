@@ -1,0 +1,22 @@
+{
+  "cmd": {
+    "say": {
+      "name": "say",
+      "desc": "Send a message via the bot",
+      "message": {
+        "name": "message",
+        "desc": "Text message"
+      },
+      "channel": {
+        "name": "channel",
+        "desc": "Where the message is sent (default: current channel)"
+      },
+      "attach": {
+        "name": "attach",
+        "desc": "Attachment"
+      },
+      "message-sent": "Message sent",
+      "message-error": "Error sending the message"
+    }
+  }
+}
