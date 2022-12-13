@@ -2,7 +2,7 @@
   "aow-info": {
     "search": [
       { "id": "troops.nun",
-        "title": "Angel",
+        "title": "Nun",
         "keyword-sets": [
           ["nun", "healing light"]
         ]
@@ -11,7 +11,7 @@
     "content": {
       "troops.nun": {
         "<object>": {
-          "title": "Angel",
+          "title": "Nun",
           "embeds": [
             {
               "title": "Nun",
@@ -41,9 +41,11 @@
                   ]
                 },
                 {
-                  "name": "Tips",
+                  "name": "Usage tips",
                   "value<text>": [
-                    "• Avoid placing Nun close to other fast-moving units"
+                    "• Avoid placing Nun close to other fast-moving units",
+                    "• Commonly used in Aly, Davison, Jinn, and Selene formation",
+                    "• Commonly used in formation against Cerberus"
                   ]
                 }
               ],
