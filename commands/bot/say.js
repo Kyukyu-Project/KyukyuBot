@@ -44,7 +44,6 @@ async function execute(context) {
 
   const attachment = options.getAttachment('attach');
   if (attachment) {
-    console.log(attachment);
     const buffer = await urlToBuffer(attachment.url);
     reply.files = [new AttachmentBuilder(buffer, {name: attachment.name})];
   }
