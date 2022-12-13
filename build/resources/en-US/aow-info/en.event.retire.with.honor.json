@@ -1,0 +1,59 @@
+{
+  "aow-info": {
+    "search": [
+      { "id": "event.retire.with.honor",
+        "title": "Retire with Honor Event",
+        "keyword-sets": [
+          ["retire", "delete"],
+          ["honor", "medal"]
+        ]
+      }
+    ],
+    "content": {
+      "event.retire.with.honor": {
+        "<object>": {
+          "title": "Retire with Honor Event",
+          "embeds": [
+            {
+              "title": "Retire with Honor Event",
+              "description<text>": [
+                "Retire with Honor is a semi-annual event where players can retire (delete) unused level-9 or level-10 troops and get medals in return.",
+                "Players will receive Hunting Medals in their inbox __several days after the end of the event__."
+              ],
+              "fields": [
+                {
+                  "name": "Retire with Honor III",
+                  "value<text>": [
+                    "• 2022-12-09 ~ 2022-12-11",
+                    "• 1000 <:aowmedal:847363788194054165> for each retired level-9 troops",
+                    "• 3500 <:aowmedal:847363788194054165> for each retired level-10 troops"
+                  ]
+                },
+                {
+                  "name": "Retire with Honor II",
+                  "value<text>": [
+                    "• 2022-02-11 ~ 2022-02-17",
+                    "• 1000 <:aowmedal:847363788194054165> for each retired level-9 troops"
+                  ]
+                },
+                {
+                  "name": "Retire with Honor I",
+                  "value<text>": [
+                    "• 2021-11-22 ~ 2022-11-28",
+                    "• 1000 <:aowmedal:847363788194054165> for each retired level-9 troops"
+                  ]
+                }
+              ],
+              "footer": {
+                "text": "Contributed by community member (2022-10-26)"
+              }
+            }
+          ],
+          "related": [
+            "event.sunshine.supply"
+          ]
+        }
+      }
+    }
+  }
+}

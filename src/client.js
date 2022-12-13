@@ -44,7 +44,8 @@ const activities = [
   'Poking bears with Beast Master',
   'Moonwalking with Selene',
   'Playing poker with Cassandra',
-  'Chillin with Chione',
+  'Chilling with Chione',
+  'Playing trivia with Illum',
   'Barhopping with Edward',
   'Playing Hide & Seek with Shadow Ninja',
 ];

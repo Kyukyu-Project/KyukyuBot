@@ -55,7 +55,8 @@
             }
           ],
           "related": [
-            "draws.super-card"
+            "draws.super-card",
+            "event.retire.with.honor"
           ]
         }
       }
