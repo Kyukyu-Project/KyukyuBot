@@ -1,0 +1,41 @@
+{
+  "commandName": "post-message",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.post-message.name%%",
+    "name_localizations": "%%cmd.post-message.name%%",
+    "description": "%%cmd.post-message.desc%%",
+    "description_localizations": "%%cmd.post-message.desc%%",
+    "default_member_permissions": ["ManageGuild", "Administrator"],
+    "dm_permission": false,
+    "options": [
+      { "$comment": "/post-message message",
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.post-message.message.name%%",
+        "name_localizations": "%%cmd.post-message.message.name%%",
+        "description": "%%cmd.post-message.message.desc%%",
+        "description_localizations": "%%cmd.post-message.message.desc%%",
+        "required": true
+      },
+      { "$comment": "/post-message channel",
+        "type": "CommandOptionType.Channel",
+        "name": "%%cmd.post-message.channel.name%%",
+        "name_localizations": "%%cmd.post-message.channel.name%%",
+        "description": "%%cmd.post-message.channel.desc%%",
+        "description_localizations": "%%cmd.post-message.channel.desc%%",
+        "channel_types": ["Guild Text"],
+        "required": false
+      },
+      { "$comment": "/post-message attach",
+        "type": "CommandOptionType.Attachment",
+        "name": "%%cmd.post-message.attach.name%%",
+        "name_localizations": "%%cmd.post-message.attach.name%%",
+        "description": "%%cmd.post-message.attach.desc%%",
+        "description_localizations": "%%cmd.post-message.attach.desc%%",
+        "ephemeral": true,
+        "required": false
+      }
+    ]
+  }
+}

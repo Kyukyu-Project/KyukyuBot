@@ -1,0 +1,30 @@
+{
+  "cmd": {
+    "post-embeds": {
+      "name": "post-embeds",
+      "desc": "Post embeds via the bot",
+      "message": {
+        "name": "message",
+        "desc": "Text message"
+      },
+      "embed1": {
+        "name": "embed1",
+        "desc": "Embed 1"
+      },
+      "embed2": {
+        "name": "embed2",
+        "desc": "Embed 2"
+      },
+      "embed3": {
+        "name": "embed3",
+        "desc": "Embed 3"
+      },
+      "replace": {
+        "name": "replace",
+        "desc": "Id of the message you want to replace the content with"
+      },
+      "message-sent": "Message posted",
+      "message-error": "Error posting the message"
+    }
+  }
+}

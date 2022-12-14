@@ -1,7 +1,7 @@
 {
   "cmd": {
-    "say": {
-      "name": "say",
+    "post-message": {
+      "name": "post-message",
       "desc": "Send a message via the bot",
       "message": {
         "name": "message",

@@ -1,0 +1,58 @@
+{
+  "commandName": "post-embeds",
+  "global": true,
+  "ownerOnly": false,
+  "commandData": {
+    "name": "%%cmd.post-embeds.name%%",
+    "name_localizations": "%%cmd.post-embeds.name%%",
+    "description": "%%cmd.post-embeds.desc%%",
+    "description_localizations": "%%cmd.post-embeds.desc%%",
+    "default_member_permissions": ["ManageGuild", "Administrator"],
+    "dm_permission": false,
+    "options": [
+      { "$comment": "/post-embeds embed1",
+        "type": "CommandOptionType.Attachment",
+        "name": "%%cmd.post-embeds.embed1.name%%",
+        "name_localizations": "%%cmd.post-embeds.embed1.name%%",
+        "description": "%%cmd.post-embeds.embed1.desc%%",
+        "description_localizations": "%%cmd.post-embeds.embed1.desc%%",
+        "ephemeral": true,
+        "required": true
+      },
+      { "$comment": "/post-embeds embed2",
+        "type": "CommandOptionType.Attachment",
+        "name": "%%cmd.post-embeds.embed2.name%%",
+        "name_localizations": "%%cmd.post-embeds.embed2.name%%",
+        "description": "%%cmd.post-embeds.embed2.desc%%",
+        "description_localizations": "%%cmd.post-embeds.embed2.desc%%",
+        "ephemeral": true,
+        "required": false
+      },
+      { "$comment": "/post-embeds embed3",
+        "type": "CommandOptionType.Attachment",
+        "name": "%%cmd.post-embeds.embed3.name%%",
+        "name_localizations": "%%cmd.post-embeds.embed3.name%%",
+        "description": "%%cmd.post-embeds.embed3.desc%%",
+        "description_localizations": "%%cmd.post-embeds.embed3.desc%%",
+        "ephemeral": true,
+        "required": false
+      },
+      { "$comment": "/post-embeds message",
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.post-embeds.message.name%%",
+        "name_localizations": "%%cmd.post-embeds.message.name%%",
+        "description": "%%cmd.post-embeds.message.desc%%",
+        "description_localizations": "%%cmd.post-embeds.message.desc%%",
+        "required": false
+      },
+      { "$comment": "/post-embeds message",
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.post-embeds.replace.name%%",
+        "name_localizations": "%%cmd.post-embeds.replace.name%%",
+        "description": "%%cmd.post-embeds.replace.desc%%",
+        "description_localizations": "%%cmd.post-embeds.replace.desc%%",
+        "required": false
+      }
+    ]
+  }
+}

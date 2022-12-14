@@ -7,7 +7,7 @@ import {get} from 'https';
 import {AttachmentBuilder} from 'discord.js';
 import {l10n} from '../../src/l10n.js';
 
-const commandName = 'say';
+const commandName = 'post-message';
 const cooldown  = 10;
 
 /**
@@ -52,11 +52,15 @@ async function execute(context) {
     destination
         .send(reply)
         .then(() => {
-          interaction.editReply(l10n.s(locale, 'cmd.say.message-sent'));
+          interaction.editReply(
+              l10n.s(locale, 'cmd.post-message.message-sent'),
+          );
           resolve(true);
         })
         .catch((error) => {
-          interaction.editReply(l10n.s(locale, 'cmd.say.message-error'));
+          interaction.editReply(
+              l10n.s(locale, 'cmd.post-message.message-error'),
+          );
           reject(error);
         });
   });
