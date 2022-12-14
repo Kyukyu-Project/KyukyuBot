@@ -1,0 +1,55 @@
+{
+  "cmd": {
+    "about-me": {
+      "name": "キュキュについて",
+      "desc": "キュキュに関する情報を取得する",
+      "info": {
+        "name": "情報",
+        "desc": "キュキュの技術情報を入手する"
+      },
+      "bios": {
+        "name": "バイオ",
+        "desc": "キュキュの個人情報を入手する"
+      },
+      "info-result": {
+        "version": {
+          "label": "バージョン",
+          "value": "{VERSION}"
+        },
+        "source-code": {
+          "label": "ソースコード",
+          "value<text>": [
+            "リポジトリ：[{SHORT REPO URL}]({REPO URL})",
+            "ブランチ：{BRANCH}",
+            "最終コミット：{HASH}"
+          ]
+        },
+        "uptime": {
+          "label": "稼働時間",
+          "value<text>": [
+            "ボット：{BOT UPTIME}",
+            "システム：{SYS UPTIME}"
+          ]
+        },
+        "servers": {
+          "label": "サーバー",
+          "value<text>": [
+            "公式ディスコードサーバー：[discord.gg/p2H7jGSK](https://discord.gg/p2H7jGSK)",
+            "ボットは現在{SERVER COUNT}台のサーバー上にあります。"
+          ]
+        }
+      },
+  
+      "bios-result<text>": [
+        "私は内気なキツネで、バニーの穴に隠れてDiscordジャングルで会話を聞くのが好きです...",
+        "",
+        "「リベンジは、野菜とシングルモルトと一緒に食べるのが一番おいしい料理です」",
+        "",
+        "仲間：Harmless Buns (無害なバニー)",
+        "好きなクラン：HAS",
+        "好きなアーティスト：ミューフェ",
+        "好きなアニメ：フェアリーテイル"
+      ]
+    }
+  }  
+}

@@ -60,6 +60,7 @@ function info(context) {
         value: l10n.t(
             locale, 'cmd.about-me.info-result.source-code.value',
             '{REPO URL}', repoUrl,
+            '{SHORT REPO URL}', repoUrl.replace('https://', ''),
             '{BRANCH}', gitBranch,
             '{HASH}', gitLastCommit,
         ),

@@ -11,10 +11,6 @@
         "name": "bios",
         "desc": "Get to know the personal side of Kyukyu"
       },
-      "commands": {
-        "name": "commands",
-        "desc": "List all commands"
-      },
       "info-result": {
         "version": {
           "label": "Version",
@@ -23,7 +19,7 @@
         "source-code": {
           "label": "Source code",
           "value<text>": [
-            "Repository: [{REPO URL}]({REPO URL})",
+            "Repository: [{SHORT REPO URL}]({REPO URL})",
             "Branch: {BRANCH}",
             "Last-commit: {HASH}"
           ]
@@ -37,7 +33,10 @@
         },
         "servers": {
           "label": "Servers",
-          "value": "{SERVER COUNT} servers"
+          "value<text>": [
+            "Official Discord: [discord.gg/p2H7jGSK](https://discord.gg/p2H7jGSK)",
+            "The bot is currently on {SERVER COUNT} servers."
+          ]
         }
       },
   
@@ -50,16 +49,7 @@
         "Favorite clan: NBA",
         "Favorite musician: Koacia",
         "Favorite anime: Fairy Tail"
-      ],
-  
-      "commands-result": {
-        "heading<text>": [
-          "Global command list",
-          "(Server-specific command not listed)",
-          ""
-        ],
-        "item": "{COMMAND}\n  {DESCRIPTION}"
-      }
+      ]
     }
   }  
 }
