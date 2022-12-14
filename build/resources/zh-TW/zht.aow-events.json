@@ -4,11 +4,18 @@
       "name": "aow活動",
       "desc": "有關當前與即將到來的活動的資訊",
       "result": {
-        "current-line": "`還有{COUNT DOWN}` {EMOJI} {TITLE}",
+        "count-down-day": "還有`{TIME}`天　",
+        "count-down-hr":  "還有`{TIME}`小時",
+        "count-down-min": "還有`{TIME}`分鐘",
+        "count-to-day": "再等`{TIME}`天　",
+        "count-to-hr":  "再等`{TIME}`小時",
+        "count-to-min": "再等`{TIME}`分鐘",
+        "count-from-day": "`{TIME}`天前　",
+        "count-from-hr":  "`{TIME}`小時前",
+        "count-from-min": "`{TIME}`分鐘前　",
+        "line": "{COUNT DOWN} {EMOJI} {TITLE}",
         "current-title": "當前進行的活動",
-        "upcoming-line": "`再等{COUNT DOWN}` {EMOJI} {TITLE}",
         "upcoming-title": "即將到來的活動",
-        "ended-line": "`{COUNT DOWN}前` {EMOJI} {TITLE}",
         "ended-title": "剛剛結束"
       }
     }

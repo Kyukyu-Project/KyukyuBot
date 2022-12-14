@@ -38,6 +38,19 @@
 
   {
     "publish": true,
+    "emoji": "🎄",
+    "title": {
+      "en-US": "Christmas Party",
+      "zh-TW": "聖誕節派對",
+      "ja":    "クリスマスパーティー"
+    },
+    "date": {
+      "start": "2022-12-16T00:00:00.000Z",
+      "end":   "2022-12-29T23:59:59.999Z"
+    }
+  },
+  {
+    "publish": true,
     "emoji": "✨",
     "title": {
       "en-US": "Honor Celebration",
@@ -114,7 +127,7 @@
 
   {
     "publish": true,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "GA/PS/FA Probability Increase",
       "zh-TW": "刺客/海盜船/冰弓概率提升",
@@ -127,7 +140,7 @@
   },
   {
     "publish": true,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "GT/SN/Angel Probability Increase",
       "zh-TW": "工程師/忍者/天使概率提升",
@@ -140,7 +153,7 @@
   },
   {
     "publish": true,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "MA/UW/WT Probability Increase",
       "zh-TW": "學徒/武士/圖騰概率提升",
@@ -153,7 +166,7 @@
   },
   {
     "publish": true,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "US/Pelt/SS Probability Increase",
       "zh-TW": "夜魔/投茅者/劍士概率提升",
@@ -166,7 +179,7 @@
   },
   {
     "publish": false,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "<TBD> Probability Increase",
       "zh-TW": "<待通知>概率提升",
@@ -179,7 +192,7 @@
   },
   {
     "publish": false,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "<TBD> Probability Increase",
       "zh-TW": "<待通知>概率提升",
@@ -192,7 +205,7 @@
   },
   {
     "publish": false,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "<TBD> Probability Increase",
       "zh-TW": "<待通知>概率提升",
@@ -205,7 +218,7 @@
   },
   {
     "publish": false,
-    "emoji": "🔥",
+    "emoji": "🔺",
     "title": {
       "en-US": "<TBD> Probability Increase",
       "zh-TW": "<待通知>概率提升",

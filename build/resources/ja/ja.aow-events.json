@@ -4,15 +4,22 @@
       "name": "aowイベント",
       "desc": "現在および今後のイベントに関する情報",
       "result": {
-        "current-line": "`残り{COUNT DOWN}` {EMOJI} {TITLE}",
+        "count-down-day": "残り`{TIME}`日　",
+        "count-down-hr":  "残り`{TIME}`時間",
+        "count-down-min": "残り`{TIME}`分　",
+        "count-to-day": "`{TIME}`日で　",
+        "count-to-hr":  "`{TIME}`時間で",
+        "count-to-min": "`{TIME}`分で　",
+        "count-from-day": "`{TIME}`日前　",
+        "count-from-hr":  "`{TIME}`時間前",
+        "count-from-min": "`{TIME}`日前　",
+        "line": "{COUNT DOWN} {EMOJI} {TITLE}",
         "current-title": "進行中のイベント",
-        "upcoming-line": "`{COUNT DOWN}で開始` {EMOJI} {TITLE}",
         "upcoming-title": "開催予定",
-        "ended-line": "`{COUNT DOWN}前に` {EMOJI} {TITLE}",
         "ended-title": "最近終わった",
         "clan-hunting-start": "司令官、クランハンティングの新しいラウンドが始まりました！強力なマンティコアと戦い、クランの全員に素敵な報酬を与えましょう！",
         "championship-cup-start": "司令官、チャンピオンシップ カップのシーズン{SEASON NUMBER}が始まりました！参加報酬を得るには、10回の戦闘を忘れずに行ってください。",
-        "arena-last-day": "司令官、アリーナのシーズン#{SEASON NUMBER}が終わりに近づいています。栄光に満ちた勝利の日となりますように！"
+        "arena-last-day": "司令官、アリーナのシーズン{SEASON NUMBER}が終わりに近づいています。栄光に満ちた勝利の日となりますように！"
       }
     }
   }

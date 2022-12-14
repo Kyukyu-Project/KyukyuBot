@@ -24,6 +24,8 @@ const dataFilePaths =
     'sales.json',
   ].map((fName) => joinPath(dataDir, fName));
 
+const FireEmoji = '<a:brifire:1052437452587028571>';
+
 /**
  * @param {Date} d - Date
  * @return {Date}
@@ -46,6 +48,9 @@ function toUTCDate(d) {
  */
 async function execute(context) {
   const {interaction, locale} = context;
+  const ONE_DAY = 24 * 60 * 60 * 1000;
+  const ONE_HOUR = 60 * 60 * 1000;
+  const ONE_MINUTE = 60 * 1000;
 
   /** current time in number */
   const currentTS = toUTCDate(new Date());
@@ -63,12 +68,12 @@ async function execute(context) {
   const endedEvents = [];
 
   /**
-   * Sort events
+   * Sort function (smallest countdown to largest countdown)
    * @param {Object} a - Event A
    * @param {Object} b - Event B
    * @return {number} - Negative if A is before B
    */
-  function sort(a, b) {
+  function sortByCountdown(a, b) {
     if (a.countdown > b.countdown) return 1;
     if (a.countdown < b.countdown) return -1;
     return 0;
@@ -77,91 +82,126 @@ async function execute(context) {
   /**
    * Convert countdown (microseconds) to XXd, XXh, or XXm
    * @param {number} countdown - countdown (microseconds)
+   * @param {object} templates - string templates
    * @return {string}
    */
-  function formatCountdown(countdown) {
+  function formatCountdown(countdown, templates) {
     const pad = (n) => ((n < 10 ? ' ' : '') + n);
-    const D = 24 * 60 * 60 * 1000;
-    const H = 60 * 60 * 1000;
-    const M = 60 * 1000;
-    if (countdown > D) return pad(Math.ceil(countdown / D)) + 'd';
-    if (countdown > H) return pad(Math.ceil(countdown / H)) + 'h';
-    return pad(Math.ceil(countdown / M)) + 'm';
+
+    if (countdown > ONE_DAY) {
+      return templates.day.replace(
+          '{TIME}',
+          pad(Math.ceil(countdown / ONE_DAY)),
+      );
+    }
+
+    if (countdown > ONE_HOUR) {
+      return templates.hour.replace(
+          '{TIME}',
+          pad(Math.ceil(countdown / ONE_HOUR)),
+      );
+    }
+
+    return templates.min.replace(
+        '{TIME}',
+        pad(Math.ceil(countdown / ONE_MINUTE)),
+    );
   }
 
+  // Push current, upcoming, and ended events into appropriate event arrays
   allEvents
       .forEach((event) => {
         const startTS = Date.parse(event.date.start);
         const endTS =
           event.date.end?
           Date.parse(event.date.end):
-          (event.date.duration * 24 * 60 * 60 * 1000 + startTS);
+          (event.date.duration * ONE_DAY + startTS);
 
         if (endTS > currentTS) {
           if (startTS <= currentTS) { // Ongoing events
-            const countdown = endTS - currentTS;
-            currentEvents.push(Object.assign({countdown: countdown}, event),
-            );
+            const countDown = endTS - currentTS;
+            const thisEvent = Object.assign({countdown: countDown}, event);
+
+            if (
+              (currentTS - startTS < ONE_DAY) || // Just started
+              (countDown < ONE_DAY) // Ending soon
+            ) {
+              // Use animated fire emoji
+              thisEvent.emoji = FireEmoji;
+            }
+
+            currentEvents.push(thisEvent);
           } else { // Future events
-            const countdown = startTS - currentTS;
-            upcomingEvents.push(Object.assign({countdown: countdown}, event),
+            const countTo = startTS - currentTS;
+            upcomingEvents.push(Object.assign({countdown: countTo}, event),
             );
           }
         } else {
           // Recently ended events
-          if ((currentTS - endTS) < 7 * 24 * 60 * 60 * 1000) {
-            const countdown = currentTS - endTS;
-            endedEvents.push(Object.assign({countdown: countdown}, event),
+          if ((currentTS - endTS) < 5 * ONE_DAY) {
+            const countFrom = currentTS - endTS;
+            endedEvents.push(Object.assign({countdown: countFrom}, event),
             );
           }
         }
       });
 
-  upcomingEvents.sort(sort);
-  currentEvents.sort(sort);
-  endedEvents.sort(sort);
+  upcomingEvents.sort(sortByCountdown);
+  currentEvents.sort(sortByCountdown);
+  endedEvents.sort(sortByCountdown);
 
   const fields = [];
 
+  const LineTemplate = l10n.s(locale, 'cmd.aow-events.result.line');
+
   if (currentEvents.length) {
-    const Template = l10n.s(locale, 'cmd.aow-events.result.current-line');
+    const TimeTemplates = {
+      day: l10n.s(locale, 'cmd.aow-events.result.count-down-day'),
+      hour: l10n.s(locale, 'cmd.aow-events.result.count-down-hr'),
+      min: l10n.s(locale, 'cmd.aow-events.result.count-down-min'),
+    };
+
     const Title = l10n.s(locale, 'cmd.aow-events.result.current-title');
-    const lines = currentEvents.map((evt) =>
-      l10n.r(
-          Template,
-          '{COUNT DOWN}', formatCountdown(evt.countdown),
-          '{EMOJI}', evt.emoji,
-          '{TITLE}', evt.title[locale]||evt.title['en-US'],
-      ),
-    );
+    const lines = currentEvents.map((evt) => l10n.r(
+        LineTemplate,
+        '{COUNT DOWN}', formatCountdown(evt.countdown, TimeTemplates),
+        '{EMOJI}', evt.emoji,
+        '{TITLE}', evt.title[locale]||evt.title['en-US'],
+    ));
     fields.push({name: Title, value: lines.join('\n')});
   }
 
   if (upcomingEvents.length) {
-    const Template = l10n.s(locale, 'cmd.aow-events.result.upcoming-line');
+    const TimeTemplates = {
+      day: l10n.s(locale, 'cmd.aow-events.result.count-to-day'),
+      hour: l10n.s(locale, 'cmd.aow-events.result.count-to-hr'),
+      min: l10n.s(locale, 'cmd.aow-events.result.count-to-min'),
+    };
+
     const Title = l10n.s(locale, 'cmd.aow-events.result.upcoming-title');
-    const lines = upcomingEvents.map((evt) =>
-      l10n.r(
-          Template,
-          '{COUNT DOWN}', formatCountdown(evt.countdown),
-          '{EMOJI}', evt.emoji,
-          '{TITLE}', evt.title[locale]||evt.title['en-US'],
-      ),
-    );
+    const lines = upcomingEvents.map((evt) => l10n.r(
+        LineTemplate,
+        '{COUNT DOWN}', formatCountdown(evt.countdown, TimeTemplates),
+        '{EMOJI}', evt.emoji,
+        '{TITLE}', evt.title[locale]||evt.title['en-US'],
+    ));
     fields.push({name: Title, value: lines.join('\n')});
   }
 
   if (endedEvents.length) {
-    const Template = l10n.s(locale, 'cmd.aow-events.result.ended-line');
+    const TimeTemplates = {
+      day: l10n.s(locale, 'cmd.aow-events.result.count-from-day'),
+      hour: l10n.s(locale, 'cmd.aow-events.result.count-from-hr'),
+      min: l10n.s(locale, 'cmd.aow-events.result.count-from-min'),
+    };
+
     const Title = l10n.s(locale, 'cmd.aow-events.result.ended-title');
-    const lines = endedEvents.slice(0, 3).map((evt) =>
-      l10n.r(
-          Template,
-          '{COUNT DOWN}', formatCountdown(evt.countdown),
-          '{EMOJI}', evt.emoji,
-          '{TITLE}', evt.title[locale]||evt.title['en-US'],
-      ),
-    );
+    const lines = endedEvents.slice(0, 3).map((evt) => l10n.r(
+        LineTemplate,
+        '{COUNT DOWN}', formatCountdown(evt.countdown, TimeTemplates),
+        '{EMOJI}', evt.emoji,
+        '{TITLE}', evt.title[locale]||evt.title['en-US'],
+    ));
     fields.push({name: Title, value: lines.join('\n')});
   }
 
@@ -176,18 +216,15 @@ async function execute(context) {
     );
   }
 
-  const Day = 24 * 60 * 60 * 1000;
-  const Season = 14 * Day;
-
-  const ArenaSeason77 = Date.parse('2022-11-6');
-  const ArenaSeasonNbr = Math.floor((currentTS - ArenaSeason77) / Season) + 77;
-  const ArenaDayNbr = Math.ceil( (currentTS - ArenaSeason77) % Season / Day );
-
-  const CCSeason77 = Date.parse('2022-11-11');
-  const CCSeasonNbr = Math.floor((currentTS - CCSeason77) / Season) + 77;
-  const CCDayNbr = Math.floor( (currentTS - CCSeason77) % Season / Day );
+  const ONE_SEASON = 14 * ONE_DAY;
 
   if (!pinned) {
+    const ArenaSeason77 = Date.parse('2022-11-6');
+    const ArenaSeasonNbr =
+      Math.floor((currentTS - ArenaSeason77) / ONE_SEASON) + 77;
+    const ArenaDayNbr =
+      Math.ceil((currentTS - ArenaSeason77) % ONE_SEASON / ONE_DAY);
+
     if ( ArenaDayNbr == 14) { // last day of Arena
       pinned = l10n.s(
           locale, 'cmd.aow-events.result.arena-last-day',
@@ -197,6 +234,12 @@ async function execute(context) {
   }
 
   if (!pinned) {
+    const CCSeason77 = Date.parse('2022-11-11');
+    const CCSeasonNbr =
+        Math.floor((currentTS - CCSeason77) / ONE_SEASON) + 77;
+    const CCDayNbr =
+        Math.floor((currentTS - CCSeason77) % ONE_SEASON / ONE_DAY);
+
     if ( CCDayNbr == 1) { // first day of Championship Cup
       pinned = l10n.r(
           locale, 'cmd.aow-events.result.championship-cup-start',
