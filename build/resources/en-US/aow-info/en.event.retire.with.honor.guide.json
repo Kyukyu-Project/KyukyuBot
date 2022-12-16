@@ -1,0 +1,71 @@
+{
+  "aow-info": {
+    "search": [
+      { "id": "event.retire.with.honor.guide",
+        "title": "Guide to troops deletion",
+        "keyword-sets": [
+          ["retire", "delete"],
+          ["honor", "medal"],
+          ["troops"]
+        ]
+      }
+    ],
+    "content": {
+      "event.retire.with.honor.guide": {
+        "<object>": {
+          "title": "Guide to troops deletion",
+          "embeds": [
+            {
+              "title": "Guide to troops deletion",
+              "description<text>": [
+                "During Retire with Honor (a semi-annual event), players can delete level-9 or level-10 troops and get medals in return. The event presents a good opportunity for players to recover from past mistakes of upgrading the wrong troops.",
+                "",
+                "**But before you delete a troops...**",
+                "",
+                "Understand that what's useless now may become valuable later.",
+                "",
+                "As the game evolves, weak troops can become highly-demanded and valued troops can drop out of popularity.",
+                "",
+                "Example 1: __Soul Hunter__",
+                "Soul Hunter was little used until November 2022 when the developer [buffed](https://discord.com/channels/658594298983350293/658964105046261760/765562122754981908) Soul Hunter and it became dominant in the arena. After much complaint from players, the developer [nerfed](https://discord.com/channels/658594298983350293/770179210726735882/773538410215899136) Soul Hunter and its usage dropped. Several months later, Soul Hunter was popular again due its utility in the newly-released Infinity War. However, the developer later [adjusted](https://discord.com/channels/658594298983350293/658964105046261760/901141644492017746) the troops again, although by that time Soul Hunter's popularity had waned due to the release of Goblin Tech.",
+                "",
+                "Example 2: __Ice Mage__",
+                "Like many early Selene players, I used to use Ice Mage for its AoE and control effect. Then, the developer buffed Priest Mage around Feburary 2020 and released level-9 troops around September 2020. As I slowly built my stock of Priest Mage, I made several level-9 Ice Mage units as *temporary* stand-in for Priest Mage. On June 2021, the developer released level-10 troops. As my stock of Priest Mage depleted, I once again made two level-10 Ice Mage units as *temporary* stand-in. My level-10 mage troops served me well for a while. Then, the great dragon buff happened and all my single-load troops became useless in arena (though still useful in Infinity War). Just when it looked that mage troops would never see the light again, Jinn came along and mages are once again great troops (on offense, that is).",
+                "",
+                "**So... what can I delete?**",
+                "",
+                "It's best to ask other veteran players for their opinion before you make a decision.",
+                "",
+                "Two things you need to consider are:",
+                "",
+                "(1) Does the troops have unique, irreplaceable skill that might make it useful in the future?",
+                "",
+                "(2) In the unlikely event that level-11 troops are released, can the troops at least serve as a temporary stand-in?",
+                "",
+                "Below are my personal opinion on the matter. Note that, by the time you read this, the game has already changed and I might have different opinion. So once again, ask before you act.",
+                "",
+                "Archers and Bandits: __keep__ if you aren't sure if you have the troops to fill your Honor Hunting army if level-10 troops are ever released.",
+                "",
+                "Harbinger of Fire, Fire Mage, Ice Mage, and Ballista: __keep__ because they have AoE effect which can become useful in new game modes.",
+                "",
+                "Magic Apprentice and Ghost Assassins: __keep__ since they seem to never go out of popularity.",
+                "",
+                "Templar Knight: __keep__ if you still have trouble fighting Ivan or if don't have Rhino Knight. Otherwise __drop__.",
+                "",
+                "Beast Master and Witchcraft Totem: __keep__ because a level-9 Beast Master as a tank is better than no tank if level-11 troops are ever released.",
+                "",
+                "Infantry, Iron Guard, Bomber, Viking Warrior, Scholar, and Ogre Warrior: __drop__ because honestly I don't see how they can ever be useful."
+              ],
+              "footer": {
+                "text": "Written by Kitsune (2022-12-16)"
+              }
+            }
+          ],
+          "related": [
+            "event.retire.with.honor"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@
               "title": "Retire with Honor Event",
               "description<text>": [
                 "Retire with Honor is a semi-annual event where players can retire (delete) unused level-9 or level-10 troops and get medals in return.",
-                "Players will receive Hunting Medals in their inbox __several days after the end of the event__."
+                "Players will receive Hunting Medals in their inbox **about two days** after the end of the event. "
               ],
               "fields": [
                 {
@@ -50,6 +50,7 @@
             }
           ],
           "related": [
+            "event.retire.with.honor.guide",
             "event.sunshine.supply"
           ]
         }
