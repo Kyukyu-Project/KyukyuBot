@@ -27,6 +27,14 @@
         "channel_types": ["Guild Text"],
         "required": false
       },
+      { "$comment": "/post-message replace-message",
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.post-message.replace-message.name%%",
+        "name_localizations": "%%cmd.post-message.replace-message.name%%",
+        "description": "%%cmd.post-message.replace-message.desc%%",
+        "description_localizations": "%%cmd.post-message.replace-message.desc%%",
+        "required": false
+      },
       { "$comment": "/post-message attach",
         "type": "CommandOptionType.Attachment",
         "name": "%%cmd.post-message.attach.name%%",
@@ -35,6 +43,46 @@
         "description_localizations": "%%cmd.post-message.attach.desc%%",
         "ephemeral": true,
         "required": false
+      },
+      { "$comment": "/post-message format",
+        "type": "CommandOptionType.String",
+        "name": "%%cmd.post-message.format.name%%",
+        "name_localizations": "%%cmd.post-message.format.name%%",
+        "description": "%%cmd.post-message.format.desc%%",
+        "description_localizations": "%%cmd.post-message.format.desc%%",
+        "required": false,
+        "choices": [
+          {
+            "name": "%%cmd.post-message.format.regular%%",
+            "name_localizations": "%%cmd.post-message.format.regular%%",
+            "value": "regular"
+          },
+          {
+            "name": "%%cmd.post-message.format.embed-red%%",
+            "name_localizations": "%%cmd.post-message.format.embed-red%%",
+            "value": "embed-red"
+          },
+          {
+            "name": "%%cmd.post-message.format.embed-gold%%",
+            "name_localizations": "%%cmd.post-message.format.embed-gold%%",
+            "value": "embed-gold"
+          },
+          {
+            "name": "%%cmd.post-message.format.embed-green%%",
+            "name_localizations": "%%cmd.post-message.format.embed-green%%",
+            "value": "embed-green"
+          },
+          {
+            "name": "%%cmd.post-message.format.embed-blue%%",
+            "name_localizations": "%%cmd.post-message.format.embed-blue%%",
+            "value": "embed-blue"
+          },
+          {
+            "name": "%%cmd.post-message.format.embed-purple%%",
+            "name_localizations": "%%cmd.post-message.format.embed-purple%%",
+            "value": "embed-purple"
+          }
+        ]
       }
     ]
   }

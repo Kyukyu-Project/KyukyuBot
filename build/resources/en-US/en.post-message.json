@@ -11,12 +11,27 @@
         "name": "channel",
         "desc": "Where the message is sent (default: current channel)"
       },
+      "replace-message": {
+        "name": "replace-message",
+        "desc": "Id of the message you want to replace the content with"
+      },
       "attach": {
         "name": "attach",
         "desc": "Attachment"
       },
+      "format": {
+        "name": "format",
+        "desc": "Message format",
+        "regular": "regular text",
+        "embed-red": "embed (red)",
+        "embed-gold": "embed (gold)",
+        "embed-green": "embed (green)",
+        "embed-blue": "embed (blue)",
+        "embed-purple": "embed (purple)"
+      },
       "message-sent": "Message sent",
-      "message-error": "Error sending the message"
+      "message-error": "Error sending the message",
+      "message-replace-error": "Error overwriting destination message"
     }
   }
 }

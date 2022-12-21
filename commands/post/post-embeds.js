@@ -47,13 +47,13 @@ async function execute(context) {
   const embed1 = options.getAttachment('embed1');
   const embed2 = options.getAttachment('embed2');
   const embed3 = options.getAttachment('embed3');
-  const replaceMessageId = options.getString('replace');
+  const replaceMessageId = options.getString('replace-message');
+  const destination = options.getChannel('channel')||channel;
 
   const embeds = [];
 
   try {
     let content = (await urlToJson(embed1.url));
-    console.log(content);
 
     embeds.push(new EmbedBuilder(content));
 
@@ -71,36 +71,43 @@ async function execute(context) {
     throw (error);
   }
 
-  const reply = {embeds: embeds};
+  const reply = {content: '', embeds: embeds};
   if (message) reply.content = message;
 
   if (replaceMessageId) {
-    const replacedMessage = channel.messages.cache.get(replaceMessageId);
+    try {
+      const replacedMessage =
+        await destination.messages.fetch(replaceMessageId);
 
-    if (
-      !replacedMessage ||
-      (replacedMessage.author.id !== client.user.id)
-    ) {
-      interaction.editReply(l10n.s(locale, 'cmd.post-embeds.message-error'));
+      if (
+        !replacedMessage ||
+        (replacedMessage.author.id !== client.user.id)
+      ) {
+        throw new Error();
+      }
+
+      return new Promise((resolve, reject) => {
+        replacedMessage
+            .edit(reply)
+            .then(() => {
+              interaction.editReply(
+                  l10n.s(locale, 'cmd.post-embeds.message-sent'),
+              );
+              resolve(true);
+            })
+            .catch((error) => {
+              interaction.editReply(
+                  l10n.s(locale, 'cmd.post-embeds.message-error'),
+              );
+              reject(error);
+            });
+      });
+    } catch (e) {
+      interaction.editReply(
+          l10n.s(locale, 'cmd.post-embeds.message-replace-error')
+      );
       return false;
     }
-
-    return new Promise((resolve, reject) => {
-      replacedMessage
-          .edit(reply)
-          .then(() => {
-            interaction.editReply(
-                l10n.s(locale, 'cmd.post-embeds.message-sent'),
-            );
-            resolve(true);
-          })
-          .catch((error) => {
-            interaction.editReply(
-                l10n.s(locale, 'cmd.post-embeds.message-error'),
-            );
-            reject(error);
-          });
-    });
   } else {
     return new Promise((resolve, reject) => {
       channel

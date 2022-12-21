@@ -19,12 +19,21 @@
         "name": "embed3",
         "desc": "Embed 3"
       },
-      "replace": {
-        "name": "replace",
+      "channel": {
+        "name": "channel",
+        "desc": "Where the message is sent (default: current channel)"
+      },
+      "replace-message": {
+        "name": "replace-message",
         "desc": "Id of the message you want to replace the content with"
       },
+      "attach": {
+        "name": "attach",
+        "desc": "Attachment"
+      },
       "message-sent": "Message posted",
-      "message-error": "Error posting the message"
+      "message-error": "Error posting the message",
+      "message-replace-error": "Error overwriting destination message"
     }
   }
 }

@@ -45,12 +45,21 @@
         "description_localizations": "%%cmd.post-embeds.message.desc%%",
         "required": false
       },
-      { "$comment": "/post-embeds message",
+      { "$comment": "/post-message attach",
+        "type": "CommandOptionType.Attachment",
+        "name": "%%cmd.post-message.attach.name%%",
+        "name_localizations": "%%cmd.post-message.attach.name%%",
+        "description": "%%cmd.post-message.attach.desc%%",
+        "description_localizations": "%%cmd.post-message.attach.desc%%",
+        "ephemeral": true,
+        "required": false
+      },
+      { "$comment": "/post-embeds replace-message",
         "type": "CommandOptionType.String",
-        "name": "%%cmd.post-embeds.replace.name%%",
-        "name_localizations": "%%cmd.post-embeds.replace.name%%",
-        "description": "%%cmd.post-embeds.replace.desc%%",
-        "description_localizations": "%%cmd.post-embeds.replace.desc%%",
+        "name": "%%cmd.post-embeds.replace-message.name%%",
+        "name_localizations": "%%cmd.post-embeds.replace-message.name%%",
+        "description": "%%cmd.post-embeds.replace-message.desc%%",
+        "description_localizations": "%%cmd.post-embeds.replace-message.desc%%",
         "required": false
       }
     ]
