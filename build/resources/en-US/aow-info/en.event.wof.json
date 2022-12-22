@@ -23,22 +23,21 @@
                   "name": "Rules",
                   "value<text>": [
                     "• Players can play up to __200__ spins each day",
-                    "• The first spin is always free.",
-                    "• On day 2~7 of the event, the first spin costs 60 gems **if** you do not have any unused Raffle Ticket <:aowraffle:1039016540332359721>.",
-                    "• On day 7, any unused Raffle Ticket carry over to the next Wheel of Fortune."
+                    "• The first spin each day is free.",
+                    "• Unused Raffle Tickets can be used in future Wheel of Fortune events."
                   ]
                 },
                 {
                   "name": "Best strategy",
                   "value<text>": [
-                    "• Distribute your spins so you can take advantage of discount spins.",
+                    "• Distribute your spins so you can take advantage of free spins.",
                     "• Make sure you do not leave any Raffle Tickets <:aowraffle:1039016540332359721> unused.",
-                    "• Statistically, doing 200 spins is the most economic. You will need about 19 160 <:aowgem:847363788592119838>."
+                    "• Statistically, doing 200 spins is the most economic. You will need about 18 800 <:aowgem:847363788592119838>."
                   ]
                 }
               ],
               "footer": {
-                "text": "Contributed by community member (2022-11-08)"
+                "text": "Contributed by community member (2022-12-22)"
               }
             }
           ],
