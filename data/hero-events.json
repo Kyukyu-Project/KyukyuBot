@@ -1,5 +1,30 @@
 [
   {
+    "ts": 1672704000000,
+    "date": "2023-01-03",
+    "type": "wof",
+    "primaryHeroes": [
+      "jinn",
+      "dracula"
+    ],
+    "secondaryHeroes": [
+      "moshe"
+    ]
+  },
+  {
+    "ts": 1672099200000,
+    "date": "2022-12-27",
+    "type": "cm",
+    "primaryHeroes": [
+      "seondeok",
+      "drake",
+      "poseidon",
+      "nezha",
+      "wukong",
+      "harrison"
+    ]
+  },
+  {
     "ts": 1671494400000,
     "date": "2022-12-20",
     "type": "wof",

@@ -38,6 +38,19 @@
 
   {
     "publish": true,
+    "emoji": "🐊",
+    "title": {
+      "en-US": "Murky Swamp",
+      "zh-TW": "幽暗水澤",
+      "ja":    "暗い沼地"
+    },
+    "date": {
+      "start": "2022-12-23T00:00:00.000Z",
+      "end":   "2023-01-19T23:59:59.999Z"
+    }
+  },
+  {
+    "publish": true,
     "emoji": "🎄",
     "title": {
       "en-US": "Christmas Party",
@@ -178,12 +191,12 @@
     }
   },
   {
-    "publish": false,
+    "publish": true,
     "emoji": "🔺",
     "title": {
-      "en-US": "<TBD> Probability Increase",
-      "zh-TW": "<待通知>概率提升",
-      "ja":    "軍隊の確率アップ"
+      "en-US": "GA/Brawlers/SG Probability Increase",
+      "zh-TW": "刺客/爭鬥者/白石巨人>概率提升",
+      "ja":    "アサシン/ディフェンダー/巨大岩の確率アップ"
     },
     "date": {
       "start": "2023-01-06T00:00:00.000Z",
