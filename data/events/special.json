@@ -74,6 +74,20 @@
       "end":   "2022-10-13T23:59:59.999Z"
     }
   },
+
+  {
+    "publish": true,
+    "emoji": "✨",
+    "title": {
+      "en-US": "Arena: Path to Glory",
+      "zh-TW": "競技場：通往榮耀之路",
+      "ja"   : "アリーナ: 栄光への道"
+    },
+    "date": {
+      "start": "2023-01-03T00:00:00.000Z",
+      "end":   "2023-01-09T23:59:59.999Z"
+    }
+  },
   {
     "publish": true,
     "emoji": "✨",
