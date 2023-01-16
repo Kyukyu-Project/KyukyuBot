@@ -13,6 +13,8 @@ import {servers} from '../../src/servers.js';
 import {logger} from '../../src/logger.js';
 import {waitAsync} from '../../src/utils.js';
 
+import * as random from '../../modules/random.js';
+
 import {ComponentType, ButtonStyle, ChannelType} from 'discord.js';
 
 /* ********************************************************************* */
@@ -44,35 +46,6 @@ const ActiveButtonSets = [
 ];
 
 /**
- * Shuffle an array
- * Code copied from https://bost.ocks.org/mike/shuffle/
- * @param {Array} array
- * @return {Array}
- */
-function shuffle(array) {
-  const result = Array.from(array);
-  let m = result.length;
-  let t;
-  let i;
-  while (m) { // While there remain elements to shuffle…
-    i = Math.floor(Math.random() * m--); // Pick a remaining element…
-    t = result[m]; // And swap it with the current element.
-    result[m] = result[i];
-    result[i] = t;
-  }
-  return result;
-}
-
-/**
- * Randomly pick an item from an array
- * @param {String[]} array
- * @return {String}
- */
-function randomPick(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
-
-/**
  * @param {object} triviaData
  * @return {object}
  */
@@ -84,7 +57,7 @@ function prepareQuiz(triviaData) {
   if (triviaData['order'] === 'fixed') {
     randomizedChoices = choices;
   } else {
-    randomizedChoices = shuffle(choices);
+    randomizedChoices = random.shuffle(choices);
     correctAnswer = randomizedChoices.indexOf(choices[correctAnswer]);
   }
 
@@ -171,16 +144,16 @@ async function execute(context) {
     if (correctAnswer === userAnswer) {
       if (!currentRoundLosers.has(userId) && !currentRoundWinners.has(userId)) {
         currentRoundWinners.add(userId);
-        i.reply({content: randomPick(resCorrect), ephemeral: true});
+        i.reply({content: random.pick(resCorrect), ephemeral: true});
       } else {
-        i.reply({content: randomPick(resAlreadyAnswered), ephemeral: true});
+        i.reply({content: random.pick(resAlreadyAnswered), ephemeral: true});
       }
     } else {
       if (!currentRoundLosers.has(userId) && !currentRoundWinners.has(userId)) {
         currentRoundLosers.add(userId);
-        i.reply({content: randomPick(resIncorrect), ephemeral: true});
+        i.reply({content: random.pick(resIncorrect), ephemeral: true});
       } else {
-        i.reply({content: randomPick(resAlreadyAnswered), ephemeral: true});
+        i.reply({content: random.pick(resAlreadyAnswered), ephemeral: true});
       }
     }
   };

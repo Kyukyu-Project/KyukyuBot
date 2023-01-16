@@ -8,6 +8,8 @@ import {ChannelType} from 'discord.js';
 import {l10n} from '../../src/l10n.js';
 import {waitAsync} from '../../src/utils.js';
 
+import * as random from '../../modules/random.js';
+
 const commandName = 'hero-match';
 const cooldown  = 0;
 
@@ -44,26 +46,6 @@ const Emojis = [
 const sessions = new Set();
 
 /**
- * Shuffle an array
- * Code copied from https://bost.ocks.org/mike/shuffle/
- * @param {Array} array
- * @return {Array}
- */
-function shuffle(array) {
-  const result = Array.from(array);
-  let m = result.length;
-  let t;
-  let i;
-  while (m) { // While there remain elements to shuffle…
-    i = Math.floor(Math.random() * m--); // Pick a remaining element…
-    t = result[m]; // And swap it with the current element.
-    result[m] = result[i];
-    result[i] = t;
-  }
-  return result;
-}
-
-/**
  * Generate a 5x5 multi-player board
  * @return {Array}
  */
@@ -73,10 +55,11 @@ function generateMPBoard() {
   // Choose 11th to 15th numbers as wild cards
 
   /** Randomized card values (1...15) */
-  const values = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+  const values =
+    random.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
 
   // Shuffle all the values
-  const cardValues = shuffle([]
+  const cardValues = random.shuffle([]
       // Values that computer will pick
       .concat(values.slice( 0, 10).map((v) => ({value: v, type: 'C'})))
       // Corresponding matching values (answers)
@@ -103,7 +86,7 @@ function generateMPBoard() {
 
   return {
     cards: cards,
-    computerPicks: shuffle(computerPicks),
+    computerPicks: random.shuffle(computerPicks),
   };
 }
 
@@ -116,11 +99,12 @@ function generateSPBoard() {
   // Choose the first 8 numbers and put them in pairs
 
   /** Randomized card values (1...15) */
-  const values = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+  const values = random
+      .shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
       .slice(0, 8);
 
   // Shuffle all the values
-  const cardValues = shuffle([]
+  const cardValues = random.shuffle([]
       // Values that computer will pick
       .concat(values.map((v) => ({value: v, type: 'C'})))
       // Corresponding matching values (answers)
@@ -143,7 +127,7 @@ function generateSPBoard() {
 
   return {
     cards: cards,
-    computerPicks: shuffle(computerPicks),
+    computerPicks: random.shuffle(computerPicks),
   };
 }
 
