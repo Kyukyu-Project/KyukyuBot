@@ -3,9 +3,8 @@
   "global": false,
   "ownerOnly": false,
   "servers": [
-    { "$comment": "Official", ".": "658594298983350293"},
-    { "$comment": "Chinese",  ".": "807945706157506571"},
-    { "$comment": "Premium",  ".": "720580180007059487"}
+    { "$comment": "Japanese", ".": "907894805059756042"},
+    { "$comment": "NBA", ".": "829608354665988097"}
   ],
   "commandData": {
     "name": "%%cmd.art-of-love.name%%",
