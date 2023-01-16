@@ -1,0 +1,14 @@
+{
+  "cmd": {
+    "server-info": {
+      "name": "server-info",
+      "desc": "Get info on servers Kyukyu is on",
+      "result<text>": [
+        "{DESCRIPTION}",
+        "<{ID}>",
+        "Created: {CREATED}",
+        "Member count: {MEMBER COUNT}"
+      ]
+    }
+  }  
+}

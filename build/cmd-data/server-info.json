@@ -1,0 +1,13 @@
+{
+  "commandName": "server-info",
+  "global": false,
+  "ownerOnly": true,
+  "commandData": {
+    "name": "%%cmd.server-info.name%%",
+    "name_localizations": "%%cmd.server-info.name%%",
+    "description": "%%cmd.server-info.desc%%",
+    "description_localizations": "%%cmd.server-info.desc%%",
+    "default_member_permissions": ["ManageGuild", "Administrator"],
+    "dm_permission": false
+  }
+}
