@@ -1,5 +1,30 @@
 [
   {
+    "ts": 1674518400000,
+    "date": "2023-01-24",
+    "type": "cm",
+    "primaryHeroes": [
+      "selene",
+      "charon",
+      "drake",
+      "wukong",
+      "poseidon",
+      "nezha"
+    ]
+  },
+  {
+    "ts": 1673913600000,
+    "date": "2023-01-17",
+    "type": "wof",
+    "primaryHeroes": [
+      "aly",
+      "freyja"
+    ],
+    "secondaryHeroes": [
+      "minotaur"
+    ]
+  },
+  {
     "ts": 1673308800000,
     "date": "2023-01-10",
     "type": "cm",
