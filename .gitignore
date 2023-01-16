@@ -15,3 +15,6 @@ client-data/*.*
 
 *.no-json
 *.no-js
+
+# Backstage
+backstage/
