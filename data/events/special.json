@@ -91,6 +91,18 @@
 
   {
     "publish": true,
+    "emoji": "🎈",
+    "title": {
+      "en-US": "Coin Carnival: **coin rewards in the 84 season BP will be doubled**, so please quit complaining about the rose, darn you!!!"
+    },
+    "date": {
+      "start": "2023-02-12T00:00:00.000Z",
+      "end":   "2023-02-25T23:59:59.999Z"
+    }
+  },
+  
+  {
+    "publish": true,
     "emoji": "🐊",
     "title": {
       "en-US": "Murky Swamp",
@@ -139,6 +151,18 @@
     "date": {
       "start": "2023-01-03T00:00:00.000Z",
       "end":   "2023-01-09T23:59:59.999Z"
+    }
+  },
+  {
+    "publish": true,
+    "emoji": "✨",
+    "title": {
+      "en-US": "Hero Trial: Glory of Victory",
+      "zh-TW": "勝利的榮耀"
+    },
+    "date": {
+      "start": "2023-02-17T00:00:00.000Z",
+      "end":   "2023-03-09T23:59:59.999Z"
     }
   },
   {
@@ -297,6 +321,32 @@
     }
   },
   {
+    "publish": true,
+    "emoji": "🔺",
+    "title": {
+      "en-US": "GT/SN/Angel Probability Increase",
+      "zh-TW": "工程師/忍者/天使概率提升",
+      "ja":    "テック/忍者/天使の確率アップ"
+    },
+    "date": {
+      "start": "2023-02-17T00:00:00.000Z",
+      "duration": 3
+    }
+  },
+  {
+    "publish": true,
+    "emoji": "🔺",
+    "title": {
+      "en-US": "MA/UW/WT Probability Increase",
+      "zh-TW": "學徒/武士/圖騰概率提升",
+      "ja":    "魔法使い/武士/トーテムの確率アップ"
+    },
+    "date": {
+      "start": "2023-03-03T00:00:00.000Z",
+      "duration": 3
+    }
+  },
+  {
     "publish": false,
     "emoji": "🔺",
     "title": {
@@ -305,7 +355,20 @@
       "ja":    "軍隊の確率アップ"
     },
     "date": {
-      "start": "2023-02-17T00:00:00.000Z",
+      "start": "2023-03-17T00:00:00.000Z",
+      "duration": 3
+    }
+  },
+  {
+    "publish": false,
+    "emoji": "🔺",
+    "title": {
+      "en-US": "<TBD> Probability Increase",
+      "zh-TW": "<待通知>概率提升",
+      "ja":    "軍隊の確率アップ"
+    },
+    "date": {
+      "start": "2023-03-31T00:00:00.000Z",
       "duration": 3
     }
   }

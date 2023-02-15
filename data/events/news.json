@@ -13,6 +13,16 @@
     "publish": true,
     "pin": {
       "until": "start-of",
+      "date": "2023-03-06"
+    },
+    "content": {
+      "en-US": "The formation \"Jungle Rules\" in Infinity War will add a structure on 2022-03-06."
+    }
+  },
+  {
+    "publish": true,
+    "pin": {
+      "until": "start-of",
       "date": "2022-11-10"
     },
     "content": {

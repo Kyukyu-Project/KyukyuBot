@@ -1,5 +1,30 @@
 [
   {
+    "ts": 1675728000000,
+    "date": "2023-02-07",
+    "type": "cm",
+    "primaryHeroes": [
+      "jinn",
+      "dracula",
+      "harrison",
+      "mephisto",
+      "odin",
+      "horus"
+    ]
+  },
+  {
+    "ts": 1675123200000,
+    "date": "2023-01-31",
+    "type": "wof",
+    "primaryHeroes": [
+      "seondeok",
+      "harrison"
+    ],
+    "secondaryHeroes": [
+      "edward"
+    ]
+  },
+  {
     "ts": 1674518400000,
     "date": "2023-01-24",
     "type": "cm",
