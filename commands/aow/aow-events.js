@@ -61,7 +61,7 @@ async function execute(context) {
   /** @type {Array} */
   const allEvents = dataFilePaths
       .reduce((allEvents, fPath) => allEvents.concat(readJson(fPath)), [])
-      .filter((event) => event.publish);
+      .filter((event) => event.publish === true);
 
   const currentEvents = [];
   const upcomingEvents = [];
@@ -133,8 +133,11 @@ async function execute(context) {
             currentEvents.push(thisEvent);
           } else { // Future events
             const countTo = startTS - currentTS;
-            upcomingEvents.push(Object.assign({countdown: countTo}, event),
-            );
+            const thisEvent = Object.assign({countdown: countTo}, event);
+            if (startTS - currentTS < ONE_DAY) { // Starting soon
+              thisEvent.emoji = FireEmoji; // Use animated fire emoji
+            }
+            upcomingEvents.push(thisEvent);
           }
         } else {
           // Recently ended events
