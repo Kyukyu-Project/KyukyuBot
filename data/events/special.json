@@ -93,7 +93,9 @@
     "publish": true,
     "emoji": "🎈",
     "title": {
-      "en-US": "Coin Carnival: **coin rewards in the 84 season BP will be doubled**, so please quit complaining about the rose, darn you!!!"
+      "en-US": "Coin Carnival: **coin rewards in the 84 season BP will be doubled**, so please quit complaining about the rose, darn you!!!",
+      "zh-TW": "金幣狂歡活動：84賽季戰鬥通行證的金幣獎勵將「翻倍」，所以請別再抱怨玫瑰裝飾品了",
+      "ja": "コインカーニバル: バトルパスのコインの報酬が「2倍に」なりますので、バラの装飾に文句を言うのはやめてください！"
     },
     "date": {
       "start": "2023-02-12T00:00:00.000Z",

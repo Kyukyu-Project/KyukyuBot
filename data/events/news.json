@@ -3,7 +3,7 @@
     "publish": false,
     "pin": {
       "until": "end-of",
-      "date": "2022-12-23"
+      "date": "2023-04-06"
     },
     "content": {
       "en-US": "DUMMY PINNED MESSAGE: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -16,7 +16,9 @@
       "date": "2023-03-06"
     },
     "content": {
-      "en-US": "The formation \"Jungle Rules\" in Infinity War will add a structure on 2022-03-06."
+      "en-US": "The formation \"Jungle Rules\" in Infinity War will add a structure on 2023-03-06.",
+      "zh-TW": "無限戰爭中的「叢林法則」陣行將在三月六號添加建築物。",
+      "ja": "インフィニティウォーの陣形「ジャングルの律法」は3月6日に構造物を追加されますます。"
     }
   },
   {
